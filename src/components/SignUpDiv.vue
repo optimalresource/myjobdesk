@@ -1,24 +1,31 @@
 <template>
-  <div class="card mb-3">
-    <div class="container row second_div p-5 d-flex justify-content-center">
-      <button
-        type="button"
-        data-toggle="modal"
-        data-target="#myModal"
-        @click.prevent="showSecondDiv = !showSecondDiv"
-        class="md-12 sm-12 xs-12 btn changing mr-5 p-2"
-      >
-        Register as a Company <i class="fas fa-users"></i>
-      </button>
-      <button
-        type="button"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-        @click.prevent="showDiv = !showDiv"
-        class="md-12 sm-12 xs-12 p-2 btn changing"
-      >
-        Register as an Applicant <i class="fas fa-user-edit"></i>
-      </button>
+  <div>
+    <div class="card mb-3">
+      <div class="ml-5 p-5 d-flex justify-content-center">
+        <div class="jb_newslwtteter_button">
+          <div class="header_btn search_btn news_btn jb_cover">
+            <button
+              data-toggle="modal"
+              data-target="#myModal"
+              @click.prevent="showSecondDiv = !showSecondDiv"
+            >
+              Company <i class="fas fa-users"></i>
+            </button>
+          </div>
+        </div>
+        <div class="jb_newslwtteter_button">
+          <div class="header_btn search_btn news_btn jb_cover">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              @click.prevent="showDiv = !showDiv"
+            >
+              Applicant <i class="fas fa-user-edit"></i>
+            </button>
+          </div>
+        </div>
+      </div>
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -27,11 +34,14 @@
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title " id="exampleModalCenterTitle">
-                Register
+                Applicant Registration
               </h5>
               <button
                 type="button"
@@ -140,7 +150,7 @@
                           id="password"
                           class="form-control "
                           name="password"
-                          placeholder="Password * ex. letters and numbers are compulsory"
+                          placeholder="Password *letters and numbers are compulsory"
                           v-model="inputs.password"
                         />
                         <div class="input-group-append">
@@ -197,14 +207,12 @@
                       <div id="blk">{{ errors[0] }}</div>
                     </ValidationProvider>
                   </ValidationObserver>
-                  <div class="d-flex justify-content col-6">
-                    <button
-                      type="submit"
-                      @click="register"
-                      class="text-center btn bttn"
-                    >
-                      Next Step
-                    </button>
+                  <div class="jb_newslwtteter_button">
+                    <div class="header_btn search_btn news_btn jb_cover">
+                      <button type="submit" @click="register">
+                        Next Step
+                      </button>
+                    </div>
                   </div>
 
                   <!-- <div>
@@ -230,694 +238,664 @@
                     </ul>
                   </div> -->
                 </div>
-                <div v-if="step == 2" class="container pr-5 pl-5">
-                  <h5 class="text-center p-5">Lets Get To Know You</h5>
-                  <div class="card-body">
-                    <ValidationProvider rules="required" v-slot="{ errors }">
-                      <div class="form-group icon_form comments_form">
-                        <label for="date">Date of Birth:</label>
-                        <input
-                          v-model="forms.dob"
-                          type="date"
-                          name="date"
-                          class="form-control"
-                          placeholder="Date of birth"
-                          required
-                        />
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider rules="required" v-slot="{ errors }">
-                      <div class="form-group icon_form comments_form">
-                        <label for="gender">gender</label>
-                        <select
-                          v-model="forms.gender"
-                          name="gender"
-                          class="custom-select"
-                        >
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          <option value="others">Others</option>
-                        </select>
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider rules="required" v-slot="{ errors }">
-                      <div class="form-group icon_form comments_form">
-                        <label for="marital_status">Marital Status</label>
-                        <select
-                          v-model="forms.marital_status"
-                          name="marital_status"
-                          class="custom-select"
-                        >
-                          <option value="Single">Single</option>
-                          <option value="Married">Married</option>
-                        </select>
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider
-                      name="phone-number"
-                      rules="required|numeric"
-                      v-slot="{ errors }"
-                    >
-                      <div class="form-group icon_form comments_form">
-                        <input
-                          type="text"
-                          placeholder="Phone Number*... ex. )0701"
-                          class="form-control"
-                          v-model="forms.phone"
-                        />
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider
-                      name="address"
-                      rules="required"
-                      v-slot="{ errors }"
-                    >
-                      <div class="form-group icon_form comments_form">
-                        <input
-                          type="text"
-                          placeholder="Your address*... ex. number 57, str"
-                          class="form-control"
-                          v-model="forms.address"
-                        />
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider>
-                      <div class="form-group icon_form comments_form">
-                        <label>Select Country:</label>
-                        <select
-                          class="form-control"
-                          v-model="forms.nationality"
-                        >
-                          <option value="Nigeria">Nigeria</option>
-                        </select>
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider
-                      name="State of Origin"
-                      rules="required"
-                      v-slot="{ errors }"
-                    >
-                      <div class="form-group icon_form comments_form">
-                        <label>Select State:</label>
-                        <select
-                          class="form-control"
-                          v-model="forms.selectedState"
-                          @change="changeState"
-                        >
-                          <option value="0">Select State</option>
-                          <option
-                            v-for="state in states"
-                            :key="state"
-                            :value="state"
-                            >{{ state }}</option
-                          >
-                        </select>
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <br />
-                    <ValidationProvider
-                      name="Local Government"
-                      rules="required"
-                      v-slot="{ errors }"
-                    >
-                      <div class="form-group icon_form comments_form">
-                        <label>Select Local Government:</label>
-                        <select
-                          class="form-control"
-                          v-model="forms.selectedLGA"
-                          @change="changeLGA"
-                        >
-                          <option value="0">Select Local Government</option>
-                          <option
-                            v-for="lg in lga.lgas"
-                            :key="lg"
-                            :value="lg"
-                            >{{ lg }}</option
-                          >
-                        </select>
-                        <div id="">{{ errors[0] }}</div>
-                      </div>
-                    </ValidationProvider>
-                    <div class="container">
-                      <button
-                        @click="savePersonalDetails"
-                        class="col-12 btn btn-secondary mb-5"
-                        type="submit"
-                      >
-                        Save Personal Details
-                      </button>
-                    </div>
-                    <hr />
-                    <button @click.prevent="showForm" class="btn btn-primary ">
-                      Add Education <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="mb-3">
-                      <div
-                        class="edu-prev mb-3"
-                        v-for="updatedForm in updatedForms"
-                        :key="updatedForm.id"
-                      >
-                        <h6 class="">
-                          {{ updatedForms.school_name }}
-                        </h6>
-                        {{ updatedForms.degree }},
-                        {{ updatedForms.course_of_study }},
-                        {{ updatedForms.grade }},
-                        {{ updatedForms.start_date }} to
-                        {{ updatedForms.end_date }},
-                      </div>
-                    </div>
-
-                    <div class="edu-form  background">
-                      <h5 class="card-title center p-5">
-                        Add Education
-                        <span
-                          class="float"
-                          style="cursor:pointer"
-                          @click.prevent="hideForm"
-                          ><i class="fas fa-times"></i
-                        ></span>
-                      </h5>
-                      <div class="employee-form">
-                        <ValidationProvider
-                          name="School"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <input
-                            type="text"
-                            placeholder="School*... ex. University of ..."
-                            class="form-control { 'form-group--error': $v.school.$error }"
-                            v-model="forms.school_name"
-                          />
-                          <span>{{ errors[0] }}</span>
-                        </ValidationProvider>
-                        <br />
-                        <ValidationProvider
-                          name="Degree"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <input
-                            type="text"
-                            placeholder="Degree*... ex. BSc, BA, HNd, SSCE..."
-                            class="form-control { 'form-group--error': $v.degree.$error }"
-                            v-model="forms.degree"
-                          />
-                          <span>{{ errors[0] }}</span>
-                        </ValidationProvider>
-                        <br />
-                        <ValidationProvider
-                          name="Course"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <input
-                            type="text"
-                            placeholder="Field of study *... ex. Agricultural Science"
-                            class="form-control"
-                            v-model="forms.course_of_study"
-                          />
-                          <div id="blk">{{ errors[0] }}</div>
-                        </ValidationProvider>
-                        <br />
-                        <ValidationProvider
-                          name="Grade"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <input
-                            type="text"
-                            placeholder="Grade*... ex. Second class upper division"
-                            class="form-control"
-                            v-model="forms.grade"
-                          />
-                          <div id="blk">{{ errors[0] }}</div>
-                        </ValidationProvider>
-
-                        <br />
-                        <ValidationProvider
-                          name="Year"
-                          rules="required|numeric"
-                          v-slot="{ errors }"
-                        >
-                          <label for="start_date">From: </label>
-                          <input
-                            class="form-control"
-                            type="text"
-                            v-model="forms.start_date"
-                          />
-                          <div id="blk">{{ errors[0] }}</div>
-                        </ValidationProvider>
-                        <br />
+                <transition name="slide-fade">
+                  <div v-if="step == 2" class="container">
+                    <div class="card-body">
+                      <div class="personal_details_div p-5">
+                        <h5 class="text-center pb-3">Lets Get To Know You</h5>
 
                         <ValidationProvider
-                          name="Year"
-                          rules="required|numeric"
+                          rules="required"
                           v-slot="{ errors }"
                         >
-                          <label for="to">To: </label>
-                          <input
-                            class="form-control"
-                            type="text"
-                            v-model="forms.end_date"
-                            required
-                          />
-                          <div id="blk">{{ errors[0] }}</div>
-                        </ValidationProvider>
-                        <br />
-                        <div class="form-group col-md-12">
-                          <label for="logo" class="control-label"
-                            >Please Upload Relevant Documents</label
-                          >
-                          <br />
-                          <div class="col-md-12">
+                          <div class="form-group icon_form comments_form">
+                            <label for="date">Date of Birth:</label>
                             <input
-                              ref="educational_details_file"
-                              type="file"
-                              name="educational_details_file"
-                              accept="application/pdf,.doc,.docx,application/msword"
-                              multiple
-                              id="educational_details_file"
-                              @change="uploadFieldChange"
-                              class="negative-margin-left"
+                              v-model="forms.dob"
+                              type="date"
+                              name="date"
+                              class="form-control"
+                              placeholder="Date of birth"
+                              required
                             />
-                            <p class="info">Only PDF and Doc and docx files</p>
-                            <hr />
-                            <div class="col-md-12">
-                              <div
-                                class="attachment-holder animated fadeIn"
-                                v-cloak
-                                v-for="attachment in attachments"
-                                :key="attachment"
-                              >
-                                <span class="label label-primary">{{
-                                  attachment.name +
-                                    " (" +
-                                    Number(
-                                      (attachment.size / 1024 / 1024).toFixed(1)
-                                    ) +
-                                    "MB)"
-                                }}</span>
-                                <span
-                                  class=""
-                                  style="background: white; cursor: pointer;"
-                                  @click="removeAttachment(attachment)"
-                                  ><button class="btn btn-xs btn-danger">
-                                    <i class="fas fa-times"></i></button
-                                ></span>
-                              </div>
-                            </div>
+                            <div id="">{{ errors[0] }}</div>
                           </div>
-                        </div>
-                        <button
-                          class="submit-edu"
-                          @click.prevent="submitEducationalDetails"
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          rules="required"
+                          v-slot="{ errors }"
                         >
-                          Save Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h5 class="text-center p-5">Certifications</h5>
-                    <div v-for="(row, index) in rows" :key="row">
-                      <div>
-                        <label for="">Title</label>
-                        <input
-                          class="form-control"
-                          type="text"
-                          v-model="row.title"
-                        />
-                      </div>
-                      <div>
-                        <label for="">Description:</label>
-                        <input
-                          class="form-control"
-                          type="text"
-                          v-model="row.description"
-                        />
+                          <div class="form-group icon_form comments_form">
+                            <label for="gender">gender</label>
+                            <select
+                              v-model="forms.gender"
+                              name="gender"
+                              class="custom-select form-control"
+                            >
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                              <option value="others">Others</option>
+                            </select>
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          rules="required"
+                          v-slot="{ errors }"
+                        >
+                          <div class="form-group icon_form comments_form">
+                            <label for="marital_status">Marital Status</label>
+                            <select
+                              v-model="forms.marital_status"
+                              name="marital_status"
+                              class="custom-select form-control"
+                            >
+                              <option value="Single">Single</option>
+                              <option value="Married">Married</option>
+                            </select>
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          name="phone-number"
+                          rules="required|numeric"
+                          v-slot="{ errors }"
+                        >
+                          <div class="form-group icon_form comments_form">
+                            <input
+                              type="text"
+                              placeholder="Phone Number*.... )0701"
+                              class="form-control"
+                              v-model="forms.phone"
+                            />
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          name="address"
+                          rules="required"
+                          v-slot="{ errors }"
+                        >
+                          <div class="form-group icon_form comments_form">
+                            <input
+                              type="text"
+                              placeholder="Your address*..."
+                              class="form-control"
+                              v-model="forms.address"
+                            />
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider>
+                          <div class="form-group icon_form comments_form">
+                            <label>Select Country:</label>
+                            <select
+                              class="form-control"
+                              v-model="forms.nationality"
+                            >
+                              <option value="Nigeria">Nigeria</option>
+                            </select>
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          name="State of Origin"
+                          rules="required"
+                          v-slot="{ errors }"
+                        >
+                          <div class="form-group icon_form comments_form">
+                            <label>Select State:</label>
+                            <select
+                              class="form-control"
+                              v-model="forms.selectedState"
+                              @change="changeState"
+                            >
+                              <option value="0">Select State</option>
+                              <option
+                                v-for="state in states"
+                                :key="state"
+                                :value="state"
+                                >{{ state }}</option
+                              >
+                            </select>
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <br />
+                        <ValidationProvider
+                          name="Local Government"
+                          rules="required"
+                          v-slot="{ errors }"
+                        >
+                          <div class="form-group icon_form comments_form">
+                            <label>Select Local Government:</label>
+                            <select
+                              class="form-control"
+                              v-model="forms.selectedLGA"
+                              @change="changeLGA"
+                            >
+                              <option value="0">Select Local Government</option>
+                              <option
+                                v-for="lg in lga.lgas"
+                                :key="lg"
+                                :value="lg"
+                                >{{ lg }}</option
+                              >
+                            </select>
+                            <div id="">{{ errors[0] }}</div>
+                          </div>
+                        </ValidationProvider>
+                        <div class="container">
+                          <button
+                            @click="savePersonalDetails"
+                            class="col-12 btn btn-success"
+                            type="submit"
+                          >
+                            Save Personal Details
+                          </button>
+                        </div>
                       </div>
                       <br />
-                      <div class="custom-file">
-                        <label class="fileContainer">
-                          {{ row.file.name }}
+                      <br />
+                      <hr />
+                      <br />
+                      <br />
+                      <div class="add_educational_details_div">
+                        <button
+                          @click.prevent="showForm"
+                          class="btn btn-primary"
+                        >
+                          Add Education
+                        </button>
+                        <div class="mb-3 col-12">
+                          <div
+                            class="edu-prev mb-3"
+                            v-for="updatedForm in updatedForms"
+                            :key="updatedForm.id"
+                          >
+                            <h6 class="">
+                              {{ updatedForms.school_name }}
+                            </h6>
+                            {{ updatedForms.degree }},
+                            {{ updatedForms.course_of_study }},
+                            {{ updatedForms.grade }},
+                            {{ updatedForms.start_date }} to
+                            {{ updatedForms.end_date }}
+                            <button>X</button>
+                          </div>
+                        </div>
+
+                        <div class="edu-form  background">
+                          <h5 class="card-title p-5">
+                            Add Education
+                            <span
+                              class="float"
+                              style="cursor:pointer"
+                              @click.prevent="hideForm"
+                              ><i class="fas fa-times"></i
+                            ></span>
+                          </h5>
+                          <transition name="fade">
+                            <div class="employee-form">
+                              <ValidationProvider
+                                name="School"
+                                rules="required"
+                                v-slot="{ errors }"
+                              >
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    type="text"
+                                    placeholder="School*... e.g. University of ..."
+                                    class="form-control { 'form-group--error': $v.school.$error }"
+                                    v-model="forms.school_name"
+                                  />
+                                </div>
+                                <span>{{ errors[0] }}</span>
+                              </ValidationProvider>
+                              <br />
+                              <ValidationProvider
+                                name="Degree"
+                                rules="required"
+                                v-slot="{ errors }"
+                              >
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    type="text"
+                                    placeholder="Degree*... e.g. BSc, BA, HNd, SSCE..."
+                                    class="form-control { 'form-group--error': $v.degree.$error }"
+                                    v-model="forms.degree"
+                                  />
+                                </div>
+                                <span>{{ errors[0] }}</span>
+                              </ValidationProvider>
+                              <br />
+                              <ValidationProvider
+                                name="Course"
+                                rules="required"
+                                v-slot="{ errors }"
+                              >
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    type="text"
+                                    placeholder="Field of study *... e.g. Agricultural Science"
+                                    class="form-control"
+                                    v-model="forms.course_of_study"
+                                  />
+                                </div>
+                                <div id="blk">{{ errors[0] }}</div>
+                              </ValidationProvider>
+                              <br />
+                              <ValidationProvider
+                                name="Grade"
+                                rules="required"
+                                v-slot="{ errors }"
+                              >
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    type="text"
+                                    placeholder="Grade*... e.g. Second class upper division"
+                                    class="form-control"
+                                    v-model="forms.grade"
+                                  />
+                                </div>
+                                <div id="blk">{{ errors[0] }}</div>
+                              </ValidationProvider>
+
+                              <br />
+                              <ValidationProvider
+                                name="Year"
+                                rules="required|numeric|max_value:4"
+                                v-slot="{ errors }"
+                              >
+                                <label for="start_date">From: </label>
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    v-model="forms.start_date"
+                                  />
+                                </div>
+                                <div id="blk">{{ errors[0] }}</div>
+                              </ValidationProvider>
+                              <br />
+
+                              <ValidationProvider
+                                name="Year"
+                                rules="required|numeric|max_value:4"
+                                v-slot="{ errors }"
+                              >
+                                <label for="to">To: </label>
+                                <div class="form-group icon_form comments_form">
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    v-model="forms.end_date"
+                                    required
+                                  />
+                                </div>
+                                <div id="blk">{{ errors[0] }}</div>
+                              </ValidationProvider>
+                              <br />
+                              <div class="form-group col-md-12">
+                                <label for="logo" class="control-label"
+                                  >Please Upload Relevant Documents</label
+                                >
+                                <br />
+                                <div class="input-group mb-3">
+                                  <div class="custom-file">
+                                    <input
+                                      ref="educational_details_file"
+                                      type="file"
+                                      name="educational_details_file"
+                                      accept="application/pdf,.doc,.docx,application/msword"
+                                      multiple
+                                      id="educational_details_file"
+                                      @change="uploadFieldChange"
+                                      class="negative-margin-left custom-file-input"
+                                    />
+                                    <label
+                                      class="custom-file-label"
+                                      for="inputGroupFile01"
+                                      >Upload Document</label
+                                    >
+                                  </div>
+                                </div>
+                                <div>
+                                  <!-- <p class="info">Only PDF, Doc, docx files only</p> -->
+                                  <hr />
+                                  <div class="col-md-12">
+                                    <div
+                                      class="attachment-holder animated fadeIn"
+                                      v-cloak
+                                      v-for="attachment in attachments"
+                                      :key="attachment"
+                                    >
+                                      <span class="label label-primary">{{
+                                        attachment.name +
+                                          " (" +
+                                          Number(
+                                            (
+                                              attachment.size /
+                                              1024 /
+                                              1024
+                                            ).toFixed(1)
+                                          ) +
+                                          "MB)"
+                                      }}</span>
+                                      <span
+                                        class=""
+                                        style="background: white; cursor: pointer;"
+                                        @click="removeAttachment(attachment)"
+                                        ><button class="btn btn-xs btn-danger">
+                                          <i class="fas fa-times"></i></button
+                                      ></span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <button
+                                class="submit-edu"
+                                @click.prevent="submitEducationalDetails"
+                              >
+                                Save Info
+                              </button>
+                            </div>
+                          </transition>
+                        </div>
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="certification_div">
+                      <div class="text-center p-3">
+                        <h5>Certifications</h5>
+                        <p class="text-danger">(Optional)</p>
+                      </div>
+                      <div
+                        class="border border-secondary rounded p-5 mb-2"
+                        v-for="(row, index) in rows"
+                        :key="row"
+                      >
+                        <div>
+                          <label for="">Title</label>
                           <input
-                            type="file"
-                            accept=".pdf, .xlsx, .xls, .csv"
-                            @change="setFilename($event, row), validate"
-                            :id="index"
+                            class="form-control"
+                            type="text"
+                            v-model="row.title"
                           />
-                          File</label
+                        </div>
+                        <div>
+                          <label for="">Description:</label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            v-model="row.description"
+                          />
+                        </div>
+                        <br />
+                        <div class="custom-file">
+                          <label class="fileContainer">
+                            {{ row.file.name }}
+                            <input
+                              type="file"
+                              accept=".pdf, .xlsx, .xls, .csv"
+                              @change="setFilename($event, row), validate"
+                              :id="index"
+                            />
+                            File</label
+                          >
+                        </div>
+                        <div class="mr-5">
+                          <button
+                            class="btn btn-danger"
+                            v-on:click="removeElement(index)"
+                            style="cursor: pointer"
+                          >
+                            Remove Certification
+                          </button>
+                        </div>
+                      </div>
+                      <div>
+                        <button
+                          class="btn btn-primary m-3"
+                          @click.prevent="addRow"
+                        >
+                          Add Certification
+                        </button>
+                        <div class="container">
+                          <button
+                            @click="saveCertifications"
+                            class=" mt-4 btn btn-success col-12"
+                          >
+                            Save Certifications
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class=" col-12 d-flex justify-content-center">
+                      <div class="jb_newslwtteter_button">
+                        <div class="header_btn search_btn news_btn jb_cover">
+                          <button @click.prevent="secondStep" type="submit">
+                            Next Step
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
+                <div v-if="step == 3" class="container p-5">
+                  <div class="certification_div">
+                    <h5 class="text-center mb-3">Referees</h5>
+                    <div v-for="(referrer, key) in referrers" :key="key">
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Full Name* please add the Title"
+                          v-model="referrers.name"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="email"
+                          class="form-control require"
+                          required
+                          placeholder="Emial Address*"
+                          v-model="referrers.email"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Referrer's Company Name*"
+                          v-model="referrers.company_name"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Position of The Referrer*"
+                          v-model="referrers.position_in_the_company"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          placeholder="Phone Number* e.g..080..070.."
+                          class="form-control require"
+                          required
+                          v-model="referrers.phone_number"
+                        />
+                      </div>
+                      <button
+                        @click.prevent="removeReferres"
+                        class="btn btn-danger m-2"
+                      >
+                        Remove Referrers
+                      </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <button
+                      @click.prevent="addReferrer"
+                      class="btn btn-primary"
+                    >
+                      Add Referrers
+                    </button>
+                    <button class="btn btn-success m-3 col-12">
+                      Save Referrers
+                    </button>
+                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <div class="certification_div">
+                    <h5 class="text-center mb-3">Experiences</h5>
+                    <div v-for="(experience, ex) in experiences" :key="ex">
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
+                          v-model="experiences.jd"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Company Name"
+                          v-model="experiences.experience_company_name"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="tel"
+                          class="form-control require"
+                          required
+                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
+                          v-model="experiences.date_to"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="tel"
+                          class="form-control require"
+                          required
+                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
+                          v-model="experiences.date_from"
+                        />
+                      </div>
+                      <button
+                        @click.prevent="removeExperience"
+                        class="btn btn-danger"
+                      >
+                        Remove Experiences
+                      </button>
+                    </div>
+                    <button
+                      @click.prevent="addExperience"
+                      class="btn btn-primary m-3"
+                    >
+                      Add Experiences
+                    </button>
+                    <button class="btn btn-success col-12">
+                      Save Experiences
+                    </button>
+                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <div class="certification_div">
+                    <div class="mb-2 text-center justify-content-center">
+                      <h5 class>Add Skill</h5>
+                      <p class="text-danger">Optional</p>
+                    </div>
+                    <div class="p-5">
+                      <div v-for="(skill, sk) in skills" :key="sk">
+                        <div class="input-group">
+                          <textarea
+                            class="form-control"
+                            placeholder="Write a Short Discription"
+                            v-model="skills.discription"
+                          ></textarea>
+                        </div>
+
+                        <div class="mt-2">
+                          <button
+                            class="btn btn-danger"
+                            @click.prevent="removeskills"
+                            style="cursor: pointer"
+                          >
+                            Remove Skill
+                          </button>
+                        </div>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+                      <button
+                        @click.prevent="addskills"
+                        class="btn btn-primary ml-2 mb-2"
+                      >
+                        Add Skills
+                      </button>
+                      <button class="btn btn-success col-12">
+                        Save Skills
+                      </button>
+                    </div>
+                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <div
+                    class="container justify-content-center certification_div"
+                  >
+                    <h5 class="text-center m-4">Upload Curriculum Vitae</h5>
+                    <div
+                      class="form-group icon_form comments_form  input-group"
+                    >
+                      <div class="custom-file">
+                        <input
+                          ref="cv"
+                          type="file"
+                          name="cv"
+                          accept="application/pdf,.doc,.docx,application/msword"
+                          multiple
+                          id="cv"
+                          class="custom-file-input"
+                        />
+                        <label class="custom-file-label" for="inputGroupFile04"
+                          >Choose file</label
                         >
                       </div>
-                      <div class="mr-5">
-                        <button
-                          class="btn btn-danger"
-                          v-on:click="removeElement(index)"
-                          style="cursor: pointer"
-                        >
-                          Remove Certification
+                      <div class="input-group-append">
+                        <button class="btn btn-success" type="button">
+                          Upload
                         </button>
                       </div>
                     </div>
-                    <div>
-                      <button
-                        class="btn btn-outline m-3"
-                        @click.prevent="addRow"
-                      >
-                        Add Certification
-                      </button>
-                      <hr />
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <button
-                      @click.prevent="secondStep"
-                      type="submit"
-                      class="btn bttn col-6"
-                    >
-                      Next Step
-                    </button>
-                  </div>
-                </div>
-                <div v-if="step == 3" class="container p-5">
-                  <h5 class="text-center p-3">Referees</h5>
-                  <div class="container">
-                    <div v-for="(referrer, index) in referrers" :key="referrer">
-                      <div>
-                        <ValidationProvider
-                          name="Name"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <div class="form-group icon_form comments_form">
-                            <label for="refname">
-                              Referrer's Name
-                            </label>
-                            <input
-                              id="refname"
-                              type="text"
-                              class="form-control"
-                              name="refname"
-                              required
-                              autocomplete="name"
-                              autofocus
-                              placeholder=" Full Name*"
-                              v-model="referrers.name"
-                            />
-                            <i class="fas fa-user"></i>
-                          </div>
-                          <span>{{ errors[0] }}</span>
-                        </ValidationProvider>
-                      </div>
-                      <div>
-                        <ValidationProvider
-                          name="refemail"
-                          rules="email"
-                          v-slot="{ errors }"
-                        >
-                          <div class="form-group icon_form comments_form">
-                            <label for="refemail">Email Adrress</label>
-                            <input
-                              id="refemail"
-                              type="email"
-                              class="form-control"
-                              name="refemail"
-                              required
-                              autocomplete="email"
-                              autofocus
-                              placeholder=" Email Address*"
-                              v-model="referrers.email"
-                            />
-                            <i class="fas fa-envelope"></i>
-                          </div>
-                          <span>{{ errors[0] }}</span>
-                        </ValidationProvider>
-                      </div>
-                      <div>
-                        <ValidationProvider
-                          name="Referrer's phone"
-                          rules="required|numeric"
-                          v-slot="{ errors }"
-                        >
-                          <div class="form-group icon_form comments_form">
-                            <label for="firstname">Phone Number</label>
-                            <input
-                              type="tel"
-                              class="form-control require"
-                              name="firstname"
-                              placeholder="Phone Number*"
-                              required
-                              v-model="referrers.phone"
-                            />
-                            <i class="fas fa-phone"></i>
-                            <span>{{ errors[0] }}</span>
-                          </div>
-                        </ValidationProvider>
-                      </div>
-                      <div>
-                        <ValidationProvider
-                          name="Company's name"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <div class="form-group icon_form comments_form">
-                            <label for="company-Name">Company's Name</label>
-                            <input
-                              type="text"
-                              class="form-control require"
-                              name="company-Name"
-                              placeholder="Company Name*"
-                              required
-                              v-model="referrers.company"
-                            />
-                            <i class="fas fa-users"></i>
-                            <span>{{ errors[0] }}</span>
-                          </div>
-                        </ValidationProvider>
-                      </div>
-                      <div>
-                        <ValidationProvider
-                          name="Position"
-                          rules="required"
-                          v-slot="{ errors }"
-                        >
-                          <div class="form-group icon_form comments_form">
-                            <label for="position">
-                              Position in the Company
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control require"
-                              name="position"
-                              placeholder="Position in the company*"
-                              required
-                              v-model="referrers.position"
-                            />
-                            <i class="fas fa-users"></i>
-                            <span>{{ errors[0] }}</span>
-                          </div>
-                        </ValidationProvider>
-                      </div>
-                      <button
-                        v-on:click="removeReferres(index)"
-                        style="cursor: pointer"
-                      >
-                        Remove Referees
-                      </button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <button class="btn btn-primary" @click="addReferrer">
-                      Add Referrees
-                    </button>
-                  </div>
-                  <hr />
-                  <div class="container p-5">
-                    <h5 class="text-center p-3">Experience</h5>
-                    <tbody>
-                      <div v-for="experience in experiences" :key="experience">
-                        <div>
-                          <ValidationProvider
-                            name="Position"
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
-                            <div class="form-group icon_form comments_form">
-                              <label for="Position">Position</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="experiences.title"
-                                placeholder="Position held*"
-                                name=""
-                              />
-                            </div>
-                            <span>{{ errors[0] }}</span>
-                          </ValidationProvider>
-                        </div>
-                        <div>
-                          <ValidationProvider
-                            name=""
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
-                            <div class="form-group icon_form comments_form">
-                              <label for="Company's Name">Company Name</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="experiences.company_name"
-                              />
-                              <i class="fas fa-users"></i>
-                            </div>
-                            <span>{{ errors[0] }}</span>
-                          </ValidationProvider>
-                        </div>
-                        <div>
-                          <ValidationProvider
-                            name="Discription"
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
-                            <div class="form-group icon_form comments_form">
-                              <label for="Company's Name"
-                                >Job Discription</label
-                              >
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="experiences.description"
-                              />
-                              <i class="fas fa-users"></i>
-                            </div>
-                            <span>{{ errors[0] }}</span>
-                          </ValidationProvider>
-                        </div>
-                        <!-- <div class="form-group icon_form comments_form">
-                <label for="Company's_Name">Company's Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="experiences.name"
-                />
-                <i class="fas fa-users"></i>
-              </div> -->
-                        <div>
-                          <ValidationProvider
-                            name="Date"
-                            rules="required|numeric"
-                            v-slot="{ errors }"
-                          >
-                            <div class="form-group icon_form comments_form">
-                              <label for="  From"> From</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="experiences.dateFrom"
-                                name="  From"
-                              />
-                            </div>
-                            <span>{{ errors[0] }}</span>
-                          </ValidationProvider>
-                        </div>
-                        <div>
-                          <ValidationProvider
-                            name="Date"
-                            rules="required|numeric"
-                            v-slot="{ errors }"
-                          >
-                            <div class="form-group icon_form comments_form">
-                              <label for="to"> To</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="experiences.dateTo"
-                                name="To"
-                              />
-                            </div>
-                            <span>{{ errors[0] }}</span>
-                          </ValidationProvider>
-                        </div>
-
-                        <a
-                          v-on:click="removeExperience()"
-                          style="cursor: pointer"
-                          ><i class="fas fa-times"></i
-                        ></a>
-                      </div>
-                    </tbody>
-                    <div>
-                      <button
-                        class="btn btn-primary"
-                        @click.prevent="addExperience"
-                      >
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                  <div>
-                    <h5 class="text-center p-3">Any Special Skills</h5>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <td><strong>Please Tell Us</strong></td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="skill in skills" :key="skill">
-                          <td>
-                            <div class="form-group icon_form comments_form">
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="skills.tell"
-                                placeholder="Tell us*"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <a
-                              @click.prevent="removeskills"
-                              style="cursor: pointer"
-                              ><i class="fas fa-times"></i
-                            ></a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <button
-                      class="btn btn-primary m-4"
-                      @click.prevent="addskills"
-                    >
-                      Add
-                    </button>
-                  </div>
-                  <button type="submit" class="text-center btn bttn">
-                    Submit
-                  </button>
-                </div>
-                <div v-if="step == 4">
-                  <div class="text-center jumbotron p-s">
-                    <h1 class="text-light">
-                      Completed &nbsp;<span>&#128516;</span>
-                    </h1>
-                    <!-- <StepFour /> -->
                   </div>
                 </div>
               </div>
@@ -926,181 +904,161 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Company Register</h5>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container p-5">
-              <!-- <h5 class="text-center pb-5"></h5> -->
-              <ValidationProvider
-                name="Company Name"
-                rules="required|alpha"
-                v-slot="{ errors }"
-              >
-                <div class="form-group icon_form comments_form">
-                  <input
-                    type="text"
-                    class="form-control require"
-                    placeholder="Company's Name*"
-                    required
-                    v-model="companys.company_name"
-                  />
-                  <i class="fas fa-user"></i>
-                  <span>{{ errors[0] }}</span>
-                </div>
-              </ValidationProvider>
-
-              <ValidationProvider
-                name="Company Email"
-                rules="required|email"
-                v-slot="{ errors }"
-              >
-                <div class="form-group icon_form comments_form">
-                  <input
-                    id="email"
-                    type="email"
-                    class="form-control  require"
-                    required
-                    autocomplete="email"
-                    autofocus
-                    placeholder="Email Address*"
-                    v-model="companys.company_email"
-                  />
-                  <i class="fas fa-envelope"></i>
-                  <span>{{ errors[0] }}</span>
-                </div>
-              </ValidationProvider>
-
-              <ValidationProvider
-                name="Company Address"
-                rules="required"
-                v-slot="{ errors }"
-              >
-                <div class="form-group icon_form comments_form">
-                  <textarea
-                    class="form-control  require"
-                    required
-                    autofocus
-                    placeholder="Company's Address*"
-                    v-model="companys.company_address"
-                  >
-                  </textarea>
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>{{ errors[0] }}</span>
-                </div>
-              </ValidationProvider>
-
-              <ValidationObserver>
+      <!-- Company Registration -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Company Register</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container p-5">
                 <ValidationProvider
-                  :rules="{
-                    required: true,
-                    regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
-                    confirmed: 'confirmation'
-                  }"
+                  name="Company Name"
+                  rules="required|alpha"
                   v-slot="{ errors }"
-                  name="Password"
                 >
-                  <div class="form-group icon_form comments_form input-group">
+                  <div class="form-group icon_form comments_form">
                     <input
-                      v-bind:type="[showPassword ? 'text' : 'password']"
-                      id="Company Password"
-                      class="form-control "
-                      placeholder="Password * ex. letters and numbers are compulsory"
-                      v-model="companys.company_password"
-                    />
-                    <div class="input-group-append">
-                      <span
-                        class="input-group-text"
-                        @click="showPassword = !showPassword"
-                      >
-                        <i
-                          class="fa"
-                          :class="[showPassword ? 'fa-eye' : 'fa-eye-slash']"
-                          aria-hidden="true"
-                        ></i>
-                      </span>
-                    </div>
-                  </div>
-                  <div id="blk">{{ errors[0] }}</div>
-                </ValidationProvider>
-
-                <ValidationProvider
-                  v-slot="{ errors }"
-                  vid="confirmation"
-                  name="Confirm Password"
-                >
-                  <div class="form-group icon_form comments_form input-group">
-                    <input
-                      v-bind:type="[showConfirmPassword ? 'text' : 'password']"
-                      id="company_confirm-password"
+                      type="text"
+                      class="form-control require"
+                      placeholder="Company's Name*"
                       required
-                      class="form-control short "
-                      placeholder="Confirm Password *"
-                      v-model="companys.company_password_confirmation"
+                      v-model="companys.company_name"
                     />
-                    <div class="input-group-append">
-                      <span
-                        class="input-group-text"
-                        @click="showConfirmPassword = !showConfirmPassword"
-                      >
-                        <i
-                          class="fa"
-                          :class="[
-                            showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'
-                          ]"
-                          aria-hidden="true"
-                        ></i>
-                      </span>
-                      <div></div>
-                    </div>
+                    <i class="fas fa-user"></i>
+                    <span>{{ errors[0] }}</span>
                   </div>
-                  <div id="blk">{{ errors[0] }}</div>
                 </ValidationProvider>
-              </ValidationObserver>
 
-              <ValidationProvider
-                name="Company Sector"
-                rules="required"
-                v-slot="{ errors }"
-              >
-                <div class="form-group icon_form comments_form">
-                  <select
-                    v-model="companys.company_sector"
-                    name="gender"
-                    class="custom-select"
-                  >
-                    <option value=""></option>
-                    <option value="">Select a Sector </option>
-                  </select>
-                  <i class="fas fa-bezier-curve"></i>
-                  <span>{{ errors[0] }}</span>
-                </div>
-              </ValidationProvider>
-              <div class="d-flex justify-content-center">
-                <button
-                  @click="registercompany"
-                  type="submit"
-                  class="btn bttn col-6"
+                <ValidationProvider
+                  name="Company Email"
+                  rules="required|email"
+                  v-slot="{ errors }"
                 >
-                  Submit
-                </button>
+                  <div class="form-group icon_form comments_form">
+                    <input
+                      id="email"
+                      type="email"
+                      class="form-control  require"
+                      required
+                      autocomplete="email"
+                      autofocus
+                      placeholder="Email Address*"
+                      v-model="companys.company_email"
+                    />
+                    <i class="fas fa-envelope"></i>
+                    <span>{{ errors[0] }}</span>
+                  </div>
+                </ValidationProvider>
+
+                <ValidationProvider
+                  name="Company Address"
+                  rules="required"
+                  v-slot="{ errors }"
+                >
+                  <div class="form-group icon_form comments_form">
+                    <textarea
+                      class="form-control  require"
+                      required
+                      autofocus
+                      placeholder="Company's Address*"
+                      v-model="companys.company_address"
+                    >
+                    </textarea>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{ errors[0] }}</span>
+                  </div>
+                </ValidationProvider>
+
+                <ValidationObserver>
+                  <ValidationProvider
+                    :rules="{
+                      required: true,
+                      regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
+                      confirmed: 'confirmation'
+                    }"
+                    v-slot="{ errors }"
+                    name="Password"
+                  >
+                    <div class="form-group icon_form comments_form input-group">
+                      <input
+                        v-bind:type="[showPassword ? 'text' : 'password']"
+                        id="Company Password"
+                        class="form-control "
+                        placeholder="Password * ex. letters and numbers are compulsory"
+                        v-model="companys.company_password"
+                      />
+                      <div class="input-group-append">
+                        <span
+                          class="input-group-text"
+                          @click="showPassword = !showPassword"
+                        >
+                          <i
+                            class="fa"
+                            :class="[showPassword ? 'fa-eye' : 'fa-eye-slash']"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div id="blk">{{ errors[0] }}</div>
+                  </ValidationProvider>
+
+                  <ValidationProvider
+                    v-slot="{ errors }"
+                    vid="confirmation"
+                    name="Confirm Password"
+                  >
+                    <div class="form-group icon_form comments_form input-group">
+                      <input
+                        v-bind:type="[
+                          showConfirmPassword ? 'text' : 'password'
+                        ]"
+                        id="company_confirm-password"
+                        required
+                        class="form-control short "
+                        placeholder="Confirm Password *"
+                        v-model="companys.company_password_confirmation"
+                      />
+                      <div class="input-group-append">
+                        <span
+                          class="input-group-text"
+                          @click="showConfirmPassword = !showConfirmPassword"
+                        >
+                          <i
+                            class="fa"
+                            :class="[
+                              showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'
+                            ]"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                        <div></div>
+                      </div>
+                    </div>
+                    <div id="blk">{{ errors[0] }}</div>
+                  </ValidationProvider>
+                </ValidationObserver>
+                <br />
+
+                <div class="jb_newslwtteter_button">
+                  <div class="header_btn search_btn news_btn jb_cover">
+                    <button @click="registercompany" type="submit">
+                      Submit
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">
-              Close
-            </button> -->
+            <div class="modal-footer"></div>
           </div>
         </div>
       </div>
@@ -1116,12 +1074,6 @@ import { EventBus } from "@/components/eventBus.js";
 // import StepFour from "@/components/StepFour.vue";
 import axios from "axios";
 import NaijaStates from "naija-state-local-government";
-// import toastr from "toastr";
-// Vue.use(VueToastr, {
-// defaultPosition: "toast-bottom-left",
-// defaultType: "info",
-// defaultTimeout: 1000
-// });
 
 export default {
   components: {
@@ -1427,10 +1379,10 @@ export default {
       this.selectedFiles.append("course_of_study", this.forms.course_of_study);
       this.selectedFiles.append("grade", this.forms.grade);
       this.selectedFiles.append("degree", this.forms.degree);
-      if(this.attachments.length > 0) {
+      if (this.attachments.length > 0) {
         for (let i = 0; i < this.attachments.length; i++) {
-        this.selectedFiles.append("filename[]", this.attachments[i]);
-      }
+          this.selectedFiles.append("filename[]", this.attachments[i]);
+        }
       }
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
@@ -1518,12 +1470,47 @@ export default {
         }
       });
     },
-    secondStep() {
-      this.submitFile();
-      this.step++;
-    },
     removeElement: function(index) {
       this.rows.splice(index, 1);
+    },
+    secondStep() {
+      // this.checkEducation();
+      // if (this.row.title == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
+      // if (this.row.description == "") {
+      //   this.$toastr.e("Please Describe the Certificate ");
+      //   return false;
+      // }
+      // if (this.row.file == "") {
+      //   this.$toastr.e("Please pick a file");
+      //   return false;
+      // }
+      this.step++;
+    },
+    finalButton: function() {},
+    checkReferees: function() {
+      // if (this.referrers.name == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
+      // if (this.referrers.email == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
+      // if (this.referrers.phone_number == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
+      // if (this.referrers.company == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
+      // if (this.referrers.position_in_the_company == "") {
+      //   this.$toastr.e("Please give a Title");
+      //   return false;
+      // }
     },
     setFilename: function(event, row) {
       var file = event.target.files[0];
@@ -1531,53 +1518,53 @@ export default {
     },
     addExperience: function() {
       this.experiences.push({
-        title: "",
-        description: "",
-        company_name: "",
-        dateFrom: "",
-        dateTo: ""
+        jd: "",
+        experience_company_name: "",
+        date_from: "",
+        date_to: ""
       });
     },
-    removeExperience: function() {
-      this.experiences.splice(1);
+    removeExperience: function(ex) {
+      this.experiences.splice(ex, 1);
     },
     addReferrer: function() {
       this.referrers.push({
         name: "",
         email: "",
-        phone: "",
+        phone_number: "",
         company: "",
-        position: ""
+        position_in_the_company: ""
       });
     },
-    removeReferres: function(index) {
-      this.referrers.splice(index, 1);
+    removeReferres: function(key) {
+      this.referrers.splice(key, 1);
     },
 
     addskills: function() {
       this.skills.push({
-        tell: ""
+        discription: ""
       });
     },
-    submitFile: function() {
-      let formData = new FormData();
-      formData.append("file", this.file);
-      axios
-        .post("https://api.myjobdesk.com/api/register_step_two", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(function() {
-          console.log("SUCCESS!!");
-        })
-        .catch(function() {
-          console.log("FAILURE!!");
-        });
+    removeskills: function(sk) {
+      this.skills.splice(sk, 1);
     },
-    removeskills: function() {
-      this.skills.splice(1);
-    },
+    // submitFile: function() {
+    //   let formData = new FormData();
+    //   formData.append("file", this.file);
+    //   axios
+    //     .post("https://api.myjobdesk.com/api/register_step_two", formData, {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data"
+    //       }
+    //     })
+    //     .then(function() {
+    //       console.log("SUCCESS!!");
+    //     })
+    //     .catch(function() {
+    //       console.log("FAILURE!!");
+    //     });
+    // },
+
     //   register: function() {
     //     this.$store
     //       .dispatch("retrieveToken", {
@@ -1648,7 +1635,8 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       console.log(accessToken);
       this.step++;
-    }
+    },
+    saveCertifications() {}
   },
   mounted() {
     // console.log(NaijaStates.all());
@@ -1671,6 +1659,31 @@ export default {
 </script>
 
 <style scoped>
+.slide-fade-enter-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.certification_div {
+  border-left: 5px solid #990066;
+  background-color: rgb(251, 251, 251);
+  padding: 25px;
+}
+.personal_details_div {
+  border-left: 5px solid #990066;
+  background-color: rgb(251, 251, 251);
+}
+.add_educational_details_div {
+  border-left: 5px solid #990066;
+  background-color: rgb(251, 251, 251);
+  padding: 25px;
+}
 .changing {
   background: white;
   color: #990066;
@@ -1781,20 +1794,27 @@ h5 {
   padding: 10px;
   outline: none;
   border: none;
-  background: white;
-  border-radius: 8px;
-  color: #990066;
+  background: #990066;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
   width: 100%;
   font-weight: 700;
 }
 .employee-form {
-  border: 3px solid white;
-  padding: 30px;
-  background-image: linear-gradient(to right, #990066, #af0066, #c90075);
-  border-radius: 10px;
+  border: 1px solid #ffd5f1;
+  padding: 40px;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
   width: 100%;
+  color: black;
 }
+.employee-form p {
+  color: red;
+}
+/* .employee-form h6 {
+  display: block;
+} */
 span {
   cursor: pointer;
 }
@@ -1810,6 +1830,9 @@ span {
 .bttn {
   color: white;
   background: linear-gradient(to right, #990066, #af0066, #c90075);
+}
+.bttn:hover {
+  opacity: 0.9;
 }
 .pad {
   padding: 50px 30%;
@@ -1901,5 +1924,11 @@ span {
 }
 .emoji {
   font-weight: 700;
+}
+.link_button {
+  color: white;
+}
+.link_button:hover {
+  color: #990066;
 }
 </style>

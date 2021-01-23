@@ -10,8 +10,16 @@
         <div class="row">
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
-              <img src="" class="img-responsive" alt="post_img" />
               <div class="emp_web_profile candidate_web_profile jb_cover">
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="inputs.email"
+                    :size="195"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
                 <h4>
                   {{ inputs.first_name }}
                   {{ inputs.last_name }}
@@ -139,6 +147,7 @@ import ResumeNavBar from "@/components/ResumeNavBar.vue";
 import Footer from "@/components/Footer.vue";
 import ChatBox from "@/components/ChatBox.vue";
 import axios from "axios";
+import Avatar from "vue-avatar";
 export default {
   name: "CandidateResume",
   components: {
@@ -146,7 +155,8 @@ export default {
     Footer,
     ResumeRightSidebar,
     ResumeNavBar,
-    ChatBox
+    ChatBox,
+    Avatar
   },
   data() {
     return {
@@ -185,4 +195,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+</style>

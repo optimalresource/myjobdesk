@@ -2,13 +2,9 @@
   <div class="login_wrapper jb_cover">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 box">
-          <ValidationObserver v-slot="{ handleSubmit }">
-            <form
-              @submit.prevent="handleSubmit(onSubmit)"
-              id="registration-form"
-              enctype="multipart/form-data"
-            >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+          <ValidationObserver>
+            <form id="registration-form" enctype="multipart/form-data">
               <div v-if="page == 'login'">
                 <LoginDiv />
               </div>
@@ -28,7 +24,7 @@
 <script>
 import LoginDiv from "@/components/LoginDiv.vue";
 import SignUpDiv from "@/components/SignUpDiv.vue";
-import { EventBus } from "@/components/eventBus.js";
+// import { EventBus } from "@/components/eventBus.js";
 
 // import Vue from "vue";
 
@@ -48,11 +44,13 @@ export default {
       console.log("Am here");
     },
     onSubmit() {
-      EventBus.$emit("onSubmit");
+      // EventBus.$emit("onSubmit");
       console.log("I can see you");
     }
   }
 };
+// @submit.prevent="handleSubmit(onSubmit)"
+//  <ValidationObserver v-slot="{ handleSubmit }">
 </script>
 
-<style scoped lang="scss"></style>
+<style></style>

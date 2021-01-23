@@ -11,12 +11,19 @@
         <div class="row">
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
-              <img src="" class="img-responsive" alt="profile picture" />
               <div class="emp_web_profile candidate_web_profile jb_cover">
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="inputs.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
                 <h4>
-                  {{
-                    (inputs.first_name, inputs.last_name, inputs.middle_name)
-                  }}
+                  {{ inputs.first_name }}
+                  {{ inputs.last_name }}
                 </h4>
                 <p>{{ inputs.email }}</p>
               </div>
@@ -120,7 +127,13 @@
                       <div class="jp_job_post_right_cont">
                         <h4>
                           Name:
-                          {{ inputs.last_name + " " + inputs.first_name }}
+                          {{
+                            inputs.last_name +
+                              " " +
+                              inputs.first_name +
+                              " " +
+                              inputs.middle_name
+                          }}
                         </h4>
 
                         <ul>
@@ -128,7 +141,7 @@
                             <i class="flaticon-location-pointer"></i>&nbsp;
                             &nbsp; Adrress:
 
-                            {{ forms.address }}
+                            {{ personal_details.address }}
                           </li>
                         </ul>
                       </div>
@@ -160,7 +173,7 @@
                           <ul>
                             <li>date of birth:</li>
                             <li>
-                              <a href="#">{{ forms.dob }}</a>
+                              <a href="#">{{ personal_details.dob }}</a>
                             </li>
                           </ul>
                         </div>
@@ -171,13 +184,51 @@
                         class="jp_listing_overview_list_main_wrapper dcv jb_cover"
                       >
                         <div class="jp_listing_list_icon">
-                          <i class="fas fa-shield-alt"></i>
+                          <i class="fas fa-ring"></i>
                         </div>
                         <div class="jp_listing_list_icon_cont_wrapper">
                           <ul>
                             <li>marital status:</li>
                             <li>
-                              <a href="#">{{ forms.marital_status }}</a>
+                              <a href="#">{{
+                                personal_details.marital_status
+                              }}</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="jp_listing_overview_list_main_wrapper jb_cover">
+                      <div
+                        class="jp_listing_overview_list_main_wrapper dcv jb_cover"
+                      >
+                        <div class="jp_listing_list_icon">
+                          <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="jp_listing_list_icon_cont_wrapper">
+                          <ul>
+                            <li>State:</li>
+                            <li>
+                              <a href="#">{{
+                                personal_details.selectedState
+                              }}</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="jp_listing_overview_list_main_wrapper jb_cover">
+                      <div
+                        class="jp_listing_overview_list_main_wrapper dcv jb_cover"
+                      >
+                        <div class="jp_listing_list_icon">
+                          <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="jp_listing_list_icon_cont_wrapper">
+                          <ul>
+                            <li>Local Government Area:</li>
+                            <li>
+                              <a href="#">{{ personal_details.selectedLGA }}</a>
                             </li>
                           </ul>
                         </div>
@@ -194,7 +245,7 @@
                           <ul>
                             <li>nationality:</li>
                             <li>
-                              <a href="#">{{ forms.nationality }}</a>
+                              <a href="#">{{ personal_details.nationality }}</a>
                             </li>
                           </ul>
                         </div>
@@ -207,7 +258,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Location:</li>
-                          <li>{{ forms.address }}</li>
+                          <li>{{ personal_details.address }}</li>
                         </ul>
                       </div>
                     </div>
@@ -218,7 +269,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>phone:</li>
-                          <li>{{ forms.phone }}</li>
+                          <li>{{ personal_details.phone }}</li>
                         </ul>
                       </div>
                     </div>
@@ -246,7 +297,7 @@
                         <ul>
                           <li>gender:</li>
                           <li>
-                            <a href="#">{{ forms.gender }}</a>
+                            <a href="#">{{ personal_details.gender }}</a>
                           </li>
                         </ul>
                       </div>
@@ -282,7 +333,7 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>facebook:</li>
-                              <p>{{ facebook_username }}</p>
+                              <p>{{ socialProfile.facebook_username }}</p>
                             </ul>
                           </div>
                         </div>
@@ -295,7 +346,7 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>twitter:</li>
-                              <p>{{ twitter_username }}</p>
+                              <p>{{ socialProfile.twitter_username }}</p>
                             </ul>
                           </div>
                         </div>
@@ -308,7 +359,7 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>linkedin:</li>
-                              <p>{{ linkedin_username }}</p>
+                              <p>{{ socialProfile.linkedin_username }}</p>
                             </ul>
                           </div>
                         </div>
@@ -348,7 +399,10 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>Certifications:</li>
-                              <p>{{ certifications.input }}</p>
+                              <div v-for="(row, cert) in rows" :key="cert">
+                                <p>{{ rows.title }}</p>
+                                <p>{{ rows.description }}</p>
+                              </div>
                             </ul>
                           </div>
                         </div>
@@ -361,7 +415,12 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>Referees:</li>
-                              <p>{{ referrers.name }}</p>
+                              <div
+                                v-for="(referrer, ref) in referrers"
+                                :key="ref"
+                              >
+                                <p>{{ referrers.name }}</p>
+                              </div>
                             </ul>
                           </div>
                         </div>
@@ -376,15 +435,15 @@
                               <li>education:</li>
                               <p>
                                 {{
-                                  updatedForms.school +
+                                  education.school +
                                     " " +
-                                    updatedForms.course_of_study +
+                                    education.course_of_study +
                                     " " +
-                                    updatedForms.grade +
+                                    education.grade +
                                     " " +
-                                    updatedForms.from +
+                                    education.from +
                                     " " +
-                                    updatedForms.to +
+                                    education.to +
                                     " "
                                 }}
                               </p>
@@ -531,6 +590,7 @@
 import Footer from "@/components/Footer.vue";
 // import CandidateDashboardRightSideBar from "@/components/CandidateDashboardRightSideBar.vue";
 // import CandidateDashboardNavBar from "@/components/CandidateDashboardNavBar.vue";
+import Avatar from "vue-avatar";
 import CandidateDashboardSubNavBar from "@/components/CandidateDashboardSubNavBar.vue";
 import Looking from "@/components/Looking.vue";
 import ChatBox from "@/components/ChatBox.vue";
@@ -540,6 +600,7 @@ export default {
   components: {
     Footer,
     Looking,
+    Avatar,
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     CandidateDashboardSubNavBar,
@@ -560,16 +621,18 @@ export default {
         password: "",
         password_confirmation: ""
       },
-      forms: {
+      personal_details: {
         age: "",
         phone: "",
         gender: "",
         marital_status: "",
         nationality: "",
         address: "",
-        dob: ""
+        dob: "",
+        selectedLGA: "",
+        selectedState: ""
       },
-      updatedForms: {
+      education: {
         school: "",
         degree: "",
         course_of_study: "",
@@ -577,11 +640,22 @@ export default {
         from: "",
         to: ""
       },
-      certifications: {
-        input: ""
+      rows: {
+        title: "",
+        description: ""
       },
       referrers: {
-        name: ""
+        name: "",
+        age: "",
+        email: "",
+        company_name: "",
+        position_in_the_company: ""
+      },
+      experiences: {
+        experience_company_name: "",
+        date_from: "",
+        date_to: "",
+        jd: ""
       }
     };
   },
@@ -605,36 +679,101 @@ export default {
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
-        this.forms.state_of_origin = response.data.state_of_origin;
-        this.forms.age = response.data.age;
-        this.forms.phone = response.data.phone;
-        this.forms.gender = response.data.gender;
-        this.forms.marital_status = response.data.marital_status;
-        this.forms.nationality = response.data.nationality;
-        this.forms.address = response.data.address;
-        this.updatedForm.school = response.data.school;
-        this.updatedForm.degree = response.data.degree;
-        this.updatedForm.course_of_study = response.data.course_of_study;
-        this.updatedForm.grade = response.data.grade;
-        this.updatedForm.to = response.data.to;
-        this.updatedForm.from = response.data.from;
       })
       .catch(error => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
-
     axios
-      .get("https://api.myjobdesk.com/api/user")
-      // .then(response => {
-      //   this.inputs = response.data;
-      //   this.forms = response.data;
-      //   this.updatedForms = response.data;
-      .then(function(data) {
-        console.log(data);
+      .get("https://api.myjobdesk.com/api/user", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.education.school = response.data.school;
+        this.education.degree = response.data.degree;
+        this.education.course_of_study = response.data.course_of_study;
+        this.education.grade = response.data.grade;
+        this.education.to = response.data.to;
+        this.education.from = response.data.from;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
+    axios
+      .get("https://api.myjobdesk.com/api/user", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.row.title = response.data.title;
+        this.row.description = response.data.description;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
+    axios
+      .get("https://api.myjobdesk.com/api/user", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.referrers.name = response.data.name;
+        this.referrers.email = response.data.email;
+        this.referrers.phone_number = response.data.phone_number;
+        this.referrers.company_name = response.data.company_name;
+        this.referrers.position_in_the_company =
+          response.data.position_in_the_company;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
+    axios
+      .get("https://api.myjobdesk.com/api/user", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.experiences.jd = response.data.jd;
+        this.experiences.experience_company_name =
+          response.data.experience_company_name;
+        this.experiences.date_from = response.data.date_from;
+        this.experiences.date_to = response.data.date_to;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
       });
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+</style>

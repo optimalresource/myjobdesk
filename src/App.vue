@@ -5,6 +5,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
+    <avatar></avatar>
     <router-view />
   </div>
 </template>
@@ -12,12 +13,14 @@
 <script>
 import Vue from "vue";
 import VueToastr from "vue-toastr";
+import Avatar from "vue-avatar";
 import LoadScript from "vue-plugin-load-script";
 import $ from "jquery";
 Vue.use(LoadScript);
 export default {
   components: {
-    VueToastr
+    VueToastr,
+    Avatar
   },
   mounted() {
     // document.getElementById("scripts").innerHTML = "";

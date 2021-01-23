@@ -1,29 +1,28 @@
+/* eslint-disable prettier/prettier */
 <template>
   <div>
     <div class="card mb-3">
-      <div class="ml-5 p-5 d-flex justify-content-center">
-        <div class="jb_newslwtteter_button">
-          <div class="header_btn search_btn news_btn jb_cover">
-            <button
-              data-toggle="modal"
-              data-target="#myModal"
-              @click.prevent="showSecondDiv = !showSecondDiv"
-            >
-              Company <i class="fas fa-users"></i>
-            </button>
-          </div>
+      <div class="pt-5 d-flex justify-content-center">
+        <div class=" header_btn search_btn applt_pop_btn">
+          <button
+            data-toggle="modal"
+            data-target="#myModal"
+            @click.prevent="showSecondDiv = !showSecondDiv"
+          >
+            Company <i class="fas fa-users"></i>
+          </button>
         </div>
-        <div class="jb_newslwtteter_button">
-          <div class="header_btn search_btn news_btn jb_cover">
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-              @click.prevent="showDiv = !showDiv"
-            >
-              Applicant <i class="fas fa-user-edit"></i>
-            </button>
-          </div>
+        <div class="header_btn search_btn applt_pop_btn">
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            @click.prevent="showDiv = !showDiv"
+            data-backdrop="static"
+            data-keyboard="false"
+          >
+            Applicant <i class="fas fa-user-edit"></i>
+          </button>
         </div>
       </div>
       <div
@@ -43,14 +42,14 @@
               <h5 class="modal-title " id="exampleModalCenterTitle">
                 Applicant Registration
               </h5>
-              <button
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body">
               <div class="step">
@@ -394,7 +393,7 @@
                         <div class="container">
                           <button
                             @click="savePersonalDetails"
-                            class="col-12 btn btn-success"
+                            class="submit-edu"
                             type="submit"
                           >
                             Save Personal Details
@@ -415,19 +414,23 @@
                         </button>
                         <div class="mb-3 col-12">
                           <div
-                            class="edu-prev mb-3"
-                            v-for="updatedForm in updatedForms"
-                            :key="updatedForm.id"
+                            class="edu-prev mb-3 mt-3"
+                            v-for="(updatedForm, up) in updatedForms"
+                            :key="up"
                           >
+                            <span
+                              @click="removeupdatedForms(up)"
+                              class="ml-4 text-danger float-right"
+                              ><i class="far fa-times-circle"></i
+                            ></span>
                             <h6 class="">
-                              {{ updatedForms.school_name }}
+                              {{ updatedForm.school_name }}
                             </h6>
-                            {{ updatedForms.degree }},
-                            {{ updatedForms.course_of_study }},
-                            {{ updatedForms.grade }},
-                            {{ updatedForms.start_date }} to
-                            {{ updatedForms.end_date }}
-                            <button>X</button>
+                            {{ updatedForm.degree }},
+                            {{ updatedForm.course_of_study }},
+                            {{ updatedForm.grade }},
+                            {{ updatedForm.start_date }} to
+                            {{ updatedForm.end_date }}
                           </div>
                         </div>
 
@@ -510,15 +513,18 @@
                               <br />
                               <ValidationProvider
                                 name="Year"
-                                rules="required|numeric|max_value:4"
+                                rules="required"
                                 v-slot="{ errors }"
                               >
                                 <label for="start_date">From: </label>
                                 <div class="form-group icon_form comments_form">
                                   <input
+                                    type="month"
+                                    id="start"
                                     class="form-control"
-                                    type="text"
+                                    name="start_date"
                                     v-model="forms.start_date"
+                                    min="1930-01"
                                   />
                                 </div>
                                 <div id="blk">{{ errors[0] }}</div>
@@ -527,16 +533,18 @@
 
                               <ValidationProvider
                                 name="Year"
-                                rules="required|numeric|max_value:4"
+                                rules="required"
                                 v-slot="{ errors }"
                               >
                                 <label for="to">To: </label>
                                 <div class="form-group icon_form comments_form">
                                   <input
+                                    type="month"
+                                    id="start"
                                     class="form-control"
-                                    type="text"
+                                    name="start_date"
                                     v-model="forms.end_date"
-                                    required
+                                    min="1930-01"
                                   />
                                 </div>
                                 <div id="blk">{{ errors[0] }}</div>
@@ -567,7 +575,6 @@
                                   </div>
                                 </div>
                                 <div>
-                                  <!-- <p class="info">Only PDF, Doc, docx files only</p> -->
                                   <hr />
                                   <div class="col-md-12">
                                     <div
@@ -613,74 +620,81 @@
                     <br />
                     <br />
                     <div class="certification_div">
-                      <div class="text-center p-3">
+                      <div class="text-center p-3 mb-3">
                         <h5>Certifications</h5>
                         <p class="text-danger">(Optional)</p>
+                        <span
+                          class="float cert"
+                          style="cursor:pointer"
+                          @click.prevent="hideCertificateForm"
+                          ><i class="fas fa-times"></i
+                        ></span>
                       </div>
-                      <div
-                        class="border border-secondary rounded p-5 mb-2"
-                        v-for="(row, index) in rows"
-                        :key="row"
-                      >
-                        <div>
-                          <label for="">Title</label>
-                          <input
-                            class="form-control"
-                            type="text"
-                            v-model="row.title"
-                          />
-                        </div>
-                        <div>
-                          <label for="">Description:</label>
-                          <input
-                            class="form-control"
-                            type="text"
-                            v-model="row.description"
-                          />
-                        </div>
-                        <br />
-                        <div class="custom-file">
-                          <label class="fileContainer">
-                            {{ row.file.name }}
-                            <input
-                              type="file"
-                              accept=".pdf, .xlsx, .xls, .csv"
-                              @change="setFilename($event, row), validate"
-                              :id="index"
-                            />
-                            File</label
-                          >
-                        </div>
-                        <div class="mr-5">
-                          <button
-                            class="btn btn-danger"
-                            v-on:click="removeElement(index)"
-                            style="cursor: pointer"
-                          >
-                            Remove Certification
-                          </button>
-                        </div>
-                      </div>
-                      <div>
-                        <button
-                          class="btn btn-primary m-3"
-                          @click.prevent="addRow"
+                      <!-- <div class="p-3 certification_preview">
+                        <span><i class="far fa-times-circle"></i></span>
+                        <div
+                          v-for="(certification, cert) in certifications"
+                          :key="cert"
                         >
-                          Add Certification
-                        </button>
+                          <div class="text-success">
+                            <p style="white-space: pre-line;">
+                              {{ certifications.title }}
+                            </p>
+                            <p style="white-space: pre-line;">
+                              {{ certifications.discription }}
+                            </p>
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="certify">
+                        <div class="form-group icon_form comments_form">
+                          <input
+                            v-model="certifications.title"
+                            class="form-control"
+                            type="text"
+                            placeholder="Certification Title"
+                          />
+                        </div>
+                        <div class="form-group icon_form comments_form">
+                          <textarea
+                            v-model="certifications.discription"
+                            class="form-control"
+                            type="text"
+                            placeholder="Discription..."
+                          >
+                          </textarea>
+                        </div>
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            accept=".pdf, .xlsx, .xls, .csv"
+                            class="custom-file-input"
+                            id="certification_file"
+                            ref="files"
+                            @change="handleFiles"
+                          />
+                          <label class="custom-file-label" for="customFile"
+                            >Choose file</label
+                          >
+                        </div>
                         <div class="container">
                           <button
-                            @click="saveCertifications"
-                            class=" mt-4 btn btn-success col-12"
+                            @click.prevent="save_certificate"
+                            class=" p-2 mt-2 submit-edu"
                           >
                             Save Certifications
                           </button>
                         </div>
                       </div>
+                      <div class="p-3">
+                        <button
+                          @click.prevent="showCertificate"
+                          class="btn btn-primary m-3"
+                        >
+                          Add Certification
+                        </button>
+                      </div>
                     </div>
-                    <br />
-                    <br />
-                    <br />
 
                     <div class=" col-12 d-flex justify-content-center">
                       <div class="jb_newslwtteter_button">
@@ -692,126 +706,167 @@
                       </div>
                     </div>
                   </div>
+                  <br />
+                  <br />
+                  <br />
                 </transition>
+
                 <div v-if="step == 3" class="container p-5">
-                  <div class="certification_div">
-                    <h5 class="text-center mb-3">Referees</h5>
-                    <div v-for="(referrer, key) in referrers" :key="key">
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="text"
-                          class="form-control require"
-                          required
-                          placeholder="Full Name* please add the Title"
-                          v-model="referrers.name"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="email"
-                          class="form-control require"
-                          required
-                          placeholder="Emial Address*"
-                          v-model="referrers.email"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="text"
-                          class="form-control require"
-                          required
-                          placeholder="Referrer's Company Name*"
-                          v-model="referrers.company_name"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="text"
-                          class="form-control require"
-                          required
-                          placeholder="Position of The Referrer*"
-                          v-model="referrers.position_in_the_company"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          placeholder="Phone Number* e.g..080..070.."
-                          class="form-control require"
-                          required
-                          v-model="referrers.phone_number"
-                        />
-                      </div>
-                      <button
-                        @click.prevent="removeReferres"
-                        class="btn btn-danger m-2"
+                  <div>
+                    <div class="certification_div">
+                      <span
+                        class="Referees text-danger float-right"
+                        style="cursor: pointer"
                       >
-                        Remove Referrers
+                        <i
+                          @click.prevent="removeReferres"
+                          class="far fa-times-circle"
+                        ></i>
+                      </span>
+                      <h5 class="text-center mb-3">Referees</h5>
+                      <div class="referees">
+                        <div class="form-group icon_form comments_form ">
+                          <input
+                            type="text"
+                            class="form-control require"
+                            required
+                            placeholder="Full Name* please add the Title"
+                            v-model="referrers.full_name"
+                          />
+                        </div>
+                        <div class="form-group icon_form comments_form ">
+                          <input
+                            type="email"
+                            class="form-control require"
+                            required
+                            placeholder="Emial Address*"
+                            v-model="referrers.email"
+                          />
+                        </div>
+                        <div class="form-group icon_form comments_form ">
+                          <input
+                            type="text"
+                            class="form-control require"
+                            required
+                            placeholder="Referrer's Company Name*"
+                            v-model="referrers.company_name"
+                          />
+                        </div>
+                        <div class="form-group icon_form comments_form ">
+                          <input
+                            type="text"
+                            class="form-control require"
+                            required
+                            placeholder="Position of The Referrer*"
+                            v-model="referrers.company_position"
+                          />
+                        </div>
+                        <div class="form-group icon_form comments_form ">
+                          <input
+                            input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Phone Number* e.g..080..070.."
+                            class="form-control require"
+                            required
+                            v-model="referrers.phone"
+                          />
+                        </div>
+                        <button @click="savereferrers" class="submit-edu p-2">
+                          Save Referrers
+                        </button>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+                      <button
+                        @click.prevent="addReferrer"
+                        class="btn btn-primary mr-5"
+                      >
+                        Add Referrers
                       </button>
                     </div>
-                    <br />
-                    <br />
-                    <br />
-                    <button
-                      @click.prevent="addReferrer"
-                      class="btn btn-primary"
-                    >
-                      Add Referrers
-                    </button>
-                    <button class="btn btn-success m-3 col-12">
-                      Save Referrers
-                    </button>
                   </div>
+
                   <br />
                   <br />
                   <br />
                   <div class="certification_div">
-                    <h5 class="text-center mb-3">Experiences</h5>
-                    <div v-for="(experience, ex) in experiences" :key="ex">
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="text"
-                          class="form-control require"
-                          required
-                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
-                          v-model="experiences.jd"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="text"
-                          class="form-control require"
-                          required
-                          placeholder="Company Name"
-                          v-model="experiences.experience_company_name"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="tel"
-                          class="form-control require"
-                          required
-                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
-                          v-model="experiences.date_to"
-                        />
-                      </div>
-                      <div class="form-group icon_form comments_form ">
-                        <input
-                          type="tel"
-                          class="form-control require"
-                          required
-                          placeholder="Full Name* ex... Dr, Mr, Mrs..."
-                          v-model="experiences.date_from"
-                        />
-                      </div>
-                      <button
-                        @click.prevent="removeExperience"
-                        class="btn btn-danger"
+                    <h5 class="text-center mb-3">
+                      Experiences<span
+                        style="cursor: pointer"
+                        class="experience text-danger float-right"
                       >
-                        Remove Experiences
+                        <i
+                          @click.prevent="removeExperience"
+                          class="far fa-times-circle"
+                        ></i>
+                      </span>
+                    </h5>
+                    <div class="form-group icon_form comments_form">
+                      <input
+                        type="text"
+                        class="form-control require"
+                        required
+                        placeholder="Job Title..."
+                        v-model="experiences.job_title"
+                      />
+                    </div>
+                    <div class=" Experience mb-3">
+                      <div class="form-group icon_form comments_form">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Job Discription..."
+                          v-model="experiences.job_description"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Company's Name"
+                          v-model="experiences.company_name"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <input
+                          type="text"
+                          class="form-control require"
+                          required
+                          placeholder="Company's Location"
+                          v-model="experiences.company_location"
+                        />
+                      </div>
+                      <div class="form-group icon_form comments_form ">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id=""
+                              >Years Worked</span
+                            >
+                          </div>
+                          <input
+                            placeholder="Start Date... e.g 1994"
+                            v-model="experiences.date_from"
+                            type="tel"
+                            class="form-control"
+                            required
+                          />
+                          <input
+                            type="tel"
+                            class="form-control require"
+                            required
+                            placeholder="End Date....e.g 2001"
+                            v-model="experiences.date_to"
+                          />
+                        </div>
+                      </div>
+
+                      <button @click="saveExperience" class="submit-edu p-2">
+                        Save Experiences
                       </button>
                     </div>
                     <button
@@ -819,9 +874,6 @@
                       class="btn btn-primary m-3"
                     >
                       Add Experiences
-                    </button>
-                    <button class="btn btn-success col-12">
-                      Save Experiences
                     </button>
                   </div>
                   <br />
@@ -832,8 +884,17 @@
                       <h5 class>Add Skill</h5>
                       <p class="text-danger">Optional</p>
                     </div>
-                    <div class="p-5">
-                      <div v-for="(skill, sk) in skills" :key="sk">
+                    <div class="p-1">
+                      <div class="skills">
+                        <span
+                          class="text-danger float-right"
+                          style="cursor: pointer"
+                        >
+                          <i
+                            @click.prevent="removeskills"
+                            class="far fa-times-circle"
+                          ></i>
+                        </span>
                         <div class="input-group">
                           <textarea
                             class="form-control"
@@ -841,28 +902,16 @@
                             v-model="skills.discription"
                           ></textarea>
                         </div>
-
-                        <div class="mt-2">
-                          <button
-                            class="btn btn-danger"
-                            @click.prevent="removeskills"
-                            style="cursor: pointer"
-                          >
-                            Remove Skill
-                          </button>
-                        </div>
+                        <button class="submit-edu mt-2 p-2">
+                          Save Skills
+                        </button>
                       </div>
-                      <br />
-                      <br />
                       <br />
                       <button
                         @click.prevent="addskills"
                         class="btn btn-primary ml-2 mb-2"
                       >
                         Add Skills
-                      </button>
-                      <button class="btn btn-success col-12">
-                        Save Skills
                       </button>
                     </div>
                   </div>
@@ -872,7 +921,10 @@
                   <div
                     class="container justify-content-center certification_div"
                   >
-                    <h5 class="text-center m-4">Upload Curriculum Vitae</h5>
+                    <h5 class="text-center mt-4 mb-2">
+                      Upload Curriculum Vitae
+                    </h5>
+                    <h6 class="text-center mb-2">CV</h6>
                     <div
                       class="form-group icon_form comments_form  input-group"
                     >
@@ -882,7 +934,6 @@
                           type="file"
                           name="cv"
                           accept="application/pdf,.doc,.docx,application/msword"
-                          multiple
                           id="cv"
                           class="custom-file-input"
                         />
@@ -891,12 +942,57 @@
                         >
                       </div>
                       <div class="input-group-append">
-                        <button class="btn btn-success" type="button">
+                        <button class="btn cv_button" type="button">
                           Upload
                         </button>
                       </div>
                     </div>
                   </div>
+                  <div>
+                    <div class=" col-12 d-flex justify-content-center">
+                      <div class="jb_newslwtteter_button">
+                        <div class="header_btn search_btn news_btn jb_cover">
+                          <button @click.prevent="nextStep" type="submit">
+                            Final Step
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="step == 4">
+                  <h3 class="text-center p-4">Pick A Category</h3>
+                  <div class="container">
+                    <multiselect
+                      v-model="value"
+                      tag-placeholder="Add this as new tag"
+                      placeholder="Search or add a tag"
+                      label="name"
+                      track-by="code"
+                      :options="options"
+                      :multiple="true"
+                      :taggable="true"
+                      @tag="addTag"
+                    ></multiselect>
+                  </div>
+                  <div class="m-3 col-12 d-flex justify-content-center">
+                    <div class="jb_newslwtteter_button">
+                      <div class="header_btn search_btn news_btn jb_cover">
+                        <button @click="goToDashBoard" type="button">
+                          Lets Go
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <a href="#">
+                      <span style="cursor:pointer" class="text-light"
+                        ><u
+                          >Click here if you were not automatically redirected
+                        </u></span
+                      ></a
+                    >
+                  </p>
                 </div>
               </div>
             </div>
@@ -1069,22 +1165,50 @@
 <script>
 // import Vue from "vue";
 // import VueToastr from "vue-toastr";
-import { EventBus } from "@/components/eventBus.js";
+// import { EventBus } from "@/components/eventBus.js";
 // import Uploader from "@/components/Uploader.vue";
 // import StepFour from "@/components/StepFour.vue";
 import axios from "axios";
 import NaijaStates from "naija-state-local-government";
+import "vue-input-search/dist/vue-search.css";
+// import VueSearch from "vue-input-search/dist/vue-search.common";
+import Multiselect from "vue-multiselect";
 
 export default {
   components: {
     // Uploader
     // StepFour
+    // "vue-search": VueSearch,
+    Multiselect
     // VueToastr
   },
   name: "SignUpDiv",
   // props: ["EventBus"],
   data: function() {
     return {
+      uploadedFiles: [],
+      isHidden: true,
+      successResponse: false,
+      beforeResponse: false,
+      // certification_div_none: false,
+      // showexperience_div: false,
+      // showreferrers: false,
+      // showskill: false,
+      value: [],
+      onLine: navigator.onLine,
+      showBackOnline: false,
+      options: [
+        { name: "​Construction/ Real Estate", code: "Re|Co" },
+        { name: "​​Consumer Goods", code: "go" },
+        { name: "Financial Services", code: "fi" },
+        { name: "​Healthcare", code: "he" },
+        { name: "​Information & Communications Technology", code: "it" },
+        { name: "​Natural Resources", code: "na" },
+        { name: "​​​Oil & Gas", code: "oi" },
+        { name: "Services", code: "se" },
+        { name: "Conglomerates", code: "se" },
+        { name: "Utilities", code: "ut" }
+      ],
       educational_details_file: {},
       attachments: [],
       data: new FormData(),
@@ -1115,16 +1239,31 @@ export default {
         password: "",
         password_confirmation: ""
       },
-      skills: [],
-      experiences: [],
+      skills: {
+        discription: ""
+      },
+      experiences: {
+        job_description: "",
+        job_title: "",
+        company_name: "",
+        company_location: "",
+        date_from: "",
+        date_to: ""
+      },
       rows: [],
       id: 0,
       personal_details: {},
       education: {},
-      referrers: [],
+      referrers: {
+        phone_number: "",
+        company_position: "",
+        company_name: "",
+        email: "",
+        full_name: ""
+      },
       certifications: {
-        images: [],
-        input: []
+        title: "",
+        discription: ""
       },
       forms: {
         dob: "",
@@ -1159,6 +1298,10 @@ export default {
     };
   },
   methods: {
+    updateOnlineStatus(e) {
+      const { type } = e;
+      this.onLine = type === "online";
+    },
     getAttachmentSize() {
       this.upload_size = 0;
       this.attachments.map(item => {
@@ -1184,7 +1327,7 @@ export default {
     uploadFieldChange() {
       var fileInput = document.getElementById("educational_details_file");
       this.files = fileInput.files;
-      console.log("file length " + this.files.length);
+      // console.log("file length " + this.files.length);
       if (!this.files.length) return;
       for (let i = 0; i < this.files.length; i++) {
         // this.selectedFiles.append("filename[]", this.files[i]);
@@ -1320,6 +1463,15 @@ export default {
           this.nationality = response.nationality;
           this.address = response.address;
           this.dob = response.dob;
+          if (response.status == "200") {
+            this.$toastr.s("Persona Details Saved");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
         })
         .catch(error => {
           this.errorMessage = error.message;
@@ -1330,49 +1482,15 @@ export default {
     registercandidate() {
       document.getElementsByClassName("step").style.display = "block";
     },
-    addNewForm() {
-      const newDet = this.education;
-      var obj = JSON.stringify(newDet);
-      obj = JSON.parse(obj);
-      this.updatedForms.push(obj);
-      this.id++;
-      console.log(this.updatedForms);
-
-      document.getElementsByClassName("edu-form")[0].style.display = "none";
-      this.forms.dob = "";
-      this.forms.school_name = "";
-      this.forms.degree = "";
-      this.forms.course_of_study = "";
-      this.forms.grade = "";
-      this.forms.start_date = "";
-      this.forms.end_date = "";
-      this.forms.upload = "";
-
-      if (this.id == undefined) {
-        this.id = 0;
-        this.personal_details.dob = this.forms.dob;
-        this.personal_details.phone = this.forms.phone;
-        this.personal_details.gender = this.forms.gender;
-        this.personal_details.marital_status = this.forms.marital_status;
-        this.personal_details.nationality = this.forms.nationality;
-        this.personal_details.state_of_origin = this.forms.selectedState;
-        this.personal_details.local_government_origin = this.forms.selectedLGA;
-        this.personal_details.address = this.forms.address;
-      }
-      this.forms.id = this.id;
-      this.education.school_name = this.forms.school_name;
-      this.education.degree = this.forms.degree;
-      this.education.course_of_study = this.forms.course_of_study;
-      this.education.grade = this.forms.grade;
-      this.education.start_date = this.forms.start_date;
-      this.education.end_date = this.forms.end_date;
-      this.education.upload = this.forms.upload;
-    },
     hideForm() {
       document.getElementsByClassName("edu-form")[0].style.display = "none";
     },
+    hideCertificateForm() {
+      document.getElementsByClassName("certify")[0].style.display = "none";
+      document.getElementsByClassName("cert")[0].style.display = "none";
+    },
     submitEducationalDetails() {
-      this.checkEducation();
+      if (!this.checkEducation()) return false;
       this.selectedFiles.append("school_name", this.forms.school_name);
       this.selectedFiles.append("end_date", this.forms.end_date);
       this.selectedFiles.append("start_date", this.forms.start_date);
@@ -1384,6 +1502,12 @@ export default {
           this.selectedFiles.append("filename[]", this.attachments[i]);
         }
       }
+
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
@@ -1393,7 +1517,7 @@ export default {
       console.log(this.selectedFiles);
       axios
         .post(
-          "https://api.myjobdesk.com/api/educational_details",
+          "api.myjobdesk.com/educational_detail/create",
           this.selectedFiles,
           {
             headers
@@ -1401,6 +1525,9 @@ export default {
         )
         .then(response => {
           console.log(response);
+          console.log(response.data.education.id);
+          this.updatedForms.push(response.data.education);
+          this.id++;
           document.getElementsByClassName("edu-form")[0].style.display = "none";
           this.forms.school_name = "";
           this.forms.degree = "";
@@ -1412,6 +1539,16 @@ export default {
           this.attachments = [];
           this.selectedFiles = new FormData();
           document.getElementById("educational_details_file").value = "";
+
+          if (response.status == "200") {
+            this.$toastr.s("Thank you for submitting a new educational record");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
         })
         .catch(error => {
           this.errorMessage = error.message;
@@ -1420,6 +1557,16 @@ export default {
     },
     showForm() {
       document.getElementsByClassName("edu-form")[0].style.display = "block";
+    },
+    showCertificate() {
+      document.getElementsByClassName("certify")[0].style.display = "block";
+      document.getElementsByClassName("cert")[0].style.display = "block";
+    },
+    openNav: function() {
+      document.getElementById("myNav").style.width = "100%";
+    },
+    closeNav: function() {
+      document.getElementById("myNav").style.width = "0%";
     },
     checkEducation: function() {
       if (this.forms.school_name == "") {
@@ -1438,14 +1585,24 @@ export default {
         this.$toastr.e("Please set a Start date");
         return false;
       }
+      if (new Date(this.forms.start_date).toString() === "Invalid Date") {
+        this.$toastr.e("Start date is invalid");
+        return false;
+      }
       if (this.forms.end_date == "") {
         this.$toastr.e("Please set an End Date");
+        return false;
+      }
+      if (new Date(this.forms.end_date).toString() === "Invalid Date") {
+        this.$toastr.e("End date is invalid");
         return false;
       }
       if (this.forms.grade < 1) {
         this.$toastr.e("Please Fill your grade");
         return false;
       }
+
+      return true;
     },
     nextStep: function() {
       this.step++;
@@ -1461,17 +1618,8 @@ export default {
     changeLGA() {
       console.log(this.forms.selectedLGA);
     },
-    addRow: function() {
-      this.rows.push({
-        title: "",
-        description: "",
-        file: {
-          name: "Choose "
-        }
-      });
-    },
-    removeElement: function(index) {
-      this.rows.splice(index, 1);
+    removeupdatedForms: function(id) {
+      this.updatedForms.splice(id, 1);
     },
     secondStep() {
       // this.checkEducation();
@@ -1488,6 +1636,28 @@ export default {
       //   return false;
       // }
       this.step++;
+    },
+    goToDashBoard: function() {
+      // if (this.value.length < 1) {
+      //   this.$toastr.e("Please Pick at Least a Sector");
+      //   return false;
+      // }
+      axios
+        .post("https://api.myjobdesk.com/api/", this.value)
+
+        .then(response => {
+          console.log(this.value);
+          console.log(response);
+          const token = response.data.accessToken;
+          localStorage.setItem("token", token);
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error);
+        });
+
+      var accessToken = localStorage.getItem("token") || "";
+      console.log(accessToken);
     },
     finalButton: function() {},
     checkReferees: function() {
@@ -1517,78 +1687,32 @@ export default {
       row.file = file;
     },
     addExperience: function() {
-      this.experiences.push({
-        jd: "",
-        experience_company_name: "",
-        date_from: "",
-        date_to: ""
-      });
+      document.getElementsByClassName("Experience")[0].style.display = "block";
+      document.getElementsByClassName("experience")[0].style.display = "block";
     },
-    removeExperience: function(ex) {
-      this.experiences.splice(ex, 1);
+    removeExperience: function() {
+      document.getElementsByClassName("Experience")[0].style.display = "none";
+      document.getElementsByClassName("experience")[0].style.display = "none";
     },
     addReferrer: function() {
-      this.referrers.push({
-        name: "",
-        email: "",
-        phone_number: "",
-        company: "",
-        position_in_the_company: ""
-      });
+      document.getElementsByClassName("Referees")[0].style.display = "block";
+      document.getElementsByClassName("referees")[0].style.display = "block";
     },
-    removeReferres: function(key) {
-      this.referrers.splice(key, 1);
+    removeReferres: function() {
+      document.getElementsByClassName("Referees")[0].style.display = "none";
+      document.getElementsByClassName("referees")[0].style.display = "none";
     },
 
     addskills: function() {
-      this.skills.push({
-        discription: ""
-      });
+      document.getElementsByClassName("skills")[0].style.display = "block";
     },
-    removeskills: function(sk) {
-      this.skills.splice(sk, 1);
+    removeskills: function() {
+      document.getElementsByClassName("skills")[0].style.display = "none";
     },
-    // submitFile: function() {
-    //   let formData = new FormData();
-    //   formData.append("file", this.file);
-    //   axios
-    //     .post("https://api.myjobdesk.com/api/register_step_two", formData, {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data"
-    //       }
-    //     })
-    //     .then(function() {
-    //       console.log("SUCCESS!!");
-    //     })
-    //     .catch(function() {
-    //       console.log("FAILURE!!");
-    //     });
-    // },
-
-    //   register: function() {
-    //     this.$store
-    //       .dispatch("retrieveToken", {
-    //         firstname: this.input.firstname,
-    //         lastname: this.input.lastname,
-    //         middlename: this.input.middlename,
-    //         password: this.input.password,
-    //         confirmpassword: this.input.confirmpassword
-    //       })
-    //       .then(response => {
-    //         this.$router.push({ name: "Login" });
-    //         console.log(response);
-    //       });
-    //   }
-    // },
-
-    // method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     inputs: this.inputs
-    //   }),
+    validateEmail(email) {
+      const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
+      return re.test(email);
+    },
     register: function() {
       if (this.inputs.first_name == "") {
         this.$toastr.e("Please Fill First Name");
@@ -1610,6 +1734,12 @@ export default {
         this.$toastr.e("Please Fill Email");
         return false;
       }
+      if (!this.validateEmail(this.inputs.email)) {
+        this.$toastr.e(
+          "Please enter at least 6 letters which includes at least number and letter"
+        );
+        return false;
+      }
       if (this.inputs.password == "") {
         this.$toastr.e("Please Fill Password");
         return false;
@@ -1618,6 +1748,14 @@ export default {
         this.$toastr.e("Password and Confirm Password does not Match");
         return false;
       }
+
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+
+      this.beforeResponse = true;
+
       axios
         .post("https://api.myjobdesk.com/api/register", this.inputs)
 
@@ -1626,25 +1764,215 @@ export default {
           console.log(response);
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
+          this.successResponse = response.status;
         })
         .catch(error => {
           this.errorMessage = error.message;
           console.log(error);
         });
 
+      // if (this.successResponse == "200") {
+      //   this.$toastr.s(
+      //     "You have successfully started registering your information with MyJobDesk"
+      //   );
+      //   return true;
+      // } else {
+      //   this.$toastr.e(
+      //     "Oops, something went wrong, please try again later"
+      //   );
+      //   return false;
+      // }
       var accessToken = localStorage.getItem("token") || "";
       console.log(accessToken);
-      this.step++;
     },
-    saveCertifications() {}
+    handleFiles() {
+      var uploadedFiles = document.getElementById("certification_file");
+      for (var i = 0; i < uploadedFiles.length; i++) {
+        this.files.push(uploadedFiles[i]);
+      }
+    },
+    saveskills() {
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Submitting Referee "
+      };
+      axios
+        .post("", this.skills, {
+          headers
+        })
+        .then(response => {
+          this.skills.description = "";
+          if (response.status == "200") {
+            this.$toastr.s("Skill Saved");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error);
+        });
+      this.showErrorToastr;
+    },
+    savereferrers() {
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Submitting Referee "
+      };
+      axios
+        .post("", this.certifications, {
+          headers
+        })
+        .then(response => {
+          this.referrers.full_name = "";
+          this.referrers.email = "";
+          this.referrers.company_name = "";
+          this.referrers.company_position = "";
+          this.referrers.phone_number = "";
+          if (response.status == "200") {
+            this.$toastr.s("Referee Saved");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error);
+        });
+      this.showErrorToastr;
+    },
+    saveExperience() {
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Submitting Referee "
+      };
+      axios
+        .post("", this.experiences, {
+          headers
+        })
+        .then(response => {
+          this.experiences.job_description = "";
+          this.experiences.job_title = "";
+          this.experiences.company_name = "";
+          this.experiences.company_location = "";
+          this.experiences.date_from = "";
+          this.experiences.date_to = "";
+          if (response.status == "200") {
+            this.$toastr.s("Experience Saved");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error);
+        });
+      this.showErrorToastr;
+    },
+    save_certificate() {
+      if (!this.onLine) {
+        this.$toastr.e("Please check your internet connection");
+        return false;
+      }
+
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Submitting Certifications",
+        "Content-Type": "multipart/form-data"
+      };
+      console.log(this.certifications, this.uploadedFiles);
+      axios
+        .post("http://api.myjobdesk.com/certificates", this.certifications, {
+          headers
+        })
+        .then(response => {
+          this.id++;
+          document.getElementsByClassName("certify")[0].style.display = "none";
+          document.getElementsByClassName("cert")[0].style.display = "none";
+          this.certifications.title = "";
+          this.certifications.discription = "";
+          this.files = [];
+          this.attachments = [];
+          this.selectedFiles = new FormData();
+          document.getElementById("certification_file").value = "";
+
+          if (response.status == "200") {
+            this.$toastr.s("Certification Saved");
+            return true;
+          } else {
+            this.$toastr.e(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error.message);
+        });
+    }
+  },
+  watch: {
+    onLine(v) {
+      if (v) {
+        this.showBackOnline = true;
+        setTimeout(() => {
+          this.showBackOnline = false;
+        }, 1000);
+      }
+    },
+
+    beforeResponse() {
+      if (this.beforeResponse) {
+        this.$toastr.w("Your form is being submitted, please wait");
+      }
+    },
+
+    successResponse() {
+      if (this.successResponse == 200) {
+        this.$toastr.s(
+          "Your registration is successfull, please continue in next step"
+        );
+        this.step++;
+        this.successResponse = false;
+        this.beforeResponse = false;
+      }
+    }
   },
   mounted() {
-    // console.log(NaijaStates.all());
-    // console.log(NaijaStates.states());
-    // console.log(NaijaStates.lgas("Oyo"));
+    window.addEventListener("online", this.updateOnlineStatus);
+    window.addEventListener("offline", this.updateOnlineStatus);
 
     console.log("This is good");
-    EventBus.$on("onSubmit", this.nextStep);
+    // EventBus.$on("onSubmit", this.nextStep);
 
     // document.getElementById("blk").onchange = function() {
     //   if (document.getElementById("blk").innerHTML != "") {
@@ -1652,18 +1980,48 @@ export default {
     //   }
     // };
   },
-  created() {
-    this.start();
+  created() {},
+  beforeDestroy() {
+    window.removeEventListener("online", this.updateOnlineStatus);
+    window.removeEventListener("offline", this.updateOnlineStatus);
   }
 };
 </script>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
+.Experience {
+  display: none;
+}
+.experience {
+  display: none;
+}
+.skills {
+  display: none;
+}
+.referees {
+  display: none;
+}
+.Referees {
+  display: none;
+}
+.certify {
+  display: none;
+}
+.cert {
+  cursor: pointer !important;
+  display: none;
+}
+.remove_certification {
+  display: none;
+}
+.custom-file-label {
+  width: 100% !important;
+}
 .slide-fade-enter-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter,
 .slide-fade-leave-to {
@@ -1673,8 +2031,11 @@ export default {
 .certification_div {
   border-left: 5px solid #990066;
   background-color: rgb(251, 251, 251);
-  padding: 25px;
+  padding: 20px;
+  margin-left: 19px;
+  margin-right: 18px;
 }
+
 .personal_details_div {
   border-left: 5px solid #990066;
   background-color: rgb(251, 251, 251);
@@ -1801,6 +2162,9 @@ h5 {
   width: 100%;
   font-weight: 700;
 }
+.submit-edu:hover {
+  opacity: 0.9;
+}
 .employee-form {
   border: 1px solid #ffd5f1;
   padding: 40px;
@@ -1839,7 +2203,7 @@ span {
 }
 .edu-prev {
   border: #990066 1px dashed;
-  padding: 0 30px 30px 30px;
+  padding: 0 5px 30px 30px;
   cursor: default;
 }
 .edu-prev h6 {
@@ -1930,5 +2294,22 @@ span {
 }
 .link_button:hover {
   color: #990066;
+}
+.cv_button {
+  background: #990066;
+  color: white;
+}
+.certification_preview {
+  border-top: 10px solid #990066;
+  background: #f5f5f5;
+  border-bottom: 1px solid #990066;
+  border-right: 1px solid #990066;
+  border-left: 1px solid #990066;
+}
+.blue-theme {
+  display: none;
+}
+.none-theme {
+  display: block;
 }
 </style>

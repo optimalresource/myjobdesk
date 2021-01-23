@@ -11,13 +11,22 @@
           <div class="job_overview_header jb_cover">
             <div class="row">
               <div class="container-fluid  p-5">
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2 "
+                    :username="inputs.email"
+                    :size="50"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
                 <h4 class="text-center">
                   {{ inputs.first_name }} {{ inputs.middle_name }}
                   {{ inputs.last_name }}
                 </h4>
                 <hr class="bg-light w-50" />
                 <h6 class=" text-center">{{ inputs.email }}</h6>
-                <p>{{ forms.phone }}</p>
+                <p>{{ personal_details.phone }}</p>
                 <br />
                 <br />
                 <div class="row">
@@ -28,37 +37,48 @@
                     <br />
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <ul>
-                        <li>Date of Birth: {{ forms.dob }}</li>
+                        <li>Date of Birth: {{ personal_details.dob }}</li>
                         <br />
-                        <li>Nationality: {{ forms.Country }}</li>
+                        <li>Nationality: {{ personal_details.Country }}</li>
                         <br />
-                        <li>Gender: {{ forms.gender }}</li>
+                        <li>Gender: {{ personal_details.gender }}</li>
                         <br />
-                        <li>Marital Status: {{ forms.marital_status }}</li>
+                        <li>
+                          Marital Status: {{ personal_details.marital_status }}
+                        </li>
                         <br />
-                        <li>Phone number: {{ forms.phone }}</li>
+                        <li>
+                          State of Origin: {{ personal_details.selectedState }}
+                        </li>
+                        <br />
+                        <li>
+                          local Government Origin number:
+                          {{ personal_details.selectedLGA }}
+                        </li>
+                        <br />
+                        <li>
+                          <i class="fas fa-ring"></i>Phone number:
+                          {{ personal_details.phone }}
+                        </li>
                         <br />
                       </ul>
                     </div>
                     <hr />
                     <h6>
-                      Experience
+                      Education
                     </h6>
-                    <ul
-                      v-for="updatedForm in updatedForms"
-                      :key="updatedForm.id"
-                    >
+                    <!-- <ul v-for="(education, ed)in educations" :key="ed">
                       <div>
                         <h6 class="">
-                          {{ updatedForm.school }}
+                          {{ education.school }}
                         </h6>
                         <p>
-                          {{ updatedForm.degree, }}
-                          {{ updatedForm.course_of_study }}
-                          {{ updatedForm.grade }}
+                          {{ educations.degree, }}
+                          {{ educations.course_of_study }}
+                          {{ educations.grade }}
                         </p>
                       </div>
-                    </ul>
+                    </ul> -->
                     <br />
                     <hr />
                     <h6>
@@ -79,6 +99,16 @@
                     <div>
                       <p>{{ row.title }}</p>
                       <p>{{ row.discription }}</p>
+                    </div>
+                    <br />
+                    <hr />
+                    <h6>Working Experience</h6>
+                    <div v-for="(experience, ex) in experiences" :key="ex">
+                      <p>{{ experiences.title }}</p>
+                      <p>{{ experiences.company_name }}</p>
+                      <p>{{ experiences.jd }}</p>
+                      <p>{{ experiences.date_from }}</p>
+                      <p>{{ experiences.date_to }}</p>
                     </div>
                     <!-- <br />
                     <hr />
@@ -181,7 +211,7 @@
                                 name=""
                                 id=""
                                 rows="3"
-                                v-model="forms.address"
+                                v-model="personal_details.address"
                               ></textarea>
                             </div>
                           </div>
@@ -201,7 +231,7 @@
                                 id="phone"
                                 name="phone"
                                 required
-                                v-model="forms.phone"
+                                v-model="personal_details.phone"
                               />
                             </div>
                           </div>
@@ -234,7 +264,11 @@
                           </div>
                           <div class="col-lg-9 col-md-9 col-sm-12 col-12">
                             <div class="delete_jb_form">
-                              <input v-model="forms.dob" required type="date" />
+                              <input
+                                v-model="personal_details.dob"
+                                required
+                                type="date"
+                              />
                             </div>
                           </div>
                         </div>
@@ -252,7 +286,7 @@
                                 required
                                 name="Gender"
                                 class="custom-select"
-                                v-model="forms.gender"
+                                v-model="personal_details.gender"
                               >
                                 <option value="none"></option>
                                 <option value="Male">Male</option>
@@ -275,7 +309,7 @@
                                 placeholder="example... Nigerian*"
                                 required
                                 type="text"
-                                v-model="forms.nationality"
+                                v-model="personal_details.nationality"
                               />
                             </div>
                           </div>
@@ -294,9 +328,9 @@
                                 required
                                 name="marital_status"
                                 class="custom-select"
-                                v-model="forms.marital_status"
+                                v-model="personal_details.marital_status"
                               >
-                                <option value="Single"></option>
+                                <option value=""></option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                               </select>
@@ -348,7 +382,7 @@
                       <ul>
                         <li>date of birth:</li>
                         <li>
-                          <a href="#">{{ forms.dob }}</a>
+                          <a href="#">{{ personal_details.dob }}</a>
                         </li>
                       </ul>
                     </div>
@@ -359,13 +393,13 @@
                     class="jp_listing_overview_list_main_wrapper dcv jb_cover"
                   >
                     <div class="jp_listing_list_icon">
-                      <i class="fas fa-shield-alt"></i>
+                      <i class="fas fa-ring"></i>
                     </div>
                     <div class="jp_listing_list_icon_cont_wrapper">
                       <ul>
                         <li>marital status:</li>
                         <li>
-                          <a href="#">{{ forms.marital_status }}</a>
+                          <a href="#">{{ personal_details.marital_status }}</a>
                         </li>
                       </ul>
                     </div>
@@ -378,7 +412,7 @@
                   <div class="jp_listing_list_icon_cont_wrapper">
                     <ul>
                       <li>Address:</li>
-                      <li>{{ forms.address }}</li>
+                      <li>{{ personal_details.address }}</li>
                     </ul>
                   </div>
                 </div>
@@ -389,7 +423,7 @@
                   <div class="jp_listing_list_icon_cont_wrapper">
                     <ul>
                       <li>Gender:</li>
-                      <li>{{ forms.gender }}</li>
+                      <li>{{ personal_details.gender }}</li>
                     </ul>
                   </div>
                 </div>
@@ -443,7 +477,7 @@
                   <div class="jp_listing_list_icon_cont_wrapper">
                     <ul>
                       <li>phone:</li>
-                      <li>{{ forms.phone }}</li>
+                      <li>{{ personal_details.phone }}</li>
                     </ul>
                   </div>
                 </div>
@@ -459,7 +493,7 @@
                       <ul>
                         <li>nationality:</li>
                         <li>
-                          <a href="#">{{ forms.nationality }}</a>
+                          <a href="#">{{ personal_details.nationality }}</a>
                         </li>
                       </ul>
                     </div>
@@ -505,7 +539,7 @@
                           <div class="col-lg-9 col-md-9 col-sm-12 col-12">
                             <div class="delete_jb_form">
                               <input
-                                v-model="certifications.input"
+                                v-model="certifications.title"
                                 type="text"
                                 name="title_certificate"
                               />
@@ -534,7 +568,7 @@
                         <div class="row">
                           <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                             <div class="category_lavel jb_cover">
-                              <p>description :</p>
+                              <p>Upload a File :</p>
                             </div>
                           </div>
                           <div class="col-lg-9 col-md-9 col-sm-12 col-12">
@@ -576,6 +610,9 @@
                         <li>Certifications:</li>
                         <li>
                           <a href="#">{{ certifications.input }}</a>
+                        </li>
+                        <li>
+                          <a href="#">{{ certifications.description }}</a>
                         </li>
                       </ul>
                     </div>
@@ -726,8 +763,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                       <div class="delett_cntn jb_cover">
                         <h1>
-                          <i class="fas fa-edit"></i>Write something about
-                          yourself
+                          <i class="fas fa-edit"></i>Write something Catchy
+                          about yourself
                         </h1>
 
                         <div class="category_wrapper jb_cover">
@@ -868,19 +905,18 @@
                 <div class="jp_listing_list_icon">
                   <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div
+                <!-- <div
                   class="jp_listing_overview_list_main_wrapper jb_cover"
-                  v-for="updatedForm in updatedForms"
-                  :key="updatedForm"
+                  v-for="(education, ed) in educations"
+                  :key="ed"
                 >
                   <div class="jp_listing_list_icon_cont_wrapper">
                     <p>
-                      <!--  -->
-                      {{ updatedForm.degree }}
-                      <a href="#"> {{ updatedForm.school }}</a>
+                      {{ educations.degree }}
+                      <a href="#"> {{ educations.school }}</a>
                     </p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -930,7 +966,7 @@
                                 type="text"
                                 name="name"
                                 placeholder="Title"
-                                v-model="title"
+                                v-model="experiences.title"
                               />
                             </div>
                             <div class="delete_jb_form gallery_link">
@@ -938,19 +974,25 @@
                                 type="text"
                                 name="name"
                                 placeholder="Company's name"
-                                v-model="company_name"
+                                v-model="experiences.experience_company_name"
                               />
                             </div>
                             <div class="delete_jb_form gallery_link">
-                              <input type="month" v-model="dateFrom" />
+                              <input
+                                type="month"
+                                v-model="experiences.dateFrom"
+                              />
                             </div>
                             <div class="delete_jb_form gallery_link">
-                              <input type="month" v-model="dateTo" />
+                              <input
+                                type="month"
+                                v-model="experiences.dateTo"
+                              />
                             </div>
                             <div class="delete_jb_form gallery_link">
                               <input
                                 type="text"
-                                v-model="description"
+                                v-model="experiences.jd"
                                 placeholder="Description"
                               />
                             </div>
@@ -990,7 +1032,7 @@
                       </li>
                     </ul>
                     <p>
-                      {{ experiences.description }}
+                      {{ experiences.jd }}
                     </p>
                   </div>
                 </div>
@@ -1087,9 +1129,13 @@
 </template>
 
 <script scoped>
+import Avatar from "vue-avatar";
 import axios from "axios";
 export default {
   name: "ResumeRightSidebar",
+  components: {
+    Avatar
+  },
   data: function() {
     return {
       edit: {
@@ -1104,7 +1150,7 @@ export default {
         password: "",
         password_confirmation: ""
       },
-      forms: {
+      personal_details: {
         age: "",
         phone: "",
         gender: "",
@@ -1113,7 +1159,7 @@ export default {
         address: "",
         dob: ""
       },
-      updatedForms: {
+      educations: {
         school: "",
         degree: "",
         course_of_study: "",
@@ -1121,17 +1167,21 @@ export default {
         from: "",
         to: ""
       },
-      experiences: [],
+      experiences: {
+        experience_company_name: "",
+        date_from: "",
+        date_to: "",
+        jd: ""
+      },
       certifications: {
-        images: [],
-        input: ""
+        title: "",
+        description: ""
       },
       row: {
         title: "",
         discription: ""
       },
-      referrers: [],
-      education: {}
+      referrers: []
     };
   },
   methods: {
@@ -1182,19 +1232,19 @@ export default {
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
-        this.forms.state_of_origin = response.data.state_of_origin;
-        this.forms.age = response.data.age;
-        this.forms.phone = response.data.phone;
-        this.forms.gender = response.data.gender;
-        this.forms.marital_status = response.data.marital_status;
-        this.forms.nationality = response.data.nationality;
-        this.forms.address = response.data.address;
-        this.updatedForm.school = response.data.school;
-        this.updatedForm.degree = response.data.degree;
-        this.updatedForm.course_of_study = response.data.course_of_study;
-        this.updatedForm.grade = response.data.grade;
-        this.updatedForm.to = response.data.to;
-        this.updatedForm.from = response.data.from;
+        this.personal_details.state_of_origin = response.data.state_of_origin;
+        this.personal_details.age = response.data.age;
+        this.personal_details.phone = response.data.phone;
+        this.personal_details.gender = response.data.gender;
+        this.personal_details.marital_status = response.data.marital_status;
+        this.personal_details.nationality = response.data.nationality;
+        this.personal_details.address = response.data.address;
+        this.educations.school = response.data.school;
+        this.educations.degree = response.data.degree;
+        this.educations.course_of_study = response.data.course_of_study;
+        this.educations.grade = response.data.grade;
+        this.educations.to = response.data.to;
+        this.educations.from = response.data.from;
       })
       .catch(error => {
         this.errorMessage = error.message;
@@ -1215,10 +1265,8 @@ export default {
 </script>
 
 <style>
-.avatar {
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.avatar_center {
+  margin-left: 47%;
+  box-sizing: border-box;
 }
 </style>

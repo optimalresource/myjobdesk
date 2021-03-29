@@ -28,7 +28,7 @@
 
     <Review />
 
-    <Download />
+    <!-- <Download /> -->
 
     <Blog />
 
@@ -46,7 +46,7 @@
 import ChatBox from "@/components/ChatBox.vue";
 import Footer from "@/components/Footer.vue";
 import Blog from "@/components/Blog.vue";
-import Download from "@/components/Download.vue";
+// import Download from "@/components/Download.vue";
 import Review from "@/components/Review.vue";
 // import Price from "@/components/Price.vue";
 import TopCompany from "@/components/TopCompany.vue";
@@ -71,7 +71,7 @@ export default {
     ChatBox,
     Footer,
     Blog,
-    Download,
+    // Download,
     Review,
     TopCompany,
     Counter,

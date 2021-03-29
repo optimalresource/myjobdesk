@@ -14,7 +14,7 @@
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -24,7 +24,7 @@
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -32,10 +32,10 @@
             <li><a href="../main_pages/index_II.html">home II</a></li>
             <li><a href="../main_pages/index_III.html">home III</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">jobs</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">jobs</a> -->
+        <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li>
               <a href="../main_pages/job_listing_grid_left_filter.html"
@@ -49,9 +49,9 @@
             </li>
             <li><a href="../main_pages/job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -67,10 +67,10 @@
             </li>
             <li><a href="../main_pages/sign_up.html">sign up</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">dashboard</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li class="has-children">
               <a href="#">candidate</a>
@@ -97,13 +97,13 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">company</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
                 <li>
                   <a href="comp_applications.html"> applications </a>
@@ -129,15 +129,15 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
-          <a href="#">blog</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+      </ul>
+      <!-- .cd-secondary-dropdown -->
+      <!-- </li> -->
+      <!-- <li class="has-children"> -->
+      <!-- <a href="#">blog</a> -->
+      <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="../main_pages/blog_single.html">blog single</a></li>
             <li>
@@ -149,14 +149,16 @@
         </li>
         <li><a href="../main_pages/contact_us.html">contact us </a></li>
         <li><a href="../main_pages/login.html">login</a></li>
-      </ul>
+      </ul> -->
       <!-- .cd-dropdown-content -->
+      <!-- </li> -->
     </nav>
+
     <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="../main_pages/index.html">
-            <img src="images/logo.png" alt="logo" />
+            <img src="images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -231,21 +233,65 @@
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
               <span class="current">
-                <img src="images/pf.png" alt="img" />
                 <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="30"
+                    :rounded="true"
+                  >
+                  </avatar>
+                  <p>
+                    <a href="#">{{ companys.email }}</a>
+                  </p>
+                  <p>
+                    <a href="#"> {{ companys.name }}</a>
+                  </p>
                 </div></span
               >
               <ul class="list">
                 <li>
-                  <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                  <a href="/employerDashboard" class="link_active"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <a href="/companyEditProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a>
+                </li>
+                <!-- <li>
+                  <a href="/employerPage"
+                    ><i class="fas fa-file"></i>company page
+                  </a>
+                </li> -->
+                <li>
+                  <a href="/employerManageJobs"
+                    ><i class="fas fa-suitcase"></i>manage jobs</a
+                  >
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/companyApplications"
+                    ><i class="fas fa-mobile"></i>applications</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyPost"
+                    ><i class="fas fa-user-plus"></i>post new job</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyMessage"
+                    ><i class="fas fa-envelope"></i>message</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
@@ -278,7 +324,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -326,7 +372,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -485,7 +531,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -525,9 +571,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -623,7 +669,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -638,11 +684,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -691,13 +737,13 @@
           <div class="row">
             <!-- section_heading start -->
             <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-12">
-              <h1>Employer Dashboard</h1>
+              <h1>Dashboard</h1>
             </div>
             <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-12">
               <div class="sub_title_section">
                 <ul class="sub_title">
                   <li><a href="#"> Home </a>&nbsp; / &nbsp;</li>
-                  <li>company Dashboard</li>
+                  <li>Dashboard</li>
                 </ul>
               </div>
             </div>
@@ -713,9 +759,17 @@
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
               <div class="emp_web_profile jb_cover">
-                <img src="images/web.png" alt="post_img" />
-                <h4>{{}}</h4>
-                <p>@Webstrot</p>
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
+                <h4>{{ companys.name }}</h4>
+                <p>{{ companys.email }}</p>
                 <div class="skills jb_cover">
                   <div class="skill-item jb_cover">
                     <h6>profile<span>70%</span></h6>
@@ -737,11 +791,11 @@
                       <i class="fas fa-edit"></i>edit profile
                     </a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="/employerPage"
                       ><i class="fas fa-file"></i>company page
                     </a>
-                  </li>
+                  </li> -->
                   <li>
                     <a href="/employerManageJobs"
                       ><i class="fas fa-suitcase"></i>manage jobs</a
@@ -762,15 +816,10 @@
                       ><i class="fas fa-envelope"></i>message</a
                     >
                   </li>
-                  <!-- <li>
-                    <a href="pricing_plans.html"
-                      ><i class="fas fa-tag"></i>pricing plans</a
-                    >
-                  </li> -->
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -825,6 +874,7 @@
               </div>
             </div>
           </div>
+          <!-- <HereAddressLookup /> -->
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -832,29 +882,30 @@
                   <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 col-12">
                       <div class="jp_job_post_side_img">
-                        <img src="images/ws.png" alt="post_img" />
+                        <h4>{{ companys.name }}</h4>
                       </div>
                       <div class="jp_job_post_right_cont">
-                        <h4>Webstrot Technology</h4>
+                        <h4>{{ companys.category }}</h4>
 
                         <ul>
                           <li>
-                            <i class="fas fa-suitcase"></i>&nbsp; Software Firm
+                            <i class="fas fa-suitcase"></i>&nbsp;
+                            {{ companys.category }}
                           </li>
                           <li>
-                            <i class="flaticon-location-pointer"></i>&nbsp; Los
-                            Angeles
+                            <i class="flaticon-location-pointer"></i>&nbsp;
+                            {{ companys.address }}
                           </li>
                         </ul>
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md-5 col-sm-12 col-12">
+                    <!-- <div class="col-lg-4 col-md-5 col-sm-12 col-12">
                       <div class="jp_job_post_right_btn_wrapper jb_cover">
                         <div class="header_btn search_btn jb_cover">
-                          <a href="#">view profile</a>
+                          <a href="/">view profile</a>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -902,16 +953,46 @@
                   </div>
                 </div>
               </div>
+              <div class="m-3"></div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div
+                  class="job_filter_category_sidebar company_wrapper jb_cover"
+                >
+                  <div class="job_filter_sidebar_heading jb_cover">
+                    <h1>
+                      about us
+                    </h1>
+                  </div>
+                  <div class="job_overview_header pdd jb_cover">
+                    <p>
+                      {{ companys.bio }}
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_filter_category_sidebar jb_cover">
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>view graph</h1>
+                    <h1>graph</h1>
                   </div>
-                  <div class="job_overview_header jb_cover">
-                    <div class="sales-chart">
-                      <canvas id="team-chart"></canvas>
-                    </div>
-                  </div>
+                  <graph-bar
+                    :width="800"
+                    :height="400"
+                    :axis-min="0"
+                    :axis-max="50"
+                    :labels="['1Q', '2Q', '3Q', '4Q']"
+                    :values="values"
+                    :active-event="'click'"
+                    @click="onClickBar"
+                    @outside#click="onClickOutside"
+                    @inside#click="onClickInside"
+                  >
+                    <note
+                      :text="
+                        'Bar Chart showing the relationship between Applicant and Job Posted'
+                      "
+                    ></note>
+                  </graph-bar>
                 </div>
               </div>
               <div class="col-lg-5 col-md-12 col-sm-12 col-12">
@@ -927,7 +1008,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>categories:</li>
-                          <li>Design & Creative</li>
+                          <li>{{ companys.category }}</li>
                         </ul>
                       </div>
                     </div>
@@ -938,7 +1019,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Location:</li>
-                          <li>Los Angeles Califonia PO</li>
+                          <li>{{ companys.address }}</li>
                         </ul>
                       </div>
                     </div>
@@ -948,8 +1029,8 @@
                       </div>
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
-                          <li>Hotline::</li>
-                          <li>0145636941:</li>
+                          <li>Hotline:</li>
+                          <li>{{ companys.phone_number }}</li>
                         </ul>
                       </div>
                     </div>
@@ -960,11 +1041,13 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>email:</li>
-                          <li><a href="#">webstrot@example.com</a></li>
+                          <li>
+                            <a href="#">{{ companys.email }}</a>
+                          </li>
                         </ul>
                       </div>
                     </div>
-                    <div class="jp_listing_overview_list_main_wrapper jb_cover">
+                    <!-- <div class="jp_listing_overview_list_main_wrapper jb_cover">
                       <div class="jp_listing_list_icon">
                         <i class="flaticon-man-user"></i>
                       </div>
@@ -974,7 +1057,7 @@
                           <li>20-50</li>
                         </ul>
                       </div>
-                    </div>
+                    </div> -->
                     <div
                       class="jp_listing_overview_list_main_wrapper dcv jb_cover"
                     >
@@ -984,7 +1067,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>website:</li>
-                          <li><a href="#">www.webstrot.com</a></li>
+                          <li>{{ companys.website }}</li>
                         </ul>
                       </div>
                     </div>
@@ -993,16 +1076,16 @@
               </div>
               <div class="col-lg-7 col-md-12 col-sm-12 col-12">
                 <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                  <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="job_filter_category_sidebar jb_cover">
                       <div class="job_filter_sidebar_heading jb_cover">
                         <h1>our location</h1>
                       </div>
                       <div class="job_overview_header jb_cover">
-                        <div id="map"></div>
+                        
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="job_filter_category_sidebar jb_cover">
                       <div class="job_filter_sidebar_heading jb_cover">
@@ -1044,11 +1127,20 @@
                   <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-8 col-md-7 col-sm-8 col-12">
-                        <div class="jp_job_post_side_img">
-                          <img src="images/rc1.png" alt="post_img" />
-                        </div>
+                        <div class="jp_job_post_side_img"></div>
                         <div class="jp_job_post_right_cont">
-                          <h4>aradhya s.</h4>
+                          <span>
+                            <avatar
+                              class="img-responsive xs-col-12 sm-col-12 mb-2"
+                              :username="companys.email"
+                              :size="30"
+                              :rounded="true"
+                            >
+                            </avatar
+                          ></span>
+                          <h4>
+                            aradhya s.
+                          </h4>
 
                           <ul>
                             <li>app designer</li>
@@ -1058,13 +1150,13 @@
                       <div class="col-lg-4 col-md-5 col-sm-4 col-12">
                         <div class="jp_job_post_right_btn_wrapper jb_cover">
                           <div class="header_btn search_btn appbtn jb_cover">
-                            <a href="#">send</a>
+                            <a href="#">Accept</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-8 col-md-7 col-sm-8 col-12">
                         <div class="jp_job_post_side_img">
@@ -1086,8 +1178,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  </div> -->
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-8 col-md-7 col-sm-8 col-12">
                         <div class="jp_job_post_side_img">
@@ -1109,8 +1201,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  </div> -->
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-8 col-md-7 col-sm-8 col-12">
                         <div class="jp_job_post_side_img">
@@ -1132,13 +1224,13 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="col-lg-5 col-md-12 col-sm-12 col-12">
                 <div class="job_filter_category_sidebar jb_cover">
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>activity</h1>
+                    <h1>activities</h1>
                   </div>
                   <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
@@ -1157,7 +1249,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="activity_app">
@@ -1173,8 +1265,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  </div> -->
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="activity_app">
@@ -1190,9 +1282,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="job_overview_header apps_wrapper jb_cover">
+                  </div> -->
+                  <!-- <div class="job_overview_header apps_wrapper jb_cover">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="activity_app">
@@ -1208,7 +1299,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -1216,7 +1307,6 @@
         </div>
       </div>
     </div>
-
     <div class="blog_wrapper jb_cover">
       <div class="container">
         <div class="row">
@@ -1236,17 +1326,209 @@
 </template>
 
 <script>
-import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
+// import CandidateDashboardRightSideBar from "@/components/CandidateDashboardRightSideBar.vue";
+// import CandidateDashboardNavBar from "@/components/CandidateDashboardNavBar.vue";
+import Avatar from "vue-avatar";
+import Looking from "@/components/Looking.vue";
 import ChatBox from "@/components/ChatBox.vue";
+// import axios from "axios";
+// import HereAddressLookup from "@/components/HereAddressLookup.vue";
 export default {
   name: "Dashboard",
   components: {
-    Looking,
     Footer,
+    Looking,
+    Avatar,
+    // CandidateDashboardRightSideBar,
+    // CandidateDashboardNavBar,
     ChatBox
+    // HereAddressLookup
+  },
+  data: function() {
+    return {
+      // socialProfile: {
+      //   facebook_username: "",
+      //   twitter_username: "",
+      //   linkedin_username: ""
+      // },
+      values: [
+        [10, 5, 5, 5],
+        [40, 10, 10, 10],
+        [30, 30, 30, 30]
+      ],
+      companys: {
+        name: "",
+        email: "",
+        category: "",
+        phone_number: "",
+        website: "",
+        bio: "",
+        address: ""
+      }
+      // personal_details: {
+      //   age: "",
+      //   phone: "",
+      //   gender: "",
+      //   marital_status: "",
+      //   nationality: "",
+      //   address: "",
+      //   dob: "",
+      //   selectedLGA: "",
+      //   selectedState: ""
+      // },
+      // updatedCerts: [],
+      // updatedskills: [],
+      // updatedForms: [],
+      // experiences: [],
+      // updatedexperiences: [],
+      // updatedreferrees: []
+      // updatedForms: {
+      //   school: "",
+      //   degree: "",
+      //   course_of_study: "",
+      //   grade: "",
+      //   from: "",
+      //   to: ""
+      // },
+    };
+  },
+  methods: {
+    onClickBar: function() {
+      console.log(arguments);
+      alert("onClickBar");
+    }
+    //   onClickOutside: function() {
+    //     console.log(arguments);
+    //     alert("onClickOutside");
+    //   },
+    //   onClickInside: function() {
+    //     console.log(arguments);
+    //     alert("onClickInside");
+    //   }
+    //   //  getProfilePhoto: function() {
+    //   //   return "img/ProfilePicture/" + this.ProfilePicture.file;
+    // },
+    // created() {
+    //   var accessToken = localStorage.getItem("token") || "";
+    //   const headers = {
+    //     Authorization: "Bearer " + accessToken,
+    //     "My-Custom-Header": "Register step 2"
+    //   };
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/user", {
+    //       headers
+    //     })
+    //     .then(response => {
+    //       console.log(response);
+    //       this.inputs.first_name = response.data.first_name;
+    //       this.inputs.last_name = response.data.last_name;
+    //       this.inputs.middle_name = response.data.middle_name;
+    //       this.inputs.email = response.data.email;
+    //     })
+    //     .catch(error => {
+    //       this.errorMessage = error.message;
+    //       console.error("There was an error!", error);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/personal_details", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.personal_details.marital_status = response.data.marital_status;
+    //       this.personal_details.gender = response.data.gender;
+    //       this.personal_details.selectedLGA = response.data.lga;
+    //       this.personal_details.selectedState = response.data.state_of_origin;
+    //       this.personal_details.nationality = response.data.nationality;
+    //       this.personal_details.address = response.data.address;
+    //       this.personal_details.dob = response.data.date_of_birth;
+    //       this.personal_details.phone = response.data.phone;
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch personal details " + error.message);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/skills/all", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.updatedskills = response.data;
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch Skills" + error.message);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/educational_details/all", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.updatedForms = response.data;
+    //       // this.eDResponse = response.status;
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch education details " + error.message);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/certificates/all", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.updatedCerts = response.data;
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch certificates " + error.message);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/experiences/all", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.updatedexperiences = response.data;
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch experiences " + error.message);
+    //     });
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/referrees/all", {
+    //       headers: headers
+    //     })
+    //     .then(response => {
+    //       this.updatedreferrees = response.data;
+    //     })
+    //     .catch(error => {
+    //       console.log("Failed to fetch referrees " + error.message);
+    //     });
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+</style>

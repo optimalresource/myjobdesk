@@ -75,19 +75,22 @@
           </div>
           <!-- .cd-dropdown-wrapper -->
         </header>
-        <div class="menu_btn_box header_btn jb_cover">
+        <div class=" menu_btn_box header_btn jb_cover join_us">
           <ul class="navbar-nav ml-auto">
-            <li>
-              <a href="/register"><i class="flaticon-man-user"></i> join us</a>
+            <li v-if="!loggedIn">
+              <a href="/register">join us</a>
             </li>
-            <li>
-              <a href="/login"> <i class="flaticon-login"></i> sign in</a>
+            <li v-if="!loggedIn">
+              <a href="/login">sign in</a>
+            </li>
+            <li v-if="loggedIn">
+              <a href="/logout">log out</a>
             </li>
           </ul>
         </div>
 
         <div class="jb_navigation_wrapper">
-          <!-- <div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
+          <!--<div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
                         <ul class="main_nav_ul">
                             <li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation active_class">How it Works</a>
                                 <ul class="navi_2_dropdown">
@@ -146,8 +149,35 @@
 
 <script>
 export default {
-  name: "MainNavigation"
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
+  name: "MainNavigation",
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* @media (max-width: 1198px) {
+  .join_us li a {
+    display: inline-block  !important; 
+  }
+} */
+@media (max-width: 500px) {
+  .join_us li a {
+    display: none !important;
+  }
+}
+@media (max-width: 991px) {
+  .join_us li a {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1197px) {
+  .join_us {
+    /* margin-left: -350px; */
+  }
+}
+</style>

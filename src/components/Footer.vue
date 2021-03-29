@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="footerNav jb_cover">
-              <a href="#"><img src="images/logo2.png" alt="img"/></a>
+              <a href="#"><img src="images/logo14.png" alt="img"/></a>
               <ul class="footer_first_contact">
                 <li>
                   <i class="flaticon-location-pointer"></i>
@@ -17,15 +17,14 @@
                 <li>
                   <i class="flaticon-telephone"></i>
                   <p>
-                    1 -234 -456 -7890 <br />
-                    1 -234 -456 -7890
+                    +234 8064537631
                   </p>
                 </li>
                 <li>
                   <i class="flaticon-envelope"></i
-                  ><a href="#">info@Jbdesks.com </a>
+                  ><a href="#">info@myjobdesk.com </a>
                   <br />
-                  <a href="#">support@Jbdesks.com</a>
+                  <a href="#">support@myjobdesk.com</a>
                 </li>
               </ul>
 
@@ -153,7 +152,7 @@
             </div>
           </div>
           <div class="copyright_left">
-            <i class="fa fa-copyright"></i> 2019 <a href="#"> JB desks. </a> All
+            <i class="fa fa-copyright"></i> 2019 <a href="#"> Myjobdesk. </a> All
             Rights Reserved.
           </div>
 

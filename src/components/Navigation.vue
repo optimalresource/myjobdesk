@@ -2,18 +2,18 @@
   <div>
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
-        <a href="https://laravel.optimalsoft.org">
+        <a href="/">
           <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
-      <a href="#0" class="cd-close">Close</a>
+      <a href="#" class="cd-close">Close</a>
       <ul class="cd-dropdown-content">
         <li>
           <form class="cd-search">
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -21,8 +21,17 @@
             <li><a href="index_II.html">home II</a></li>
             <li><a href="index_III.html">home III</a></li>
           </ul>
+        </li> -->
+        <li v-if="!loggedIn">
+          <a href="/register">join us</a>
         </li>
-        <li class="has-children">
+        <li v-if="!loggedIn">
+          <a href="/login">sign in</a>
+        </li>
+        <li v-if="loggedIn">
+          <a href="/logout">log out</a>
+        </li>
+        <!-- <li class="has-children">
           <a href="#">jobs</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -34,9 +43,9 @@
             </li>
             <li><a href="job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -48,8 +57,8 @@
             <li><a href="pricing_table.html">pricing table</a></li>
             <li><a href="sign_up.html">join us</a></li>
           </ul>
-        </li>
-        <li class="has-children">
+        </li> -->
+        <!-- <li class="has-children">
           <a href="#">dashboard</a>
           <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -84,11 +93,11 @@
                 <li>
                   <a href="../dashboard/pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children">
               <a href="#">company</a>
               <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
@@ -126,13 +135,13 @@
                 <li>
                   <a href="../dashboard/pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- <li class="has-children">
           <a href="#">blog</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -143,7 +152,7 @@
           </ul>
         </li>
         <li><a href="contact_us.html">contact us </a></li>
-        <li><a href="login.html">sign in</a></li>
+        <li><a href="login.html">sign in</a></li> -->
       </ul>
       <!-- .cd-dropdown-content -->
     </nav>
@@ -152,7 +161,12 @@
 
 <script>
 export default {
-  name: "Navigation"
+  name: "Navigation",
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
 };
 </script>
 

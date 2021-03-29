@@ -14,7 +14,7 @@
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -24,7 +24,7 @@
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -32,10 +32,10 @@
             <li><a href="../main_pages/index_II.html">home II</a></li>
             <li><a href="../main_pages/index_III.html">home III</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">jobs</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">jobs</a> -->
+        <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li>
               <a href="../main_pages/job_listing_grid_left_filter.html"
@@ -49,9 +49,9 @@
             </li>
             <li><a href="../main_pages/job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -67,10 +67,10 @@
             </li>
             <li><a href="../main_pages/sign_up.html">sign up</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">dashboard</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li class="has-children">
               <a href="#">candidate</a>
@@ -97,13 +97,13 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">company</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
                 <li>
                   <a href="comp_applications.html"> applications </a>
@@ -129,15 +129,15 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
-          <a href="#">blog</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+      </ul>
+      <!-- .cd-secondary-dropdown -->
+      <!-- </li> -->
+      <!-- <li class="has-children"> -->
+      <!-- <a href="#">blog</a> -->
+      <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="../main_pages/blog_single.html">blog single</a></li>
             <li>
@@ -149,14 +149,16 @@
         </li>
         <li><a href="../main_pages/contact_us.html">contact us </a></li>
         <li><a href="../main_pages/login.html">login</a></li>
-      </ul>
+      </ul> -->
       <!-- .cd-dropdown-content -->
+      <!-- </li> -->
     </nav>
+
     <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="../main_pages/index.html">
-            <img src="images/logo.png" alt="logo" />
+            <img src="images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -231,21 +233,65 @@
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
               <span class="current">
-                <img src="images/pf.png" alt="img" />
                 <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="30"
+                    :rounded="true"
+                  >
+                  </avatar>
+                  <p>
+                    <a href="#">{{ companys.email }}</a>
+                  </p>
+                  <p>
+                    <a href="#"> {{ companys.name }}</a>
+                  </p>
                 </div></span
               >
               <ul class="list">
                 <li>
-                  <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                  <a href="/employerDashboard" class="link_active"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <a href="/companyEditProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a>
+                </li>
+                <!-- <li>
+                  <a href="/employerPage"
+                    ><i class="fas fa-file"></i>company page
+                  </a>
+                </li> -->
+                <li>
+                  <a href="/employerManageJobs"
+                    ><i class="fas fa-suitcase"></i>manage jobs</a
+                  >
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/companyApplications"
+                    ><i class="fas fa-mobile"></i>applications</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyPost"
+                    ><i class="fas fa-user-plus"></i>post new job</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyMessage"
+                    ><i class="fas fa-envelope"></i>message</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
@@ -278,7 +324,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -326,7 +372,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -485,7 +531,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -525,9 +571,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -579,51 +625,51 @@
                     ></a>
                     <ul class="dropdown-menu-right">
                       <li>
-                        <a href="/companyApplication">
+                        <a href="comp_applications.html">
                           <i class="fas fa-square"></i>applications
                         </a>
                       </li>
                       <li>
-                        <a href="/employerPage">
+                        <a href="comp_company_page.html">
                           <i class="fas fa-square"></i> company page</a
                         >
                       </li>
                       <li>
-                        <a href="/employerDashboard">
+                        <a href="comp_employer_dashboard.html">
                           <i class="fas fa-square"></i>dashboard</a
                         >
                       </li>
                       <li>
-                        <a href="/companyEditProfile">
+                        <a href="comp_employer_edit_profile.html">
                           <i class="fas fa-square"></i>edit profile</a
                         >
                       </li>
                       <li>
-                        <a href="/ManageJobs">
+                        <a href="comp_employer_manage_jobs.html">
                           <i class="fas fa-square"></i>manage jobs</a
                         >
                       </li>
                       <li>
-                        <a href="/companyPost">
+                        <a href="comp_post_new_job.html">
                           <i class="fas fa-square"></i>post new job</a
                         >
                       </li>
                       <li>
-                        <a href="/companyMessage">
+                        <a href="message.html">
                           <i class="fas fa-square"></i>message</a
                         >
                       </li>
-                      <!-- <li>
+                      <li>
                         <a href="pricing_plans.html">
                           <i class="fas fa-square"></i>pricing plans</a
                         >
-                      </li> -->
+                      </li>
                     </ul>
                   </li>
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -638,11 +684,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -682,6 +728,7 @@
         </div>
       </div>
     </div>
+
     <!-- navi wrapper End -->
     <!-- top header wrapper start -->
     <div class="page_title_section">
@@ -690,13 +737,13 @@
           <div class="row">
             <!-- section_heading start -->
             <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-12">
-              <h1>Edit Employer Profile</h1>
+              <h1>Edit Profile</h1>
             </div>
             <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-12">
               <div class="sub_title_section">
                 <ul class="sub_title">
                   <li><a href="#"> Home </a>&nbsp; / &nbsp;</li>
-                  <li>edit profile</li>
+                  <li>Edit Profile</li>
                 </ul>
               </div>
             </div>
@@ -712,9 +759,17 @@
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
               <div class="emp_web_profile jb_cover">
-                <img src="images/web.png" alt="post_img" />
-                <h4>Webstrot Technology</h4>
-                <p>@Webstrot</p>
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
+                <h4>{{ companys.name }}</h4>
+                <p>{{ companys.email }}</p>
                 <div class="skills jb_cover">
                   <div class="skill-item jb_cover">
                     <h6>profile<span>70%</span></h6>
@@ -727,7 +782,7 @@
               <div class="emp_follow_link jb_cover">
                 <ul class="feedlist">
                   <li>
-                    <a href="/employerDashboard" 
+                    <a href="/employerDashboard"
                       ><i class="fas fa-tachometer-alt"></i> dashboard
                     </a>
                   </li>
@@ -736,11 +791,11 @@
                       <i class="fas fa-edit"></i>edit profile
                     </a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="/employerPage"
                       ><i class="fas fa-file"></i>company page
                     </a>
-                  </li>
+                  </li> -->
                   <li>
                     <a href="/employerManageJobs"
                       ><i class="fas fa-suitcase"></i>manage jobs</a
@@ -769,7 +824,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -827,28 +882,10 @@
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="job_listing_left_fullwidth jb_cover">
-                  <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="jp_job_post_side_img">
-                        <img src="images/ws.png" alt="post_img" />
-                      </div>
-                      <div class="jp_job_post_right_cont edit_profile_wrapper">
-                        <h4>JPEG or PNG 500x500px Thumbnail</h4>
-
-                        <div class="width_50">
-                          <input
-                            type="file"
-                            id="input-file-now-custom-233"
-                            class="dropify"
-                            data-height="90"
-                          /><span class="post_photo">browse image</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="browse_img_banner jb_cover">
+                <!-- <div class="job_listing_left_fullwidth jb_cover">
+               
+                </div> -->
+                <!-- <div class="browse_img_banner jb_cover">
                   <div class="jp_job_post_side_img">
                     <img src="images/banner.png" alt="post_img" />
                   </div>
@@ -865,119 +902,285 @@
                       /><span class="post_photo">browse image</span>
                     </div>
                   </div>
-                </div>
-                <div class="browse_img_banner jb_cover">
+                </div> -->
+                <!-- <div class="browse jb_cover">
                   <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>@username</label>
-                        <input type="text" name="name" placeholder="Webstrot" />
-                      </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div
+                        class="job_filter_category_sidebar company_wrapper jb_cover"
+                      ></div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="webstrot@example.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Phone</label>
-                        <input
-                          type="number"
-                          name="number"
-                          placeholder="+91 9098085819"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Website</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="www.webstrot.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>Company size</label>
-                        <select>
-                          <option>1-500</option>
-                          <option>1-200</option>
-                          <option>1-100</option>
-                          <option>1-50</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>contact mail</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="hr@wevstrot.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>job description</label>
-                        <select>
-                          <option>it & computer</option>
-                          <option>marketing</option>
-                          <option>mechanical</option>
-                          <option>doctor</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>address</label>
-                        <input
-                          type="text"
-                          name="name"
-                          placeholder="124/A Kalani Bagh"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>country</label>
-                        <input type="text" name="name" placeholder="India" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>state</label>
-                        <select>
-                          <option>Madhya pradesh</option>
-                          <option>uttar pradesh</option>
-                          <option>himachal pradesh</option>
-                          <option>punjab</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>city</label>
-                        <input type="text" name="name" placeholder="Dewas" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>zip code</label>
-                        <select>
-                          <option>455001</option>
-                          <option>422501</option>
-                          <option>45310</option>
-                          <option>41600</option>
-                        </select>
+                  </div>
+                </div> -->
+                <div class="browse jb_cover">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div
+                        class="job_filter_category_sidebar company_wrapper jb_cover"
+                      >
+                        <div class="job_filter_sidebar_heading jb_cover">
+                          <h1>
+                            basic information
+                            <span
+                              ><a
+                                href="#"
+                                data-toggle="modal"
+                                data-target="#myModal1"
+                                ><i class="fas fa-edit"></i></a
+                            ></span>
+                          </h1>
+                          <div
+                            class="modal fade delete_popup company_popup"
+                            id="myModal1"
+                            role="dialog"
+                          >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                >
+                                  &times;
+                                </button>
+                                <div class="row">
+                                  <div
+                                    class="col-lg-12 col-md-12 col-sm-12 col-12"
+                                  >
+                                    <div class="delett_cntn jb_cover">
+                                      <h1>
+                                        <i class="fas fa-edit"></i>basic
+                                        information
+                                      </h1>
+
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>category :</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="Design & creative"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>location :</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="loss angles"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>phone :</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="+91 983622711"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>email :</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <input
+                                                type="email"
+                                                name="email"
+                                                placeholder="myjobdesk@example.com"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>company size :</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="100"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="padder_top jb_cover"></div>
+                                      <div
+                                        class="header_btn search_btn applt_pop_btn"
+                                      >
+                                        <a href="#">save updates</a>
+                                      </div>
+                                      <div class="cancel_wrapper">
+                                        <a href="#" data-dismiss="modal"
+                                          >cancel</a
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="job_overview_header jb_cover">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                              <div
+                                class="jp_listing_overview_list_main_wrapper jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="far fa-calendar"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>categories:</li>
+                                    <li>Design & Creative</li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div
+                                class="jp_listing_overview_list_main_wrapper jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>Location:</li>
+                                    <li>Wuse, Abuja</li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div
+                                class="jp_listing_overview_list_main_wrapper jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="fa fa-info-circle"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>Hotline::</li>
+                                    <li>08093312225:</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                              <div
+                                class="jp_listing_overview_list_main_wrapper jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>email:</li>
+                                    <li>
+                                      <a href="#">admin@myjobdesk.com</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div
+                                class="jp_listing_overview_list_main_wrapper jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="flaticon-man-user"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>company size:</li>
+                                    <li>20-50</li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div
+                                class="jp_listing_overview_list_main_wrapper dcv jb_cover"
+                              >
+                                <div class="jp_listing_list_icon">
+                                  <i class="fas fa-globe-asia"></i>
+                                </div>
+                                <div class="jp_listing_list_icon_cont_wrapper">
+                                  <ul>
+                                    <li>website:</li>
+                                    <li>
+                                      <a href="#">www.myjobdesk.com</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -985,126 +1188,563 @@
                 <div class="browse jb_cover">
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="job_filter_category_sidebar jb_cover">
+                      <div
+                        class="job_filter_category_sidebar company_wrapper jb_cover"
+                      >
                         <div class="job_filter_sidebar_heading jb_cover">
-                          <h1>social networks</h1>
+                          <h1>
+                            about us
+                            <span
+                              ><a
+                                href="#"
+                                data-toggle="modal"
+                                data-target="#myModal2"
+                                ><i class="fas fa-edit"></i></a
+                            ></span>
+                          </h1>
+                          <div
+                            class="modal fade delete_popup company_popup"
+                            id="myModal2"
+                            role="dialog"
+                          >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                >
+                                  &times;
+                                </button>
+                                <div class="row">
+                                  <div
+                                    class="col-lg-12 col-md-12 col-sm-12 col-12"
+                                  >
+                                    <div class="delett_cntn jb_cover">
+                                      <h1>
+                                        <i class="fas fa-edit"></i>about us
+                                      </h1>
+
+                                      <div class="category_wrapper jb_cover">
+                                        <div class="row">
+                                          <div
+                                            class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                          >
+                                            <div
+                                              class="category_lavel jb_cover"
+                                            >
+                                              <p>Bio:</p>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                          >
+                                            <div class="delete_jb_form">
+                                              <textarea
+                                                class="require"
+                                                name="message"
+                                                rows="5"
+                                                placeholder="Write Something Catchy"
+                                              ></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="padder_top jb_cover"></div>
+                                      <div
+                                        class="header_btn search_btn applt_pop_btn"
+                                      >
+                                        <a href="#">save updates</a>
+                                      </div>
+                                      <div class="cancel_wrapper">
+                                        <a href="#" data-dismiss="modal"
+                                          >cancel</a
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="job_overview_header jb_cover">
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>google</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://google.com/webstrot"
-                                />
+                        <div class="job_overview_header pdd jb_cover">
+                          <p>
+                            Myjobdesk is and always will be a human resources
+                            consultancy firm. We hire people with a broad set of
+                            technical skills who are ready to tackle some of
+                            technology's greatest challenges and make an impact
+                            on millions, if not billions, of users. At
+                            Myjobdesk, engineers not only revolutionize search,
+                            they routinely work on massive scalability and
+                            storage solutions,
+                            <br />
+                            <br />
+                            large-scale applications and rely new platforms for
+                            developers around the world. Myjobdesk engineers are
+                            constantly changing the world.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="browse jb_cover">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="browse jb_cover">
+                        <div class="row">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="job_filter_category_sidebar jb_cover">
+                              <div class="job_filter_sidebar_heading jb_cover">
+                                <h1>
+                                  update social networks
+                                  <span
+                                    ><a
+                                      href="#"
+                                      data-toggle="modal"
+                                      data-target="#myModal22"
+                                      ><i class="fas fa-edit"></i></a
+                                  ></span>
+                                </h1>
+
+                                <div
+                                  class="modal fade delete_popup company_popup"
+                                  id="myModal22"
+                                  role="dialog"
+                                >
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                      >
+                                        &times;
+                                      </button>
+                                      <div class="row">
+                                        <div
+                                          class="col-lg-12 col-md-12 col-sm-12 col-12"
+                                        >
+                                          <div class="delett_cntn jb_cover">
+                                            <h1>
+                                              <i class="fas fa-edit"></i>Update
+                                              Social Networks
+                                            </h1>
+
+                                            <div
+                                              class="category_wrapper jb_cover"
+                                            >
+                                              <div class="row">
+                                                <div
+                                                  class="col-lg-3 col-md-3 col-sm-12 col-12"
+                                                >
+                                                  <div
+                                                    class="category_lavel jb_cover"
+                                                  >
+                                                    <p>write yourself:</p>
+                                                  </div>
+                                                </div>
+                                                <div
+                                                  class="col-lg-9 col-md-9 col-sm-12 col-12"
+                                                >
+                                                  <div class="delete_jb_form">
+                                                    <input
+                                                      type="text"
+                                                      name="text"
+                                                      placeholder="Company's instagram url"
+                                                      v-model="
+                                                        companys.instagram
+                                                      "
+                                                    />
+                                                  </div>
+                                                  <br />
+                                                  <br />
+                                                  <br />
+                                                  <div class="delete_jb_form">
+                                                    <input
+                                                      type="text"
+                                                      name="text"
+                                                      placeholder="Company's facebook url"
+                                                      v-model="
+                                                        companys.facebook
+                                                      "
+                                                    />
+                                                  </div>
+                                                  <br />
+                                                  <br />
+                                                  <br />
+                                                  <div class="delete_jb_form">
+                                                    <input
+                                                      type="text"
+                                                      name="text"
+                                                      placeholder="Company's linkedin url"
+                                                      v-model="
+                                                        companys.linkedin
+                                                      "
+                                                    />
+                                                  </div>
+                                                  <br />
+                                                  <br />
+                                                  <br />
+                                                  <div class="delete_jb_form">
+                                                    <input
+                                                      type="text"
+                                                      name="text"
+                                                      placeholder="Company's twitter url"
+                                                      v-model="companys.twitter"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <div
+                                              class="padder_top jb_cover"
+                                            ></div>
+                                            <div
+                                              class="header_btn search_btn applt_pop_btn"
+                                            >
+                                              <a href="#">save updates</a>
+                                            </div>
+                                            <div class="cancel_wrapper">
+                                              <a href="#" data-dismiss="modal"
+                                                >cancel</a
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="job_overview_header jb_cover">
+                                <div class="row">
+                                  <div
+                                    class="col-lg-6 col-md-6 col-sm-12 col-12"
+                                  >
+                                    <div
+                                      class="jp_listing_overview_list_main_wrapper jb_cover"
+                                    >
+                                      <div class="jp_listing_list_icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                      </div>
+                                      <div
+                                        class="jp_listing_list_icon_cont_wrapper"
+                                      >
+                                        <ul>
+                                          <li>facebook:</li>
+                                          <li>{{}}</li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-lg-6 col-md-6 col-sm-12 col-12"
+                                  >
+                                    <div
+                                      class="jp_listing_overview_list_main_wrapper jb_cover"
+                                    >
+                                      <div class="jp_listing_list_icon">
+                                        <i class="fab fa-twitter"></i>
+                                      </div>
+                                      <div
+                                        class="jp_listing_list_icon_cont_wrapper"
+                                      >
+                                        <ul>
+                                          <li>Twitter:</li>
+                                          <li>{{}}</li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-lg-6 col-md-6 col-sm-12 col-12"
+                                  >
+                                    <div
+                                      class="jp_listing_overview_list_main_wrapper jb_cover"
+                                    >
+                                      <div class="jp_listing_list_icon">
+                                        <i class="fab fa-instagram"></i>
+                                      </div>
+                                      <div
+                                        class="jp_listing_list_icon_cont_wrapper"
+                                      >
+                                        <ul>
+                                          <li>instagram:</li>
+                                          <li>{{}}</li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-lg-6 col-md-6 col-sm-12 col-12"
+                                  >
+                                    <div
+                                      class="jp_listing_overview_list_main_wrapper jb_cover"
+                                    >
+                                      <div class="jp_listing_list_icon">
+                                        <i class="fab fa-linkedin-in"></i>
+                                      </div>
+                                      <div
+                                        class="jp_listing_list_icon_cont_wrapper"
+                                      >
+                                        <ul>
+                                          <li>linkedin:</li>
+                                          <li>{{}}</li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- <div
+                                    class="col-lg-12 col-md-12 col-sm-12 col-12"
+                                  >
+                                    <div class="header_btn search_btn jb_cover">
+                                      <a @click="saveSocialMedia" href="#"
+                                        >Update</a
+                                      >
+                                    </div>
+                                  </div> -->
+                                </div>
                               </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>facebook</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.facebook.com/webstrot"
-                                />
+                          </div>
+                        </div>
+                        <!-- <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="job_filter_category_sidebar jb_cover">
+                          <div class="job_filter_sidebar_heading jb_cover">
+                            <h1>password & security</h1>
+                          </div>
+                          <div class="job_overview_header jb_cover">
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="contect_form3">
+                                  <label>verification email</label>
+                                  <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="webstrot@example.com"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>twitter</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.twitter.com/webstrot"
-                                />
+                              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="contect_form3">
+                                  <label>current pasword</label>
+                                  <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="*************"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>linkedin</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.linkedin.com/webstrot"
-                                />
+                              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="contect_form3">
+                                  <label>new pasword</label>
+                                  <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="*************"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                              <div class="header_btn search_btn jb_cover">
-                                <a href="#">add more</a>
+                              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="contect_form3">
+                                  <label> repeat new pasword</label>
+                                  <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="*************"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="job_filter_category_sidebar jb_cover">
-                        <div class="job_filter_sidebar_heading jb_cover">
-                          <h1>password & security</h1>
-                        </div>
-                        <div class="job_overview_header jb_cover">
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>verification email</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="webstrot@example.com"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>current pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>new pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label> repeat new pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
+                    </div> -->
+                        <!-- <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="login_remember_box jb_cover">
+                          <label class="control control--checkbox"
+                            >Enable Two Step Verification Via Email
+                            <input type="checkbox" />
+                            <span class="control__indicator"></span>
+                          </label>
+                          <div class="header_btn search_btn jb_cover">
+                            <a href="#">save changes</a>
                           </div>
                         </div>
                       </div>
+                    </div> -->
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="login_remember_box jb_cover">
-                        <label class="control control--checkbox"
-                          >Enable Two Step Verification Via Email
-                          <input type="checkbox" />
-                          <span class="control__indicator"></span>
-                        </label>
-                        <div class="header_btn search_btn jb_cover">
-                          <a href="#">save changes</a>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="">
+                      <!-- <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="row">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="header_btn search_btn jb_cover">
+                              <a href="#">save changes</a>
+                            </div>
+                          </div>
                         </div>
+                      </div> -->
+                      <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>Email</label>
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="webstrot@example.com"
+                              v-model="companys.email"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>Phone</label>
+                            <input
+                              type="tel"
+                              name="number"
+                              placeholder="+91 9098085819"
+                              v-model="companys.phone_number"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>Website</label>
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="www.webstrot.com"
+                              v-model="companys.website"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1"
+                              >Company size</label
+                            >
+                            <select
+                              class="form-control"
+                              id="exampleFormControlSelect1"
+                              v-model="companys.size"
+                            >
+                              <option>1-500</option>
+                              <option>1-200</option>
+                              <option>1-100</option>
+                              <option>1-50</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>contact mail</label>
+                            <input
+                              type="email"
+                              name="email"
+                              v-model="companys.email"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1"
+                              >job description</label
+                            >
+                            <select
+                              class="form-control"
+                              id="exampleFormControlSelect1"
+                              v-model="companys.job_description"
+                            >
+                              <option>it & computer</option>
+                              <option>marketing</option>
+                              <option>mechanical</option>
+                              <option>doctor</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <textarea
+                              placeholder="company's address"
+                              v-model="companys.address"
+                              class="form-control"
+                            >
+                            </textarea>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1"
+                              >Country</label
+                            >
+                            <select
+                              class="form-control"
+                              id="exampleFormControlSelect1"
+                              v-model="companys.country"
+                            >
+                              <option>Nigeria</option>
+                              <option>Abeg Ageg</option>
+                              <option>9ja</option>
+                              <option>Na you know</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">state</label>
+                            <select
+                              class="form-control"
+                              id="exampleFormControlSelect1"
+                              v-model="state"
+                            >
+                              <option>Just pick a State </option>
+                              <option>Osun</option>
+                              <option>Ondo</option>
+                              <option>lagos</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">City</label>
+                            <select
+                              class="form-control"
+                              id="exampleFormControlSelect1"
+                              v-model="companys.city"
+                            >
+                              <option> pick a State </option>
+                              <option>anyone</option>
+                              <option>anyone</option>
+                              <option>anyone</option>
+                            </select>
+                          </div>
+                        </div> -->
+                      <div class="row">
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                              <div class="contect_form3">
+                                <label>@username</label>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  placeholder="New Company Name"
+                                  v-model="companys.name"
+                                />
+                              </div>
+                            </div> -->
+
+                        <!-- <div class="header_btn search_btn jb_cover mt-3">
+                          <a href="#" @click.prevent="saveProfile">Update</a>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -1134,17 +1774,68 @@
 </template>
 
 <script>
+import Avatar from "vue-avatar";
 import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
 import ChatBox from "@/components/ChatBox.vue";
 export default {
   name: "EditProfile",
+  data: function() {
+    return {
+      companys: {
+        name: "",
+        email: "",
+        category: "",
+        phone_number: "",
+        website: "",
+        job_description: "",
+        country: "",
+        state: "",
+        city: "",
+        address: ""
+      }
+    };
+  },
   components: {
     Looking,
     Footer,
+    Avatar,
     ChatBox
+  },
+  methods: {
+    saveProfile() {
+      //calling axios here to save profile
+    },
+    saveSocialMedia() {
+      //saving social media handles
+    }
   }
 };
 </script>
 
-<style></style>
+<style>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 10px;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+</style>

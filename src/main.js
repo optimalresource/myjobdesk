@@ -10,22 +10,72 @@ import { ValidationObserver } from "vee-validate";
 import { ValidationProvider } from "vee-validate/dist/vee-validate.full.esm";
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
-
+import VueCountdownTimer from "vuejs-countdown-timer";
+Vue.use(VueCountdownTimer);
 import VueToastr from "vue-toastr";
+import Dropd from "vue-dropd";
+import VueGraph from "vue-graph";
+import GraphLine3D from "vue-graph/src/components/line3d.js";
+import NoteWidget from "vue-graph/src/widgets/note.js";
+import LegendWidget from "vue-graph/src/widgets/legends.js";
+import Pagination from "vue-pagination-2";
+import FroalaEditor from "froala-editor";
+import "froala-editor/js/plugins/align.min.js";
+import "vue-select/dist/vue-select.css";
+new FroalaEditor("#edit");
+import vSelect from "vue-select";
+
+Vue.component("v-select", vSelect);
+import VueApexCharts from "vue-apexcharts";
+Vue.use(VueApexCharts);
+Vue.component("apexchart", VueApexCharts);
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/js/third_party/embedly.min";
+import "froala-editor/js/third_party/font_awesome.min";
+import "froala-editor/js/third_party/spell_checker.min";
+import "froala-editor/js/third_party/image_tui.min";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import VueFroala from "vue-froala-wysiwyg";
+import { Chat } from "vue-quick-chat";
+import Select2 from "v-select2-component";
+
+Vue.component("Select2", Select2);
+Vue.use(VueFroala);
+
+Vue.component(GraphLine3D.name, GraphLine3D);
+Vue.component(NoteWidget.name, NoteWidget);
+Vue.component(LegendWidget.name, LegendWidget);
+import Toasted from "vue-toasted";
+Vue.use(Toasted, {
+  duration: 5000,
+  position: "top-center"
+});
+Vue.use(VueGraph);
+Vue.component("dropd", Dropd);
 Vue.use(VueToastr, {
   defaultTimeout: 10000,
   defaultProgressBar: false,
   defaultProgressBarValue: 0,
-  defaultPosition: "toast-bottom-left",
+  defaultPosition: "toast-top-center",
   defaultCloseOnHover: false,
   defaultClassNames: ["animated", "zoomInDown"]
 });
+import VueMoment from "vue-moment";
+import moment from "moment-timezone";
+Vue.use(VueMoment, {
+  moment
+});
+import { VueEditor } from "vue2-editor";
 import Multiselect from "vue-multiselect";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
+Vue.component("pagination", Pagination);
 export default {
   components: {
     VueUploadMultipleImage,
-    Multiselect
+    Multiselect,
+    Pagination,
+    VueEditor,
+    Chat
   }
 };
 // import axios from "axios";

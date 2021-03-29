@@ -3,7 +3,7 @@ import Vuex from "vuex";
 // import VuexPersist from "vuex-persist";
 import axios from "axios";
 // import localForage from "localforage";
-// import router from "../router";
+import router from "../router";
 Vue.use(Vuex);
 axios.default.baseURL = "https://api.myjobdesk.com/api";
 
@@ -18,7 +18,7 @@ axios.default.baseURL = "https://api.myjobdesk.com/api";
 export default new Vuex.Store({
   //   plugins: [vuexStorage.plugin],
   state: {
-    tokenId: localStorage.getItem("access_token") || null,
+    token: localStorage.getItem("token") || null,
     userId: null,
     user: null
   },
@@ -37,6 +37,9 @@ export default new Vuex.Store({
     //     }
     retrieveToken(state, token) {
       state.token = token;
+    },
+    destroyToken(state) {
+      state.token = null;
     }
   },
   actions: {
@@ -62,10 +65,10 @@ export default new Vuex.Store({
     //         })
     //         .catch(error => console.log(error));
     //     },
-    //     logout({ commit }) {
-    //       commit("logout");
-    //       router.push("/login");
-    //     },
+    logout({ commit }) {
+      commit("logout");
+      router.push("/login");
+    },
     //     register(context, data) {
     //       return new Promise((resolve, reject) => {
     //         axios
@@ -84,26 +87,34 @@ export default new Vuex.Store({
     //           });
     //       });
     //     },
-    //     // destroyToken(context) {
-    //     //   if (context.getters.loggedIn) {
-    //     //     return new Promise((resolve, reject) => {
-    //     //       axios
-    //     //         .post("/logout")
-    //     //         .then(response => {
-    //     //           localStorage.removeItem("access_token");
-    //     //           context.commit("destroyToken");
-    //     //           resolve(response);
-    //     //           // console.log(response);
-    //     //           // context.commit("", response.data);
-    //     //         })
-    //     //         .catch(error => {
-    //     //           localStorage.removeItem("access_token");
-    //     //           context.commit("destroyToken");
-    //     //           reject(error);
-    //     //         });
-    //     //     });
-    //     //   }
-    //     // },
+    destroyToken(context) {
+      if (context.getters.loggedIn) {
+        return new Promise((resolve, reject) => {
+          var accessToken = localStorage.getItem("token") || "";
+          const headers = {
+            Authorization: "Bearer " + accessToken,
+            "My-Custom-Header": "Logout"
+          };
+
+          var request = {};
+
+          axios
+            .post("https://api.myjobdesk.com/api/logout", request, {
+              headers
+            })
+            .then(response => {
+              localStorage.removeItem("token");
+              context.commit("destroyToken");
+              resolve(response);
+            })
+            .catch(error => {
+              localStorage.removeItem("token");
+              context.commit("destroyToken");
+              reject(error);
+            });
+        });
+      }
+    },
     retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
         axios
@@ -125,11 +136,12 @@ export default new Vuex.Store({
             reject(error);
           });
       });
-
     }
   },
   //   modules: {},
   getters: {
-    //     loggedIn: state => !!state.token
+    loggedIn(state) {
+      return state.token !== null;
+    }
   }
 });

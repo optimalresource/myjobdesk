@@ -1,5 +1,10 @@
 <template>
   <div>
+    <!-- <div class="jb_preloader">
+      <div class="spinner_wrap">
+        <div class="spinner"></div>
+      </div>
+    </div> -->
     <div class="cursor"></div>
     <!-- Top Scroll Start --><a href="javascript:" id="return-to-top"
       ><i class="fas fa-angle-double-up"></i
@@ -9,7 +14,7 @@
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -19,7 +24,7 @@
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -27,10 +32,10 @@
             <li><a href="../main_pages/index_II.html">home II</a></li>
             <li><a href="../main_pages/index_III.html">home III</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">jobs</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">jobs</a> -->
+        <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li>
               <a href="../main_pages/job_listing_grid_left_filter.html"
@@ -44,9 +49,9 @@
             </li>
             <li><a href="../main_pages/job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -62,10 +67,10 @@
             </li>
             <li><a href="../main_pages/sign_up.html">sign up</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">dashboard</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li class="has-children">
               <a href="#">candidate</a>
@@ -92,13 +97,13 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">company</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
                 <li>
                   <a href="comp_applications.html"> applications </a>
@@ -124,15 +129,15 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
-          <a href="#">blog</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+      </ul>
+      <!-- .cd-secondary-dropdown -->
+      <!-- </li> -->
+      <!-- <li class="has-children"> -->
+      <!-- <a href="#">blog</a> -->
+      <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="../main_pages/blog_single.html">blog single</a></li>
             <li>
@@ -144,14 +149,16 @@
         </li>
         <li><a href="../main_pages/contact_us.html">contact us </a></li>
         <li><a href="../main_pages/login.html">login</a></li>
-      </ul>
+      </ul> -->
       <!-- .cd-dropdown-content -->
+      <!-- </li> -->
     </nav>
+
     <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="../main_pages/index.html">
-            <img src="images/logo.png" alt="logo" />
+            <img src="images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -226,21 +233,65 @@
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
               <span class="current">
-                <img src="images/pf.png" alt="img" />
                 <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="30"
+                    :rounded="true"
+                  >
+                  </avatar>
+                  <p>
+                    <a href="#">{{ companys.email }}</a>
+                  </p>
+                  <p>
+                    <a href="#"> {{ companys.name }}</a>
+                  </p>
                 </div></span
               >
               <ul class="list">
                 <li>
-                  <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                  <a href="/employerDashboard"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <a href="/companyEditProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a>
+                </li>
+                <!-- <li>
+                  <a href="/employerPage"
+                    ><i class="fas fa-file"></i>company page
+                  </a>
+                </li> -->
+                <li>
+                  <a href="/employerManageJobs" class="link_active"
+                    ><i class="fas fa-suitcase"></i>manage jobs</a
+                  >
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/companyApplications"
+                    ><i class="fas fa-mobile"></i>applications</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyPost"
+                    ><i class="fas fa-user-plus"></i>post new job</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyMessage"
+                    ><i class="fas fa-envelope"></i>message</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
@@ -273,7 +324,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -321,7 +372,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -480,7 +531,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -520,9 +571,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -618,7 +669,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -633,11 +684,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -677,6 +728,7 @@
         </div>
       </div>
     </div>
+
     <!-- navi wrapper End -->
     <!-- top header wrapper start -->
     <div class="page_title_section">
@@ -685,13 +737,13 @@
           <div class="row">
             <!-- section_heading start -->
             <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-12">
-              <h1>Manage Jobs</h1>
+              <h1>Edit Profile</h1>
             </div>
             <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-12">
               <div class="sub_title_section">
                 <ul class="sub_title">
                   <li><a href="#"> Home </a>&nbsp; / &nbsp;</li>
-                  <li>Manage Jobs</li>
+                  <li>Edit Profile</li>
                 </ul>
               </div>
             </div>
@@ -707,9 +759,17 @@
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
               <div class="emp_web_profile jb_cover">
-                <img src="images/web.png" alt="post_img" />
-                <h4>Webstrot Technology</h4>
-                <p>@Webstrot</p>
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
+                <h4>{{ companys.name }}</h4>
+                <p>{{ companys.email }}</p>
                 <div class="skills jb_cover">
                   <div class="skill-item jb_cover">
                     <h6>profile<span>70%</span></h6>
@@ -722,27 +782,27 @@
               <div class="emp_follow_link jb_cover">
                 <ul class="feedlist">
                   <li>
-                    <a href="employerDashboard"
+                    <a href="/employerDashboard"
                       ><i class="fas fa-tachometer-alt"></i> dashboard
                     </a>
                   </li>
                   <li>
-                    <a href="companyEditProfile">
+                    <a href="/companyEditProfile">
                       <i class="fas fa-edit"></i>edit profile
                     </a>
                   </li>
-                  <li>
-                    <a href="employerPage"
+                  <!-- <li>
+                    <a href="/employerPage"
                       ><i class="fas fa-file"></i>company page
                     </a>
-                  </li>
+                  </li> -->
                   <li>
-                    <a href="/manageJobs" class="link_active"
+                    <a href="/employerManageJobs" class="link_active"
                       ><i class="fas fa-suitcase"></i>manage jobs</a
                     >
                   </li>
                   <li>
-                    <a href="companyApplications"
+                    <a href="/companyApplications"
                       ><i class="fas fa-mobile"></i>applications</a
                     >
                   </li>
@@ -764,7 +824,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -801,7 +861,7 @@
                           <a href="#">save updates</a>
                         </div>
                         <div class="cancel_wrapper">
-                          <a href="#" class="" data-dismiss="modal">cancel</a>
+                          <a href="#" data-dismiss="modal">cancel</a>
                         </div>
                         <div class="login_remember_box jb_cover">
                           <label class="control control--checkbox"
@@ -819,7 +879,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+          <pagination></pagination>
+          <VuePagination />
+          <!-- <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_main_overflow jb_cover">
@@ -1037,36 +1099,17 @@
                       </div>
                     </div>
                     <div class="blog_pagination_section jb_cover">
-                      <ul>
-                        <li>
-                          <a href="#" class="prev">
-                            <i class="flaticon-left-arrow"></i>
-                          </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li class="third_pagger"><a href="#">2</a></li>
-                        <li class="d-block d-sm-block d-md-block d-lg-block">
-                          <a href="#">3</a>
-                        </li>
-                        <li class="d-none d-sm-block d-md-block d-lg-block">
-                          <a href="#">...</a>
-                        </li>
-                        <li class="d-none d-sm-block d-md-block d-lg-block">
-                          <a href="#">6</a>
-                        </li>
-
-                        <li>
-                          <a href="#" class="next">
-                            <i class="flaticon-right-arrow"></i>
-                          </a>
-                        </li>
-                      </ul>
+                      <pagination
+                        v-model="page"
+                        :records="500"
+                        @paginate="myCallback"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -1089,17 +1132,66 @@
 </template>
 
 <script>
+import Avatar from "vue-avatar";
+// import Pagination from "@/components/Pagination.vue";
 import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
+// import Pagination from "vue-pagination-2";
 import ChatBox from "@/components/ChatBox.vue";
+import VuePagination from "@/components/VuePagination.vue";
 export default {
   name: "ManageJobs",
+  data: function() {
+    return {
+      page: 1,
+      companys: {
+        name: "",
+        email: "",
+        category: "",
+        phone_number: "",
+        website: "",
+        job_description: "",
+        country: "",
+        state: "",
+        city: "",
+        address: ""
+      }
+    };
+  },
   components: {
     Looking,
     Footer,
+    // Pagination,
+    Avatar,
+    VuePagination,
     ChatBox
   }
 };
 </script>
 
-<style></style>
+<style>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 10px;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+</style>

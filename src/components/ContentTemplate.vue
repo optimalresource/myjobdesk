@@ -2,7 +2,7 @@
   <div class="login_wrapper jb_cover">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <ValidationObserver>
             <form id="registration-form" enctype="multipart/form-data">
               <div v-if="page == 'login'">
@@ -53,4 +53,4 @@ export default {
 //  <ValidationObserver v-slot="{ handleSubmit }">
 </script>
 
-<style></style>
+<style scoped></style>

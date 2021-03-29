@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- <div class="jb_preloader">
-        <div class="spinner_wrap">
-            <div class="spinner"></div>
-        </div>
+      <div class="spinner_wrap">
+        <div class="spinner"></div>
+      </div>
     </div> -->
     <div class="cursor"></div>
     <!-- Top Scroll Start --><a href="javascript:" id="return-to-top"
@@ -14,7 +14,7 @@
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -24,7 +24,7 @@
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -32,10 +32,10 @@
             <li><a href="../main_pages/index_II.html">home II</a></li>
             <li><a href="../main_pages/index_III.html">home III</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">jobs</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">jobs</a> -->
+        <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li>
               <a href="../main_pages/job_listing_grid_left_filter.html"
@@ -49,9 +49,9 @@
             </li>
             <li><a href="../main_pages/job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -67,10 +67,10 @@
             </li>
             <li><a href="../main_pages/sign_up.html">sign up</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">dashboard</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li class="has-children">
               <a href="#">candidate</a>
@@ -97,13 +97,13 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">company</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
                 <li>
                   <a href="comp_applications.html"> applications </a>
@@ -129,15 +129,15 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
-          <a href="#">blog</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+      </ul>
+      <!-- .cd-secondary-dropdown -->
+      <!-- </li> -->
+      <!-- <li class="has-children"> -->
+      <!-- <a href="#">blog</a> -->
+      <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="../main_pages/blog_single.html">blog single</a></li>
             <li>
@@ -149,14 +149,16 @@
         </li>
         <li><a href="../main_pages/contact_us.html">contact us </a></li>
         <li><a href="../main_pages/login.html">login</a></li>
-      </ul>
+      </ul> -->
       <!-- .cd-dropdown-content -->
+      <!-- </li> -->
     </nav>
+
     <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="../main_pages/index.html">
-            <img src="images/logo.png" alt="logo" />
+            <img src="images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -231,21 +233,66 @@
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
               <span class="current">
-                <img src="images/pf.png" alt="img" />
                 <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
+                  <avatar
+                    class=""
+                    :username="companys.email"
+                    :size="30"
+                    :rounded="true"
+                  >
+                  </avatar>
+                  <h6><a href="#"></a>{{ companys.name }}</h6>
+                  <p>
+                    <a href="#">{{ companys.email }}</a>
+                  </p>
                 </div></span
               >
               <ul class="list">
-                <li>
+                <!-- <li>
                   <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                </li> -->
+                <li>
+                  <a href="/employerDashboard"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <a href="/companyEditProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/employerPage"
+                    ><i class="fas fa-file"></i>company page
+                  </a>
+                </li>
+                <li>
+                  <a href="/employerManageJobs"
+                    ><i class="fas fa-suitcase"></i>manage jobs</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyApplications"
+                    ><i class="fas fa-mobile"></i>applications</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyPost"
+                    ><i class="fas fa-user-plus"></i>post new job</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyMessage"
+                    ><i class="fas fa-envelope"></i>message</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
@@ -278,7 +325,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -326,7 +373,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -485,7 +532,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -525,9 +572,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -623,7 +670,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -638,11 +685,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -690,13 +737,13 @@
           <div class="row">
             <!-- section_heading start -->
             <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-12">
-              <h1>message</h1>
+              <h1>post new job</h1>
             </div>
             <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-12">
               <div class="sub_title_section">
                 <ul class="sub_title">
                   <li><a href="#"> Home </a>&nbsp; / &nbsp;</li>
-                  <li>message</li>
+                  <li>post new job</li>
                 </ul>
               </div>
             </div>
@@ -706,19 +753,23 @@
     </div>
     <!-- top header wrapper end -->
     <!--employee dashboard wrapper start-->
-    <div class="candidate_dashboard_wrapper jb_cover">
+    <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
-              <img
-                src="images/profile.jpg"
-                class="img-responsive"
-                alt="post_img"
-              />
-              <div class="emp_web_profile candidate_web_profile jb_cover">
-                <h4>luca wallace</h4>
-                <p>@username</p>
+              <div class="emp_web_profile jb_cover">
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
+                <h4>{{ companys.name }}</h4>
+                <p>{{ companys.bio }}</p>
                 <div class="skills jb_cover">
                   <div class="skill-item jb_cover">
                     <h6>profile<span>70%</span></h6>
@@ -761,7 +812,7 @@
                     >
                   </li>
                   <li>
-                    <a href="/companyMessage" class="link_active"
+                    <a href="/companyMessage " class="link_active"
                       ><i class="fas fa-envelope"></i>message</a
                     >
                   </li>
@@ -773,7 +824,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -829,21 +880,56 @@
             </div>
           </div>
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+            <!-- <Chat /> -->
             <div class="dashboard-message-wrapper">
-              <div class="message-lists">
+              <!-- <div class="message-lists">
                 <form action="#" class="message-search">
-                  <input type="text" placeholder="Search Friend......" />
-                  <button><i class="fas fa-search"></i></button>
+                  <div>
+                    <Select2
+                      v-model="myValue"
+                      :options="myOptions"
+                      :settings="{ settingOption: value, settingOption: value }"
+                      @change="myChangeEvent($event)"
+                      @select="mySelectEvent($event)"
+                    />
+                    <p>Value: {{ myValue }}</p>
+                  </div>
                 </form>
-                <a href="#" class="message-single">
-                  <div class="thumb">
-                    <img src="images/rc1.png" class="img-fluid" alt="" />
-                  </div>
-                  <div class="body">
-                    <h6 class="username">Laural K.</h6>
-                    <span class="send-time">12 min</span>
-                  </div>
-                </a>
+                <ul v-for="(myoption, opt) in myOptions" :key="opt">
+                  <li>
+                    <a href="#" class="message-single">
+                      <avatar
+                        :username="companys.email"
+                        :size="30"
+                        :rounded="true"
+                      >
+                      </avatar>
+                      <div class="body">
+                        <h6 class="username">Carlos {{ companys.name }}</h6>
+                        <span class="text-number">
+                          16 min {{ companys.time_sent }}</span
+                        >
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="message-single active">
+                      <div class="thumb">
+                        <avatar
+                          :username="companys.email"
+                          :size="30"
+                          :rounded="true"
+                        >
+                        </avatar>
+                      </div>
+                      <div class="body">
+                        <h6 class="username">Carlos</h6>
+                        <span class="text-number">16 min</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+
                 <a href="#" class="message-single">
                   <div class="thumb">
                     <img src="images/rc2.png" class="img-fluid" alt="" />
@@ -889,14 +975,12 @@
                     <span class="send-time">26 min</span>
                   </div>
                 </a>
-              </div>
+              </div> -->
               <div class="message-box">
                 <div class="message-box-header">
-                  <h5>carlos</h5>
-                  <div class="navbar navbar-expand-sm drop">
-                    <!-- Links -->
+                  <h5>Admin</h5>
+                  <!-- <div class="navbar navbar-expand-sm drop">
                     <ul class="navbar-nav">
-                      <!-- Dropdown -->
                       <li class="nav-item dropdown">
                         <a
                           class="nav-link dropdown-toggle"
@@ -921,85 +1005,53 @@
                         </div>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                 </div>
                 <ul class="dashboard-conversation">
-                  <li class="conversation in">
-                    <div class="avater">
-                      <img src="images/rc3.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="message">
-                      <span
-                        >This is Photoshop's version of Lom Ipsum. Proin gravida
-                        nibh vel velit auctor aliquet. Aenean sollicitudin,
-                        lorem quis
-                      </span>
-                    </div>
-                    <span class="send-time">2.32 am</span>
-                  </li>
                   <li class="conversation out">
                     <div class="avater">
                       <img src="images/rc1.png" class="img-fluid" alt="" />
                     </div>
-                    <div class="message">
-                      <span
-                        >This is Photoshop's version of Lom Ipsum. Proin gravida
+                    <div class="">
+                      <p class="reciever">
+                        This is Photoshop's version of Lom Ipsum. Proin gravida
                         nibh vel velit auctor aliquet. Aenean sollicitudin,
-                        lorem quis
-                      </span>
-                    </div>
-                    <span class="send-time">2.32 am</span>
-                  </li>
-                  <li class="conversation in">
-                    <div class="avater">
-                      <img src="images/rc3.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="message">
-                      <span
-                        >This is Photoshop's version of Lom Ipsum. Proin gravida
-                        nibh vel velit auctor aliquet. Aenean sollicitudin,
-                        lorem quis
-                      </span>
-                    </div>
-                    <span class="send-time">2.34 am</span>
-                  </li>
-                  <li class="conversation out">
-                    <div class="avater">
-                      <img src="images/rc1.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="message">
-                      <span
-                        >This is Photoshop's version of Lom Ipsum. Proin gravida
-                        nibh vel velit auctor aliquet. Aenean sollicitudin,
-                        lorem quis
-                      </span>
+                        lorem quis This is Photoshop's version of Lom Ipsum.
+                        Proin gravida nibh vel velit auctor aliquet. Aenean
+                        sollicitudin, lorem quis This is Photoshop's version of
+                        Lom Ipsum. Proin gravida nibh vel velit auctor aliquet.
+                        Aenean sollicitudin, lorem quis This is Photoshop's
+                        version of Lom Ipsum. Proin gravida nibh vel velit
+                        auctor aliquet. Aenean sollicitudin, lorem quis
+                      </p>
                     </div>
                     <span class="send-time">2.34 am</span>
                   </li>
                   <li class="conversation in">
-                    <div class="avater">
-                      <img src="images/rc3.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="message">
-                      <span
-                        >This is Photoshop's version of Lom Ipsum. Proin gravida
+                    <div class="">
+                      <p class="sender">
+                        This is Photoshop's version of Lom Ipsum. Proin gravida
                         nibh vel velit auctor aliquet. Aenean sollicitudin,
-                        lorem quis
-                      </span>
+                        lorem quis This is Photoshop's version of Lom Ipsum.
+                        Proin gravida nibh vel velit auctor aliquet. Aenean
+                        sollicitudin, lorem quis This is Photoshop's version of
+                        Lom Ipsum. Proin gravida nibh vel velit auctor aliquet.
+                        Aenean sollicitudin, lorem quis This is Photoshop's
+                        version of Lom Ipsum. Proin gravida nibh vel velit
+                        auctor aliquet. Aenean sollicitudin, lorem quis
+                      </p>
                     </div>
                     <span class="send-time">2.34 am</span>
                   </li>
                 </ul>
                 <div class="conversation-write-wrap">
                   <form action="#">
-                    <textarea placeholder="Type a message"></textarea>
-                    <label class="send-file">
-                      <input type="file" /><i class="fas fa-image"></i>
-                    </label>
-                    <label class="send-image">
-                      <input type="file" /><i class="fas fa-file-image"></i>
-                    </label>
-
+                    <froala
+                      id="edit"
+                      :tag="'textarea'"
+                      :config="config"
+                      v-model="model"
+                    ></froala>
                     <button class="send-message">
                       <i class="fas fa-location-arrow"></i>
                     </button>
@@ -1030,15 +1082,111 @@
 </template>
 
 <script>
+// import Chat from "@/components/Chat.vue";
 import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
 import ChatBox from "@/components/ChatBox.vue";
+// import VueFroala from 'vue-froala-wysiwyg';
+// import Select2 from "v-select2-component";
+import Avatar from "vue-avatar";
 export default {
   name: "EditProfile",
+  data: function() {
+    return {
+      config: {
+        events: {
+          initialized: function() {
+            console.log("initialized");
+          }
+        }
+      },
+      model: {},
+      companys: {
+        name: "",
+        email: "",
+        time_sent: "",
+        category: "",
+        phone_number: "",
+        website: "",
+        job_description: "",
+        country: "",
+        state: "",
+        city: "",
+        address: ""
+      },
+      posts: {
+        category: "",
+        job_title: "",
+        job_type: "",
+        working_hours: "",
+        country: "",
+        address: "",
+        educational_level: "",
+        salary: "",
+        specific_qualificaion: "",
+        age: "",
+        skills: "",
+        experience: ""
+      }
+    };
+  },
+  methods: {
+    myChangeEvent(val) {
+      console.log(val);
+    },
+    mySelectEvent({ id, text }) {
+      console.log({ id, text });
+    }
+  },
   components: {
     Looking,
     Footer,
+    // Select2,
+    Avatar,
     ChatBox
   }
 };
 </script>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 10px !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15% !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34% !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27% !important;
+    box-sizing: border-box !important;
+  }
+}
+.text-color {
+  color: #990066 !important;
+}
+.sender {
+  background: #990066;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 300;
+}
+.reciever {
+  /* background: rgb(243, 243, 243); */
+  color: #990066;
+  border-radius: 10px;
+  border: 1px dotted rgb(115, 115, 214);
+  padding: 10px;
+}
+</style>

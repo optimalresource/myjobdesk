@@ -755,8 +755,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
-                  </li>
+                    <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
                       ><i class="fas fa-trash-alt"></i>delete profile

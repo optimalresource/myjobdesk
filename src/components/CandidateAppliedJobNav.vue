@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
-        <a href="#">
-          <span><img src="../assets/images/wpf1.png" alt="img"/></span
+        <a href="/">
+          <span><img src="../assets/images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -14,136 +14,79 @@
           </form>
         </li>
         <li class="has-children">
-          <a href="#">home</a>
+          <!-- <a href="#">home</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
-            <li><a href="#">home I</a></li>
-            <li><a href="#">home II</a></li>
-            <li><a href="#">home III</a></li>
+            <li><a href="index.html">home I</a></li>
+            <li><a href="index_2.html">home II</a></li>
+            <li><a href="index_3.html">home III</a></li>
           </ul>
         </li>
         <li class="has-children">
-          <a href="#">jobs</a>
+          <!-- <a href="#">jobs</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
-            <li>
-              <a href="#">job listing grid </a>
-            </li>
-            <li>
-              <a href="#">job listing list</a>
-            </li>
-            <li><a href="#">job single</a></li>
+            <li><a href="services.html">services </a></li>
+            <li><a href="services_2.html">services II</a></li>
           </ul>
-        </li> -->
-    <!-- .has-children -->
-    <!-- <li class="has-children">
-          <a href="#">pages</a>
+        </li>
+        <!-- .has-children -->
+        <li class="has-children">
+          <!-- <a href="#">candidates</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
-            <li><a href="#">about us</a></li>
-            <li><a href="#">companies</a></li>
-            <li>
-              <a href="#">company single</a>
-            </li>
-            <li><a href="#">error page</a></li>
-            <li><a href="#">login</a></li>
-            <li>
-              <a href="#">pricing table</a>
-            </li>
-            <li><a href="#">sign up</a></li>
+            <li><a href="our_team.html">our team</a></li>
+            <li><a href="pricing_plans.html">pricing plans</a></li>
+            <li><a href="login_register.html">login / register</a></li>
+            <li><a href="error_404.html">error 404</a></li>
+            <li><a href="error_404_2.html">error 404 II</a></li>
+            <li><a href="comming_soon.html">comming soon</a></li>
+            <li><a href="comming_soon_2.html">comming soon II</a></li>
+            <li><a href="about_us.html">about us</a></li>
+            <li><a href="services.html">services</a></li>
           </ul>
         </li>
         <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
-            <li class="go-back"><a href="#0">Menu</a></li>
-            <li class="has-children">
-              <a href="#">candidate</a>
-              <ul class="cd-secondary-dropdown is-hidden">
-                <li class="go-back"><a href="#0">Menu</a></li>
-                <li>
-                  <a href="#">applied job </a>
-                </li>
-                <li>
-                  <a href="#">dashboard</a>
-                </li>
-                <li>
-                  <a href="#"> edit profile</a>
-                </li>
-                <li>
-                  <a href="#">favourite job</a>
-                </li>
-                <li>
-                  <a href="#"> resume</a>
-                </li>
-                <li>
-                  <a href="#"> message</a>
-                </li>
-                <li>
-                  <a href="#">pricing plans</a>
-                </li>
-              </ul> -->
-    <!-- .cd-secondary-dropdown -->
-    <!-- </li> -->
-    <!-- .has-children -->
-    <!-- <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
-                <li class="go-back"><a href="#0">Menu</a></li>
-                <li>
-                  <a href="#"> applications </a>
-                </li>
-                <li>
-                  <a href="#">company page</a>
-                </li>
-                <li>
-                  <a href="#"> dashboard</a>
-                </li>
-                <li>
-                  <a href="#">edit profile</a>
-                </li>
-                <li>
-                  <a href="#"> manage jobs</a>
-                </li>
-                <li>
-                  <a href="#"> post new job</a>
-                </li>
-                <li>
-                  <a href="#">message</a>
-                </li>
-                <li>
-                  <a href="#">pricing plans</a>
-                </li>
-              </ul> -->
-    <!-- .cd-secondary-dropdown -->
-    <!-- </li> -->
-    <!-- </ul> -->
-    <!-- .cd-secondary-dropdown -->
-    <!-- </li> -->
-    <!-- <li class="has-children">
-          <a href="#">blog</a>
+          <!-- <a href="#">employees</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
-            <li><a href="#">blog single</a></li>
-            <li>
-              <a href="#">blog category</a>
-            </li>
+            <li><a href="about_us.html">about us</a></li>
+            <li><a href="about_us_2.html">about us II</a></li>
           </ul>
-        </li> -->
-    <!-- <li><a href="#">contact us </a></li>
-        <li><a href="#">login</a></li>
-      </ul> -->
-    <!-- .cd-dropdown-content -->
-    <!-- </nav> -->
-    <!-- <div class="cp_navi_main_wrapper jb_cover">
+        </li>
+
+        <li class="has-children">
+          <!-- <a href="#">blog</a> -->
+          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+            <li class="go-back"><a href="#0">Menu</a></li>
+            <li><a href="blog_width_sidebar.html">blog width sidebar</a></li>
+            <li><a href="blog_without_sidebar.html">blog full width</a></li>
+            <li><a href="blog_without_sidebar.html">blog III column</a></li>
+            <li><a href="blog_2column.html">blog II column</a></li>
+            <li><a href="blog_single.html">blog single</a></li>
+          </ul>
+        </li>
+        <li class="has-children">
+          <!-- <a href="#">contact us</a> -->
+          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+            <li class="go-back"><a href="#0">Menu</a></li>
+            <li><a href="contact_us.html">contact us</a></li>
+            <li><a href="contact_us_2.html">contact us II</a></li>
+          </ul>
+        </li>
+        <!-- <li><a href="#">login</a></li> -->
+      </ul>
+      <!-- .cd-dropdown-content -->
+    </nav>
+    <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
-          <a href="#">
-            <img src="/images/logo13.png" alt="logo" />
+          <a href="/">
+            <img src="../assets/images/logo13.png" alt="logo" />
           </a>
-        </div> -->
-    <!-- mobile menu area start -->
-    <!-- <header
+        </div>
+        <!-- mobile menu area start -->
+        <header
           class="mobail_menu d-block d-sm-block d-md-block d-lg-none d-xl-none"
         >
           <div class="container-fluid">
@@ -202,64 +145,467 @@
                         </g>
                       </g>
                     </svg>
-                  </a> -->
-    <!-- .cd-dropdown -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- .cd-dropdown-wrapper -->
-    <!-- </header> -->
-    <!-- <div class="menu_btn_box jb_cover">
+                  </a>
+                  <!-- .cd-dropdown -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .cd-dropdown-wrapper -->
+        </header>
+        <div class="menu_btn_box jb_cover">
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
-              <span class="current">
-                <img src="" alt="img" />
-                <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
-                </div></span
+              <avatar
+                class="img-responsive xs-col-12 sm-col-12 mb-2"
+                :size="40"
+                :rounded="true"
+                :username="inputs.email"
               >
+              </avatar>
               <ul class="list">
                 <li>
-                  <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                  <a href="/dashboard" class="link_active"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <!-- <a href="/editProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a> -->
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/resume"><i class="fas fa-file"></i>resume </a>
+                </li>
+                <li>
+                  <!-- <a href="/favorite"
+                    ><i class="fas fa-heart"></i>favourite</a
+                  > -->
+                </li>
+                <li>
+                  <a href="/applied"
+                    ><i class="fas fa-check-square"></i>Available jobs</a
+                  >
+                </li>
+                <li>
+                  <a href="/logout"
+                    ><i class="fas fa-power-off"></i> log out
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
+            <span class=""
+              ><a href="#" class="badge1" :data-badge="data"
+                ><i class="far fa-bell"></i></a
+            ></span>
           </div>
         </div>
 
-        <div class="jb_navigation_wrapper"> -->
-    <!-- <div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
-                    <ul class="main_nav_ul">
-                        <li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">home</a>
-                            <ul class="navi_2_dropdown">
-                                <li class="parent">
-                                    <a href=""><i class="fas fa-square"></i>home I </a>
-                                </li>
-                                <li class="parent">
-                                    <a href="@/main_pages/index_II.html"><i class="fas fa-square"></i>home II</a>
-                                </li>
-                                <li class="parent">
-                                    <a href="@/main_pages/index_III.html"><i class="fas fa-square"></i> home III</a>
-                                </li>
+        <div class="jb_navigation_wrapper">
+          <div
+            class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none"
+          >
+            <ul class="main_nav_ul">
+              <li class="has-mega gc_main_navigation">
+                <!-- <a href="#" class="gc_main_navigation">home</a> -->
+                <ul class="navi_2_dropdown">
+                  <li class="parent">
+                    <a href="../main_pages/index.html"
+                      ><i class="fas fa-square"></i>home I
+                    </a>
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/index_II.html"
+                      ><i class="fas fa-square"></i>home II</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/index_III.html"
+                      ><i class="fas fa-square"></i> home III</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="has-mega gc_main_navigation">
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
+                <ul class="navi_2_dropdown">
+                  <li class="parent">
+                    <a href="../main_pages/job_listing_grid_left_filter.html">
+                      <i class="fas fa-square"></i>job listing grid
+                    </a>
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/job_listing_list_left_filter.html">
+                      <i class="fas fa-square"></i>job listing list
+                    </a>
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/job_single.html">
+                      <i class="fas fa-square"></i>job single</a
+                    >
+                  </li>
 
-                            </ul>
-                        </li>
+                  <li class="parent">
+                    <a href="#"
+                      ><i class="fas fa-square"></i>jobs<span
+                        ><i class="fas fa-chevron-right"></i> </span
+                    ></a>
+                    <ul class="dropdown-menu-right">
+                      <li>
+                        <a
+                          href="../main_pages/job_listing_grid_left_filter.html"
+                        >
+                          <i class="fas fa-square"></i>job listing grid
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="../main_pages/job_listing_list_left_filter.html"
+                        >
+                          <i class="fas fa-square"></i>job listing list
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../main_pages/job_single.html">
+                          <i class="fas fa-square"></i>job single</a
+                        >
+                      </li>
                     </ul>
-                </div> -->
-    <!-- mainmenu end -->
-    <!-- <div
+                  </li>
+                </ul>
+              </li>
+              <li class="has-mega gc_main_navigation kv_sub_menu">
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
+                <!-- mega menu start -->
+                <ul class="kv_mega_menu">
+                  <li class="kv_mega_menu_width">
+                    <div class="container">
+                      <div class="jn_menu_partion_div">
+                        <div class="candidate_width">
+                          <div class="jen_tabs_conent_list jb_cover">
+                            <h1>job skills</h1>
+                            <ul>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>HTML5 & CSS3</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>wordpress</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>javascript</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>photoshop</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>designer</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>construction</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="candidate_width">
+                          <div class="jen_tabs_conent_list jb_cover">
+                            <h1>categories</h1>
+                            <ul>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>graphic
+                                  design</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>engineering
+                                  jobs</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>mainframe
+                                  jobs</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>PSU jobs</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>goverment
+                                  jobs</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>IT company</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="candidate_width">
+                          <div class="jen_tabs_conent_list   jb_cover">
+                            <h1>job location</h1>
+                            <ul>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>india</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>united state</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>japan</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>dubai</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>south africa</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><i class="fas fa-square"></i>china</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="candidate_width">
+                          <div class="jen_tabs_conent_list   jb_cover">
+                            <h1>open jobs</h1>
+                            <div class="open_jobs_wrapper">
+                              <div class="open_jobs_wrapper_1 jb_cover">
+                                <img src="images/job1.jpg" alt="img" />
+                                <div class="open_job_text">
+                                  <h3>
+                                    <a href="#"
+                                      >Some designers inelevated the..</a
+                                    >
+                                  </h3>
+                                  <p>5 hour ago</p>
+                                </div>
+                              </div>
+                              <div class="open_jobs_wrapper_1 jb_cover">
+                                <img src="images/job1.jpg" alt="img" />
+                                <div class="open_job_text">
+                                  <h3>
+                                    <a href="#"
+                                      >Some designers inelevated the..</a
+                                    >
+                                  </h3>
+                                  <p>12 hour ago</p>
+                                </div>
+                              </div>
+                              <div class="view_all_job jb_cover">
+                                <a href="#">view all jobs</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-mega gc_main_navigation">
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
+                <ul class="navi_2_dropdown">
+                  <li class="parent">
+                    <a href="../main_pages/about_us.html">
+                      <i class="fas fa-square"></i>about us</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/companies.html">
+                      <i class="fas fa-square"></i>companies</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/company_single.html">
+                      <i class="fas fa-square"></i>company single</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/error_page.html"
+                      ><i class="fas fa-square"></i>error page</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/login.html"
+                      ><i class="fas fa-square"></i>login</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/pricing_table.html"
+                      ><i class="fas fa-square"></i>pricing table</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/sign_up.html"
+                      ><i class="fas fa-square"></i>sign_up</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="has-mega gc_main_navigation">
+                <!-- <a href="#" class="gc_main_navigation active_class"
+                  >dashboard</a
+                > -->
+                <ul class="navi_2_dropdown">
+                  <li class="parent">
+                    <a href="#"
+                      ><i class="fas fa-square"></i>candidate<span
+                        ><i class="fas fa-chevron-right"></i> </span
+                    ></a>
+                    <ul class="dropdown-menu-right">
+                      <li>
+                        <a href="candidate_applied_job.html">
+                          <i class="fas fa-square"></i>applied job
+                        </a>
+                      </li>
+                      <li>
+                        <a href="candidate_dashboard.html">
+                          <i class="fas fa-square"></i> dashboard</a
+                        >
+                      </li>
+                      <li>
+                        <a href="candidate_edit_profile.html">
+                          <i class="fas fa-square"></i>edit profile</a
+                        >
+                      </li>
+                      <li>
+                        <a href="candidate_favourite_job.html">
+                          <i class="fas fa-square"></i>favourite job</a
+                        >
+                      </li>
+                      <li>
+                        <a href="candidate_resume.html">
+                          <i class="fas fa-square"></i>resume</a
+                        >
+                      </li>
+                      <li>
+                        <a href="message.html">
+                          <i class="fas fa-square"></i>message</a
+                        >
+                      </li>
+                      <li>
+                        <a href="pricing_plans.html">
+                          <i class="fas fa-square"></i>pricing plans</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="parent">
+                    <a href="#"
+                      ><i class="fas fa-square"></i>company<span
+                        ><i class="fas fa-chevron-right"></i> </span
+                    ></a>
+                    <ul class="dropdown-menu-right">
+                      <li>
+                        <a href="comp_applications.html">
+                          <i class="fas fa-square"></i>applications
+                        </a>
+                      </li>
+                      <li>
+                        <a href="comp_company_page.html">
+                          <i class="fas fa-square"></i> company page</a
+                        >
+                      </li>
+                      <li>
+                        <a href="comp_employer_dashboard.html">
+                          <i class="fas fa-square"></i>dashboard</a
+                        >
+                      </li>
+                      <li>
+                        <a href="comp_employer_edit_profile.html">
+                          <i class="fas fa-square"></i>edit profile</a
+                        >
+                      </li>
+                      <li>
+                        <a href="comp_employer_manage_jobs.html">
+                          <i class="fas fa-square"></i>manage jobs</a
+                        >
+                      </li>
+                      <li>
+                        <a href="comp_post_new_job.html">
+                          <i class="fas fa-square"></i>post new job</a
+                        >
+                      </li>
+                      <li>
+                        <a href="message.html">
+                          <i class="fas fa-square"></i>message</a
+                        >
+                      </li>
+                      <li>
+                        <a href="pricing_plans.html">
+                          <i class="fas fa-square"></i>pricing plans</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-mega gc_main_navigation">
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
+                <ul class="navi_2_dropdown">
+                  <li class="parent">
+                    <a href="../main_pages/blog_single.html">
+                      <i class="fas fa-square"></i>blog single</a
+                    >
+                  </li>
+                  <li class="parent">
+                    <a href="../main_pages/blog_category_right_sidebar.html">
+                      <i class="fas fa-square"></i>blog category</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <!-- <a
+                  href="../main_pages/contact_us.html"
+                  class="gc_main_navigation"
+                  >contact</a
+                > -->
+              </li>
+            </ul>
+          </div>
+          <!-- mainmenu end -->
+          <div
             class="jb_search_btn_wrapper d-none d-sm-none d-md-none d-lg-block d-xl-block"
-          > -->
-    <!-- extra nav -->
-    <!-- <div class="extra-nav">
+          >
+            <!-- extra nav -->
+            <div class="extra-nav">
               <div class="extra-cell">
                 <button
                   id="quik-search-btn"
@@ -269,10 +615,10 @@
                   <i class="fas fa-search"></i>
                 </button>
               </div>
-            </div> -->
+            </div>
 
-    <!-- Quik search -->
-    <!-- <div class="dez-quik-search bg-primary-dark">
+            <!-- Quik search -->
+            <div class="dez-quik-search bg-primary-dark">
               <form action="#">
                 <input
                   name="search"
@@ -289,7 +635,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- navi wrapper End -->
     <!-- top header wrapper start -->
@@ -317,9 +663,103 @@
 </template>
 
 <script>
+import Avatar from "vue-avatar";
 export default {
-  name: "CandidateAppliedJobNav"
+  name: "CandidateAppliedJobNav",
+  components: {
+    Avatar
+  },
+  data: function() {
+    return {
+      data: "",
+      socialProfile: {
+        facebook_username: "",
+        twitter_username: "",
+        linkedin_username: ""
+      },
+      inputs: {
+        first_name: "",
+        last_name: "",
+        middle_name: "",
+        email: "",
+        password: "",
+        password_confirmation: ""
+      },
+      personal_details: {
+        age: "",
+        phone: "",
+        gender: "",
+        marital_status: "",
+        nationality: "",
+        address: "",
+        dob: "",
+        selectedLGA: "",
+        selectedState: ""
+      },
+      updatedCerts: [],
+      updatedskills: [],
+      updatedForms: [],
+      experiences: [],
+      updatedexperiences: [],
+      updatedreferrees: []
+      // updatedForms: {
+      //   school: "",
+      //   degree: "",
+      //   course_of_study: "",
+      //   grade: "",
+      //   from: "",
+      //   to: ""
+      // },
+    };
+  }
 };
 </script>
 
-<style></style>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27%;
+    box-sizing: border-box;
+  }
+}
+.badge1 {
+  position: relative;
+  color: #990066;
+}
+.badge1[data-badge]:after {
+  content: attr(data-badge);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 0.7em;
+  background: #990066;
+  color: white;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px #333;
+}
+.middle {
+  margin-left: 45%;
+}
+</style>

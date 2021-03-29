@@ -1,9 +1,13 @@
 <template>
   <div>
+    <div class="cursor"></div>
+    <a href="javascript:" id="return-to-top"
+      ><i class="fas fa-angle-double-up"></i
+    ></a>
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="../assets/images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -14,7 +18,7 @@
           </form>
         </li>
         <li class="has-children">
-          <a href="#">home</a>
+          <!-- <a href="#">home</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="index.html">home I</a></li>
@@ -23,7 +27,7 @@
           </ul>
         </li>
         <li class="has-children">
-          <a href="#">jobs</a>
+          <!-- <a href="#">jobs</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="services.html">services </a></li>
@@ -32,7 +36,7 @@
         </li>
         <!-- .has-children -->
         <li class="has-children">
-          <a href="#">candidates</a>
+          <!-- <a href="#">candidates</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="our_team.html">our team</a></li>
@@ -47,7 +51,7 @@
           </ul>
         </li>
         <li class="has-children">
-          <a href="#">employees</a>
+          <!-- <a href="#">employees</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="about_us.html">about us</a></li>
@@ -56,7 +60,7 @@
         </li>
 
         <li class="has-children">
-          <a href="#">blog</a>
+          <!-- <a href="#">blog</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="blog_width_sidebar.html">blog width sidebar</a></li>
@@ -67,14 +71,14 @@
           </ul>
         </li>
         <li class="has-children">
-          <a href="#">contact us</a>
+          <!-- <a href="#">contact us</a> -->
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="contact_us.html">contact us</a></li>
             <li><a href="contact_us_2.html">contact us II</a></li>
           </ul>
         </li>
-        <li><a href="#">login</a></li>
+        <!-- <li><a href="#">login</a></li> -->
       </ul>
       <!-- .cd-dropdown-content -->
     </nav>
@@ -82,7 +86,7 @@
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="/">
-            <img src="images/logo.png" alt="logo" />
+            <img src="../assets/images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -156,18 +160,53 @@
         <div class="menu_btn_box jb_cover">
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
+              <avatar
+                class="img-responsive xs-col-12 sm-col-12 mb-2"
+                :size="40"
+                :rounded="true"
+                :username="inputs.email"
+              >
+              </avatar>
               <ul class="list">
                 <li>
-                  <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                  <a href="/dashboard" class="link_active"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <!-- <a href="/editProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a> -->
                 </li>
                 <li>
-                  <a href="/Logout"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/resume"><i class="fas fa-file"></i>resume </a>
+                </li>
+                <li>
+                  <!-- <a href="/favorite"
+                    ><i class="fas fa-heart"></i>favourite</a
+                  > -->
+                </li>
+                <li>
+                  <a href="/applied"
+                    ><i class="fas fa-check-square"></i>Available Jobs
+                  </a>
+                </li>
+                <li>
+                  <a href="/logout"
+                    ><i class="fas fa-power-off"></i> log out
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
+            <span class=""
+              ><a href="#" class="badge1" :data-badge="data"
+                ><i class="far fa-bell"></i></a
+            ></span>
           </div>
         </div>
 
@@ -177,7 +216,7 @@
           >
             <ul class="main_nav_ul">
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">home</a>
+                <!-- <a href="#" class="gc_main_navigation">home</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/index.html"
@@ -197,7 +236,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -245,7 +284,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -404,7 +443,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -444,9 +483,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -542,7 +581,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -557,11 +596,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -601,17 +640,100 @@
         </div>
       </div>
     </div>
+    <div class="page_title_section">
+      <div class="page_header">
+        <div class="container">
+          <div class="row">
+            <!-- section_heading start -->
+            <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-12">
+              <h1>Dashboard</h1>
+            </div>
+            <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-12">
+              <div class="sub_title_section">
+                <ul class="sub_title">
+                  <li><a href="#"> Home </a>&nbsp; / &nbsp;</li>
+                  <li>Dashboard</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // import Logout from "@/components/Logout.vue";
+import axios from "axios";
+import Avatar from "vue-avatar";
 export default {
   name: "CandidateDashboardNavBar",
+  data: function() {
+    return {
+      data: "",
+      inputs: {
+        first_name: "",
+        last_name: "",
+        middle_name: "",
+        email: ""
+      }
+    };
+  },
   components: {
-    // Logout
+    Avatar
+  },
+  created() {
+    var accessToken = localStorage.getItem("token") || "";
+    const headers = {
+      Authorization: "Bearer " + accessToken,
+      "My-Custom-Header": "Register step 2"
+    };
+    axios
+      .get("https://api.myjobdesk.com/api/user", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.inputs.first_name = response.data.first_name;
+        this.inputs.last_name = response.data.last_name;
+        this.inputs.middle_name = response.data.middle_name;
+        this.inputs.email = response.data.email;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
   }
 };
 </script>
-
-<style></style>
+<style scoped>
+.bttn {
+  background-color: #990066;
+  color: white;
+}
+.bttn:hover {
+  background-color: white;
+  color: #990066;
+  border: 1px solid #990066;
+}
+.badge1 {
+  position: relative;
+  color: #990066;
+}
+.badge1[data-badge]:after {
+  content: attr(data-badge);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 0.7em;
+  background: #990066;
+  color: white;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px #333;
+}
+</style>

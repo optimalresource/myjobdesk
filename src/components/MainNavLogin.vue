@@ -27,7 +27,7 @@
 export default {
   name: "MainNavLogin",
   props: {
-    mainTitle: String
+    mainTitle: String,
   },
   computed: {
     // loggedIn: function() {
@@ -38,7 +38,7 @@ export default {
     // logout: function() {
     //   this.$store.dispatch("logout");
     // }
-  }
+  },
 };
 </script>
 

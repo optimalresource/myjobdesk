@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Preloader />
+    <!-- <Preloader />
 
     <div class="cursor"></div>
 
@@ -12,11 +12,11 @@
 
     <MainNavigation />
 
-    <MainNavLogin :mainTitle="page" />
+    <MainNavLogin :mainTitle="page" /> -->
 
     <ContentTemplate :page="page" />
 
-    <div class="blog_wrapper jb_cover">
+    <!-- <div class="blog_wrapper jb_cover">
       <div class="container">
         <div class="row">
           <Looking />
@@ -30,31 +30,31 @@
       <i class="fas fa-comment-alt"></i>
     </div>
 
-    <ChatBox />
+    <ChatBox /> -->
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
-import ChatBox from "@/components/ChatBox.vue";
-import Navigation from "@/components/Navigation.vue";
-import MainNavigation from "@/components/MainNavigation.vue";
-import MainNavLogin from "@/components/MainNavLogin.vue";
-import Looking from "@/components/Looking.vue";
+// import Footer from "@/components/Footer.vue";
+// import ChatBox from "@/components/ChatBox.vue";
+// import Navigation from "@/components/Navigation.vue";
+// import MainNavigation from "@/components/MainNavigation.vue";
+// import MainNavLogin from "@/components/MainNavLogin.vue";
+// import Looking from "@/components/Looking.vue";
 import ContentTemplate from "@/components/ContentTemplate.vue";
-import Preloader from "@/components/Preloader.vue";
+// import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "LoginComponent",
   components: {
-    ChatBox,
-    Footer,
-    MainNavigation,
-    Navigation,
-    MainNavLogin,
-    ContentTemplate,
-    Looking,
-    Preloader
+    // ChatBox,
+    // Footer,
+    // MainNavigation,
+    // Navigation,
+    // MainNavLogin,
+    ContentTemplate
+    // Looking,
+    // Preloader
   },
   props: {
     title: String,

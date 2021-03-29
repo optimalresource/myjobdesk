@@ -54,13 +54,21 @@
             <i class="fas fa-lock"></i>
           </div>
           <div class="header_btn search_btn login_btn jb_cover">
-            <button @submit.prevent="loggedIn" type="submit">login</button>
+            <button @click.prevent="login">login</button>
           </div>
           <div class="dont_have_account jb_cover mb-4">
+            <a href="/forgot"><span>Forgot Password?? &#128532;</span></a>
             <p class="text-dark">
               <span><strong>Don’t have an acount?</strong></span>
-              <a href="/register">Sign up</a>
+              <a href="/register"> Join us!</a>
+              <br />
             </p>
+            <a href="/"
+              ><span
+                ><strong><i class="fas fa-home"></i> Home</strong></span
+              ></a
+            >
+            <br />
           </div>
         </div>
       </div>
@@ -85,6 +93,7 @@ export default {
   },
   methods: {
     login() {
+      console.log("I got here");
       this.$store
         .dispatch("retrieveToken", {
           email: this.email,
@@ -92,9 +101,19 @@ export default {
         })
         .then(response => {
           console.log(response);
-          const token = response.data.accessToken;
-          localStorage.setItem("token", token);
-          this.$router.push({ name: "Dashboard" });
+          // const token = response.data.accessToken;
+          // localStorage.setItem("token", token);
+          if (response.status == "200") {
+            this.$toasted.success("You've been logged in successfully");
+            this.$router.push({ name: "Dashboard" });
+          } else {
+            this.$toasted.error(response.data.message);
+            return false;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.$toasted.error("Invalid credentials");
         });
     }
   },
@@ -128,5 +147,8 @@ h2 {
   .jp_regis_center_tag_wrapper {
     display: none;
   }
+}
+h5 {
+  color: rgb(148, 0, 64);
 }
 </style>

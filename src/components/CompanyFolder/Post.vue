@@ -14,7 +14,7 @@
     <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -24,7 +24,7 @@
             <input type="search" placeholder="Search..." />
           </form>
         </li>
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">home</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -32,10 +32,10 @@
             <li><a href="../main_pages/index_II.html">home II</a></li>
             <li><a href="../main_pages/index_III.html">home III</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">jobs</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">jobs</a> -->
+        <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li>
               <a href="../main_pages/job_listing_grid_left_filter.html"
@@ -49,9 +49,9 @@
             </li>
             <li><a href="../main_pages/job_single.html">job single</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- .has-children -->
-        <li class="has-children">
+        <!-- <li class="has-children">
           <a href="#">pages</a>
           <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
@@ -67,10 +67,10 @@
             </li>
             <li><a href="../main_pages/sign_up.html">sign up</a></li>
           </ul>
-        </li>
-        <li class="has-children">
-          <a href="#">dashboard</a>
-          <ul class="cd-secondary-dropdown is-hidden">
+        </li> -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">dashboard</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li class="has-children">
               <a href="#">candidate</a>
@@ -97,13 +97,13 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-            <!-- .has-children -->
-            <li class="has-children">
-              <a href="#">company</a>
-              <ul class="cd-secondary-dropdown is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+        <!-- .has-children -->
+        <!-- <li class="has-children"> -->
+        <!-- <a href="#">company</a> -->
+        <!-- <ul class="cd-secondary-dropdown is-hidden">
                 <li class="go-back"><a href="#0">Menu</a></li>
                 <li>
                   <a href="comp_applications.html"> applications </a>
@@ -129,15 +129,15 @@
                 <li>
                   <a href="pricing_plans.html">pricing plans</a>
                 </li>
-              </ul>
-              <!-- .cd-secondary-dropdown -->
-            </li>
-          </ul>
-          <!-- .cd-secondary-dropdown -->
-        </li>
-        <li class="has-children">
-          <a href="#">blog</a>
-          <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              </ul> -->
+        <!-- .cd-secondary-dropdown -->
+        <!-- </li> -->
+      </ul>
+      <!-- .cd-secondary-dropdown -->
+      <!-- </li> -->
+      <!-- <li class="has-children"> -->
+      <!-- <a href="#">blog</a> -->
+      <!-- <ul class="cd-secondary-dropdown icon_menu is-hidden">
             <li class="go-back"><a href="#0">Menu</a></li>
             <li><a href="../main_pages/blog_single.html">blog single</a></li>
             <li>
@@ -149,14 +149,16 @@
         </li>
         <li><a href="../main_pages/contact_us.html">contact us </a></li>
         <li><a href="../main_pages/login.html">login</a></li>
-      </ul>
+      </ul> -->
       <!-- .cd-dropdown-content -->
+      <!-- </li> -->
     </nav>
+
     <div class="cp_navi_main_wrapper jb_cover">
       <div class="container-fluid">
         <div class="cp_logo_wrapper">
           <a href="../main_pages/index.html">
-            <img src="images/logo.png" alt="logo" />
+            <img src="images/logo13.png" alt="logo" />
           </a>
         </div>
         <!-- mobile menu area start -->
@@ -231,21 +233,66 @@
           <div class="jb_profile_box">
             <div class="nice-select" tabindex="0">
               <span class="current">
-                <img src="images/pf.png" alt="img" />
                 <div class="luca_profile_wrapper">
-                  <h1><a href="#">Luca Wallace</a></h1>
-                  <p><a href="#">luca@example.com</a></p>
+                  <avatar
+                    class=""
+                    :username="companys.email"
+                    :size="30"
+                    :rounded="true"
+                  >
+                  </avatar>
+                  <h6><a href="#"></a>{{ companys.name }}</h6>
+                  <p>
+                    <a href="#">{{ companys.email }}</a>
+                  </p>
                 </div></span
               >
               <ul class="list">
-                <li>
+                <!-- <li>
                   <a href="#"><i class="fas fa-user-edit"></i>account</a>
+                </li> -->
+                <li>
+                  <a href="/employerDashboard" class="link_active"
+                    ><i class="fas fa-tachometer-alt"></i> dashboard
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-cog"></i>Setting</a>
+                  <a href="/companyEditProfile">
+                    <i class="fas fa-edit"></i>edit profile
+                  </a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a href="/employerPage"
+                    ><i class="fas fa-file"></i>company page
+                  </a>
+                </li>
+                <li>
+                  <a href="/employerManageJobs"
+                    ><i class="fas fa-suitcase"></i>manage jobs</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyApplications"
+                    ><i class="fas fa-mobile"></i>applications</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyPost"
+                    ><i class="fas fa-user-plus"></i>post new job</a
+                  >
+                </li>
+                <li>
+                  <a href="/companyMessage"
+                    ><i class="fas fa-envelope"></i>message</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#myModal"
+                    ><i class="fas fa-trash-alt"></i>delete profile
+                  </a>
                 </li>
               </ul>
             </div>
@@ -278,7 +325,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">jobs</a>
+                <!-- <a href="#" class="gc_main_navigation">jobs</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/job_listing_grid_left_filter.html">
@@ -326,7 +373,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation kv_sub_menu">
-                <a href="#" class="gc_main_navigation"> candidates</a>
+                <!-- <a href="#" class="gc_main_navigation"> candidates</a> -->
                 <!-- mega menu start -->
                 <ul class="kv_mega_menu">
                   <li class="kv_mega_menu_width">
@@ -485,7 +532,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">pages</a>
+                <!-- <a href="#" class="gc_main_navigation">pages</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/about_us.html">
@@ -525,9 +572,9 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation active_class"
+                <!-- <a href="#" class="gc_main_navigation active_class"
                   >dashboard</a
-                >
+                > -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="#"
@@ -623,7 +670,7 @@
                 </ul>
               </li>
               <li class="has-mega gc_main_navigation">
-                <a href="#" class="gc_main_navigation">blog</a>
+                <!-- <a href="#" class="gc_main_navigation">blog</a> -->
                 <ul class="navi_2_dropdown">
                   <li class="parent">
                     <a href="../main_pages/blog_single.html">
@@ -638,11 +685,11 @@
                 </ul>
               </li>
               <li>
-                <a
+                <!-- <a
                   href="../main_pages/contact_us.html"
                   class="gc_main_navigation"
                   >contact</a
-                >
+                > -->
               </li>
             </ul>
           </div>
@@ -712,9 +759,17 @@
           <div class="col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="emp_dashboard_sidebar jb_cover">
               <div class="emp_web_profile jb_cover">
-                <img src="images/web.png" alt="post_img" />
-                <h4>Webstrot Technology</h4>
-                <p>@Webstrot</p>
+                <div class="avatar_center">
+                  <avatar
+                    class="img-responsive xs-col-12 sm-col-12 mb-2"
+                    :username="companys.email"
+                    :size="190"
+                    :rounded="true"
+                  >
+                  </avatar>
+                </div>
+                <h4>{{ companys.name }}</h4>
+                <p>{{ companys.bio }}</p>
                 <div class="skills jb_cover">
                   <div class="skill-item jb_cover">
                     <h6>profile<span>70%</span></h6>
@@ -829,284 +884,545 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_filter_category_sidebar pd0 jb_cover">
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>post new job</h1>
+                    <h1>About this Job</h1>
                   </div>
                   <div class="job_overview_header jb_cover">
                     <div class="row">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>job category</label>
-                          <select>
-                            <option>UI/UX designer</option>
-                            <option>accountant</option>
-                            <option>graphic designer</option>
-                            <option>teacher</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
                         <div class="contect_form3">
-                          <label>job title</label>
                           <input
                             type="text"
                             name="name"
-                            placeholder="Need Graphic Designer"
+                            placeholder="job title.... eg 'Graphic Designer'"
+                            v-model="posts.job_title"
                           />
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>job type</label>
-                          <select>
-                            <option>full time</option>
-                            <option>part time</option>
-                            <option> temperory</option>
-                            <option>freelance</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="contect_form3">
-                          <label>working hours</label>
                           <input
                             type="text"
                             name="name"
-                            placeholder="40/h Week"
+                            placeholder="job Type.... eg 'Graduate Trainee, Full-Time'"
+                            v-model="posts.job_type"
                           />
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>salary</label>
-                          <select>
-                            <option>$12K - 15k P.A.</option>
-                            <option>$12K - 20k P.A.</option>
-                            <option> $12K - 35k P.A.</option>
-                            <option>$12K - 45k P.A.</option>
-                          </select>
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="working hours....eg 40hrs/ week"
+                            v-model="posts.working_hours"
+                          />
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>experience</label>
-                          <select>
-                            <option>1 year experience</option>
-                            <option>2 year experience</option>
-                            <option> 3 year experience</option>
-                            <option>4 year experience</option>
-                          </select>
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="salary range"
+                            v-model="posts.salary"
+                          />
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="job_filter_category_sidebar jb_cover">
-                  <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>about this job</h1>
-                  </div>
-                  <div class="job_overview_header jb_cover">
-                    <div class="wrapper jb_cover">
-                      <div class="options">
-                        <button onClick="transform('bold', null)">
-                          <i class="fas fa-bold"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button onClick="transform('italic', null)">
-                          <i class="fas fa-italic"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button onClick="transform('strikeThrough', null)">
-                          <i class="fas fa-strikethrough"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button onClick="transform('underline', null)">
-                          <i class="fas fa-underline"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <div class="seperator"></div>
-                        <button onClick="transform('justifyLeft', null)">
-                          <i class="fas fa-align-left"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button onClick="transform('justifyCenter', null)">
-                          <i class="fas fa-align-center"></i>
-                        </button>
-                        <button onClick="transform('justifyRight', null)">
-                          <i class="fas fa-align-right"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button onClick="transform('insertOrderedList', null)">
-                          <i class="fas fa-list-ol"></i>
-                        </button>
-                        <div class="seperator"></div>
-                        <button
-                          onClick="transform('insertUnorderedList', null)"
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="Year(s) of experience"
+                            v-model="posts.experience"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="mb-4">
+                          <h5 class="text-color text-center mt-3 mb-3">
+                            write something about the job
+                          </h5>
+                          <textarea
+                            placeholder="Job Description"
+                            class="form-control"
+                            rows="3"
+                            v-model="posts.job_description"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="Type Keywords.... eg'ui designer, doctor'"
+                          />
+                        </div>
+                        <div class="jb_btm_keyword jb_cover">
+                          <ul>
+                            <li>
+                              <i class="flaticon-tag"></i> Trending Keywords :
+                            </li>
+                            <li><a href="#">ui designer,</a></li>
+                            <li><a href="#">developer,</a></li>
+                            <li><a href="#">senior</a></li>
+                            <li><a href="#">it company,</a></li>
+                            <li><a href="#">design,</a></li>
+                            <li><a href="#">call center</a></li>
+                          </ul>
+                        </div>
+                      </div> -->
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h5 class="text-color text-center mt-3 mb-3">
+                          Job Location
+                        </h5>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="Country"
+                            v-model="posts.country"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            v-model="posts.city"
+                            placeholder="City"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <textarea
+                            placeholder="Full Address"
+                            class="form-control"
+                            rows="3"
+                            v-model="posts.address"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h5 class="text-color text-center mt-3 mb-3">
+                          Requirements
+                        </h5>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            v-model="posts.age"
+                            placeholder="age range... eg 24-36"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            v-model="posts.educational_level"
+                            placeholder="educational level.... BSc, HND, PHd"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="contect_form3">
+                          <input
+                            type="text"
+                            name="name"
+                            v-model="posts.specific_qualificaion"
+                            placeholder="specific qualificaions"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                        <label class="typo__label">Groups</label>
+                        <multiselect
+                          v-model="value"
+                          tag-placeholder="Add this as new skill"
+                          placeholder="Add Special Skills"
+                          group-values="libs"
+                          group-label="language"
+                          :group-select="true"
+                          label="name"
+                          track-by="name"
+                          :options="options"
+                          :multiple="true"
+                          :taggable="true"
+                          @tag="addTag"
                         >
-                          <i class="fas fa-list-ul"></i>
-                        </button>
-                        <div class="seperator"></div>
-
-                        <div class="seperator"></div>
-                        <input
-                          type="number"
-                          onChange="transform('fontSize', this.value)"
-                          value="3"
-                          max="7"
-                          min="1"
-                        />
+                          <span slot="noResult"
+                            >Oops! Consider changing the search query or add
+                            skills.</span
+                          >
+                        </multiselect>
                       </div>
-
-                      <select onChange="transform('fontName', this.value)">
-                        <option disabled>Font</option>
-                        <option value="Times New Roman">Times</option>
-                        <option value="Arial">Arial</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="Tahoma">Tahoma</option>
-                        <option value="Arial">Verdana</option>
-                      </select>
-                      <iframe name="editor" id="editor"></iframe>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="job_filter_category_sidebar jb_cover">
-                  <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>trending keywords</h1>
-                  </div>
-                  <div class="job_overview_header jb_cover">
-                    <div class="contect_form3">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Type Keywords"
-                      />
-                    </div>
-                    <div class="jb_btm_keyword jb_cover">
-                      <ul>
-                        <li>
-                          <i class="flaticon-tag"></i> Trending Keywords :
-                        </li>
-                        <li><a href="#">ui designer,</a></li>
-                        <li><a href="#">developer,</a></li>
-                        <li><a href="#">senior</a></li>
-                        <li><a href="#">it company,</a></li>
-                        <li><a href="#">design,</a></li>
-                        <li><a href="#">call center</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="job_filter_category_sidebar jb_cover">
-                  <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>address / location</h1>
-                  </div>
-                  <div class="job_overview_header jb_cover">
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>country</label>
-                          <select>
-                            <option>USA</option>
-                            <option>france</option>
-                            <option>UK</option>
-                            <option>germany</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="select_box">
-                          <label>city</label>
-                          <select>
-                            <option>new york</option>
-                            <option>california</option>
-                            <option> loss angles</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="contect_form3">
-                          <label>full address</label>
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="Lundon UK"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="contect_form3">
-                          <label>latitude</label>
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="41.4073509"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="contect_form3">
-                          <label>longitude</label>
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="50.4073509"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="contect_form3">
-                          <label>zoom</label>
-                          <input type="text" name="name" placeholder="20" />
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="map_wrapper jb_cover">
-                          <div id="map"></div>
-                        </div>
+                      <div class="mt-4 header_btn search_btn applt_pop_btn ">
+                        <a @click.prevent="PostJob" href="#">save & preview</a>
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div class="job_filter_category_sidebar jb_cover">
+                    <div class="job_filter_sidebar_heading jb_cover">
+                      <h1>address / location</h1>
+                    </div>
+                    <div class="job_overview_header jb_cover">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                          <div class="map_wrapper jb_cover">
+                            <div id="map"></div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="blog_wrapper jb_cover">
-      <div class="container">
-        <div class="row">
-          <Looking />
+      <div class="blog_wrapper jb_cover">
+        <div class="container">
+          <div class="row">
+            <Looking />
+          </div>
         </div>
       </div>
+
+      <Footer />
+
+      <div id="chat-circle" class="btn btn-raised">
+        <i class="fas fa-comment-alt"></i>
+      </div>
+
+      <ChatBox />
     </div>
-
-    <Footer />
-
-    <div id="chat-circle" class="btn btn-raised">
-      <i class="fas fa-comment-alt"></i>
-    </div>
-
-    <ChatBox />
   </div>
 </template>
 
 <script>
+// import VueFroala from "vue-froala-wysiwyg";
+// import { VueEditor } from "vue2-editor";
 import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
+import Multiselect from "vue-multiselect";
 import ChatBox from "@/components/ChatBox.vue";
+import Avatar from "vue-avatar";
+import axios from "axios";
 export default {
   name: "EditProfile",
+  data: function() {
+    return {
+      config: {
+        events: {
+          initialized: function() {
+            console.log("initialized");
+          }
+        }
+      },
+      options: [
+        {
+          language: "Office and Administrative Skills",
+          libs: [
+            { name: "Data Entry", category: "Data Entry" },
+            {
+              name: "Microsoft Office",
+              category: "Microsoft Office"
+            },
+            {
+              name: "Operating Office Equipment",
+              category: "Office Equipment"
+            },
+            { name: "Welcoming Visitors", category: "Welcoming Visitors" },
+            { name: "Salesforce", category: "Salesforce" },
+            {
+              name: "Calendar Management Skills",
+              category: "Calendar Management"
+            }
+          ]
+        },
+        {
+          language: "IT Skills",
+          libs: [
+            {
+              name: "Programming Languages",
+              category: "Programming Languages"
+            },
+            { name: "Web Development", category: "Web Development" },
+            { name: "Data Structures", category: "Data Structures" },
+            {
+              name: "Open Source Experience",
+              category: "Open Source Experience"
+            },
+            { name: "CodingJava Script", category: "CodingJava Script" },
+            { name: "Security", category: "Security" },
+            { name: "Machine Learning", category: "Machine Learning" },
+            { name: "Debugging", category: "Debugging" },
+            { name: "UX/UI", category: "UX/UI" },
+            {
+              name: "Front-End Development",
+              category: "Front-End Development"
+            },
+            { name: "Back-End Development", category: "Back-End Development" },
+            { name: "Cloud Management", category: "Cloud Management" },
+            { name: "Agile Development", category: "Agile Development" }
+          ]
+        },
+        {
+          language: "Nursing and Healthcare Skills",
+          libs: [
+            {
+              name: "General Nursing Skills",
+              category: "General Nursing Skills"
+            },
+            { name: "Patient Assessment", category: "Patient Assessment" },
+            { name: "Taking Vital Signs", category: "Taking Vital Signs" },
+            { name: "Patient Care", category: "Patient Care" },
+            {
+              name: "Recording Patient Medical History",
+              category: "Recording Patient Medical History"
+            },
+            {
+              name: "Wound Dressing and Care",
+              category: "Wound Dressing and Care"
+            },
+            {
+              name: "Urgent and Emergency Care",
+              category: "Urgent and Emergency Care"
+            },
+            { name: "Record-Keeping", category: "Record-Keeping" },
+            { name: "Patient Education", category: "Patient Education" },
+            {
+              name: "NIH Stroke Scale Patient Assessment",
+              category: "NIH Stroke Scale Patient Assessment"
+            },
+            { name: "Electronic Medical Record (EMR)", category: "EMR" },
+            {
+              name: "Medicine Administration",
+              category: "Medicine Administration"
+            },
+            {
+              name: "Blood Pressure Monitoring",
+              category: "Blood Pressure Monitoring"
+            },
+            { name: "Phlebotomy", category: "Phlebotomy" },
+            {
+              name: "Rehabilitation Therapy",
+              category: "Rehabilitation Therapy"
+            },
+            { name: "Hygiene Assistance", category: "Hygiene Assistance" },
+            {
+              name: "Use of X-Ray, MRI, CAT Scans",
+              category: "Use of X-Ray, MRI, CAT Scans"
+            },
+            { name: "Meditech", category: "Meditech" },
+            { name: "Glucose Checks", category: "Glucose Checks" },
+            { name: "Electronic Heart Record (EHR)", category: "EHR" }
+          ]
+        },
+        {
+          language: "Sales, Retail, and Customer Service Skills ",
+          libs: [
+            { name: "Product Knowledge", category: "Product Knowledge" },
+            { name: "Lead Qualification", category: "Lead Qualification" },
+            { name: "Lead Prospecting ", category: "Lead Prospecting" },
+            {
+              name: "Customer Needs Analysis",
+              category: "Customer Needs Analysis"
+            },
+            { name: "Referral Marketing", category: "Referral Marketing" },
+            { name: "Contract Negotiation", category: "Contract Negotiation" },
+            { name: "Self Motivation", category: "Self Motivation" },
+            {
+              name: "Increasing Customer Lifetime Value (CLV)",
+              category: "CLV"
+            },
+            {
+              name: "Reducing Customer Acquisition Cost (CAC)",
+              category: "CAC"
+            },
+            {
+              name: "CRM Software (Salesforce, Hubspot, Zoho, Freshsales)",
+              category: "CRM"
+            },
+            { name: "POS Skills", category: "POS Skills" },
+            { name: "Cashier Skills", category: "Cashier Skills" },
+            {
+              name: "Good Communication Skills",
+              category: "Good Communication Skills"
+            }
+          ]
+        },
+        {
+          language: "Engineering & Technical Skills",
+          libs: [
+            { name: "STEM Skills", category: "STEM Skills" },
+            { name: "CAD", category: "CAD" },
+            { name: "Design", category: "Design" },
+            { name: "Prototyping", category: "Prototyping" },
+            { name: "Testing", category: "Testing" },
+            { name: "Troubleshooting", category: "Troubleshooting" },
+            { name: "Lean Manufacturing", category: "Lean Manufacturing" },
+            { name: "Workflow Development", category: "Workflow Development" },
+            { name: "Computer Skills", category: "Computer Skills" },
+            { name: "Budgeting Skills", category: "Budgeting" },
+            { name: "Technical Report Writing Skills", category: "TRWS"}
+          ]
+        }
+      ],
+      value: [],
+      companys: {
+        name: "",
+        email: "",
+        category: "",
+        phone_number: "",
+        website: "",
+        job_description: "",
+        country: "",
+        state: "",
+        city: "",
+        address: ""
+      },
+      model: [],
+      posts: {
+        category: "",
+        job_title: "",
+        job_type: "",
+        working_hours: "",
+        country: "",
+        address: "",
+        educational_level: "",
+        salary: "",
+        specific_qualificaion: "",
+        age: "",
+        skills: "",
+        experience: ""
+      }
+    };
+  },
   components: {
     Looking,
     Footer,
+    // VueEditor,
+    Avatar,
+    Multiselect,
     ChatBox
+  },
+  methods: {
+    addTag(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+      };
+      this.options.push(tag);
+      this.value.push(tag);
+    },
+    PostJob() {
+      if (this.posts.job_title == "") {
+        this.$toasted.error("Please Fill Job Title");
+        return false;
+      }
+      if (this.posts.job_type == "") {
+        this.$toasted.error("Please Fill Job Type");
+        return false;
+      }
+      if (this.posts.working_hours == "") {
+        this.$toasted.error("Please Fill Working Hours");
+        return false;
+      }
+      if (this.posts.country == "") {
+        this.$toasted.error("Please Fill Country");
+        return false;
+      }
+      if (this.posts.address == "") {
+        this.$toasted.error("Please Fill Your Address");
+        return false;
+      }
+      if (this.posts.job_description == "") {
+        this.$toasted.error("Please Fill Your Job description");
+        return false;
+      }
+      if (this.posts.salary == "") {
+        this.$toasted.error("Please Fill Salary");
+        return false;
+      }
+      if (this.posts.experience == "") {
+        this.$toasted.error("Please Fill");
+        return false;
+      }
+      this.$router.push("/preview");
+    }
+  },
+  created() {
+    var accessToken = localStorage.getItem("token") || "";
+    const headers = {
+      Authorization: "Bearer " + accessToken,
+      "My-Custom-Header": "Register step 2"
+    };
+    axios
+      .get("", {
+        headers
+      })
+      .then(response => {
+        console.log(response);
+        this.companys.name = response.data.name;
+        this.companys.email = response.data.email;
+        this.companys.category = response.data.category;
+        this.companys.email = response.data.email;
+        this.companys.phone_number = response.data.phone_number;
+        this.companys.website = response.data.website;
+        this.companys.job_description = response.data.job_description;
+        this.companys.country = response.data.country;
+        this.companys.state = response.data.state;
+        this.companys.address = response.data.address;
+        this.companys.city = response.data.city;
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
   }
 };
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style scoped>
+@media (max-width: 10000px) {
+  .avatar_center {
+    margin-left: 10px !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 1195px) {
+  .avatar_center {
+    margin-left: -15% !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 991px) {
+  .avatar_center {
+    margin-left: 34% !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 765px) {
+  .avatar_center {
+    margin-left: 27% !important;
+    box-sizing: border-box !important;
+  }
+}
+.text-color {
+  color: #990066 !important;
+}
+</style>

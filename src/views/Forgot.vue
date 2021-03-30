@@ -24,7 +24,10 @@
             v-if="pass"
             class="header_btn search_btn login_btn jb_cover margin"
           >
-            <button v-if="pass" @click.prevent="recovery">submit</button>
+            <button v-if="pass" @click.prevent="recovery" :disabled="spin">
+              <span v-if="notSpin">submit</span
+              ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
+            </button>
           </div>
           <div v-if="notPass" class="alert alert-success p-5" role="alert">
             <strong
@@ -55,20 +58,81 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "LoginDiv",
   data() {
     return {
+      onLine: navigator.onLine,
+      showBackOnline: false,
       email: "",
-      password: "",
       pass: true,
-      notPass: false
+      notPass: false,
+      spin: false,
+      notSpin: true
     };
   },
   methods: {
     recovery: function() {
-      this.pass = false;
-      this.notPass = true;
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        return false;
+      }
+      if (this.email == "") {
+        this.$toasted.error("Please fill your email");
+        return false;
+      }
+      if (!this.validateEmail(this.email)) {
+        this.$toasted.info("This is not a valid email");
+        return false;
+      }
+      this.spin = true;
+      this.notSpin = false;
+
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Temporary Password",
+        "Content-Type": "application/json"
+      };
+
+      axios
+        .post("", this.email, {
+          headers
+        })
+        .then(response => {
+          console.log(response);
+          if (response.status == "200") {
+            setTimeout(() => {
+              this.pass = false;
+              this.notPass = true;
+            }, 2000);
+            return true;
+          } else {
+            this.$toasted.error(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error.message);
+        });
+    },
+    validateEmail(email) {
+      const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
+      return re.test(email);
+    }
+  },
+  watch: {
+    onLine(v) {
+      if (v) {
+        this.showBackOnline = true;
+        setTimeout(() => {
+          this.showBackOnline = false;
+        }, 1000);
+      }
     }
   }
 };

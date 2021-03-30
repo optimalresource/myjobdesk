@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Pages />
+    <ManageAccounts />
   </div>
 </template>
 
 <script>
-import Pages from "@/components/CompanyFolder/Pages.vue";
+import ManageAccounts from "@/components/CompanyFolder/ManageAccounts.vue";
 export default {
-  name: "EmployerPage",
+  name: "EmployerPageComponent",
   components: {
-    Pages
+    ManageAccounts
   }
 };
 </script>

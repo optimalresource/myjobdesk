@@ -120,11 +120,11 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Company/CompanyPost.vue")
   },
   {
-    path: "/employerPage",
-    name: "EmployerPage",
+    path: "/manageAccounts",
+    name: "ManageAccounts",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Company/EmployerPage.vue"
+        /* webpackChunkName: "about" */ "../views/Company/EmployerPageComponent.vue"
       )
   },
   {

@@ -1,35 +1,68 @@
 <template>
   <div class="app">
-    <apexchart
-      width="550"
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
-    <div>
-      <button @click="updateChart">Update!</button>
+    <div id="chart">
+      <apexchart
+        type="line"
+        height="350"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "ApexCharts",
   data: function() {
     return {
-      chartOptions: {
-        chart: {
-          id: "vuechart-example"
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-        }
-      },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 81]
+          name: "Desktops",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 123, 23, 45]
         }
-      ]
+      ],
+      chartOptions: {
+        chart: {
+          height: 350,
+          type: "line",
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: "straight"
+        },
+        title: {
+          text: "Number of Candidate Applications",
+          align: "left"
+        },
+        grid: {
+          row: {
+            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+            opacity: 0.5
+          }
+        },
+        xaxis: {
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ]
+        }
+      }
     };
   },
   methods: {
@@ -57,4 +90,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.apexcharts-zoom-icon svg,
+.apexcharts-zoomin-icon svg,
+.apexcharts-zoomout-icon svg,
+.apexcharts-reset-icon svg,
+.apexcharts-menu-icon svg {
+  fill: #ffffff;
+  margin-top: 12px;
+}
+</style>

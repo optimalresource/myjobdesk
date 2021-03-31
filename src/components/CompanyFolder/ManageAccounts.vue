@@ -35,7 +35,20 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                 <div class="power_button ">
                   <div class="header_btn search_btn jb_cover marg">
-                    <a href="#">view activeties</a>
+                    <a
+                      @click.prevent="showAllUsers"
+                      v-show="showActivities"
+                      href="#"
+                      >view users</a
+                    >
+                  </div>
+                  <div class="header_btn search_btn jb_cover marg">
+                    <a
+                      @click.prevent="showAllActivities"
+                      v-show="showUsers"
+                      href="#"
+                      >view list</a
+                    >
                   </div>
                   <div class="header_btn search_btn jb_cover">
                     <a data-toggle="modal" data-target="#myModal234" href="#"
@@ -64,7 +77,7 @@
                           <div class="delete_jb_form">
                             <input
                               type="text"
-                              v-model="First_name"
+                              v-model="users.first_name"
                               placeholder="First Name"
                               required
                             />
@@ -72,7 +85,7 @@
                           <div class="delete_jb_form">
                             <input
                               type="text"
-                              v-model="middle_name"
+                              v-model="users.middle_name"
                               placeholder="Middle Name"
                               required
                             />
@@ -88,7 +101,7 @@
                           <div class="delete_jb_form">
                             <input
                               type="email"
-                              v-model="email"
+                              v-model="users.email"
                               placeholder="Email "
                               required
                             />
@@ -99,7 +112,8 @@
                               id="password"
                               name="password"
                               placeholder="Password *letters and numbers are compulsory"
-                              v-model="password"
+                              v-model="users.password"
+                              required
                             />
                           </div>
                           <div class="delete_jb_form">
@@ -111,18 +125,57 @@
                               v-model="users.password_confirmation"
                             />
                           </div>
+                          <div class="delete_jb_form">
+                            <select class="form-control form-control-md">
+                              <option>select a role</option>
+                              <option>Large select</option>
+                              <option>Large select</option>
+                              <option>Large select</option>
+                            </select>
+                          </div>
+                          <br />
+                          <div>
+                            <multiselect
+                              v-model="value"
+                              :options="options"
+                              :multiple="true"
+                              :close-on-select="false"
+                              :clear-on-select="false"
+                              :preserve-search="true"
+                              placeholder="Pick some"
+                              label="name"
+                              track-by="name"
+                              :preselect-first="true"
+                            >
+                              <template
+                                slot="selection"
+                                slot-scope="{ values, search, isOpen }"
+                                ><span
+                                  class="multiselect__single"
+                                  v-if="values.length &amp;&amp; !isOpen"
+                                  >{{ values.length }} options selected</span
+                                ></template
+                              >
+                            </multiselect>
+                          </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary">
-                            Save changes
+                          <button
+                            @click.prevent="saveNewUsers"
+                            type="submit"
+                            class="btn btn-primary"
+                          >
+                            Create User
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="jb_listing_left_fullwidth mt-0 jb_cover mb-5">
+                <div
+                  v-if="showUsers"
+                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                >
                   <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
@@ -141,7 +194,7 @@
                         </h5>
                         <h4>Name:</h4>
                         <p>Role:</p>
-                        <p>Priveleges: <span>Post</span></p>
+                        <p>Privileges: <span>Post</span></p>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12">
@@ -155,7 +208,7 @@
                               <div class="dropdown-content">
                                 <a href="#">Change Role</a>
                                 <a href="#">User Activities</a>
-                                <a href="#">Edit Priveleges</a>
+                                <a href="#">Edit Privileges</a>
                               </div>
                             </div>
                           </li>
@@ -164,7 +217,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="jb_listing_left_fullwidth mt-0 jb_cover mb-5">
+                <div
+                  v-if="showUsers"
+                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                >
                   <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
@@ -183,7 +239,7 @@
                         </h5>
                         <h4>Name:</h4>
                         <p>Role:</p>
-                        <p>Priveleges: <span>Post</span></p>
+                        <p>Privileges: <span>Post</span></p>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12">
@@ -197,7 +253,156 @@
                               <div class="dropdown-content">
                                 <a href="#">Change Role</a>
                                 <a href="#">User Activities</a>
-                                <a href="#">Edit Priveleges</a>
+                                <a href="#">Edit Privileges</a>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                        <!-- <div class="modal fade" id="myModal1">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">
+                                  More Description
+                                </h4>
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                >
+                                  &times;
+                                </button>
+                              </div>
+
+                              <div class="modal-body">
+                                <div
+                                  class="col-lg-12 col-md-12 col-sm-12 col-12 "
+                                >
+                                  <div class="row">
+                                    <div
+                                      class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                                    >
+                                      <div class="col-sm-12">
+                                        <div class="jb_job_post_side_img ">
+                                          <img
+                                            src="images/lt1.png"
+                                            alt="post_img"
+                                          />
+                                        </div>
+                                        <h5>
+                                          <a href="#">{{}}</a>
+                                        </h5>
+                                        <h6></h6>
+                                      </div>
+                                      <br />
+                                      <br />
+                                      <hr />
+                                      <div class="col-sm-12 col-12">
+                                        <div>
+                                          <div>
+                                            <span><h6>Job type:</h6></span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span><h6>Location:</h6></span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span
+                                              ><h6>
+                                                Educational Level:
+                                              </h6></span
+                                            >
+                                          </div>
+                                          <br />
+                                          <span
+                                            >Salary:
+                                            <h6>
+                                              <div></div></h6
+                                          ></span>
+                                          <br />
+                                          <div>
+                                            <span><h6>J.D:</h6></span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span
+                                              ><h6>
+                                                Minimum qulification:
+                                              </h6></span
+                                            >
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span><h6>Age:</h6></span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span><h6>Experience:</h6></span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                            <span><h6>Working hours:</h6></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3"
+                                    >
+                                      <div class="">
+                                        <a href="#" class="btn btn-info col-12"
+                                          >Apply</a
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  v-if="showUsers"
+                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                >
+                  <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
+                      <div class="col-sm-12">
+                        <div class="jb_job_post_side_img ">
+                          <avatar
+                            class="img-responsive xs-col-12 sm-col-12 mb-2"
+                            :username="companys.email"
+                            :size="70"
+                            :rounded="false"
+                          >
+                          </avatar>
+                        </div>
+                        <h5>
+                          <a href="#"></a>
+                        </h5>
+                        <h4>Name:</h4>
+                        <p>Role:</p>
+                        <p>Privileges: <span>Post</span></p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
+                      <div class="jb_job_post_right_btn_wrapper">
+                        <ul>
+                          <li>
+                            <div class="dropdown">
+                              <button class="dropbtn btn btn-danger ">
+                                Edit
+                              </button>
+                              <div class="dropdown-content">
+                                <a href="#">Change Role</a>
+                                <a href="#">User Activities</a>
+                                <a href="#">Edit Privileges</a>
                               </div>
                             </div>
                           </li>
@@ -310,151 +515,26 @@
                     </div>
                   </div>
                 </div>
-                <div class="jb_listing_left_fullwidth mt-0 jb_cover mb-5">
-                  <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
-                      <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
-                          <avatar
-                            class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="companys.email"
-                            :size="70"
-                            :rounded="false"
-                          >
-                          </avatar>
-                        </div>
-                        <h5>
-                          <a href="#"></a>
-                        </h5>
-                        <h4>Name:</h4>
-                        <p>Role:</p>
-                        <p>Priveleges: <span>Post</span></p>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                      <div class="jb_job_post_right_btn_wrapper">
-                        <ul>
-                          <li>
-                            <div class="dropdown">
-                              <button class="dropbtn btn btn-danger ">
-                                Edit
-                              </button>
-                              <div class="dropdown-content">
-                                <a href="#">Change Role</a>
-                                <a href="#">User Activities</a>
-                                <a href="#">Edit Priveleges</a>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                        <div class="modal fade" id="myModal1">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title">
-                                  More Description
-                                </h4>
-                                <button
-                                  type="button"
-                                  class="close"
-                                  data-dismiss="modal"
-                                >
-                                  &times;
-                                </button>
-                              </div>
-
-                              <div class="modal-body">
-                                <div
-                                  class="col-lg-12 col-md-12 col-sm-12 col-12 "
-                                >
-                                  <div class="row">
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                    >
-                                      <div class="col-sm-12">
-                                        <div class="jb_job_post_side_img ">
-                                          <img
-                                            src="images/lt1.png"
-                                            alt="post_img"
-                                          />
-                                        </div>
-                                        <h5>
-                                          <a href="#">{{}}</a>
-                                        </h5>
-                                        <h6></h6>
-                                      </div>
-                                      <br />
-                                      <br />
-                                      <hr />
-                                      <div class="col-sm-12 col-12">
-                                        <div>
-                                          <div>
-                                            <span><h6>Job type:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Location:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Educational Level:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <span
-                                            >Salary:
-                                            <h6>
-                                              <div></div></h6
-                                          ></span>
-                                          <br />
-                                          <div>
-                                            <span><h6>J.D:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Minimum qulification:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Age:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Experience:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Working hours:</h6></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3"
-                                    >
-                                      <div class="">
-                                        <a href="#" class="btn btn-info col-12"
-                                          >Apply</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div
+                  v-if="showActivities"
+                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                >
+                  <h5 class="text-center">All Activities</h5>
+                  <hr />
+                  <ol>
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                    <li>jdnfbnwjdtnoedtnojn</li>
+                    <br />
+                  </ol>
                 </div>
               </div>
               <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -492,9 +572,26 @@ import DashboardHeader from "@/components/DashboardHeader.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 import Avatar from "vue-avatar";
 import ChatBox from "@/components/ChatBox.vue";
+import axios from "axios";
+import Multiselect from "vue-multiselect";
 export default {
   data: function() {
     return {
+      value: [{ name: "Javascript", code: "js" }],
+      options: [
+        { name: "Vue.js", language: "JavaScript" },
+        { name: "Adonis", language: "JavaScript" },
+        { name: "Rails", language: "Ruby" },
+        { name: "Sinatra", language: "Ruby" },
+        { name: "Laravel", language: "PHP" },
+        { name: "Phoenix", language: "Elixir" }
+      ],
+      successResponse: false,
+      beforeResponse: false,
+      showUsers: true,
+      showActivities: false,
+      onLine: navigator.onLine,
+      showBackOnline: false,
       users: {
         first_name: "",
         email: "",
@@ -521,12 +618,111 @@ export default {
     CompanyDashboardSideBar,
     DashboardHeader,
     Avatar,
+    Multiselect,
     ChatBox
+  },
+  methods: {
+    addTag(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+      };
+      this.options.push(tag);
+      this.value.push(tag);
+    },
+    validateEmail(email) {
+      const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
+      return re.test(email);
+    },
+    saveNewUsers: function() {
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        return false;
+      }
+      if (this.users.first_name == "") {
+        this.$toasted.error("Please Fill First Name");
+        return false;
+      }
+      if (this.users.middle_name == "") {
+        this.$toasted.error("Please Fill Middle Name");
+        return false;
+      }
+      if (this.users.last_name == "") {
+        this.$toasted.error("Please Fill Last Name");
+        return false;
+      }
+      if (this.users.email == "") {
+        this.$toasted.error("Please Fill Email");
+        return false;
+      }
+      if (this.users.password_confirmation == "") {
+        this.$toasted.error("Please Fill Confirm Password");
+        return false;
+      }
+      if (!this.validateEmail(this.users.email)) {
+        this.$toasted.error(
+          "Wrong email: Please enter at least 6 letters which includes at least number and letter"
+        );
+        return false;
+      }
+      if (this.users.password == "") {
+        this.$toasted.error("Please Fill Password");
+        return false;
+      }
+      if (this.users.password !== this.users.password_confirmation) {
+        this.$toasted.error("Password and Confirm Password does not Match");
+        return false;
+      }
+      this.beforeResponse = true;
+      axios
+        .post("", this.users)
+
+        .then(response => {
+          console.log(this.users);
+          console.log(response);
+          const token = response.data.accessToken;
+          localStorage.setItem("token", token);
+          if (response.status == "200") {
+            this.$toasted.success("User Created");
+            return true;
+          } else {
+            this.$toasted.error(
+              "Oops, something went wrong, please try again later"
+            );
+            return false;
+          }
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          console.log(error);
+        });
+      var accessToken = localStorage.getItem("token") || "";
+      console.log(accessToken);
+    },
+    showAllActivities() {
+      this.showUsers = false;
+      this.showActivities = true;
+    },
+    showAllUsers: function() {
+      this.showUsers = true;
+      this.showActivities = false;
+    }
+  },
+  watch: {
+    onLine(v) {
+      if (v) {
+        this.showBackOnline = true;
+        setTimeout(() => {
+          this.showBackOnline = false;
+        }, 1000);
+      }
+    }
   }
 };
 </script>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
+/* media screen 991 */
 .power_button {
   float: right;
   display: flex;

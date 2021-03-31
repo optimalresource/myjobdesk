@@ -2310,7 +2310,7 @@ export default {
 
     beforeResponse() {
       if (this.beforeResponse) {
-        this.$toastr.w("Your form is being submitted, please wait");
+        this.$toasted.warning("Your form is being submitted, please wait");
       }
     },
 

@@ -25,7 +25,7 @@
       <div class="emp_follow_link jb_cover">
         <ul class="feedlist">
           <router-link tag="li" to="/employerDashboard">
-            <a href="/employerDashboard" :class="link_active"
+            <a href="/employerDashboard"
               ><i class="fas fa-tachometer-alt"></i>dashboard
             </a>
           </router-link>
@@ -91,6 +91,7 @@
                     type="password"
                     name="password"
                     placeholder="Enter Password"
+                    required
                   />
                 </div>
                 <div class="header_btn search_btn applt_pop_btn">

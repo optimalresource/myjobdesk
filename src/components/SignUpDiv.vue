@@ -52,7 +52,7 @@ export default {
   mounted() {
     if (document.getElementsByClassName("register_div")[0].style.height < 700) {
       document.getElementsByClassName("register_div")[0].style.minHeight =
-        60 + "vh";
+        45 + "vh";
     }
   },
 };

@@ -34,20 +34,20 @@
                 <div class="job_listing_left_fullwidth jb_cover">
                   <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 col-12">
-                      <div class="jp_job_post_side_img">
-                        <h4>{{ companys.name }}</h4>
-                      </div>
+                      <!-- <div class="jp_job_post_side_img">
+                        <h4>{{ companys. }}dfbdfbdfb</h4>
+                      </div> -->
                       <div class="jp_job_post_right_cont">
-                        <h4>{{ companys.category }}</h4>
+                        <h4>{{ companys.name }} afsdvaedfvd</h4>
 
                         <ul>
                           <li>
                             <i class="fas fa-suitcase"></i>&nbsp;
-                            {{ companys.category }}
+                            {{ companys.category }}dfdrfbdrfbdr
                           </li>
                           <li>
                             <i class="flaticon-location-pointer"></i>&nbsp;
-                            {{ companys.address }}
+                            {{ companys.address }}fdbtrdtfbrdbtdr
                           </li>
                         </ul>
                       </div>

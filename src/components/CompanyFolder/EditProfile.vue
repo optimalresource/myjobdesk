@@ -32,231 +32,268 @@
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="job_filter_sidebar_heading jb_cover">
+                  <h1>Edit Section</h1>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_listing_left_fullwidth jb_cover">
                   <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                       <div class="contect_form3">
-                        <label>@username</label>
-                        <input type="text" name="name" placeholder="Webstrot" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="webstrot@example.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Phone</label>
-                        <input
-                          type="number"
-                          name="number"
-                          placeholder="+91 9098085819"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>Website</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="www.webstrot.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>Company size</label>
-                        <select>
-                          <option>1-500</option>
-                          <option>1-200</option>
-                          <option>1-100</option>
-                          <option>1-50</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>contact mail</label>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="hr@wevstrot.com"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>job description</label>
-                        <select>
-                          <option>it & computer</option>
-                          <option>marketing</option>
-                          <option>mechanical</option>
-                          <option>doctor</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>address</label>
                         <input
                           type="text"
-                          name="name"
-                          placeholder="124/A Kalani Bagh"
+                          placeholder="Company's Name"
+                          required
                         />
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>country</label>
-                        <input type="text" name="name" placeholder="India" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>state</label>
-                        <select>
-                          <option>Madhya pradesh</option>
-                          <option>uttar pradesh</option>
-                          <option>himachal pradesh</option>
-                          <option>punjab</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="contect_form3">
-                        <label>city</label>
-                        <input type="text" name="name" placeholder="Dewas" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                      <div class="select_box">
-                        <label>zip code</label>
-                        <select>
-                          <option>455001</option>
-                          <option>422501</option>
-                          <option>45310</option>
-                          <option>41600</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="browse jb_cover">
-                  <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="job_filter_category_sidebar jb_cover">
-                        <div class="job_filter_sidebar_heading jb_cover">
-                          <h1>social networks</h1>
+                      <div class="contect_form3">
+                        <input
+                          type="email"
+                          placeholder="Email e.g 'webstrot@example.com'"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="contect_form3">
+                        <input
+                          type="number"
+                          placeholder="Phone e.g  '+91 9098085819'"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="contect_form3">
+                        <input type="text" placeholder="Website" required />
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="contect_form3">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="email "
+                          required
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="contect_form3">
+                        <textarea
+                          class="form-control"
+                          placeholder="Company's Address"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <div class="contect_form3">
+                        <textarea
+                          class="form-control"
+                          placeholder="About Us..."
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <input
+                        class="form-control"
+                        list="datalistOptions"
+                        id="exampleDataList"
+                        placeholder="Country"
+                        required
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
+                      </datalist>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <input
+                        class="form-control"
+                        list="datalistOptions"
+                        id="exampleDataList"
+                        placeholder="State..."
+                        required
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
+                      </datalist>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <input
+                        class="form-control"
+                        list="datalistOptions"
+                        id="exampleDataList"
+                        placeholder="City..."
+                        required
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
+                      </datalist>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <input
+                        class="form-control"
+                        list="datalistOptions"
+                        id="exampleDataList"
+                        placeholder="Local Government..."
+                        required
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
+                      </datalist>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                      <input
+                        class="form-control"
+                        list="datalistOptions"
+                        id="exampleDataList"
+                        placeholder="Company size"
+                        required
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="1-10">1-10</option>
+                        <option value="10-50">10-50</option>
+                        <option value="50-200">50-200</option>
+                        <option value="200-1000">200-1000</option>
+                        <option value="1000 and above">1000 and above</option>
+                      </datalist>
+                      <br />
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h5 class="text-center mt-5 mb-3 header">
+                          Social Networks
+                        </h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>google</label>
+                            <input
+                              type="text"
+                              placeholder="https://instagram.com/webstrot"
+                              required
+                            />
+                          </div>
                         </div>
-                        <div class="job_overview_header jb_cover">
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>google</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://google.com/webstrot"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>facebook</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.facebook.com/webstrot"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>twitter</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.twitter.com/webstrot"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>linkedin</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="https://www.linkedin.com/webstrot"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                              <div class="header_btn search_btn jb_cover">
-                                <a href="#">add more</a>
-                              </div>
-                            </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>facebook</label>
+                            <input
+                              type="text"
+                              placeholder="https://www.facebook.com/webstrot"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>twitter</label>
+                            <input
+                              type="text"
+                              placeholder="https://www.twitter.com/webstrot"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <label>linkedin</label>
+                            <input
+                              type="text"
+                              placeholder="https://www.linkedin.com/webstrot"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                          <h5 class="text-center mt-3 mb-3 header">
+                            Password & Security
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="email"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <input
+                              type="password"
+                              name="password"
+                              placeholder="password"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <input
+                              type="password"
+                              name="password"
+                              placeholder="new password"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                          <div class="contect_form3">
+                            <input
+                              type="password"
+                              name="password"
+                              placeholder="repeat new pasword"
+                              required
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <!-- <div class="browse jb_cover">
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                       <div class="job_filter_category_sidebar jb_cover">
                         <div class="job_filter_sidebar_heading jb_cover">
                           <h1>password & security</h1>
                         </div>
-                        <div class="job_overview_header jb_cover">
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>verification email</label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  placeholder="webstrot@example.com"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>current pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label>new pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <div class="contect_form3">
-                                <label> repeat new pasword</label>
-                                <input
-                                  type="password"
-                                  name="password"
-                                  placeholder="*************"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <div class="job_overview_header jb_cover"></div>
                       </div>
                     </div>
                   </div>
@@ -274,6 +311,13 @@
                       </div>
                     </div>
                   </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="header_btn search_btn jb_cover">
+                  <a class=" col-12" href="#">save changes</a>
                 </div>
               </div>
             </div>
@@ -344,6 +388,9 @@ export default {
 </script>
 
 <style>
+.header {
+  color: #990066;
+}
 @media (max-width: 10000px) {
   .avatar_center {
     margin-left: 10px;

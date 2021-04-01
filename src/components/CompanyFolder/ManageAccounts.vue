@@ -32,15 +32,21 @@
           <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                <h4 class="text-center mb-3">Change Role</h4>
+                <h4 class="text-center mb-3">Update Role</h4>
                 <select
                   v-model="users.role"
-                  class="form-control form-control-lg"
+                  class="form-control form-control-md"
                 >
                   <option value="editor">Editor</option>
                   <option value="admin">Admin</option>
                   <option value="reviewer">Reviewer</option>
                 </select>
+                <button class="btn power_a mt-2 col-12">
+                  update
+                </button>
+                <button @click.prevent="back" class="btn power_a float-right mt-3">
+                  <i class="fas fa-long-arrow-alt-left float-right"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -60,7 +66,7 @@
                     v-show="showUsers"
                     href="#"
                     class="btn power_a"
-                    >view All Users Activities</a
+                    >view all users activities</a
                   >
                   <a
                     data-toggle="modal"
@@ -223,7 +229,9 @@
                                 Edit
                               </button>
                               <div class="dropdown-content">
-                                <a @click.prevent="updateRole" href="#">Change Role</a>
+                                <a @click.prevent="updateRole" href="#"
+                                  >Change Role</a
+                                >
                                 <a href="#">User Activities</a>
                                 <a href="#">Edit Privileges</a>
                               </div>
@@ -651,7 +659,10 @@ export default {
     updateRole: function() {
       this.changeRole = true;
       this.notChangeRole = false;
-
+    },
+    back: function() {
+      this.changeRole = false;
+      this.notChangeRole = true;
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;

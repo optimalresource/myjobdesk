@@ -116,7 +116,7 @@
             :rules="{
               required: true,
               regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
-              confirmed: 'confirmation'
+              confirmed: 'confirmation',
             }"
             v-slot="{ errors }"
             name="Password"
@@ -211,7 +211,7 @@
 <script>
 // import ChatBox from "@/components/ChatBox.vue";
 import Multiselect from "vue-multiselect";
-import axios from "axios";
+// import axios from "axios";
 // import Timer from "@/components/Timer.vue";
 // import MainNavigation from "@/components/MainNavigation.vue";
 // import Navigation from "@/components/Navigation.vue";
@@ -219,14 +219,13 @@ export default {
   name: "SignUpDiv",
   components: {
     // ChatBox,
-    Multiselect
+    Multiselect,
     // Timer
     // Navigation,
     // MainNavigation
   },
   data: function() {
     return {
-      showPassword: false,
       showConfirmPassword: false,
       regResponse: 0,
       options: [
@@ -239,7 +238,7 @@ export default {
         { name: "​​​Oil & Gas", code: "oi" },
         { name: "Services", code: "se" },
         { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" }
+        { name: "Utilities", code: "ut" },
       ],
       companys: {
         name: "",
@@ -251,16 +250,22 @@ export default {
         reg_number: "",
         contact_number: "",
         category: "",
-        website: ""
-        // reg_number: ""
-      }
+        website: "",
+        user_type: "company",
+      },
+      isHidden: true,
+      successResponse: false,
+      beforeResponse: false,
+      onLine: navigator.onLine,
+      showBackOnline: false,
+      agreeSelected: "",
     };
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -274,6 +279,7 @@ export default {
       return re.test(email);
     },
     registercompany() {
+      console.log("I see you");
       if (this.companys.name == "") {
         this.$toastr.e("Please Fill Company's Name");
         return false;
@@ -298,7 +304,7 @@ export default {
         this.$toastr.e("Please Fill Confirm Password");
         return false;
       }
-      if (this.companys.password !== this.inputs.password_confirmation) {
+      if (this.companys.password !== this.companys.password_confirmation) {
         this.$toastr.e("Password and Confirm Password does not Match");
         return false;
       }
@@ -310,44 +316,67 @@ export default {
         this.$toastr.e("Please check your internet connection");
         return false;
       }
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Company's Details",
-        "Content-Type": "application/json"
-      };
-      axios
-        .post("#", this.companys, {
-          headers
-        })
+      // var accessToken = localStorage.getItem("token") || "";
+      // const headers = {
+      //   Authorization: "Bearer " + accessToken,
+      //   "My-Custom-Header": "Submitting Company's Details",
+      //   "Content-Type": "application/json",
+      // };
 
-        .then(response => {
-          console.log(this.companys);
+      this.$store
+        .dispatch("registerAccount", {
+          details: this.companys,
+        })
+        .then((response) => {
           console.log(response);
-          this.regResponse = response.status;
           if (response.status == "200") {
-            this.$toastr.s("Account Created");
-            this.$router.push("/employerDashboard");
+            this.$toasted.success("Your registration is successful");
+            this.$router.push({ name: "EmployerDashboard" });
           } else {
-            this.$toastr.e(
-              "Oops, something went wrong, please try again later"
-            );
+            this.$toasted.error(response.data.message);
             return false;
           }
-          const token = response.data.accessToken;
-          localStorage.setItem("token", token);
         })
-        .catch(error => {
-          this.errorMessage = error.message;
-          console.log(error);
+        .catch((error) => {
+          if (typeof error === "object" && error !== null) {
+            for (const property in error) {
+              this.$toasted.error(error[property]);
+            }
+          } else {
+            this.$toasted.error(error);
+          }
         });
-      // return true;
-    }
+    },
   },
   mounted() {
-    window.addEventListener("online", this.updateOnlineStatus);
-    window.addEventListener("offline", this.updateOnlineStatus);
-  }
+    // window.addEventListener("online", this.updateOnlineStatus);
+    // window.addEventListener("offline", this.updateOnlineStatus);
+  },
+  watch: {
+    onLine(v) {
+      if (v) {
+        this.showBackOnline = true;
+        setTimeout(() => {
+          this.showBackOnline = false;
+        }, 1000);
+      }
+    },
+
+    beforeResponse() {
+      if (this.beforeResponse) {
+        this.$toasted.info("Your form is being submitted, please wait");
+      }
+    },
+
+    successResponse() {
+      if (this.successResponse == 200) {
+        this.$toasted.success("Your registration is successfull");
+        this.step++;
+        this.successResponse = false;
+        this.beforeResponse = false;
+      }
+    },
+  },
 };
 </script>
 

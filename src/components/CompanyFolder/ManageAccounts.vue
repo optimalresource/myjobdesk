@@ -29,112 +29,130 @@
       <div class="container">
         <div class="row">
           <CompanyDashboardSideBar />
-
-          <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+          <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                <h4 class="text-center mb-3">Change Role</h4>
+                <select
+                  v-model="users.role"
+                  class="form-control form-control-lg"
+                >
+                  <option value="editor">Editor</option>
+                  <option value="admin">Admin</option>
+                  <option value="reviewer">Reviewer</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div v-if="notChangeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                 <div class="power_button ">
-                  <div class="header_btn search_btn jb_cover marg">
-                    <a
-                      @click.prevent="showAllUsers"
-                      v-show="showActivities"
-                      href="#"
-                      >view users</a
-                    >
-                  </div>
-                  <div class="header_btn search_btn jb_cover marg">
-                    <a
-                      @click.prevent="showAllActivities"
-                      v-show="showUsers"
-                      href="#"
-                      >view list</a
-                    >
-                  </div>
-                  <div class="header_btn search_btn jb_cover">
-                    <a data-toggle="modal" data-target="#myModal234" href="#"
-                      >create new user</a
-                    >
-                  </div>
-                  <div class="modal fade" id="myModal234">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">
-                            Create New User
-                          </h5>
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true" class="text-danger"
-                              ><i class="far fa-times-circle"></i
-                            ></span>
-                          </button>
+                  <a
+                    @click.prevent="showAllUsers"
+                    v-show="showActivities"
+                    href="#"
+                    class="btn power_a"
+                    >view users</a
+                  >
+                  <a
+                    @click.prevent="showAllActivities"
+                    v-show="showUsers"
+                    href="#"
+                    class="btn power_a"
+                    >view All Users Activities</a
+                  >
+                  <a
+                    data-toggle="modal"
+                    data-target="#myModal234"
+                    class="btn power_a"
+                    href="#"
+                    >create new user</a
+                  >
+                </div>
+                <div class="modal fade" id="myModal234">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">
+                          Create New User
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true" class="text-danger"
+                            ><i class="far fa-times-circle"></i
+                          ></span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="delete_jb_form">
+                          <input
+                            type="text"
+                            v-model="users.first_name"
+                            placeholder="First Name"
+                            required
+                          />
                         </div>
-                        <div class="modal-body">
-                          <div class="delete_jb_form">
-                            <input
-                              type="text"
-                              v-model="users.first_name"
-                              placeholder="First Name"
-                              required
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <input
-                              type="text"
-                              v-model="users.middle_name"
-                              placeholder="Middle Name"
-                              required
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <input
-                              type="text"
-                              v-model="users.last_name"
-                              placeholder="Last Name"
-                              required
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <input
-                              type="email"
-                              v-model="users.email"
-                              placeholder="Email "
-                              required
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              placeholder="Password *letters and numbers are compulsory"
-                              v-model="users.password"
-                              required
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <input
-                              type="password"
-                              id="confirm-password"
-                              required
-                              placeholder="Confirm Password *"
-                              v-model="users.password_confirmation"
-                            />
-                          </div>
-                          <div class="delete_jb_form">
-                            <select class="form-control form-control-md">
-                              <option>select a role</option>
-                              <option>Large select</option>
-                              <option>Large select</option>
-                              <option>Large select</option>
-                            </select>
-                          </div>
-                          <br />
-                          <div>
+                        <div class="delete_jb_form">
+                          <input
+                            type="text"
+                            v-model="users.middle_name"
+                            placeholder="Middle Name"
+                            required
+                          />
+                        </div>
+                        <div class="delete_jb_form">
+                          <input
+                            type="text"
+                            v-model="users.last_name"
+                            placeholder="Last Name"
+                            required
+                          />
+                        </div>
+                        <div class="delete_jb_form">
+                          <input
+                            type="email"
+                            v-model="users.email"
+                            placeholder="Email "
+                            required
+                          />
+                        </div>
+                        <div class="delete_jb_form">
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password *letters and numbers are compulsory"
+                            v-model="users.password"
+                            required
+                          />
+                        </div>
+                        <div class="delete_jb_form">
+                          <input
+                            type="password"
+                            id="confirm-password"
+                            required
+                            placeholder="Confirm Password *"
+                            v-model="users.password_confirmation"
+                          />
+                        </div>
+                        <div class="delete_jb_form">
+                          <select
+                            v-model="users.role"
+                            class="form-control form-control-md"
+                          >
+                            <option>select a role</option>
+                            <option value="editor">Editors</option>
+                            <option value="admin">Admin</option>
+                            <option value="reviewer">Reviewer</option>
+                          </select>
+                        </div>
+                        <br />
+                        <!-- <div>
                             <multiselect
                               v-model="value"
                               :options="options"
@@ -157,17 +175,16 @@
                                 ></template
                               >
                             </multiselect>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            @click.prevent="saveNewUsers"
-                            type="submit"
-                            class="btn btn-primary"
-                          >
-                            Create User
-                          </button>
-                        </div>
+                          </div> -->
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          @click.prevent="saveNewUsers"
+                          type="submit"
+                          class="btn btn-primary"
+                        >
+                          Create User
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -202,11 +219,11 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-danger ">
+                              <button class="dropbtn btn btn-primary ">
                                 Edit
                               </button>
                               <div class="dropdown-content">
-                                <a href="#">Change Role</a>
+                                <a @click.prevent="updateRole" href="#">Change Role</a>
                                 <a href="#">User Activities</a>
                                 <a href="#">Edit Privileges</a>
                               </div>
@@ -247,7 +264,7 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-danger ">
+                              <button class="dropbtn btn btn-primary ">
                                 Edit
                               </button>
                               <div class="dropdown-content">
@@ -396,7 +413,7 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-danger ">
+                              <button class="dropbtn btn btn-primary ">
                                 Edit
                               </button>
                               <div class="dropdown-content">
@@ -517,24 +534,22 @@
                 </div>
                 <div
                   v-if="showActivities"
-                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                  class="col-lg-12 col-md-12 col-sm-12 col-12"
                 >
-                  <h5 class="text-center">All Activities</h5>
-                  <hr />
-                  <ol>
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                    <li>jdnfbnwjdtnoedtnojn</li>
-                    <br />
-                  </ol>
+                  <div
+                    class="job_filter_category_sidebar company_wrapper jb_cover"
+                  >
+                    <div class="job_filter_sidebar_heading jb_cover">
+                      <h1>
+                        All Users activities
+                      </h1>
+                    </div>
+                    <div class="job_overview_header pdd jb_cover">
+                      <ul>
+                        <li></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -573,10 +588,12 @@ import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 import Avatar from "vue-avatar";
 import ChatBox from "@/components/ChatBox.vue";
 import axios from "axios";
-import Multiselect from "vue-multiselect";
+// import Multiselect from "vue-multiselect";
 export default {
   data: function() {
     return {
+      notChangeRole: true,
+      changeRole: false,
       value: [{ name: "Javascript", code: "js" }],
       options: [
         { name: "Vue.js", language: "JavaScript" },
@@ -598,6 +615,7 @@ export default {
         password: "",
         password_confirmation: "",
         middle_name: "",
+        role: "",
         last_name: ""
       },
       companys: {
@@ -618,7 +636,7 @@ export default {
     CompanyDashboardSideBar,
     DashboardHeader,
     Avatar,
-    Multiselect,
+    // Multiselect,
     ChatBox
   },
   methods: {
@@ -629,6 +647,11 @@ export default {
       };
       this.options.push(tag);
       this.value.push(tag);
+    },
+    updateRole: function() {
+      this.changeRole = true;
+      this.notChangeRole = false;
+
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
@@ -722,11 +745,32 @@ export default {
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
-/* media screen 991 */
+/* media screen 991  fa-spin */
+@media (max-width: 991px) {
+  .power_button {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    float: none;
+  }
+}
+@media (max-width: 411px) {
+  .power_button a {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}
+.power_button a {
+  margin-right: 10px;
+}
 .power_button {
   float: right;
-  display: flex;
+  display: inline-block;
   margin-bottom: 10px;
+  margin-right: 10px;
+}
+.power_a {
+  background: #990066;
+  color: white;
 }
 .marg {
   margin-right: 5px;
@@ -757,5 +801,11 @@ export default {
 .dropdown:hover .dropbtn {
   cursor: pointer;
   border-radius: 3px;
+}
+.activities {
+  width: 100%;
+  margin-top: 70px;
+  border: 1px solid rgb(226, 226, 226);
+  box-sizing: border-box;
 }
 </style>

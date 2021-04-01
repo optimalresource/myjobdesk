@@ -62,11 +62,6 @@
           <router-link tag="li" to="/logout">
             <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
           </router-link>
-          <router-link tag="li" to="/employerDashboard">
-            <a href="#" data-toggle="modal" data-target="#myModal"
-              ><i class="fas fa-trash-alt"></i>delete profile
-            </a>
-          </router-link>
         </ul>
       </div>
     </div>

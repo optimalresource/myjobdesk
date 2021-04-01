@@ -157,11 +157,6 @@
                 <li>
                   <a href="#"><i class="fas fa-power-off"></i> log out </a>
                 </li>
-                <li>
-                  <a href="#" data-toggle="modal" data-target="#myModal"
-                    ><i class="fas fa-trash-alt"></i>delete profile
-                  </a>
-                </li>
               </ul>
             </div>
           </div>

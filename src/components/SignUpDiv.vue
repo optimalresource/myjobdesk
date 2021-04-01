@@ -47,6 +47,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    if (document.getElementsByClassName("register_div")[0].style.height < 700) {
+      document.getElementsByClassName("register_div")[0].style.minHeight =
+        60 + "vh";
+    }
+  },
+};
+</script>
+
 <style scoped>
 h4 {
   color: #990066;
@@ -185,7 +196,9 @@ h4 {
 }
 .foot {
   height: auto;
-  margin-top: 200px;
+  margin-top: 100px;
+  /* position: absolute;
+  bottom: 0 !important; */
 }
 .circle {
   padding: 5px 7px;

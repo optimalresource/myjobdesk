@@ -33,20 +33,69 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                 <h4 class="text-center mb-3">Update Role</h4>
-                <select
+                <input
                   v-model="users.role"
-                  class="form-control form-control-md"
-                >
-                  <option value="editor">Editor</option>
-                  <option value="admin">Admin</option>
-                  <option value="reviewer">Reviewer</option>
-                </select>
+                  class="form-control"
+                  list="datalistOptions"
+                  id="exampleDataList"
+                  placeholder="Change Role"
+                />
+                <datalist id="datalistOptions">
+                  <option value="editor"> </option>
+                  <option value="admin"> </option>
+                  <option value="reviewer"> </option>
+                </datalist>
+
                 <button class="btn power_a mt-2 col-12">
                   update
                 </button>
-                <button @click.prevent="back" class="btn power_a float-right mt-3">
+                <button
+                  @click.prevent="back"
+                  class="btn power_a float-right mt-3"
+                >
                   <i class="fas fa-long-arrow-alt-left float-right"></i>
                 </button>
+              </div>
+            </div>
+          </div>
+          <div v-if="userActivity" class="col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                <div
+                  class="job_filter_category_sidebar company_wrapper jb_cover"
+                >
+                  <div class="job_filter_sidebar_heading jb_cover">
+                    <h1>
+                      User activities
+                    </h1>
+                  </div>
+                  <div class="job_overview_header pdd jb_cover">
+                    <ul class="mb-2">
+                      <h5>
+                        sfkhaesriuheisub@dfbs;fnde.com
+                      </h5>
+                      <li>
+                        Action Type: sdveadedartedrtbbbbbbrved
+                      </li>
+                      <li>
+                        Browser: Chrome
+                      </li>
+                      <li>
+                        Ip Address: 136782345
+                      </li>
+                      <li><small>Time: 2:00 gmt</small></li>
+                    </ul>
+                    <hr />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                  <button
+                    @click.prevent="backer"
+                    class="btn power_a float-right mt-3"
+                  >
+                    <i class="fas fa-long-arrow-alt-left float-right"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -232,7 +281,9 @@
                                 <a @click.prevent="updateRole" href="#"
                                   >Change Role</a
                                 >
-                                <a href="#">User Activities</a>
+                                <a @click.prevent="viewactivities" href="#"
+                                  >User Activities</a
+                                >
                                 <a href="#">Edit Privileges</a>
                               </div>
                             </div>
@@ -553,9 +604,37 @@
                       </h1>
                     </div>
                     <div class="job_overview_header pdd jb_cover">
-                      <ul>
-                        <li></li>
+                      <ul class="mb-2">
+                        <h5>
+                          sfkhaesriuheisub@dfbs;fnde.com
+                        </h5>
+                        <li>
+                          Action Type: sdveadedartedrtbbbbbbrved
+                        </li>
+                        <li>
+                          Browser: Chrome
+                        </li>
+                        <li>
+                          Ip Address: 136782345
+                        </li>
+                        <li><small>Time: 2:00 gmt</small></li>
                       </ul>
+                      <hr />
+                      <div class="mb-2">
+                        <h5>
+                          sfkhaesriuheisub@dfbs;fnde.com
+                        </h5>
+                        <p>
+                          Action Type: sdveadedartedrtbbbbbbrved
+                        </p>
+                        <p>
+                          Browser: Chrome
+                        </p>
+                        <p>
+                          Ip Address: 136782345
+                        </p>
+                        <p><small>Time: 2:00 gmt</small></p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -602,6 +681,7 @@ export default {
     return {
       notChangeRole: true,
       changeRole: false,
+      userActivity: false,
       value: [{ name: "Javascript", code: "js" }],
       options: [
         { name: "Vue.js", language: "JavaScript" },
@@ -663,6 +743,14 @@ export default {
     back: function() {
       this.changeRole = false;
       this.notChangeRole = true;
+    },
+    viewactivities: function() {
+      this.notChangeRole = false;
+      this.userActivity = true;
+    },
+    backer: function(){
+      this.notChangeRole = true;
+      this.userActivity = false;
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;

@@ -38,16 +38,16 @@
                         <h4>{{ companys. }}dfbdfbdfb</h4>
                       </div> -->
                       <div class="jp_job_post_right_cont">
-                        <h4>{{ companys.name }} afsdvaedfvd</h4>
+                        <h4>{{ companys.name }}</h4>
 
                         <ul>
                           <li>
                             <i class="fas fa-suitcase"></i>&nbsp;
-                            {{ companys.category }}dfdrfbdrfbdr
+                            {{ companys.category }}
                           </li>
                           <li>
                             <i class="flaticon-location-pointer"></i>&nbsp;
-                            {{ companys.address }}fdbtrdtfbrdbtdr
+                            {{ companys.address }}
                           </li>
                         </ul>
                       </div>

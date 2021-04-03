@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="footerNav jb_cover">
-              <a href="#"><img src="images/logo14.png" alt="img"/></a>
+              <a href="#"><img src="images/logo14.png" alt="img" /></a>
               <ul class="footer_first_contact">
                 <li>
                   <i class="flaticon-location-pointer"></i>
@@ -16,9 +16,7 @@
                 </li>
                 <li>
                   <i class="flaticon-telephone"></i>
-                  <p>
-                    +234 8064537631
-                  </p>
+                  <p>+234 8064537631</p>
                 </li>
                 <li>
                   <i class="flaticon-envelope"></i
@@ -152,8 +150,8 @@
             </div>
           </div>
           <div class="copyright_left">
-            <i class="fa fa-copyright"></i> 2019 <a href="#"> Myjobdesk. </a> All
-            Rights Reserved.
+            <i class="fa fa-copyright"></i> 2019
+            <a href="#"> Myjobdesk. </a> All Rights Reserved.
           </div>
 
           <div class="clearfix"></div>
@@ -181,7 +179,7 @@ export default {
   name: "Footer",
   props: {
     // msg: String
-  }
+  },
 };
 </script>
 

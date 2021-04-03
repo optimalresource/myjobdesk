@@ -17,20 +17,20 @@ export default {
   data() {
     return {
       zip: "",
-      city: ""
+      city: "",
     };
   },
   watch: {
-    zip: function() {
+    zip: function () {
       this.city = "";
       if (this.zip.length == 5) {
         //call api method
         this.lookupZip();
       }
-    }
+    },
   },
   methods: {
-    lookupZip: function() {
+    lookupZip: function () {
       var vm = this;
       //debounce(lodash) to delay the function a bit
       //https://ziptasticapi.com/{zipcode}
@@ -39,17 +39,17 @@ export default {
       //https://github.com/mzabriskie/axios
       axios
         .get("https://ziptasticapi.com/" + vm.zip)
-        .then(function(response) {
+        .then(function (response) {
           console.log(response);
           vm.city = response.data.city + ", " + response.data.state;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
 
           vm.city = "Invalid Zipcode";
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

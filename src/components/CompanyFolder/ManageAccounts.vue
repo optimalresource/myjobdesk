@@ -47,7 +47,7 @@
           <div v-if="notChangeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                <div class="power_button ">
+                <div class="power_button">
                   <a
                     @click.prevent="showAllUsers"
                     v-show="showActivities"
@@ -74,9 +74,7 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">
-                          Create New User
-                        </h5>
+                        <h5 class="modal-title">Create New User</h5>
                         <button
                           type="button"
                           class="close"
@@ -197,7 +195,7 @@
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
                       <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
+                        <div class="jb_job_post_side_img">
                           <avatar
                             class="img-responsive xs-col-12 sm-col-12 mb-2"
                             :username="companys.email"
@@ -219,11 +217,13 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-primary ">
+                              <button class="dropbtn btn btn-primary">
                                 Edit
                               </button>
                               <div class="dropdown-content">
-                                <a @click.prevent="updateRole" href="#">Change Role</a>
+                                <a @click.prevent="updateRole" href="#"
+                                  >Change Role</a
+                                >
                                 <a href="#">User Activities</a>
                                 <a href="#">Edit Privileges</a>
                               </div>
@@ -242,7 +242,7 @@
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
                       <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
+                        <div class="jb_job_post_side_img">
                           <avatar
                             class="img-responsive xs-col-12 sm-col-12 mb-2"
                             :username="companys.email"
@@ -264,7 +264,7 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-primary ">
+                              <button class="dropbtn btn btn-primary">
                                 Edit
                               </button>
                               <div class="dropdown-content">
@@ -391,7 +391,7 @@
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
                       <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
+                        <div class="jb_job_post_side_img">
                           <avatar
                             class="img-responsive xs-col-12 sm-col-12 mb-2"
                             :username="companys.email"
@@ -413,7 +413,7 @@
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-primary ">
+                              <button class="dropbtn btn btn-primary">
                                 Edit
                               </button>
                               <div class="dropdown-content">
@@ -428,9 +428,7 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">
-                                  More Description
-                                </h4>
+                                <h4 class="modal-title">More Description</h4>
                                 <button
                                   type="button"
                                   class="close"
@@ -442,14 +440,14 @@
 
                               <div class="modal-body">
                                 <div
-                                  class="col-lg-12 col-md-12 col-sm-12 col-12 "
+                                  class="col-lg-12 col-md-12 col-sm-12 col-12"
                                 >
                                   <div class="row">
                                     <div
                                       class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                     >
                                       <div class="col-sm-12">
-                                        <div class="jb_job_post_side_img ">
+                                        <div class="jb_job_post_side_img">
                                           <img
                                             src="images/lt1.png"
                                             alt="post_img"
@@ -475,9 +473,7 @@
                                           <br />
                                           <div>
                                             <span
-                                              ><h6>
-                                                Educational Level:
-                                              </h6></span
+                                              ><h6>Educational Level:</h6></span
                                             >
                                           </div>
                                           <br />
@@ -540,9 +536,7 @@
                     class="job_filter_category_sidebar company_wrapper jb_cover"
                   >
                     <div class="job_filter_sidebar_heading jb_cover">
-                      <h1>
-                        All Users activities
-                      </h1>
+                      <h1>All Users activities</h1>
                     </div>
                     <div class="job_overview_header pdd jb_cover">
                       <ul>
@@ -590,7 +584,7 @@ import ChatBox from "@/components/ChatBox.vue";
 import axios from "axios";
 // import Multiselect from "vue-multiselect";
 export default {
-  data: function() {
+  data: function () {
     return {
       notChangeRole: true,
       changeRole: false,
@@ -601,7 +595,7 @@ export default {
         { name: "Rails", language: "Ruby" },
         { name: "Sinatra", language: "Ruby" },
         { name: "Laravel", language: "PHP" },
-        { name: "Phoenix", language: "Elixir" }
+        { name: "Phoenix", language: "Elixir" },
       ],
       successResponse: false,
       beforeResponse: false,
@@ -616,7 +610,7 @@ export default {
         password_confirmation: "",
         middle_name: "",
         role: "",
-        last_name: ""
+        last_name: "",
       },
       companys: {
         name: "",
@@ -625,8 +619,8 @@ export default {
         phone_number: "",
         website: "",
         bio: "",
-        address: ""
-      }
+        address: "",
+      },
     };
   },
   name: "Pages",
@@ -637,27 +631,26 @@ export default {
     DashboardHeader,
     Avatar,
     // Multiselect,
-    ChatBox
+    ChatBox,
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
       };
       this.options.push(tag);
       this.value.push(tag);
     },
-    updateRole: function() {
+    updateRole: function () {
       this.changeRole = true;
       this.notChangeRole = false;
-
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
     },
-    saveNewUsers: function() {
+    saveNewUsers: function () {
       if (!this.onLine) {
         this.$toasted.error("Please check your internet connection");
         return false;
@@ -700,7 +693,7 @@ export default {
       axios
         .post("", this.users)
 
-        .then(response => {
+        .then((response) => {
           console.log(this.users);
           console.log(response);
           const token = response.data.accessToken;
@@ -715,7 +708,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -726,10 +719,10 @@ export default {
       this.showUsers = false;
       this.showActivities = true;
     },
-    showAllUsers: function() {
+    showAllUsers: function () {
       this.showUsers = true;
       this.showActivities = false;
-    }
+    },
   },
   watch: {
     onLine(v) {
@@ -739,8 +732,8 @@ export default {
           this.showBackOnline = false;
         }, 1000);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

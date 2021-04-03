@@ -4,10 +4,10 @@
     <a href="javascript:" id="return-to-top"
       ><i class="fas fa-angle-double-up"></i
     ></a>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img"/></span
+          <span><img src="../assets/images/logo13.png" alt="img" /></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -106,7 +106,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -192,7 +192,7 @@
                   >
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>
@@ -369,7 +369,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -406,7 +406,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -719,7 +719,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="/logout"
+                    <a @click="logout"
                       ><i class="fas fa-power-off"></i> log out
                     </a>
                   </li>
@@ -783,16 +783,14 @@
                   class="job_filter_category_sidebar company_wrapper jb_cover"
                 >
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>
-                      my resume
-                    </h1>
+                    <h1>my resume</h1>
                   </div>
                   <div class="job_overview_header jb_cover">
                     <div class="row">
-                      <div class="container-fluid  p-5">
+                      <div class="container-fluid p-5">
                         <div class="middle">
                           <avatar
-                            class="img-responsive xs-col-12 sm-col-12 mb-2 text-center "
+                            class="img-responsive xs-col-12 sm-col-12 mb-2 text-center"
                             :username="inputs.email"
                             :size="50"
                             :rounded="true"
@@ -804,15 +802,13 @@
                           {{ inputs.last_name }}
                         </h4>
                         <hr class="bg-light w-50" />
-                        <h6 class=" text-center">{{ inputs.email }}</h6>
+                        <h6 class="text-center">{{ inputs.email }}</h6>
                         <p>{{ personal_details.phone }}</p>
                         <br />
                         <br />
                         <div class="row">
-                          <div class="container ">
-                            <h6 class="">
-                              Personal Data
-                            </h6>
+                          <div class="container">
+                            <h6 class="">Personal Data</h6>
                             <br />
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                               <ul>
@@ -851,9 +847,7 @@
                               </ul>
                             </div>
                             <hr />
-                            <h6>
-                              Education
-                            </h6>
+                            <h6>Education</h6>
                             <div
                               v-for="(updatedForm, up) in updatedForms"
                               :key="up"
@@ -881,17 +875,13 @@
                     </ul> -->
                             <br />
                             <hr />
-                            <h6>
-                              Bio
-                            </h6>
+                            <h6>Bio</h6>
                             <div>
                               <!-- <p>{{ edit.bio }}</p> -->
                             </div>
                             <br />
                             <hr />
-                            <h6>
-                              Referees
-                            </h6>
+                            <h6>Referees</h6>
                             <div
                               v-for="(updatedreferree, ref) in updatedreferrees"
                               :key="ref"
@@ -920,8 +910,9 @@
                             <hr />
                             <h6>Working Experience</h6>
                             <div
-                              v-for="(updatedexperience,
-                              ex) in updatedexperiences"
+                              v-for="(
+                                updatedexperience, ex
+                              ) in updatedexperiences"
                               :key="ex"
                             >
                               <p>{{ updatedexperience.title }}</p>
@@ -2117,15 +2108,15 @@ export default {
     Looking,
     Footer,
     ChatBox,
-    Avatar
+    Avatar,
   },
-  data: function() {
+  data: function () {
     return {
       data: "",
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: ""
+        linkedin_username: "",
       },
       inputs: {
         first_name: "",
@@ -2133,7 +2124,7 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       personal_details: {
         age: "",
@@ -2144,14 +2135,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: ""
+        selectedState: "",
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: []
+      updatedreferrees: [],
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -2163,13 +2154,18 @@ export default {
     };
   },
   methods: {
+    async logout() {
+      this.$toasted.info("You're being been logged out");
+      await this.$store.dispatch("LogOut");
+      this.$router.push("/login");
+    },
     backstep() {
       this.step--;
     },
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -2178,15 +2174,15 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Personal Details"
+        "My-Custom-Header": "Fetch Personal Details",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/personal_details", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.forms.marital_status = response.data.marital_status;
           this.forms.gender = response.data.gender;
           this.forms.selectedLGA = response.data.lga;
@@ -2198,7 +2194,7 @@ export default {
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch personal details " + error.message);
         });
     },
@@ -2206,20 +2202,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Education Info"
+        "My-Custom-Header": "Fetch Education Info",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/educational_details/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedForms = response.data;
           this.eDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch education details " + error.message);
         });
     },
@@ -2227,20 +2223,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Certificates"
+        "My-Custom-Header": "Fetch Certificates",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/certificates/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedCerts = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch certificates " + error.message);
         });
     },
@@ -2248,20 +2244,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Referrees"
+        "My-Custom-Header": "Fetch Referrees",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/referrees/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedRefs = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch referrees " + error.message);
         });
     },
@@ -2269,20 +2265,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Experiences"
+        "My-Custom-Header": "Fetch Experiences",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/experiences/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedexperiences = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch experiences " + error.message);
         });
     },
@@ -2290,20 +2286,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Skills"
+        "My-Custom-Header": "Fetch Skills",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/skills/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedskills = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch skills " + error.message);
         });
     },
@@ -2313,7 +2309,7 @@ export default {
     },
     getAttachmentSize() {
       this.upload_size = 0;
-      this.attachments.map(item => {
+      this.attachments.map((item) => {
         this.upload_size += parseInt(item.size);
       });
 
@@ -2389,13 +2385,13 @@ export default {
       axios
         .post("https://api.myjobdesk.com/api/register", this.companys)
 
-        .then(response => {
+        .then((response) => {
           console.log(this.inputs);
           console.log(response);
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2457,13 +2453,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Register step 2"
+        "My-Custom-Header": "Register step 2",
       };
       axios
         .post("https://api.myjobdesk.com/api/personal_details", request, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.pDResponse = response.status;
           if (response.status == "200") {
@@ -2476,7 +2472,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2515,7 +2511,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Educational Detail",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
       console.log(this.selectedFiles);
       axios
@@ -2523,10 +2519,10 @@ export default {
           "https://api.myjobdesk.com/api/educational_details",
           this.selectedFiles,
           {
-            headers
+            headers,
           }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data.education.id);
           this.updatedForms.push(response.data.education);
@@ -2554,7 +2550,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -2566,13 +2562,13 @@ export default {
       document.getElementsByClassName("certify")[0].style.display = "block";
       document.getElementsByClassName("cert")[0].style.display = "block";
     },
-    openNav: function() {
+    openNav: function () {
       document.getElementById("myNav").style.width = "100%";
     },
-    closeNav: function() {
+    closeNav: function () {
       document.getElementById("myNav").style.width = "0%";
     },
-    checkEducation: function() {
+    checkEducation: function () {
       if (this.forms.school_name == "") {
         this.$toastr.e("Please check and complete School name");
         return false;
@@ -2608,7 +2604,7 @@ export default {
 
       return true;
     },
-    nextStep: function() {
+    nextStep: function () {
       this.step++;
     },
     onSubmit() {
@@ -2622,14 +2618,14 @@ export default {
     changeLGA() {
       console.log(this.forms.selectedLGA);
     },
-    removeupdatedForms: function(id) {
+    removeupdatedForms: function (id) {
       var toDelete = this.updatedForms[id];
       const requestId = { id: toDelete.id };
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Educational Detail",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -2637,9 +2633,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/educational_details", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedForms.splice(id, 1);
             this.$toastr.s("Education detail deleted successfully");
@@ -2657,7 +2653,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toastr.e("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -2677,17 +2673,17 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 3 "
+        "My-Custom-Header": "Going to step 3 ",
       };
 
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2703,17 +2699,17 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 4 "
+        "My-Custom-Header": "Going to step 4 ",
       };
 
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2724,7 +2720,7 @@ export default {
       return true;
     },
 
-    goToDashBoard: function() {
+    goToDashBoard: function () {
       var request = { category: [] };
       if (this.category.length < 1) {
         this.$toastr.e("please pick a category");
@@ -2737,15 +2733,15 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Seeker Categories",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
 
       console.log(request);
       axios
         .post("https://api.myjobdesk.com/api/pick_categories", request, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.categoryResponse = response.status;
           if (response.status == "200") {
@@ -2758,7 +2754,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2766,12 +2762,12 @@ export default {
       var step = { step: 5 };
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2779,39 +2775,39 @@ export default {
       localStorage.setItem("step", 1);
       this.$router.push("/dashboard");
     },
-    finalButton: function() {},
-    setFilename: function(event, row) {
+    finalButton: function () {},
+    setFilename: function (event, row) {
       var file = event.target.files[0];
       row.file = file;
     },
-    addExperience: function() {
+    addExperience: function () {
       document.getElementsByClassName("Experience")[0].style.display = "block";
       document.getElementsByClassName("experience")[0].style.display = "block";
     },
-    removeExperience: function() {
+    removeExperience: function () {
       document.getElementsByClassName("Experience")[0].style.display = "none";
       document.getElementsByClassName("experience")[0].style.display = "none";
     },
-    addReferrer: function() {
+    addReferrer: function () {
       document.getElementsByClassName("Referees")[0].style.display = "block";
       document.getElementsByClassName("referees")[0].style.display = "block";
     },
-    removeReferres: function() {
+    removeReferres: function () {
       document.getElementsByClassName("Referees")[0].style.display = "none";
       document.getElementsByClassName("referees")[0].style.display = "none";
     },
 
-    addskills: function() {
+    addskills: function () {
       document.getElementsByClassName("skills")[0].style.display = "block";
     },
-    removeskills: function() {
+    removeskills: function () {
       document.getElementsByClassName("skills")[0].style.display = "none";
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
     },
-    register: function() {
+    register: function () {
       if (this.inputs.first_name == "") {
         this.$toastr.e("Please Fill First Name");
         return false;
@@ -2857,14 +2853,14 @@ export default {
       axios
         .post("https://api.myjobdesk.com/api/register", this.inputs)
 
-        .then(response => {
+        .then((response) => {
           console.log(this.inputs);
           console.log(response);
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
           this.successResponse = response.status;
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2912,7 +2908,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting CV",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
       console.log();
       if (!this.onLine) {
@@ -2921,9 +2917,9 @@ export default {
       }
       axios
         .post("https://api.myjobdesk.com/api/cv", this.selectedFiles, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.cvFiles = [];
           this.cvPreview = [];
@@ -2939,7 +2935,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -2958,13 +2954,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Skill "
+        "My-Custom-Header": "Submitting Skill ",
       };
       axios
         .post("https://api.myjobdesk.com/api/skills", this.skills, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedskills.push(response.data);
           this.skills.skill = "";
           document.getElementsByClassName("skills")[0].style.display = "none";
@@ -2980,7 +2976,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -3023,13 +3019,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Referee "
+        "My-Custom-Header": "Submitting Referee ",
       };
       axios
         .post("https://api.myjobdesk.com/api/referrees", reff, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedRefs.push(response.data);
           this.id++;
           this.referrers.full_name = "";
@@ -3052,7 +3048,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -3098,13 +3094,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Experiences "
+        "My-Custom-Header": "Submitting Experiences ",
       };
       axios
         .post("https://api.myjobdesk.com/api/experiences", exp, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data);
           this.experiences.job_description = "";
@@ -3134,7 +3130,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -3167,7 +3163,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Certifications",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
 
       axios
@@ -3175,10 +3171,10 @@ export default {
           "https://api.myjobdesk.com/api/certificates",
           this.selectedFiles,
           {
-            headers
+            headers,
           }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.updatedCerts.push(response.data);
           document.getElementsByClassName("certify")[0].style.display = "none";
@@ -3203,7 +3199,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -3215,7 +3211,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Certifications",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -3223,9 +3219,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/certificates", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedCerts.splice(id, 1);
             this.$toastr.s("Certification deleted successfully");
@@ -3244,7 +3240,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toastr.e("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -3256,7 +3252,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Referree",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -3264,9 +3260,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/referrees", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedRefs.splice(id, 1);
             this.$toastr.s("Referree deleted successfully");
@@ -3279,7 +3275,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toastr.e("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -3291,7 +3287,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Experience",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -3299,9 +3295,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/experiences", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedexperiences.splice(id, 1);
             this.$toastr.s("Experience deleted successfully");
@@ -3314,38 +3310,38 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toastr.e("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
-    }
+    },
   },
   created() {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
+      "My-Custom-Header": "Register step 2",
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
     axios
       .get("https://api.myjobdesk.com/api/personal_details", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.personal_details.marital_status = response.data.marital_status;
         this.personal_details.gender = response.data.gender;
         this.personal_details.selectedLGA = response.data.lga;
@@ -3356,64 +3352,64 @@ export default {
         this.personal_details.phone = response.data.phone;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch personal details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/skills/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedskills = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch Skills" + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/educational_details/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedForms = response.data;
         // this.eDResponse = response.status;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch education details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/certificates/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedCerts = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch certificates " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/experiences/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedexperiences = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch experiences " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/referrees/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedreferrees = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch referrees " + error.message);
       });
-  }
+  },
 };
 </script>
 

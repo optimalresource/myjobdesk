@@ -27,7 +27,7 @@ export default {
   name: "ChatBox",
   props: {
     // msg: String
-  }
+  },
 };
 </script>
 

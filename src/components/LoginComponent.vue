@@ -52,17 +52,17 @@ export default {
     // MainNavigation,
     // Navigation,
     // MainNavLogin,
-    ContentTemplate
+    ContentTemplate,
     // Looking,
     // Preloader
   },
   props: {
     title: String,
-    page: String
+    page: String,
   },
   created() {
     document.title = this.title;
-  }
+  },
 };
 </script>
 

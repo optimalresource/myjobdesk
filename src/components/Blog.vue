@@ -179,7 +179,7 @@ export default {
   name: "Blog",
   props: {
     // msg: String
-  }
+  },
 };
 </script>
 

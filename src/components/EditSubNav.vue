@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "EditSubNav"
+  name: "EditSubNav",
 };
 </script>
 

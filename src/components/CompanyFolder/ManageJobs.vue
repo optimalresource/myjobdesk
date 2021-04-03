@@ -294,7 +294,7 @@ import DashboardHeader from "@/components/DashboardHeader.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 export default {
   name: "ManageJobs",
-  data: function() {
+  data: function () {
     return {
       page: 1,
       companys: {
@@ -307,8 +307,8 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: ""
-      }
+        address: "",
+      },
     };
   },
   components: {
@@ -319,8 +319,8 @@ export default {
     VuePagination,
     ChatBox,
     DashboardHeader,
-    CompanyDashboardSideBar
-  }
+    CompanyDashboardSideBar,
+  },
 };
 </script>
 

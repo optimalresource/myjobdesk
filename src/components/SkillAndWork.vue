@@ -25,13 +25,13 @@
           >
             <span class="label label-primary">{{
               uploader.name +
-                " (" +
-                Number((uploader.size / 1024 / 1024).toFixed(1)) +
-                "MB)"
+              " (" +
+              Number((uploader.size / 1024 / 1024).toFixed(1)) +
+              "MB)"
             }}</span>
             <span
               class=""
-              style="background: white; cursor: pointer;"
+              style="background: white; cursor: pointer"
               @click="removeuploader(uploader)"
               ><button class="btn btn-xs btn-danger">
                 <i class="fas fa-times"></i></button
@@ -53,7 +53,7 @@ export default {
       uploaders: [],
       data: new FormData(),
       errors: {},
-      percentCompleted: 0
+      percentCompleted: 0,
     };
   },
   watch: {},
@@ -61,7 +61,7 @@ export default {
   methods: {
     getuploaderSize() {
       this.upload_size = 0;
-      this.uploaders.map(item => {
+      this.uploaders.map((item) => {
         this.upload_size += parseInt(item.size);
       });
 
@@ -93,17 +93,17 @@ export default {
       this.prepareFields();
       var config = {
         headers: { "Content-Type": "multipart/form-data" },
-        onUploadProgress: function(progressEvent) {
+        onUploadProgress: function (progressEvent) {
           this.percentCompleted = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
           );
           this.$forceUpdate();
-        }.bind(this)
+        }.bind(this),
       };
       axios
         .post(this.settings.file_management.upload_files, this.data, config)
         .then(
-          function(response) {
+          function (response) {
             console.log(response);
             if (response.data.success) {
               console.log("Successfull Upload");
@@ -115,7 +115,7 @@ export default {
             }
           }.bind(this)
         )
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
@@ -125,11 +125,11 @@ export default {
     },
     start() {
       console.log("Starting File Management Component");
-    }
+    },
   },
   created() {
     this.start();
-  }
+  },
 };
 </script>
 

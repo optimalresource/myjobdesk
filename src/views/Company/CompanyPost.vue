@@ -9,8 +9,8 @@ import Post from "@/components/CompanyFolder/Post.vue";
 export default {
   name: "CompanyApplications",
   components: {
-    Post
-  }
+    Post,
+  },
 };
 </script>
 

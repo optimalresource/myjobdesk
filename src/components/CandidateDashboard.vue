@@ -4,10 +4,10 @@
     <a href="javascript:" id="return-to-top"
       ><i class="fas fa-angle-double-up"></i
     ></a>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img"/></span
+          <span><img src="../assets/images/logo13.png" alt="img" /></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -106,7 +106,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -369,7 +369,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -406,7 +406,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -775,10 +775,10 @@
                           Name:
                           {{
                             inputs.last_name +
-                              " " +
-                              inputs.first_name +
-                              " " +
-                              inputs.middle_name
+                            " " +
+                            inputs.first_name +
+                            " " +
+                            inputs.middle_name
                           }}
                         </h4>
 
@@ -1095,8 +1095,9 @@
                             <ul>
                               <li>Referees:</li>
                               <div
-                                v-for="(updatedreferree,
-                                ref) in updatedreferrees"
+                                v-for="(
+                                  updatedreferree, ref
+                                ) in updatedreferrees"
                                 :key="ref"
                               >
                                 <template v-if="ref <= 2">
@@ -1318,14 +1319,14 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     // CandidateDashboardSubNavBar,
-    ChatBox
+    ChatBox,
   },
-  data: function() {
+  data: function () {
     return {
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: ""
+        linkedin_username: "",
       },
       inputs: {
         first_name: "",
@@ -1333,7 +1334,7 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       personal_details: {
         age: "",
@@ -1344,14 +1345,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: ""
+        selectedState: "",
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: []
+      updatedreferrees: [],
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -1370,28 +1371,28 @@ export default {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
+      "My-Custom-Header": "Register step 2",
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
     axios
       .get("https://api.myjobdesk.com/api/personal_details", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.personal_details.marital_status = response.data.marital_status;
         this.personal_details.gender = response.data.gender;
         this.personal_details.selectedLGA = response.data.lga;
@@ -1402,64 +1403,64 @@ export default {
         this.personal_details.phone = response.data.phone;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch personal details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/skills/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedskills = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch Skills" + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/educational_details/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedForms = response.data;
         // this.eDResponse = response.status;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch education details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/certificates/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedCerts = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch certificates " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/experiences/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedexperiences = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch experiences " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/referrees/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedreferrees = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch referrees " + error.message);
       });
-  }
+  },
 };
 </script>
 

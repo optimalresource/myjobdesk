@@ -21,7 +21,7 @@
     </div>
     <p>
       <a href="/dashboard">
-        <span style="cursor:pointer" class="text-light" @click="openNav()"
+        <span style="cursor: pointer" class="text-light" @click="openNav()"
           ><u>Click here if you were not automatically redirected </u></span
         ></a
       >
@@ -37,16 +37,16 @@ export default {
   name: "StepFour",
   components: {
     Ripple,
-    Typeahead
+    Typeahead,
   },
   methods: {
-    openNav: function() {
+    openNav: function () {
       document.getElementById("myNav").style.width = "100%";
     },
-    closeNav: function() {
+    closeNav: function () {
       document.getElementById("myNav").style.width = "0%";
-    }
-  }
+    },
+  },
 };
 </script>
 

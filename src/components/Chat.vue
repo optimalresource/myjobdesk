@@ -20,23 +20,23 @@
 import { Chat } from "vue-quick-chat";
 export default {
   components: {
-    Chat
+    Chat,
   },
   data() {
     return {
       participants: [
         {
           name: "Arnaldo",
-          id: 1
+          id: 1,
         },
         {
           name: "José",
-          id: 2
-        }
+          id: 2,
+        },
       ],
       myself: {
         name: "Matheus S.",
-        id: 3
+        id: 3,
       },
       messages: [
         {
@@ -50,8 +50,8 @@ export default {
             hour: 20,
             minute: 10,
             second: 3,
-            millisecond: 123
-          }
+            millisecond: 123,
+          },
         },
         {
           content: "sent messages",
@@ -64,8 +64,8 @@ export default {
             hour: 19,
             minute: 10,
             second: 3,
-            millisecond: 123
-          }
+            millisecond: 123,
+          },
         },
         {
           content: "other received messages",
@@ -78,50 +78,48 @@ export default {
             hour: 10,
             minute: 10,
             second: 3,
-            millisecond: 123
-          }
-        }
+            millisecond: 123,
+          },
+        },
       ],
       chatTitle: "My chat title",
       placeholder: "send your message",
       colors: {
         header: {
           bg: "#d30303",
-          text: "#fff"
+          text: "#fff",
         },
         message: {
           myself: {
             bg: "#fff",
-            text: "#bdb8b8"
+            text: "#bdb8b8",
           },
           others: {
             bg: "#fb4141",
-            text: "#fff"
-          }
+            text: "#fff",
+          },
         },
-        submitIcon: "#b91010"
+        submitIcon: "#b91010",
       },
       borderStyle: {
         topLeft: "10px",
         topRight: "10px",
         bottomLeft: "10px",
-        bottomRight: "10px"
+        bottomRight: "10px",
       },
       hideCloseButton: false,
       submitIconSize: "20px",
-      closeButtonIconSize: "20px"
+      closeButtonIconSize: "20px",
     };
   },
   methods: {
-    onType: function() {
+    onType: function () {
       //here you can set any behavior
     },
-    onMessageSubmit: function() {
+    onMessageSubmit: function () {
       //here you can set any behavior
-    }
-  }
+    },
+  },
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

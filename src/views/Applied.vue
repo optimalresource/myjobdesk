@@ -9,8 +9,8 @@ import CandidateAppliedJob from "@/components/CandidateAppliedJob.vue";
 export default {
   name: "Applied",
   components: {
-    CandidateAppliedJob
-  }
+    CandidateAppliedJob,
+  },
 };
 </script>
 

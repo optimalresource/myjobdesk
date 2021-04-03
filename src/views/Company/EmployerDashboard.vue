@@ -9,8 +9,8 @@ import Dashboard from "@/components/CompanyFolder/Dashboard.vue";
 export default {
   name: "EmployerDashboard",
   components: {
-    Dashboard
-  }
+    Dashboard,
+  },
 };
 </script>
 

@@ -54,7 +54,7 @@ import moment from "moment";
 Vue.prototype.moment = moment;
 export default {
   name: "PostJobsPreview",
-  data: function() {
+  data: function () {
     return {
       showBackOnline: false,
       companys: {
@@ -64,7 +64,7 @@ export default {
         phone_number: "",
         website: "",
         bio: "",
-        address: ""
+        address: "",
       },
       postResponse: 0,
       model: [],
@@ -76,8 +76,8 @@ export default {
         country: "",
         address: "",
         salary: "",
-        experience: ""
-      }
+        experience: "",
+      },
     };
   },
   methods: {
@@ -110,13 +110,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Job to be Posted "
+        "My-Custom-Header": "Submitting Job to be Posted ",
       };
       axios
         .post("https://api.myjobdesk.com/api/experiences", exp, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data);
           this.postResponse = response.status;
@@ -130,14 +130,14 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
-    }
+    },
   },
   components: {
-    Avatar
+    Avatar,
   },
   watch: {
     onLine(v) {
@@ -147,8 +147,8 @@ export default {
           this.showBackOnline = false;
         }, 1000);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

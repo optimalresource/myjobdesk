@@ -8,7 +8,7 @@
 import CandidateEditProfile from "@/components/CandidateEditProfile.vue";
 export default {
   name: "EditProfile",
-  components: { CandidateEditProfile }
+  components: { CandidateEditProfile },
 };
 </script>
 

@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "Grow"
+  name: "Grow",
 };
 </script>
 

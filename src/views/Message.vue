@@ -9,8 +9,8 @@ import DashboardMessage from "@/components/DashboardMessage.vue";
 export default {
   name: "Message",
   components: {
-    DashboardMessage
-  }
+    DashboardMessage,
+  },
 };
 </script>
 

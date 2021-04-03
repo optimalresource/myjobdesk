@@ -12,7 +12,7 @@ export default {
   name: "Pricing",
   components: {
     // CandidatePricing
-  }
+  },
 };
 </script>
 <style scoped>

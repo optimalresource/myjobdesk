@@ -13,7 +13,7 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {}
+  created() {},
 };
 </script>
 <style scoped></style>

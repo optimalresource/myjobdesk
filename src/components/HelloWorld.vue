@@ -62,7 +62,7 @@ import Preloader from "@/components/Preloader.vue";
 export default {
   name: "HelloWorld",
   props: {
-    title: String
+    title: String,
   },
   created() {
     document.title = this.title;
@@ -81,8 +81,8 @@ export default {
     Banner,
     MainNavigation,
     Navigation,
-    Preloader
-  }
+    Preloader,
+  },
 };
 </script>
 

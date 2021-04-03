@@ -35,7 +35,7 @@
             <input
               id="email"
               type="email"
-              class="form-control  require"
+              class="form-control require"
               required
               autocomplete="email"
               autofocus
@@ -99,7 +99,7 @@
         >
           <div class="form-group icon_form comments_form">
             <textarea
-              class="form-control  require"
+              class="form-control require"
               required
               autofocus
               placeholder="Company's Address*"
@@ -125,7 +125,7 @@
               <input
                 v-bind:type="[showPassword ? 'text' : 'password']"
                 id="Company Password"
-                class="form-control "
+                class="form-control"
                 placeholder="Password * ex. letters and numbers are compulsory"
                 v-model="companys.password"
               />
@@ -155,7 +155,7 @@
                 v-bind:type="[showConfirmPassword ? 'text' : 'password']"
                 id="company_confirm-password"
                 required
-                class="form-control short "
+                class="form-control short"
                 placeholder="Confirm Password *"
                 v-model="companys.password_confirmation"
               />
@@ -193,8 +193,14 @@
         <br />
         <div class="jb_newslwtteter_button">
           <div class="header_btn search_btn news_btn jb_cover">
-            <button class="col-12" @click="registercompany" type="submit">
-              Submit
+            <button
+              class="col-12"
+              @click="registercompany"
+              type="submit"
+              :disabled="spin"
+            >
+              <span v-if="notSpin">submit</span
+              ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
             </button>
           </div>
         </div>
@@ -224,8 +230,11 @@ export default {
     // Navigation,
     // MainNavigation
   },
-  data: function() {
+  data: function () {
     return {
+      showPassword: false,
+      spin: false,
+      notSpin: true,
       showConfirmPassword: false,
       regResponse: 0,
       options: [
@@ -261,6 +270,17 @@ export default {
       agreeSelected: "",
     };
   },
+  beforeEnter(to, from, next) {
+    if (!this.$store.getters.loggedIn) {
+      console.log("entered block");
+      next();
+    } else {
+      console.log("entered this block instead");
+      next({
+        name: "Dashboard", // back to safety route //
+      });
+    }
+  },
   methods: {
     addTag(newTag) {
       const tag = {
@@ -279,49 +299,65 @@ export default {
       return re.test(email);
     },
     registercompany() {
-      console.log("I see you");
+      this.spin = true;
+      this.notSpin = false;
+
       if (this.companys.name == "") {
         this.$toastr.e("Please Fill Company's Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (!this.validateEmail(this.companys.email)) {
         this.$toastr.e("Please enter a valid Email");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.email == "") {
         this.$toastr.e("Please Fill Company's Email");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.address == "") {
         this.$toastr.e("Please Fill Company's Address");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.password == "") {
         this.$toastr.e("Please Fill Password");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.password_confirmation == "") {
         this.$toastr.e("Please Fill Confirm Password");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.password !== this.companys.password_confirmation) {
         this.$toastr.e("Password and Confirm Password does not Match");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.companys.category.length < 1) {
         this.$toastr.e("please pick a category");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (!this.onLine) {
         this.$toastr.e("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      // var accessToken = localStorage.getItem("token") || "";
-      // const headers = {
-      //   Authorization: "Bearer " + accessToken,
-      //   "My-Custom-Header": "Submitting Company's Details",
-      //   "Content-Type": "application/json",
-      // };
+
+      this.beforeResponse = true;
 
       this.$store
         .dispatch("registerAccount", {
@@ -334,6 +370,8 @@ export default {
             this.$router.push({ name: "EmployerDashboard" });
           } else {
             this.$toasted.error(response.data.message);
+            this.spin = false;
+            this.notSpin = true;
             return false;
           }
         })
@@ -345,6 +383,8 @@ export default {
           } else {
             this.$toasted.error(error);
           }
+          this.spin = false;
+          this.notSpin = true;
         });
     },
   },

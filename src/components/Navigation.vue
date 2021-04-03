@@ -1,9 +1,9 @@
 <template>
   <div>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="images/logo13.png" alt="img"/></span
+          <span><img src="images/logo13.png" alt="img" /></span
         ></a>
       </h2>
       <a href="#" class="cd-close">Close</a>

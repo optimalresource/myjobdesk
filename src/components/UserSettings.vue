@@ -87,7 +87,7 @@ export default {
   name: "UserProfileSettings",
   components: {
     Notification,
-    UserSettingsMenu
+    UserSettingsMenu,
   },
   data() {
     return {
@@ -99,8 +99,8 @@ export default {
       websiteUrl: "",
       notification: {
         message: "",
-        type: ""
-      }
+        type: "",
+      },
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -118,10 +118,10 @@ export default {
       axios
         .get("account/me", {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .then(response => {
+        .then((response) => {
           this.name = response.data.data.name;
           this.username = response.data.data.username;
           this.email = response.data.data.email;
@@ -142,22 +142,22 @@ export default {
             email: this.email,
             location: this.location,
             bio: this.bio,
-            website_url: this.websiteUrl
+            website_url: this.websiteUrl,
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // display success notification
           this.notification = Object.assign({}, this.notification, {
             message: response.data.message,
-            type: "success"
+            type: "success",
           });
         });
-    }
-  }
+    },
+  },
 };
 </script>

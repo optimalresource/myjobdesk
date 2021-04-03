@@ -8,6 +8,7 @@
             :username="companys.email"
             :size="190"
             :rounded="true"
+            :backgroundColor="'#c14c93'"
           >
           </avatar>
         </div>
@@ -59,8 +60,8 @@
           </router-link>
         </ul>
         <ul class="feedlist logout_link jb_cover">
-          <router-link tag="li" to="/logout">
-            <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
+          <router-link tag="li" @click="logout">
+            <a @click="logout"><i class="fas fa-power-off"></i> log out </a>
           </router-link>
         </ul>
       </div>
@@ -115,7 +116,7 @@
 <script>
 import Avatar from "vue-avatar";
 export default {
-  data: function() {
+  data: function () {
     return {
       companys: {
         name: "",
@@ -124,13 +125,20 @@ export default {
         phone_number: "",
         website: "",
         bio: "",
-        address: ""
-      }
+        address: "",
+      },
     };
   },
   components: {
-    Avatar
-  }
+    Avatar,
+  },
+  methods: {
+    async logout() {
+      this.$toasted.info("You're being been logged out");
+      await this.$store.dispatch("LogOut");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 

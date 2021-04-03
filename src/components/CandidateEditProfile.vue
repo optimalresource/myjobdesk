@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="cursor"></div>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img"/></span
+          <span><img src="images/logo.png" alt="img" /></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -103,7 +103,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -172,7 +172,9 @@
                   <a href="#"><i class="fas fa-cog"></i>Setting</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a @click="logout"
+                    ><i class="fas fa-sign-in-alt"></i>logout</a
+                  >
                 </li>
               </ul>
             </div>
@@ -338,7 +340,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -375,7 +377,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -664,7 +666,9 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a @click="logout"
+                      ><i class="fas fa-power-off"></i> log out
+                    </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -1002,23 +1006,29 @@ export default {
   components: {
     Looking,
     Footer,
-    EditSubNav
+    EditSubNav,
   },
-  data: function() {
+  data: function () {
     return {};
   },
-  methods: {},
+  methods: {
+    async logout() {
+      this.$toasted.info("You're being been logged out");
+      await this.$store.dispatch("LogOut");
+      this.$router.push("/login");
+    },
+  },
   created() {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
+      "My-Custom-Header": "Register step 2",
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
@@ -1038,7 +1048,7 @@ export default {
         this.updatedForm.to = response.data.to;
         this.updatedForm.from = response.data.from;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
@@ -1049,10 +1059,10 @@ export default {
       //   this.inputs = response.data;
       //   this.forms = response.data;
       //   this.updatedForms = response.data;
-      .then(function(data) {
+      .then(function (data) {
         console.log(data);
       });
-  }
+  },
 };
 </script>
 

@@ -20,9 +20,7 @@
               <ul class="pricing_list22">
                 <li>5 Jobs Posting</li>
                 <li>2 Featured jobs</li>
-                <li>
-                  1 Renew Jobs
-                </li>
+                <li>1 Renew Jobs</li>
                 <li>10 Days Duration</li>
                 <li>Email Alert</li>
               </ul>
@@ -39,9 +37,7 @@
               <ul class="pricing_list22">
                 <li>5 Jobs Posting</li>
                 <li>2 Featured jobs</li>
-                <li>
-                  1 Renew Jobs
-                </li>
+                <li>1 Renew Jobs</li>
                 <li>10 Days Duration</li>
                 <li>Email Alert</li>
               </ul>
@@ -58,9 +54,7 @@
               <ul class="pricing_list22">
                 <li>5 Jobs Posting</li>
                 <li>2 Featured jobs</li>
-                <li>
-                  1 Renew Jobs
-                </li>
+                <li>1 Renew Jobs</li>
                 <li>10 Days Duration</li>
                 <li>Email Alert</li>
               </ul>
@@ -75,7 +69,7 @@
 
 <script>
 export default {
-  name: "Price"
+  name: "Price",
 };
 </script>
 

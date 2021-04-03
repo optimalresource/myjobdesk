@@ -1,12 +1,13 @@
 <template>
   <div class="we_do">
+    <a class="btn btn-info m-5" href="/"> go to home page</a>
     <div class="not">
       <img src="../assets/images/error1.png" alt="" />
     </div>
     <div class="disappear">
       <h3>404</h3>
-      <hr class="hr">
-      <p>Opps! Page not found</p>
+      <hr class="hr" />
+      <p>This is not the page you're looking for</p>
     </div>
   </div>
 </template>

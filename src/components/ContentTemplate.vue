@@ -33,11 +33,11 @@ export default {
   props: {
     // register: Boolean,
     // login: Boolean,
-    page: String
+    page: String,
   },
   components: {
     LoginDiv,
-    SignUpDiv
+    SignUpDiv,
   },
   methods: {
     showme() {
@@ -46,8 +46,8 @@ export default {
     onSubmit() {
       // EventBus.$emit("onSubmit");
       console.log("I can see you");
-    }
-  }
+    },
+  },
 };
 // @submit.prevent="handleSubmit(onSubmit)"
 //  <ValidationObserver v-slot="{ handleSubmit }">

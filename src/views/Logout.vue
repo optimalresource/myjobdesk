@@ -1,11 +1,16 @@
 <template>
-  <div></div>
+  <div class="spaced">
+    <h3>
+      <i class="fa fa-spinner fa-spin"></i> please wait, you are being logged
+      out...
+    </h3>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Logout",
-  created() {
+  beforeCreate() {
     this.$store
       .dispatch("logout")
       .then((response) => {
@@ -22,4 +27,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.spaced {
+  padding: 15px;
+  min-height: 100px;
+}
+</style>

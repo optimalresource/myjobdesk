@@ -39,7 +39,7 @@
 <script>
 export default {
   name: "Download",
-  props: {}
+  props: {},
 };
 </script>
 

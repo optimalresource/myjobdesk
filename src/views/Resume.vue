@@ -9,8 +9,8 @@ import CandidateResume from "@/components/CandidateResume.vue";
 export default {
   name: "Resume",
   components: {
-    CandidateResume
-  }
+    CandidateResume,
+  },
 };
 </script>
 

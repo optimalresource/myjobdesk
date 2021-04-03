@@ -34,11 +34,11 @@
                 <div class="job_listing_left_fullwidth jb_cover">
                   <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 col-12">
-                      <div class="jp_job_post_side_img">
-                        <h4>{{ companys.name }}</h4>
-                      </div>
+                      <!-- <div class="jp_job_post_side_img">
+                        <h4>{{ companys. }}dfbdfbdfb</h4>
+                      </div> -->
                       <div class="jp_job_post_right_cont">
-                        <h4>{{ companys.category }}</h4>
+                        <h4>{{ companys.name }}</h4>
 
                         <ul>
                           <li>
@@ -112,9 +112,7 @@
                   class="job_filter_category_sidebar company_wrapper jb_cover"
                 >
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>
-                      about us
-                    </h1>
+                    <h1>about us</h1>
                   </div>
                   <div class="job_overview_header pdd jb_cover">
                     <p>
@@ -274,9 +272,7 @@
                             >
                             </avatar
                           ></span>
-                          <h4>
-                            aradhya s.
-                          </h4>
+                          <h4>aradhya s.</h4>
 
                           <ul>
                             <li>app designer</li>
@@ -484,10 +480,10 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     ChatBox,
-    DashboardHeader
+    DashboardHeader,
     // HereAddressLookup
   },
-  data: function() {
+  data: function () {
     return {
       // socialProfile: {
       //   facebook_username: "",
@@ -497,7 +493,7 @@ export default {
       values: [
         [10, 5, 5, 5],
         [40, 10, 10, 10],
-        [30, 30, 30, 30]
+        [30, 30, 30, 30],
       ],
       companys: {
         name: "",
@@ -506,8 +502,8 @@ export default {
         phone_number: "",
         website: "",
         bio: "",
-        address: ""
-      }
+        address: "",
+      },
       // personal_details: {
       //   age: "",
       //   phone: "",
@@ -536,10 +532,10 @@ export default {
     };
   },
   methods: {
-    onClickBar: function() {
+    onClickBar: function () {
       console.log(arguments);
       alert("onClickBar");
-    }
+    },
     //   onClickOutside: function() {
     //     console.log(arguments);
     //     alert("onClickOutside");
@@ -644,7 +640,7 @@ export default {
     //     .catch(error => {
     //       console.log("Failed to fetch referrees " + error.message);
     //     });
-  }
+  },
 };
 </script>
 

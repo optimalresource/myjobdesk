@@ -33,13 +33,13 @@
           >
             <span class="label label-primary">{{
               attachment.name +
-                " (" +
-                Number((attachment.size / 1024 / 1024).toFixed(1)) +
-                "MB)"
+              " (" +
+              Number((attachment.size / 1024 / 1024).toFixed(1)) +
+              "MB)"
             }}</span>
             <span
               class=""
-              style="background: white; cursor: pointer;"
+              style="background: white; cursor: pointer"
               @click="removeAttachment(attachment)"
               ><button class="btn btn-xs btn-danger">
                 <i class="fas fa-times"></i></button
@@ -57,7 +57,7 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       files: [],
       selectedFiles: new FormData(),
@@ -97,7 +97,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Educational Detail",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
       console.log(this.selectedFiles);
       axios
@@ -105,10 +105,10 @@ export default {
           "https://api.myjobdesk.com/api/educational_details",
           this.selectedFiles,
           {
-            headers
+            headers,
           }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data.education.id);
           this.updatedForms.push(response.data.education);
@@ -136,12 +136,12 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

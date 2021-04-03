@@ -9,8 +9,8 @@ import CandidateDashboard from "@/components/CandidateDashboard.vue";
 export default {
   name: "Dashboard",
   components: {
-    CandidateDashboard
-  }
+    CandidateDashboard,
+  },
 };
 </script>
 

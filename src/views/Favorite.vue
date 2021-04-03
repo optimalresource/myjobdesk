@@ -9,8 +9,8 @@ import CandidateFavoriteJob from "@/components/CandidateFavoriteJob.vue";
 export default {
   name: "Favorite",
   components: {
-    CandidateFavoriteJob
-  }
+    CandidateFavoriteJob,
+  },
 };
 </script>
 

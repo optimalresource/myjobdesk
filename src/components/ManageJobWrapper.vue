@@ -15,12 +15,10 @@ import DashboardRightSideBar from "@/components/DashboardRightSideBar.vue";
 export default {
   components: {
     DashboardSideBar,
-    DashboardRightSideBar
+    DashboardRightSideBar,
   },
-  name: "ManageJobWrapper"
+  name: "ManageJobWrapper",
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

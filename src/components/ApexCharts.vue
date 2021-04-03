@@ -14,37 +14,37 @@
 <script>
 export default {
   name: "ApexCharts",
-  data: function() {
+  data: function () {
     return {
       series: [
         {
           name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 123, 23, 45]
-        }
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 123, 23, 45],
+        },
       ],
       chartOptions: {
         chart: {
           height: 350,
           type: "line",
           zoom: {
-            enabled: false
-          }
+            enabled: false,
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         stroke: {
-          curve: "straight"
+          curve: "straight",
         },
         title: {
           text: "Number of Candidate Applications",
-          align: "left"
+          align: "left",
         },
         grid: {
           row: {
             colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-            opacity: 0.5
-          }
+            opacity: 0.5,
+          },
         },
         xaxis: {
           categories: [
@@ -59,10 +59,10 @@ export default {
             "Sep",
             "Oct",
             "Nov",
-            "Dec"
-          ]
-        }
-      }
+            "Dec",
+          ],
+        },
+      },
     };
   },
   methods: {
@@ -77,16 +77,16 @@ export default {
 
       // Make sure to update the whole options config and not just a single property to allow the Vue watch catch the change.
       this.chartOptions = {
-        colors: [colors[Math.floor(Math.random() * colors.length)]]
+        colors: [colors[Math.floor(Math.random() * colors.length)]],
       };
       // In the same way, update the series option
       this.series = [
         {
-          data: newData
-        }
+          data: newData,
+        },
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 

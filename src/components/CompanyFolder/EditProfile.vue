@@ -115,11 +115,11 @@
                         required
                       />
                       <datalist id="datalistOptions">
-                        <option value="San Francisco"></option>
-                        <option value="New York"></option>
-                        <option value="Seattle"></option>
-                        <option value="Los Angeles"></option>
-                        <option value="Chicago"></option>
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
                       </datalist>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
@@ -131,11 +131,11 @@
                         required
                       />
                       <datalist id="datalistOptions">
-                        <option value="San Francisco"></option>
-                        <option value="New York"></option>
-                        <option value="Seattle"></option>
-                        <option value="Los Angeles"></option>
-                        <option value="Chicago"></option>
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
                       </datalist>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
@@ -147,11 +147,11 @@
                         required
                       />
                       <datalist id="datalistOptions">
-                        <option value="San Francisco"></option>
-                        <option value="New York"></option>
-                        <option value="Seattle"></option>
-                        <option value="Los Angeles"></option>
-                        <option value="Chicago"></option>
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
                       </datalist>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
@@ -163,11 +163,11 @@
                         required
                       />
                       <datalist id="datalistOptions">
-                        <option value="San Francisco"></option>
-                        <option value="New York"></option>
-                        <option value="Seattle"></option>
-                        <option value="Los Angeles"></option>
-                        <option value="Chicago"></option>
+                        <option value="San Francisco"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
                       </datalist>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
@@ -317,7 +317,7 @@
             <div class="row mt-2">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="header_btn search_btn jb_cover">
-                  <a class="col-12" href="#">save changes</a>
+                  <a class=" col-12" href="#">save changes</a>
                 </div>
               </div>
             </div>
@@ -352,7 +352,7 @@ import ChatBox from "@/components/ChatBox.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 export default {
   name: "EditProfile",
-  data: function () {
+  data: function() {
     return {
       companys: {
         name: "",

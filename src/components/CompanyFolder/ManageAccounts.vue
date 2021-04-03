@@ -32,15 +32,136 @@
           <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                <h4 class="text-center mb-3">Change Role</h4>
-                <select
+                <h4 class="text-center mb-3">Update Role</h4>
+                <input
                   v-model="users.role"
-                  class="form-control form-control-lg"
+                  class="form-control"
+                  list="datalistOptions"
+                  id="exampleDataList"
+                  placeholder="Change Role"
+                />
+                <datalist id="datalistOptions">
+                  <option value="editor"> </option>
+                  <option value="admin"> </option>
+                  <option value="reviewer"> </option>
+                </datalist>
+
+                <button class="btn power_a mt-2 col-12">
+                  update
+                </button>
+                <button
+                  @click.prevent="back"
+                  class="btn power_a float-right mt-3"
                 >
-                  <option value="editor">Editor</option>
-                  <option value="admin">Admin</option>
-                  <option value="reviewer">Reviewer</option>
-                </select>
+                  <i class="fas fa-long-arrow-alt-left float-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            v-if="givePrivilegesDiv"
+            class="col-lg-9 col-md-12 col-sm-12 col-12"
+          >
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12 privileges ">
+                <h5 class="p-3 text-center">Edit Privileges</h5>
+                <ul class="ks-cboxtags">
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="checkboxOne"
+                      v-model="update.manage_users"
+                    /><label for="checkboxOne">Can Manage Users</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="checkboxTwo"
+                      v-model="update.send_messages"
+                    /><label for="checkboxTwo">Can Send Messages</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="checkboxThree"
+                      v-model="update.view_all_user_activities"
+                    /><label for="checkboxThree">Can view all activities</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="checkboxFour"
+                      v-model="update.post_jobs"
+                    /><label for="checkboxFour">Can Post Jobs</label>
+                  </li>
+                  <li>
+                    <input
+                      v-model="update.post_interview_questions"
+                      type="checkbox"
+                      id="checkboxFive"
+                    /><label for="checkboxFive"
+                      >Can Post Interview Questions</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      v-model="update.edit_profile"
+                      type="checkbox"
+                      id="checkboxSix"
+                    /><label for="checkboxSix">Can Edit Profile</label>
+                  </li>
+                </ul>
+                <button class="btn power_a mt-2 col-12">
+                  update
+                </button>
+
+                <button
+                  @click.prevent="backest"
+                  class="btn power_a float-right mt-3 mb-4"
+                >
+                  <i class="fas fa-long-arrow-alt-left float-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div v-if="userActivity" class="col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                <div
+                  class="job_filter_category_sidebar company_wrapper jb_cover"
+                >
+                  <div class="job_filter_sidebar_heading jb_cover">
+                    <h1>
+                      User activities
+                    </h1>
+                  </div>
+                  <div class="job_overview_header pdd jb_cover">
+                    <ul class="mb-2">
+                      <p class="text-info">
+                        sfkhaesriuheisub@dfbs;fnde.com
+                      </p>
+                      <li>
+                        Action Type: sdveadedartedrtbbbbbbrved
+                      </li>
+                      <li>
+                        Browser: Chrome
+                      </li>
+                      <li>
+                        Ip Address: 136782345
+                      </li>
+                      <li><small>Time: 2:00 gmt</small></li>
+                    </ul>
+                    <hr />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                  <button
+                    @click.prevent="backer"
+                    class="btn power_a float-right mt-3"
+                  >
+                    <i class="fas fa-long-arrow-alt-left float-right"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -60,18 +181,28 @@
                     v-show="showUsers"
                     href="#"
                     class="btn power_a"
-                    >view All Users Activities</a
+                    >view all users activities</a
                   >
                   <a
                     data-toggle="modal"
-                    data-target="#myModal234"
+                    data-target="#exampleModalScrollable"
                     class="btn power_a"
                     href="#"
                     >create new user</a
                   >
                 </div>
-                <div class="modal fade" id="myModal234">
-                  <div class="modal-dialog modal-lg">
+                <div
+                  class="modal fade"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalScrollable"
+                  aria-hidden="true"
+                  id="exampleModalScrollable"
+                >
+                  <div
+                    class="modal-dialog  modal-lg modal-dialog-scrollable"
+                    role="document"
+                  >
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title">Create New User</h5>
@@ -138,17 +269,18 @@
                             v-model="users.password_confirmation"
                           />
                         </div>
-                        <div class="delete_jb_form">
-                          <select
-                            v-model="users.role"
-                            class="form-control form-control-md"
-                          >
-                            <option>select a role</option>
-                            <option value="editor">Editors</option>
-                            <option value="admin">Admin</option>
-                            <option value="reviewer">Reviewer</option>
-                          </select>
-                        </div>
+                        <input
+                          class="form-control"
+                          list="datalistOptions"
+                          v-model="users.role"
+                          id="exampleDataList"
+                          placeholder="Assign Role"
+                        />
+                        <datalist id="datalistOptions">
+                          <option value="editor"></option>
+                          <option value="admin"></option>
+                          <option value="reviewer"></option>
+                        </datalist>
                         <br />
                         <!-- <div>
                             <multiselect
@@ -192,7 +324,7 @@
                   class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
                 >
                   <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
                       <div class="col-sm-12">
                         <div class="jb_job_post_side_img">
@@ -212,20 +344,26 @@
                         <p>Privileges: <span>Post</span></p>
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 float-right">
                       <div class="jb_job_post_right_btn_wrapper">
                         <ul>
                           <li>
                             <div class="dropdown">
-                              <button class="dropbtn btn btn-primary">
-                                Edit
-                              </button>
+                              <div class="dropbtn">
+                                <button class="btn btn-primary">
+                                  Edit <i class="fas fa-edit "></i>
+                                </button>
+                              </div>
                               <div class="dropdown-content">
                                 <a @click.prevent="updateRole" href="#"
                                   >Change Role</a
                                 >
-                                <a href="#">User Activities</a>
-                                <a href="#">Edit Privileges</a>
+                                <a @click.prevent="viewactivities" href="#"
+                                  >User Activities</a
+                                >
+                                <a @click.prevent="viewPrivileges" href="#"
+                                  >Edit Privileges</a
+                                >
                               </div>
                             </div>
                           </li>
@@ -539,9 +677,37 @@
                       <h1>All Users activities</h1>
                     </div>
                     <div class="job_overview_header pdd jb_cover">
-                      <ul>
-                        <li></li>
+                      <ul class="mb-2">
+                        <h5>
+                          sfkhaesriuheisub@dfbs;fnde.com
+                        </h5>
+                        <li>
+                          Action Type: sdveadedartedrtbbbbbbrved
+                        </li>
+                        <li>
+                          Browser: Chrome
+                        </li>
+                        <li>
+                          Ip Address: 136782345
+                        </li>
+                        <li><small>Time: 2:00 gmt</small></li>
                       </ul>
+                      <hr />
+                      <div class="mb-2">
+                        <h5>
+                          sfkhaesriuheisub@dfbs;fnde.com
+                        </h5>
+                        <p>
+                          Action Type: sdveadedartedrtbbbbbbrved
+                        </p>
+                        <p>
+                          Browser: Chrome
+                        </p>
+                        <p>
+                          Ip Address: 136782345
+                        </p>
+                        <p><small>Time: 2:00 gmt</small></p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -584,10 +750,13 @@ import ChatBox from "@/components/ChatBox.vue";
 import axios from "axios";
 // import Multiselect from "vue-multiselect";
 export default {
-  data: function () {
+  data: function() {
     return {
+      givePrivilegesDiv: false,
+      editPrivileges: false,
       notChangeRole: true,
       changeRole: false,
+      userActivity: false,
       value: [{ name: "Javascript", code: "js" }],
       options: [
         { name: "Vue.js", language: "JavaScript" },
@@ -611,6 +780,14 @@ export default {
         middle_name: "",
         role: "",
         last_name: "",
+      },
+      update: {
+        manage_users: "",
+        send_messages: "",
+        edit_profile: "",
+        post_interview_questions: "",
+        post_jobs: "",
+        view_all_user_activities: "",
       },
       companys: {
         name: "",
@@ -642,15 +819,35 @@ export default {
       this.options.push(tag);
       this.value.push(tag);
     },
-    updateRole: function () {
+    updateRole: function() {
       this.changeRole = true;
       this.notChangeRole = false;
+    },
+    back: function() {
+      this.changeRole = false;
+      this.notChangeRole = true;
+    },
+    viewactivities: function() {
+      this.notChangeRole = false;
+      this.userActivity = true;
+    },
+    backer: function() {
+      this.notChangeRole = true;
+      this.userActivity = false;
+    },
+    viewPrivileges: function() {
+      this.notChangeRole = false;
+      this.givePrivilegesDiv = true;
+    },
+    backest: function() {
+      this.notChangeRole = true;
+      this.givePrivilegesDiv = false;
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
     },
-    saveNewUsers: function () {
+    saveNewUsers: function() {
       if (!this.onLine) {
         this.$toasted.error("Please check your internet connection");
         return false;
@@ -719,7 +916,7 @@ export default {
       this.showUsers = false;
       this.showActivities = true;
     },
-    showAllUsers: function () {
+    showAllUsers: function() {
       this.showUsers = true;
       this.showActivities = false;
     },
@@ -775,6 +972,19 @@ export default {
   display: inline-block;
 }
 
+/* 575 */
+
+@media (max-width: 575px) {
+  .dropdown {
+    display: block;
+    margin-top: -75px;
+  }
+}
+@media (max-width: 400px) {
+  .dropdown {
+    margin-top: 0;
+  }
+}
 .dropdown-content {
   display: none;
   position: absolute;
@@ -800,5 +1010,79 @@ export default {
   margin-top: 70px;
   border: 1px solid rgb(226, 226, 226);
   box-sizing: border-box;
+}
+ul.ks-cboxtags {
+  list-style: none;
+  padding: 20px;
+}
+ul.ks-cboxtags li {
+  display: inline;
+}
+ul.ks-cboxtags li label {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(139, 139, 139, 0.3);
+  color: #adadad;
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 3px 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+}
+
+ul.ks-cboxtags li label {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 12px;
+  padding: 2px 6px 2px 2px;
+  content: "\f067";
+  transition: transform 0.3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+  content: "\f00c";
+  transform: rotate(-360deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+  border: 2px solid #e9a1ff;
+  background-color: #990066;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
+}
+.privileges {
+  -webkit-box-shadow: 0 2px 3px #777;
+  -moz-box-shadow: 0 2px 3px #777;
+  box-shadow: 0 2px 3px #777;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 0.5px solid rgb(232, 232, 232);
 }
 </style>

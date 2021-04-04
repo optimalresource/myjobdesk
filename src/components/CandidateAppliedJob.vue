@@ -37,8 +37,8 @@ export default {
     Looking,
     Footer,
     CandidateAppliedJobNav,
-    ManageJobWrapper
-  }
+    ManageJobWrapper,
+  },
 };
 </script>
 

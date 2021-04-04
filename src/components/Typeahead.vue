@@ -28,23 +28,23 @@ export default {
   data() {
     return {
       items: [],
-      query: ""
+      query: "",
     };
   },
   methods: {
     fetchItems() {
       if (typeof this.source === "string") {
         fetch(this.source)
-          .then(stream => stream.json())
-          .then(data => (this.items = data))
-          .catch(error => console.error(error));
+          .then((stream) => stream.json())
+          .then((data) => (this.items = data))
+          .catch((error) => console.error(error));
       } else {
         this.items = this.source;
       }
     },
     reset() {
       this.query = "";
-    }
+    },
   },
   mounted() {
     this.fetchItems();
@@ -52,21 +52,21 @@ export default {
   props: {
     source: {
       type: [String, Array],
-      required: true
+      required: true,
     },
     filterKey: {
       type: String,
-      required: true
+      required: true,
     },
     startAt: {
       type: Number,
-      default: 3
+      default: 3,
     },
     placeholder: {
       type: String,
-      default: ""
-    }
-  }
+      default: "",
+    },
+  },
 };
 </script>
 

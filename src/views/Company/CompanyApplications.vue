@@ -9,8 +9,8 @@ import Applications from "@/components/CompanyFolder/Applications.vue";
 export default {
   name: "CompanyApplications",
   components: {
-    Applications
-  }
+    Applications,
+  },
 };
 </script>
 

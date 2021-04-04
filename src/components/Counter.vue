@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: "Counter"
+  name: "Counter",
 };
 </script>
 

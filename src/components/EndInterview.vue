@@ -1,5 +1,5 @@
 <template>
-  <div class="full_div ">
+  <div class="full_div">
     <div class="middle">
       <div class="container justfy-content-center text-center">
         <h2 class="mb-2">Your Session has ended</h2>

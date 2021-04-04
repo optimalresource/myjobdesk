@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex text-center justify-content-center mt-5">
-      <div class="card osas" style="width: 40rem;">
+      <div class="card osas" style="width: 40rem">
         <div class="card-body ego">
           <h5 v-if="pass" class="card-title mt-3">Get Recovery Password</h5>
           <div v-if="pass" class="form-group icon_form comments_form">
@@ -69,11 +69,11 @@ export default {
       pass: true,
       notPass: false,
       spin: false,
-      notSpin: true
+      notSpin: true,
     };
   },
   methods: {
-    recovery: function() {
+    recovery: function () {
       if (!this.onLine) {
         this.$toasted.error("Please check your internet connection");
         return false;
@@ -93,14 +93,14 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Temporary Password",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
 
       axios
         .post("", this.email, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           if (response.status == "200") {
             setTimeout(() => {
@@ -115,7 +115,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -123,7 +123,7 @@ export default {
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
-    }
+    },
   },
   watch: {
     onLine(v) {
@@ -133,8 +133,8 @@ export default {
           this.showBackOnline = false;
         }, 1000);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

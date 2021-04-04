@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: "Ripple"
+  name: "Ripple",
 };
 </script>
 <style lang="sass" scoped>

@@ -243,14 +243,14 @@ import ChatBox from "@/components/ChatBox.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 export default {
   name: "EditProfile",
-  data: function() {
+  data: function () {
     return {
       config: {
         events: {
-          initialized: function() {
+          initialized: function () {
             console.log("initialized");
-          }
-        }
+          },
+        },
       },
       model: {},
       companys: {
@@ -264,7 +264,7 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: ""
+        address: "",
       },
       posts: {
         category: "",
@@ -278,8 +278,8 @@ export default {
         specific_qualificaion: "",
         age: "",
         skills: "",
-        experience: ""
-      }
+        experience: "",
+      },
     };
   },
   methods: {
@@ -288,7 +288,7 @@ export default {
     },
     mySelectEvent({ id, text }) {
       console.log({ id, text });
-    }
+    },
   },
   components: {
     Looking,
@@ -297,8 +297,8 @@ export default {
     // Select2,
     // Avatar,
     ChatBox,
-    CompanyDashboardSideBar
-  }
+    CompanyDashboardSideBar,
+  },
 };
 </script>
 <style scoped>

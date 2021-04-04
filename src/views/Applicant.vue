@@ -4,9 +4,7 @@
       <div class="step">
         <transition name="fade">
           <div v-if="step == 1">
-            <h5 class="text-center mt-4 mb-4">
-              Applicant Registration
-            </h5>
+            <h5 class="text-center mt-4 mb-4">Applicant Registration</h5>
             <!-- <h5 class="text-center mb-5 mt-5">Register</h5> -->
 
             <ValidationProvider
@@ -32,7 +30,7 @@
               rules="required|alpha"
               v-slot="{ errors }"
             >
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   type="text"
                   class="form-control require"
@@ -72,7 +70,7 @@
                 <input
                   id="email"
                   type="email"
-                  class="form-control  require"
+                  class="form-control require"
                   required
                   autocomplete="email"
                   autofocus
@@ -89,7 +87,7 @@
                 :rules="{
                   required: true,
                   regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
-                  confirmed: 'confirmation'
+                  confirmed: 'confirmation',
                 }"
                 v-slot="{ errors }"
                 name="Password"
@@ -98,7 +96,7 @@
                   <input
                     v-bind:type="[showPassword ? 'text' : 'password']"
                     id="password"
-                    class="form-control "
+                    class="form-control"
                     name="password"
                     placeholder="Password *letters and numbers are compulsory"
                     v-model="inputs.password"
@@ -129,7 +127,7 @@
                     v-bind:type="[showConfirmPassword ? 'text' : 'password']"
                     id="confirm-password"
                     required
-                    class="form-control short "
+                    class="form-control short"
                     placeholder="Confirm Password *"
                     v-model="inputs.password_confirmation"
                   />
@@ -141,7 +139,7 @@
                       <i
                         class="fa"
                         :class="[
-                          showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'
+                          showConfirmPassword ? 'fa-eye' : 'fa-eye-slash',
                         ]"
                         aria-hidden="true"
                       ></i>
@@ -153,9 +151,7 @@
             </ValidationObserver>
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
-                <button type="submit" @click="register">
-                  Next Step
-                </button>
+                <button type="submit" @click="register">Next Step</button>
               </div>
             </div>
 
@@ -187,14 +183,10 @@
     </div>
     <transition name="fade">
       <div class="" v-if="step == 2">
-        <div class="personal_details_div ">
+        <div class="personal_details_div">
           <div class="mb-3">
-            <h2 class="text-center">
-              Personal Details
-            </h2>
-            <h6 class="text-center personal_headers">
-              Lets Get To Know You
-            </h6>
+            <h2 class="text-center">Personal Details</h2>
+            <h6 class="text-center personal_headers">Lets Get To Know You</h6>
           </div>
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
@@ -297,9 +289,9 @@
                 @change="changeState"
               >
                 <option value="0">Select State</option>
-                <option v-for="state in states" :key="state" :value="state">{{
-                  state
-                }}</option>
+                <option v-for="state in states" :key="state" :value="state">
+                  {{ state }}
+                </option>
               </select>
               <div id="">{{ errors[0] }}</div>
             </div>
@@ -318,9 +310,9 @@
                 @change="changeLGA"
               >
                 <option value="0">Select Local Government</option>
-                <option v-for="lg in lga.lgas" :key="lg" :value="lg">{{
-                  lg
-                }}</option>
+                <option v-for="lg in lga.lgas" :key="lg" :value="lg">
+                  {{ lg }}
+                </option>
               </select>
               <div id="">{{ errors[0] }}</div>
             </div>
@@ -341,9 +333,7 @@
         <br />
         <br />
         <div class="add_educational_details_div">
-          <h6 class="text-center personal_headers mb-3">
-            Education
-          </h6>
+          <h6 class="text-center personal_headers mb-3">Education</h6>
           <button @click.prevent="showForm" class="btn btn-primary">
             Add Education
           </button>
@@ -367,12 +357,12 @@
             </div>
           </div>
 
-          <div class="edu-form  background">
+          <div class="edu-form background">
             <h5 class="card-title p-5">
               Add Education
               <span
                 class="float"
-                style="cursor:pointer"
+                style="cursor: pointer"
                 @click.prevent="hideForm"
                 ><i class="fas fa-times"></i
               ></span>
@@ -515,13 +505,13 @@
                     >
                       <span class="label label-primary">{{
                         attachment.name +
-                          " (" +
-                          Number((attachment.size / 1024 / 1024).toFixed(1)) +
-                          "MB)"
+                        " (" +
+                        Number((attachment.size / 1024 / 1024).toFixed(1)) +
+                        "MB)"
                       }}</span>
                       <span
                         class=""
-                        style="background: white; cursor: pointer;"
+                        style="background: white; cursor: pointer"
                         @click="removeAttachment(attachment)"
                         ><button class="btn btn-xs btn-danger">
                           <i class="fas fa-times"></i></button
@@ -547,17 +537,17 @@
             <p class="text-danger">(Optional)</p>
             <span
               class="float cert"
-              style="cursor:pointer"
+              style="cursor: pointer"
               @click.prevent="hideCertificateForm"
               ><i class="fas fa-times"></i
             ></span>
           </div>
           <div
-            class="p-3 certification_preview "
+            class="p-3 certification_preview"
             v-for="(updatedCert, cert) in updatedCerts"
             :key="cert"
           >
-            <div class="mb-3 ">
+            <div class="mb-3">
               <span
                 @click="deleteCertification(cert)"
                 class="float-right text-danger"
@@ -608,7 +598,7 @@
             <div class="container">
               <button
                 @click.prevent="save_certificate"
-                class=" p-2 mt-2 submit-edu"
+                class="p-2 mt-2 submit-edu"
               >
                 Save Certifications
               </button>
@@ -655,7 +645,7 @@
             </span>
             <h5 class="text-center mt-2 mb-3">Referees</h5>
             <div
-              class="p-3 certification_preview "
+              class="p-3 certification_preview"
               v-for="(updatedRef, ref) in updatedRefs"
               :key="ref"
             >
@@ -678,7 +668,7 @@
               </div>
             </div>
             <div class="referees">
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   type="text"
                   class="form-control require"
@@ -687,7 +677,7 @@
                   v-model="referrers.full_name"
                 />
               </div>
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   type="email"
                   class="form-control require"
@@ -696,7 +686,7 @@
                   v-model="referrers.email"
                 />
               </div>
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   type="text"
                   class="form-control require"
@@ -705,7 +695,7 @@
                   v-model="referrers.company_name"
                 />
               </div>
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   type="text"
                   class="form-control require"
@@ -714,7 +704,7 @@
                   v-model="referrers.company_position"
                 />
               </div>
-              <div class="form-group icon_form comments_form ">
+              <div class="form-group icon_form comments_form">
                 <input
                   input
                   type="tel"
@@ -759,7 +749,7 @@
           </h5>
 
           <div
-            class="p-3 certification_preview "
+            class="p-3 certification_preview"
             v-for="(updatedexperience, exp) in updatedexperiences"
             :key="exp"
           >
@@ -785,7 +775,7 @@
             </div>
           </div>
 
-          <div class=" Experience mb-3">
+          <div class="Experience mb-3">
             <div class="form-group icon_form comments_form">
               <input
                 type="text"
@@ -804,7 +794,7 @@
                 v-model="experiences.job_description"
               />
             </div>
-            <div class="form-group icon_form comments_form ">
+            <div class="form-group icon_form comments_form">
               <input
                 type="text"
                 class="form-control require"
@@ -813,7 +803,7 @@
                 v-model="experiences.company_name"
               />
             </div>
-            <div class="form-group icon_form comments_form ">
+            <div class="form-group icon_form comments_form">
               <input
                 type="text"
                 class="form-control require"
@@ -822,7 +812,7 @@
                 v-model="experiences.company_location"
               />
             </div>
-            <div class="form-group icon_form comments_form ">
+            <div class="form-group icon_form comments_form">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="">Years Worked</span>
@@ -861,7 +851,7 @@
             <p class="text-danger">Optional</p>
 
             <div
-              class="p-3 certification_preview "
+              class="p-3 certification_preview"
               v-for="(updatedskill, skill) in updatedskills"
               :key="skill"
             >
@@ -913,11 +903,9 @@
         <br />
         <br />
         <div class="container justify-content-center certification_div">
-          <h5 class="text-center mt-4 mb-2">
-            Upload Curriculum Vitae
-          </h5>
+          <h5 class="text-center mt-4 mb-2">Upload Curriculum Vitae</h5>
           <!-- <h6 class="text-center mb-2">CV</h6> -->
-          <div class="form-group icon_form comments_form  input-group">
+          <div class="form-group icon_form comments_form input-group">
             <div class="custom-file">
               <input
                 ref="cv"
@@ -941,7 +929,7 @@
         </div>
         <div>
           <div
-            class=" col-12 d-flex justify-content-center col-sm-12 col-xs-12 mt-3 mb-4"
+            class="col-12 d-flex justify-content-center col-sm-12 col-xs-12 mt-3 mb-4"
           >
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
@@ -975,15 +963,13 @@
         <div class="mt-5 ml-5 d-flex justify-content-center">
           <div class="jb_newslwtteter_button">
             <div class="header_btn search_btn news_btn jb_cover">
-              <button @click="goToDashBoard" type="button">
-                Lets Go
-              </button>
+              <button @click="goToDashBoard" type="button">Lets Go</button>
             </div>
           </div>
         </div>
         <p>
           <a href="#">
-            <span style="cursor:pointer" class="text-light"
+            <span style="cursor: pointer" class="text-light"
               ><u>Click here if you were not automatically redirected </u></span
             ></a
           >
@@ -1004,11 +990,11 @@ import Multiselect from "vue-multiselect";
 export default {
   components: {
     // "vue-search": VueSearch,
-    Multiselect
+    Multiselect,
   },
   name: "SignUpDiv",
   // props: ["EventBus"],
-  data: function() {
+  data: function () {
     return {
       uploadedFiles: [],
       isHidden: true,
@@ -1036,7 +1022,7 @@ export default {
         { name: "​​​Oil & Gas", code: "oi" },
         { name: "Services", code: "se" },
         { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" }
+        { name: "Utilities", code: "ut" },
       ],
       educational_details_file: {},
       attachments: [],
@@ -1058,7 +1044,7 @@ export default {
         company_password_confirmation: "",
         company_sector: "",
         company_address: "",
-        company_contact_number: ""
+        company_contact_number: "",
       },
       inputs: {
         first_name: "",
@@ -1066,10 +1052,10 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       skills: {
-        skill: ""
+        skill: "",
       },
       experiences: {
         job_description: "",
@@ -1077,7 +1063,7 @@ export default {
         company_name: "",
         company_location: "",
         date_from: "",
-        date_to: ""
+        date_to: "",
       },
       rows: [],
       id: 0,
@@ -1088,11 +1074,11 @@ export default {
         company_position: "",
         company_name: "",
         email: "",
-        full_name: ""
+        full_name: "",
       },
       certifications: {
         title: "",
-        description: ""
+        description: "",
       },
       forms: {
         dob: "",
@@ -1110,7 +1096,7 @@ export default {
         course_of_study: "",
         upload: [],
         selectedState: "",
-        selectedLGA: ""
+        selectedLGA: "",
       },
       updatedForms: [],
       updatedexperiences: [],
@@ -1132,7 +1118,7 @@ export default {
       certPreview: [],
       cvFiles: [],
       cvPreview: [],
-      cvUpload: []
+      cvUpload: [],
     };
   },
   beforeCreate() {
@@ -1145,7 +1131,7 @@ export default {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -1154,15 +1140,15 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Personal Details"
+        "My-Custom-Header": "Fetch Personal Details",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/personal_details", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.forms.marital_status = response.data.marital_status;
           this.forms.gender = response.data.gender;
           this.forms.selectedLGA = response.data.lga;
@@ -1174,7 +1160,7 @@ export default {
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch personal details " + error.message);
         });
     },
@@ -1182,20 +1168,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Education Info"
+        "My-Custom-Header": "Fetch Education Info",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/educational_details/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedForms = response.data;
           this.eDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch education details " + error.message);
         });
     },
@@ -1203,20 +1189,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Certificates"
+        "My-Custom-Header": "Fetch Certificates",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/certificates/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedCerts = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch certificates " + error.message);
         });
     },
@@ -1224,20 +1210,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Referrees"
+        "My-Custom-Header": "Fetch Referrees",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/referrees/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedRefs = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch referrees " + error.message);
         });
     },
@@ -1245,20 +1231,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Experiences"
+        "My-Custom-Header": "Fetch Experiences",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/experiences/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedexperiences = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch experiences " + error.message);
         });
     },
@@ -1266,20 +1252,20 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Skills"
+        "My-Custom-Header": "Fetch Skills",
       };
       var request = {};
       axios
         .get("https://api.myjobdesk.com/api/skills/all", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedskills = response.data;
           this.pDResponse = response.status;
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch skills " + error.message);
         });
     },
@@ -1289,7 +1275,7 @@ export default {
     },
     getAttachmentSize() {
       this.upload_size = 0;
-      this.attachments.map(item => {
+      this.attachments.map((item) => {
         this.upload_size += parseInt(item.size);
       });
 
@@ -1365,13 +1351,13 @@ export default {
       axios
         .post("https://api.myjobdesk.com/api/register", this.companys)
 
-        .then(response => {
+        .then((response) => {
           console.log(this.inputs);
           console.log(response);
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1433,13 +1419,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Register step 2"
+        "My-Custom-Header": "Register step 2",
       };
       axios
         .post("https://api.myjobdesk.com/api/personal_details", request, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.pDResponse = response.status;
           if (response.status == "200") {
@@ -1452,7 +1438,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1491,7 +1477,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Educational Detail",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
       console.log(this.selectedFiles);
       axios
@@ -1499,10 +1485,10 @@ export default {
           "https://api.myjobdesk.com/api/educational_details",
           this.selectedFiles,
           {
-            headers
+            headers,
           }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data.education.id);
           this.updatedForms.push(response.data.education);
@@ -1532,7 +1518,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -1544,13 +1530,13 @@ export default {
       document.getElementsByClassName("certify")[0].style.display = "block";
       document.getElementsByClassName("cert")[0].style.display = "block";
     },
-    openNav: function() {
+    openNav: function () {
       document.getElementById("myNav").style.width = "100%";
     },
-    closeNav: function() {
+    closeNav: function () {
       document.getElementById("myNav").style.width = "0%";
     },
-    checkEducation: function() {
+    checkEducation: function () {
       if (this.forms.school_name == "") {
         this.$toasted.error("Please check and complete School name");
         return false;
@@ -1586,7 +1572,7 @@ export default {
 
       return true;
     },
-    nextStep: function() {
+    nextStep: function () {
       this.step++;
     },
     onSubmit() {
@@ -1600,14 +1586,14 @@ export default {
     changeLGA() {
       console.log(this.forms.selectedLGA);
     },
-    removeupdatedForms: function(id) {
+    removeupdatedForms: function (id) {
       var toDelete = this.updatedForms[id];
       const requestId = { id: toDelete.id };
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Educational Detail",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -1615,9 +1601,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/educational_details", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedForms.splice(id, 1);
             this.$toasted.success("Education detail deleted successfully");
@@ -1635,7 +1621,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toasted.error("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -1655,17 +1641,17 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 3 "
+        "My-Custom-Header": "Going to step 3 ",
       };
 
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1681,17 +1667,17 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 4 "
+        "My-Custom-Header": "Going to step 4 ",
       };
 
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1702,7 +1688,7 @@ export default {
       return true;
     },
 
-    goToDashBoard: function() {
+    goToDashBoard: function () {
       var request = { category: [] };
       if (this.category.length < 1) {
         this.$toasted.error("please pick a category");
@@ -1715,15 +1701,15 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Seeker Categories",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
 
       console.log(request);
       axios
         .post("https://api.myjobdesk.com/api/pick_categories", request, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.categoryResponse = response.status;
           if (response.status == "200") {
@@ -1736,7 +1722,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1744,12 +1730,12 @@ export default {
       var step = { step: 5 };
       axios
         .post("https://api.myjobdesk.com/api/step", step, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1757,39 +1743,39 @@ export default {
       localStorage.setItem("step", 1);
       this.$router.push("/dashboard");
     },
-    finalButton: function() {},
-    setFilename: function(event, row) {
+    finalButton: function () {},
+    setFilename: function (event, row) {
       var file = event.target.files[0];
       row.file = file;
     },
-    addExperience: function() {
+    addExperience: function () {
       document.getElementsByClassName("Experience")[0].style.display = "block";
       document.getElementsByClassName("experience")[0].style.display = "block";
     },
-    removeExperience: function() {
+    removeExperience: function () {
       document.getElementsByClassName("Experience")[0].style.display = "none";
       document.getElementsByClassName("experience")[0].style.display = "none";
     },
-    addReferrer: function() {
+    addReferrer: function () {
       document.getElementsByClassName("Referees")[0].style.display = "block";
       document.getElementsByClassName("referees")[0].style.display = "block";
     },
-    removeReferres: function() {
+    removeReferres: function () {
       document.getElementsByClassName("Referees")[0].style.display = "none";
       document.getElementsByClassName("referees")[0].style.display = "none";
     },
 
-    addskills: function() {
+    addskills: function () {
       document.getElementsByClassName("skills")[0].style.display = "block";
     },
-    removeskills: function() {
+    removeskills: function () {
       document.getElementsByClassName("skills")[0].style.display = "none";
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
     },
-    register: function() {
+    register: function () {
       if (this.inputs.first_name == "") {
         this.$toasted.error("Please Fill First Name");
         return false;
@@ -1835,14 +1821,14 @@ export default {
       axios
         .post("https://api.myjobdesk.com/api/register", this.inputs)
 
-        .then(response => {
+        .then((response) => {
           console.log(this.inputs);
           console.log(response);
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
           this.successResponse = response.status;
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -1890,7 +1876,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting CV",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
       console.log();
       if (!this.onLine) {
@@ -1899,9 +1885,9 @@ export default {
       }
       axios
         .post("https://api.myjobdesk.com/api/cv", this.selectedFiles, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.cvFiles = [];
           this.cvPreview = [];
@@ -1917,7 +1903,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -1936,13 +1922,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Skill "
+        "My-Custom-Header": "Submitting Skill ",
       };
       axios
         .post("https://api.myjobdesk.com/api/skills", this.skills, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedskills.push(response.data);
           this.skills.skill = "";
           document.getElementsByClassName("skills")[0].style.display = "none";
@@ -1958,7 +1944,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2001,13 +1987,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Referee "
+        "My-Custom-Header": "Submitting Referee ",
       };
       axios
         .post("https://api.myjobdesk.com/api/referrees", reff, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           this.updatedRefs.push(response.data);
           this.id++;
           this.referrers.full_name = "";
@@ -2030,7 +2016,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2076,13 +2062,13 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Experiences "
+        "My-Custom-Header": "Submitting Experiences ",
       };
       axios
         .post("https://api.myjobdesk.com/api/experiences", exp, {
-          headers
+          headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           console.log(response.data);
           this.experiences.job_description = "";
@@ -2112,7 +2098,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -2145,7 +2131,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Submitting Certifications",
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       };
 
       axios
@@ -2153,10 +2139,10 @@ export default {
           "https://api.myjobdesk.com/api/certificates",
           this.selectedFiles,
           {
-            headers
+            headers,
           }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.updatedCerts.push(response.data);
           document.getElementsByClassName("certify")[0].style.display = "none";
@@ -2181,7 +2167,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = error.message;
           console.log(error.message);
         });
@@ -2193,7 +2179,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Certifications",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -2201,9 +2187,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/certificates", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedCerts.splice(id, 1);
             this.$toasted.success("Certification deleted successfully");
@@ -2222,7 +2208,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toasted.error("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -2234,7 +2220,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Referree",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -2242,9 +2228,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/referrees", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedRefs.splice(id, 1);
             this.$toasted.success("Referree deleted successfully");
@@ -2257,7 +2243,7 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toasted.error("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
@@ -2269,7 +2255,7 @@ export default {
       const headers = {
         Authorization: "Bearer " + accessToken,
         "My-Custom-Header": "Deleting Experience",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       console.log(headers);
       console.log(requestId);
@@ -2277,9 +2263,9 @@ export default {
       axios
         .delete("https://api.myjobdesk.com/api/experiences", {
           data: requestId,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.updatedexperiences.splice(id, 1);
             this.$toasted.success("Experience deleted successfully");
@@ -2292,11 +2278,11 @@ export default {
             return false;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$toasted.error("An error occured, please try again later");
           console.log("This error occured: " + error);
         });
-    }
+    },
   },
   watch: {
     onLine(v) {
@@ -2323,7 +2309,7 @@ export default {
         this.successResponse = false;
         this.beforeResponse = false;
       }
-    }
+    },
   },
   mounted() {
     // $(document).ready(function() {
@@ -2352,7 +2338,7 @@ export default {
     // };
 
     // var nav = document.querySelector(".modalbutton");
-    var toggleState = function(elem, one, two) {
+    var toggleState = function (elem, one, two) {
       var element = document.querySelector(elem);
       element.setAttribute(
         "data-toggle",
@@ -2369,7 +2355,7 @@ export default {
   beforeDestroy() {
     window.removeEventListener("online", this.updateOnlineStatus);
     window.removeEventListener("offline", this.updateOnlineStatus);
-  }
+  },
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

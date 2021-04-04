@@ -21,8 +21,8 @@ export default {
   data() {
     return {
       ProfilePicture: {
-        file: ""
-      }
+        file: "",
+      },
     };
   },
 
@@ -33,21 +33,21 @@ export default {
       axios
         .post("anyapi joe gives me ", formData, {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         })
-        .then(function() {
+        .then(function () {
           console.log("SUCCESS!!");
         })
-        .catch(function() {
+        .catch(function () {
           console.log("FAILURE!!");
         });
     },
 
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
-    }
-  }
+    },
+  },
 };
 </script>
 

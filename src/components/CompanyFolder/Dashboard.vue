@@ -35,19 +35,23 @@
                   <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 col-12">
                       <!-- <div class="jp_job_post_side_img">
-                        <h4>{{ companys. }}dfbdfbdfb</h4>
+                        <h4>{{  }}dfbdfbdfb</h4>
                       </div> -->
                       <div class="jp_job_post_right_cont">
-                        <h4>{{ companys.name }}</h4>
+                        <h4>{{ name }}</h4>
 
                         <ul>
                           <li>
                             <i class="fas fa-suitcase"></i>&nbsp;
-                            {{ companys.category }}
+                            <span
+                              v-for="(item, index) in category"
+                              :key="index"
+                              >{{ item }}</span
+                            >
                           </li>
                           <li>
                             <i class="flaticon-location-pointer"></i>&nbsp;
-                            {{ companys.address }}
+                            {{ address }}
                           </li>
                         </ul>
                       </div>
@@ -112,13 +116,11 @@
                   class="job_filter_category_sidebar company_wrapper jb_cover"
                 >
                   <div class="job_filter_sidebar_heading jb_cover">
-                    <h1>
-                      about us
-                    </h1>
+                    <h1>about us</h1>
                   </div>
                   <div class="job_overview_header pdd jb_cover">
                     <p>
-                      {{ companys.bio }}
+                      {{ bio }}
                     </p>
                   </div>
                 </div>
@@ -144,7 +146,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>categories:</li>
-                          <li>{{ companys.category }}</li>
+                          <li>{{ category }}</li>
                         </ul>
                       </div>
                     </div>
@@ -155,7 +157,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Location:</li>
-                          <li>{{ companys.address }}</li>
+                          <li>{{ address }}</li>
                         </ul>
                       </div>
                     </div>
@@ -166,7 +168,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Hotline:</li>
-                          <li>{{ companys.phone_number }}</li>
+                          <li>{{ phone_number }}</li>
                         </ul>
                       </div>
                     </div>
@@ -178,7 +180,7 @@
                         <ul>
                           <li>email:</li>
                           <li>
-                            <a href="#">{{ companys.email }}</a>
+                            <a href="#">{{ email }}</a>
                           </li>
                         </ul>
                       </div>
@@ -203,7 +205,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>website:</li>
-                          <li>{{ companys.website }}</li>
+                          <li>{{ website }}</li>
                         </ul>
                       </div>
                     </div>
@@ -268,15 +270,13 @@
                           <span>
                             <avatar
                               class="img-responsive xs-col-12 sm-col-12 mb-2"
-                              :username="companys.email"
+                              :username="email"
                               :size="30"
                               :rounded="true"
                             >
                             </avatar
                           ></span>
-                          <h4>
-                            aradhya s.
-                          </h4>
+                          <h4>aradhya s.</h4>
 
                           <ul>
                             <li>app designer</li>
@@ -484,7 +484,7 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     ChatBox,
-    DashboardHeader
+    DashboardHeader,
     // HereAddressLookup
   },
   data: function() {
@@ -494,20 +494,19 @@ export default {
       //   twitter_username: "",
       //   linkedin_username: ""
       // },
+      name: this.$store.getters.StateCompanyDetails.name ?? "Not set",
+      email: this.$store.getters.StateCompanyDetails.email ?? "Not set",
+      category: this.$store.getters.StateCompanyDetails.category ?? "Not set",
+      phone_number:
+        this.$store.getters.StateCompanyDetails.phone_number ?? "Not set",
+      website: this.$store.getters.StateCompanyDetails.website ?? "Not set",
+      address: this.$store.getters.StateCompanyDetails.address ?? "Not set",
+      bio: this.$store.getters.StateCompanyDetails.bio ?? "Not set",
       values: [
         [10, 5, 5, 5],
         [40, 10, 10, 10],
-        [30, 30, 30, 30]
+        [30, 30, 30, 30],
       ],
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        bio: "",
-        address: ""
-      }
       // personal_details: {
       //   age: "",
       //   phone: "",
@@ -539,7 +538,7 @@ export default {
     onClickBar: function() {
       console.log(arguments);
       alert("onClickBar");
-    }
+    },
     //   onClickOutside: function() {
     //     console.log(arguments);
     //     alert("onClickOutside");
@@ -644,7 +643,16 @@ export default {
     //     .catch(error => {
     //       console.log("Failed to fetch referrees " + error.message);
     //     });
-  }
+  },
+  created() {
+    // if (!this.$store.getters.isHaveCompanyDetails) {
+    this.$store.dispatch("FetchCompanyDetails").catch((error) => {
+      this.handleAxiosErrors(error);
+    });
+    // }
+  },
+  computed: {},
+  mounted() {},
 };
 </script>
 

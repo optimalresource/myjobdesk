@@ -117,16 +117,16 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: ""
+        address: "",
       },
       posts: [],
       page: 1,
       perPage: 10,
-      pages: []
+      pages: [],
     };
   },
   components: {
-    Avatar
+    Avatar,
   },
   methods: {
     getPosts() {
@@ -136,7 +136,7 @@ export default {
           last: "06 Applications",
           suffix: i + 1,
           osas: "Web Designer",
-          sasu: " Los Angeles"
+          sasu: " Los Angeles",
         });
       }
     },
@@ -152,31 +152,26 @@ export default {
       let from = page * perPage - perPage;
       let to = page * perPage;
       return posts.slice(from, to);
-    }
+    },
   },
   computed: {
     displayedPosts() {
       return this.paginate(this.posts);
-    }
+    },
   },
   watch: {
     posts() {
       this.setPages();
-    }
+    },
   },
   created() {
     this.getPosts();
   },
   filters: {
     trimWords(value) {
-      return (
-        value
-          .split(" ")
-          .splice(0, 20)
-          .join(" ") + "..."
-      );
-    }
-  }
+      return value.split(" ").splice(0, 20).join(" ") + "...";
+    },
+  },
 };
 </script>
 <style>

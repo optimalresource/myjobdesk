@@ -4,17 +4,17 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       totalstep: 20,
-      step: 1
+      step: 1,
     };
   },
   methods: {
     nextQuestion() {
       this.step++;
-    }
-  }
+    },
+  },
 };
 </script>
 

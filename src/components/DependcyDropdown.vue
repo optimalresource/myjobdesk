@@ -43,7 +43,9 @@
         <dropd
           placeholder="Choose"
           :list="toppings"
-          @item-change="currentItem => (this.currentItem = currentItem + ' ❤️')"
+          @item-change="
+            (currentItem) => (this.currentItem = currentItem + ' ❤️')
+          "
         ></dropd>
       </li>
 
@@ -62,9 +64,9 @@
 export default {
   data: () => ({
     currentItem: null,
-    toppings: ["Caramel", "Peanut butter", "Sundae", "Oreos"]
+    toppings: ["Caramel", "Peanut butter", "Sundae", "Oreos"],
   }),
-  name: "DependencyDropdown"
+  name: "DependencyDropdown",
 };
 </script>
 

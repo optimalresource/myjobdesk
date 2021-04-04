@@ -15,17 +15,17 @@ import { VueEditor } from "vue2-editor";
 import axios from "axios";
 export default {
   components: {
-    VueEditor
+    VueEditor,
   },
 
   data() {
     return {
-      htmlForEditor: ""
+      htmlForEditor: "",
     };
   },
 
   methods: {
-    handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
+    handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
       // An example of using FormData
       // NOTE: Your key could be different such as:
       // formData.append('file', file)
@@ -36,17 +36,17 @@ export default {
       axios({
         url: "https://fakeapi.yoursite.com/images",
         method: "POST",
-        data: formData
+        data: formData,
       })
-        .then(result => {
+        .then((result) => {
           let url = result.data.url; // Get url from response
           Editor.insertEmbed(cursorLocation, "image", url);
           resetUploader();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 </script>

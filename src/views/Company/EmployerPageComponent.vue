@@ -9,8 +9,8 @@ import ManageAccounts from "@/components/CompanyFolder/ManageAccounts.vue";
 export default {
   name: "EmployerPageComponent",
   components: {
-    ManageAccounts
-  }
+    ManageAccounts,
+  },
 };
 </script>
 

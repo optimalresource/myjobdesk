@@ -638,7 +638,7 @@
 
 <script>
 export default {
-  name: "FavoriteRightSideBar"
+  name: "FavoriteRightSideBar",
 };
 </script>
 

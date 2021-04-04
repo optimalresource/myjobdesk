@@ -9,8 +9,8 @@ import Message from "@/components/CompanyFolder/Message.vue";
 export default {
   name: "CompanyMessage",
   components: {
-    Message
-  }
+    Message,
+  },
 };
 </script>
 

@@ -35,7 +35,7 @@
         </ul>
         <ul class="feedlist logout_link jb_cover">
           <li>
-            <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
+            <a @click="logout"><i class="fas fa-power-off"></i> log out </a>
           </li>
           <li>
             <a href="#" data-toggle="modal" data-target="#myModal"
@@ -96,7 +96,7 @@ import Avatar from "vue-avatar";
 export default {
   name: "DashboardSideBar",
   components: {
-    Avatar
+    Avatar,
   },
   data: function() {
     return {
@@ -106,10 +106,10 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
-      }
+        password_confirmation: "",
+      },
     };
-  }
+  },
 };
 </script>
 

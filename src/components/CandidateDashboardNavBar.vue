@@ -4,7 +4,7 @@
     <a href="javascript:" id="return-to-top"
       ><i class="fas fa-angle-double-up"></i
     ></a>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
           <span><img src="../assets/images/logo13.png" alt="img"/></span
@@ -106,7 +106,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -192,7 +192,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>
@@ -369,7 +369,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -406,7 +406,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -664,7 +664,6 @@
 </template>
 
 <script>
-// import Logout from "@/components/Logout.vue";
 import axios from "axios";
 import Avatar from "vue-avatar";
 export default {
@@ -676,35 +675,35 @@ export default {
         first_name: "",
         last_name: "",
         middle_name: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   components: {
-    Avatar
+    Avatar,
   },
   created() {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
+      "My-Custom-Header": "Register step 2",
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
-  }
+  },
 };
 </script>
 <style scoped>

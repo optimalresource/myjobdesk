@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
               <div class="col-sm-12">
-                <div class="jb_job_post_side_img ">
+                <div class="jb_job_post_side_img">
                   <img src="images/lt1.png" alt="post_img" />
                 </div>
                 <h5>
@@ -63,7 +63,7 @@
                               class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                             >
                               <div class="col-sm-12">
-                                <div class="jb_job_post_side_img ">
+                                <div class="jb_job_post_side_img">
                                   <img src="images/lt1.png" alt="post_img" />
                                 </div>
                                 <h5>
@@ -159,7 +159,7 @@
 import axios from "axios";
 export default {
   name: "DashboardRightSideBar",
-  data: function() {
+  data: function () {
     return {
       preview: [],
       index: "",
@@ -177,8 +177,8 @@ export default {
           "You go dey wash plate my gee... Now worry my guy we go pay you better money. Hehehehehehehehe!!1",
         working_hours: "for the rest of your life",
         job_type: "Full Time",
-        experience: "None"
-      }
+        experience: "None",
+      },
     };
   },
   methods: {
@@ -186,15 +186,15 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Available Jobs"
+        "My-Custom-Header": "Fetch Available Jobs",
       };
       var request = {};
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           data: request,
-          headers: headers
+          headers: headers,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.index + 1;
           this.jobs = response.data;
@@ -210,17 +210,17 @@ export default {
           // this.companys.job_type = response.data.job_type;
           // this.companys.experience = response.data.experience;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Failed to fetch Available Jobs " + error.message);
         });
     },
-    populate: function(index) {
+    populate: function (index) {
       this.preview = this.jobs[index];
-    }
+    },
   },
   mounted() {
     this.fetchAvailableJobs();
-  }
+  },
 };
 </script>
 <style scoped>

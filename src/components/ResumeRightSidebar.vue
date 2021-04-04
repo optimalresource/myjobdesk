@@ -12,13 +12,13 @@ export default {
   components: {
     // Avatar
   },
-  data: function() {
+  data: function () {
     return {
       inputs: {
         first_name: "",
         last_name: "",
         middle_name: "",
-        email: ""
+        email: "",
       },
       personal_details: {
         age: "",
@@ -29,14 +29,14 @@ export default {
         address: "",
         date_of_birth: "",
         selectedLGA: "",
-        selectedState: ""
+        selectedState: "",
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: []
+      updatedreferrees: [],
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -51,28 +51,28 @@ export default {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
+      "My-Custom-Header": "Register step 2",
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
     axios
       .get("https://api.myjobdesk.com/api/personal_details", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.personal_details.marital_status = response.data.marital_status;
         this.personal_details.gender = response.data.gender;
@@ -84,64 +84,64 @@ export default {
         this.personal_details.phone = response.data.phone;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch personal details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/skills/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedskills = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch Skills" + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/educational_details/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedForms = response.data;
         // this.eDResponse = response.status;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch education details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/certificates/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedCerts = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch certificates " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/experiences/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedexperiences = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch experiences " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/referrees/all", {
-        headers: headers
+        headers: headers,
       })
-      .then(response => {
+      .then((response) => {
         this.updatedreferrees = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch referrees " + error.message);
       });
-  }
+  },
 };
 </script>
 

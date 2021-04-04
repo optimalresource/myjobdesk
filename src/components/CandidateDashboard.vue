@@ -4,7 +4,7 @@
     <a href="javascript:" id="return-to-top"
       ><i class="fas fa-angle-double-up"></i
     ></a>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
           <span><img src="../assets/images/logo13.png" alt="img"/></span
@@ -106,7 +106,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -164,7 +164,7 @@
                 class="img-responsive xs-col-12 sm-col-12 mb-2"
                 :size="40"
                 :rounded="true"
-                :username="inputs.email"
+                :username="email"
               >
               </avatar>
               <ul class="list">
@@ -192,7 +192,7 @@
                   >
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>
@@ -369,7 +369,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -406,7 +406,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -669,17 +669,17 @@
                 <div class="avatar_center">
                   <avatar
                     class="img-responsive xs-col-12 sm-col-12 mb-2"
-                    :username="inputs.email"
+                    :username="email"
                     :size="190"
                     :rounded="true"
                   >
                   </avatar>
                 </div>
                 <h4>
-                  {{ inputs.first_name }}
-                  {{ inputs.last_name }}
+                  {{ first_name }}
+                  {{ last_name }}
                 </h4>
-                <p>{{ inputs.email }}</p>
+                <p>{{ email }}</p>
               </div>
               <div class="emp_follow_link jb_cover">
                 <ul class="feedlist">
@@ -704,7 +704,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="/logout"
+                    <a @click="logout"
                       ><i class="fas fa-power-off"></i> log out
                     </a>
                   </li>
@@ -773,13 +773,7 @@
                       <div class="jp_job_post_right_cont">
                         <h4>
                           Name:
-                          {{
-                            inputs.last_name +
-                              " " +
-                              inputs.first_name +
-                              " " +
-                              inputs.middle_name
-                          }}
+                          {{ last_name + " " + first_name + " " + middle_name }}
                         </h4>
 
                         <ul>
@@ -916,7 +910,7 @@
                         <ul>
                           <li>email:</li>
                           <li>
-                            <a href="#">{{ inputs.email }}</a>
+                            <a href="#">{{ email }}</a>
                           </li>
                         </ul>
                       </div>
@@ -1007,7 +1001,7 @@
                           <div class="jp_listing_list_icon_cont_wrapper">
                             <ul>
                               <li>gmail:</li>
-                              <p>{{ inputs.email }}</p>
+                              <p>{{ email }}</p>
                             </ul>
                           </div>
                         </div> -->
@@ -1318,23 +1312,21 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     // CandidateDashboardSubNavBar,
-    ChatBox
+    ChatBox,
   },
   data: function() {
     return {
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: ""
+        linkedin_username: "",
       },
-      inputs: {
-        first_name: "",
-        last_name: "",
-        middle_name: "",
-        email: "",
-        password: "",
-        password_confirmation: ""
-      },
+      first_name: this.$store.getters.StateUser.first_name ?? "Not set",
+      last_name: this.$store.getters.StateUser.last_name ?? "Not set",
+      middle_name: this.$store.getters.StateUser.middle_name ?? "Not set",
+      email: this.$store.getters.StateUser.email ?? "Not set",
+      password: "",
+      password_confirmation: "",
       personal_details: {
         age: "",
         phone: "",
@@ -1344,14 +1336,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: ""
+        selectedState: "",
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: []
+      updatedreferrees: [],
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -1367,99 +1359,63 @@ export default {
     //   return "img/ProfilePicture/" + this.ProfilePicture.file;
   },
   created() {
-    var accessToken = localStorage.getItem("token") || "";
-    const headers = {
-      Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2"
-    };
-    axios
-      .get("https://api.myjobdesk.com/api/user", {
-        headers
-      })
-      .then(response => {
-        console.log(response);
-        this.inputs.first_name = response.data.first_name;
-        this.inputs.last_name = response.data.last_name;
-        this.inputs.middle_name = response.data.middle_name;
-        this.inputs.email = response.data.email;
-      })
-      .catch(error => {
-        this.errorMessage = error.message;
-        console.error("There was an error!", error);
+    if (!this.$store.getters.isHavePersonalDetails) {
+      this.$store.dispatch("FetchPersonalDetails").catch((error) => {
+        this.handleAxiosErrors(error);
       });
+    }
+
     axios
-      .get("https://api.myjobdesk.com/api/personal_details", {
-        headers: headers
-      })
-      .then(response => {
-        this.personal_details.marital_status = response.data.marital_status;
-        this.personal_details.gender = response.data.gender;
-        this.personal_details.selectedLGA = response.data.lga;
-        this.personal_details.selectedState = response.data.state_of_origin;
-        this.personal_details.nationality = response.data.nationality;
-        this.personal_details.address = response.data.address;
-        this.personal_details.dob = response.data.date_of_birth;
-        this.personal_details.phone = response.data.phone;
-        console.log(response);
-      })
-      .catch(error => {
-        console.log("Failed to fetch personal details " + error.message);
-      });
-    axios
-      .get("https://api.myjobdesk.com/api/skills/all", {
-        headers: headers
-      })
-      .then(response => {
+      .get("https://api.myjobdesk.com/api/skills/all")
+      .then((response) => {
         this.updatedskills = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch Skills" + error.message);
       });
     axios
-      .get("https://api.myjobdesk.com/api/educational_details/all", {
-        headers: headers
-      })
-      .then(response => {
+      .get("https://api.myjobdesk.com/api/educational_details/all")
+      .then((response) => {
         this.updatedForms = response.data;
         // this.eDResponse = response.status;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch education details " + error.message);
       });
     axios
-      .get("https://api.myjobdesk.com/api/certificates/all", {
-        headers: headers
-      })
-      .then(response => {
+      .get("https://api.myjobdesk.com/api/certificates/all")
+      .then((response) => {
         this.updatedCerts = response.data;
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch certificates " + error.message);
       });
     axios
-      .get("https://api.myjobdesk.com/api/experiences/all", {
-        headers: headers
-      })
-      .then(response => {
+      .get("https://api.myjobdesk.com/api/experiences/all")
+      .then((response) => {
         this.updatedexperiences = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch experiences " + error.message);
       });
     axios
-      .get("https://api.myjobdesk.com/api/referrees/all", {
-        headers: headers
-      })
-      .then(response => {
+      .get("https://api.myjobdesk.com/api/referrees/all")
+      .then((response) => {
         this.updatedreferrees = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Failed to fetch referrees " + error.message);
       });
-  }
+  },
+  computed: {},
+  mounted() {
+    // console.log(this.$store.getters.StateUser);
+    // console.log(this.$store.getters.StateToken);
+    // console.log(this.$store.getters.StateRole);
+  },
 };
 </script>
 

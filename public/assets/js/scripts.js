@@ -1,5 +1,5 @@
-(function(window, undefined) {
-  'use strict';
+(function (window, undefined) {
+  "use strict";
 
   /*
   NOTE:

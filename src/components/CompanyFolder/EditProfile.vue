@@ -364,8 +364,8 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: ""
-      }
+        address: "",
+      },
     };
   },
   components: {
@@ -374,7 +374,7 @@ export default {
     // Avatar,
     CompanyDashboardSideBar,
     DashboardHeader,
-    ChatBox
+    ChatBox,
   },
   methods: {
     saveProfile() {
@@ -382,8 +382,8 @@ export default {
     },
     saveSocialMedia() {
       //saving social media handles
-    }
-  }
+    },
+  },
 };
 </script>
 

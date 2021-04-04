@@ -6,19 +6,19 @@
       </h4>
       <div class="register_div">
         <div class="justify-content-center text-center">
-          <div class="reg_btn applt_pop_btn col-lg-6 col-md-12 col-xs-12 ">
+          <div class="reg_btn applt_pop_btn col-lg-6 col-md-12 col-xs-12">
             <router-link to="/companyRegistration" class="reg_button">
               Company <i class="fas fa-users"></i>
             </router-link>
             <p></p>
           </div>
-          <div class="reg_btn applt_pop_btn col-lg-6 col-md-12 col-xs-12 ">
+          <div class="reg_btn applt_pop_btn col-lg-6 col-md-12 col-xs-12">
             <router-link to="/applicant" class="reg_button">
               Applicant <i class="fas fa-user-edit"></i>
             </router-link>
           </div>
           <p class="mt-5">
-            <a href="/" class="col-lg-6 col-md-12 col-xs-12 "
+            <a href="/" class="col-lg-6 col-md-12 col-xs-12"
               ><i class="fas fa-home"></i> <strong>Home</strong></a
             >
           </p>
@@ -52,7 +52,7 @@ export default {
   mounted() {
     if (document.getElementsByClassName("register_div")[0].style.height < 700) {
       document.getElementsByClassName("register_div")[0].style.minHeight =
-        45 + "vh";
+        50 + "vh";
     }
   },
 };
@@ -197,7 +197,7 @@ h4 {
 .foot {
   height: auto;
   margin-top: 100px;
-  /* position: absolute;
+  /* position: relative;
   bottom: 0 !important; */
 }
 .circle {

@@ -122,7 +122,7 @@ export default {
       posts: [],
       page: 1,
       perPage: 9,
-      pages: []
+      pages: [],
     };
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
           last: "06 Applications",
           suffix: "Active",
           date: "Date Posted : 02 Oct 2017",
-          sasu: i + 1
+          sasu: i + 1,
         });
       }
     },
@@ -149,31 +149,26 @@ export default {
       let from = page * perPage - perPage;
       let to = page * perPage;
       return posts.slice(from, to);
-    }
+    },
   },
   computed: {
     displayedPosts() {
       return this.paginate(this.posts);
-    }
+    },
   },
   watch: {
     posts() {
       this.setPages();
-    }
+    },
   },
   created() {
     this.getPosts();
   },
   filters: {
     trimWords(value) {
-      return (
-        value
-          .split(" ")
-          .splice(0, 20)
-          .join(" ") + "..."
-      );
-    }
-  }
+      return value.split(" ").splice(0, 20).join(" ") + "...";
+    },
+  },
 };
 </script>
 

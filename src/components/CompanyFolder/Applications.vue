@@ -386,8 +386,8 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: ""
-      }
+        address: "",
+      },
     };
   },
   components: {
@@ -396,8 +396,8 @@ export default {
     Pagination,
     DashboardHeader,
     CompanyDashboardSideBar,
-    ChatBox
-  }
+    ChatBox,
+  },
 };
 </script>
 

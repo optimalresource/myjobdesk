@@ -17,7 +17,7 @@
   
 </div> -->
   <div class="d-flex text-center justify-content-center">
-    <div class="card osas" style="width: 40rem;">
+    <div class="card osas" style="width: 40rem">
       <div class="card-body ego">
         <h2 class="card-title mt-3">login</h2>
         <div class="mb-3">
@@ -28,7 +28,7 @@
             <input
               id="email"
               type="email"
-              class="form-control  require"
+              class="form-control require"
               name="email"
               value=""
               required
@@ -43,7 +43,7 @@
             <input
               id="password"
               type="password"
-              class="form-control  require"
+              class="form-control require"
               name="password"
               required
               autocomplete="current-password"
@@ -54,7 +54,10 @@
             <i class="fas fa-lock"></i>
           </div>
           <div class="header_btn search_btn login_btn jb_cover">
-            <button @click.prevent="login">login</button>
+            <button @click.prevent="login" :disabled="spin">
+              <span v-if="notSpin">login</span
+              ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
+            </button>
           </div>
           <div class="dont_have_account jb_cover mb-4">
             <a href="/forgot"><span>Forgot Password?? &#128532;</span></a>
@@ -78,48 +81,119 @@
 
 <script>
 import { EventBus } from "@/components/eventBus.js";
+// import { mapActions } from "vuex";
+
 export default {
   name: "LoginDiv",
   data() {
     return {
+      spin: false,
+      notSpin: true,
       email: "",
-      password: ""
+      password: "",
+      isHidden: true,
+      successResponse: false,
+      beforeResponse: false,
+      onLine: navigator.onLine,
+      showBackOnline: false,
     };
   },
   computed: {
     loggedIn: function() {
       return this.$store.getters.loggedIn;
-    }
+    },
   },
   methods: {
-    login() {
-      console.log("I got here");
-      this.$store
-        .dispatch("retrieveToken", {
-          email: this.email,
-          password: this.password
-        })
-        .then(response => {
-          console.log(response);
-          // const token = response.data.accessToken;
-          // localStorage.setItem("token", token);
-          if (response.status == "200") {
-            this.$toasted.success("You've been logged in successfully");
+    // ...mapActions(["LogIn"]),
+    validateEmail(email) {
+      const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
+      return re.test(email);
+    },
+    async login() {
+      this.spin = true;
+      this.notSpin = false;
+
+      if (!this.validateEmail(this.email)) {
+        this.$toastr.e("Please enter a valid email");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
+      if (this.email == "") {
+        this.$toastr.e("Please enter your email");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
+      if (this.password == "") {
+        this.$toastr.e("Please enter your password");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
+      this.beforeResponse = true;
+
+      var details = {
+        email: this.email,
+        password: this.password,
+      };
+
+      await this.$store
+        .dispatch("LogIn", details)
+        .then((response) => {
+          this.$toasted.success("You have logged in successfully");
+          if (
+            response.data.role == "super_admin" ||
+            response.data.role == "admin" ||
+            response.data.role == "editor" ||
+            response.data.role == "reviewer"
+          )
+            this.$router.push({ name: "EmployerDashboard" });
+          else if (response.data.role == "user")
             this.$router.push({ name: "Dashboard" });
-          } else {
-            this.$toasted.error(response.data.message);
-            return false;
-          }
+          else this.$router.push({ name: "Home" });
         })
-        .catch(error => {
-          console.log(error);
-          this.$toasted.error("Invalid credentials");
+        .catch((error) => {
+          this.spin = false;
+          this.notSpin = true;
+          this.handleAxiosErrors(error);
         });
-    }
+    },
   },
   mounted() {
     EventBus.$on("onSubmit", this.login);
-  }
+    // console.log(this.$store.getters.StateUser);
+    // console.log(this.$store.getters.StateToken);
+    // console.log(this.$store.getters.StateRole);
+  },
+  watch: {
+    onLine(v) {
+      if (v) {
+        this.showBackOnline = true;
+        setTimeout(() => {
+          this.showBackOnline = false;
+        }, 1000);
+      }
+    },
+
+    beforeResponse() {
+      if (this.beforeResponse) {
+        this.$toasted.info("Your are now being logged in, please wait");
+      }
+    },
+
+    successResponse() {
+      if (this.successResponse == 200) {
+        this.$toasted.success("You have logged in successfull");
+        this.step++;
+        this.successResponse = false;
+        this.beforeResponse = false;
+      }
+    },
+  },
 };
 </script>
 <style scoped>

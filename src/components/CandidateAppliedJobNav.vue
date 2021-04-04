@@ -1,9 +1,9 @@
 <template>
   <div>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img"/></span
+          <span><img src="../assets/images/logo13.png" alt="img" /></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -102,7 +102,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -188,7 +188,7 @@
                   >
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>
@@ -365,7 +365,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -402,7 +402,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -667,15 +667,15 @@ import Avatar from "vue-avatar";
 export default {
   name: "CandidateAppliedJobNav",
   components: {
-    Avatar
+    Avatar,
   },
-  data: function() {
+  data: function () {
     return {
       data: "",
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: ""
+        linkedin_username: "",
       },
       inputs: {
         first_name: "",
@@ -683,7 +683,7 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       personal_details: {
         age: "",
@@ -694,14 +694,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: ""
+        selectedState: "",
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: []
+      updatedreferrees: [],
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -711,7 +711,7 @@ export default {
       //   to: ""
       // },
     };
-  }
+  },
 };
 </script>
 

@@ -5,7 +5,7 @@
       ><i class="fas fa-angle-double-up"></i
     ></a>
 
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
           <span><img src="images/logo.png" alt="img"/></span
@@ -107,7 +107,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -176,7 +176,9 @@
                   <a href="#"><i class="fas fa-cog"></i>Setting</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a @click="logout"
+                    ><i class="fas fa-sign-in-alt"></i>logout</a
+                  >
                 </li>
               </ul>
             </div>
@@ -342,7 +344,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>job location</h1>
                             <ul>
                               <li>
@@ -379,7 +381,7 @@
                           </div>
                         </div>
                         <div class="candidate_width">
-                          <div class="jen_tabs_conent_list   jb_cover">
+                          <div class="jen_tabs_conent_list jb_cover">
                             <h1>open jobs</h1>
                             <div class="open_jobs_wrapper">
                               <div class="open_jobs_wrapper_1 jb_cover">
@@ -690,7 +692,9 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="#"><i class="fas fa-power-off"></i> log out </a>
+                    <a @click="logout"
+                      ><i class="fas fa-power-off"></i> log out
+                    </a>
                   </li>
                   <li>
                     <a href="#" data-toggle="modal" data-target="#myModal"
@@ -777,8 +781,8 @@ export default {
     Footer,
     Looking,
     ChatBox,
-    FavoriteRightSideBar
-  }
+    FavoriteRightSideBar,
+  },
 };
 </script>
 

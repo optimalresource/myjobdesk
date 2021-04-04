@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="cd-dropdown  d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
           <span><img src="images/logo13.png" alt="img"/></span
@@ -29,7 +29,7 @@
           <a href="/login">sign in</a>
         </li>
         <li v-if="loggedIn">
-          <a href="/logout">log out</a>
+          <a @click="logout">log out</a>
         </li>
         <!-- <li class="has-children">
           <a href="#">jobs</a>

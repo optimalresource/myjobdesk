@@ -20,7 +20,7 @@
                 :class="[
                   'btn',
                   'is-link',
-                  { 'is-active': time.sec === selectedTime && endTime !== 0 }
+                  { 'is-active': time.sec === selectedTime && endTime !== 0 },
                 ]"
               >
                 {{ time.display }}
@@ -130,7 +130,7 @@ function hourConvert(hour) {
 // import Questions from "@/components/Questions.vue";
 export default {
   name: "Timer",
-  data: function() {
+  data: function () {
     return {
       selectedTime: 0,
       timeLeft: "00:00",
@@ -142,23 +142,23 @@ export default {
         // },
         {
           sec: 1200,
-          display: " Start Session"
-        }
+          display: " Start Session",
+        },
         // {
         //   sec: 1800,
         //   display: "30m"
         // }
-      ]
+      ],
     };
   },
   components: {
     // Questions
   },
   methods: {
-    startCallBack: function(x) {
+    startCallBack: function (x) {
       console.log(x);
     },
-    endCallBack: function(x) {
+    endCallBack: function (x) {
       console.log(x);
     },
     setTime(seconds) {
@@ -214,8 +214,8 @@ export default {
       const minutes = end.getMinutes();
 
       this.endTime = `${hourConvert(hour)}:${zeroPadded(minutes)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

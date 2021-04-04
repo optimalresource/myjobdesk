@@ -16,7 +16,7 @@ import VueToastr from "vue-toastr";
 import Avatar from "vue-avatar";
 import LoadScript from "vue-plugin-load-script";
 import $ from "jquery";
-import axios from "axios";
+// import axios from "axios";
 
 import FroalaEditor from "froala-editor";
 
@@ -26,9 +26,9 @@ FroalaEditor.RegisterCommand("alert", {
   focus: false,
   undo: false,
   refreshAfterCallback: false,
-  callback: function() {
+  callback: function () {
     alert("Hello!");
-  }
+  },
 });
 
 FroalaEditor.DefineIcon("clear", { NAME: "remove", SVG_KEY: "remove" });
@@ -37,10 +37,10 @@ FroalaEditor.RegisterCommand("clear", {
   focus: false,
   undo: true,
   refreshAfterCallback: true,
-  callback: function() {
+  callback: function () {
     this.html.set("");
     this.events.focus();
-  }
+  },
 });
 
 FroalaEditor.DefineIcon("insert", { NAME: "plus", SVG_KEY: "add" });
@@ -49,59 +49,58 @@ FroalaEditor.RegisterCommand("insert", {
   focus: true,
   undo: true,
   refreshAfterCallback: true,
-  callback: function() {
+  callback: function () {
     this.html.insert("My New HTML");
-  }
+  },
 });
 
 Vue.use(LoadScript);
 export default {
   components: {
     VueToastr,
-    Avatar
+    Avatar,
   },
   beforeCreate() {
-    if (localStorage.getItem("token")) {
-      var step = 0;
-
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Register step 2"
-      };
-      var request = {};
-      var session;
-      axios
-        .get("https://api.myjobdesk.com/api/user", {
-          data: request,
-          headers: headers
-        }) // use instance here
-        .then(response => {
-          session = response.data;
-          step = response.data.step;
-          console.log(session);
-          console.log(step);
-          if (step == 0) {
-            step = 1;
-            localStorage.setItem("showDiv", false);
-            console.log("I got here 2");
-          } else if (step == 1) {
-            step = 2;
-            localStorage.setItem("showDiv", true);
-          } else if (step == 5) {
-            step = 1;
-            localStorage.setItem("showDiv", false);
-          }
-          localStorage.setItem("step", step);
-          console.log("The current step is " + localStorage.getItem("step"));
-        })
-        .catch(error => {
-          session = error.message;
-        });
-    } else {
-      localStorage.setItem("step", 1);
-      localStorage.setItem("showDiv", false);
-    }
+    // if (localStorage.getItem("token")) {
+    //   var step = 0;
+    //   var accessToken = localStorage.getItem("token") || "";
+    //   const headers = {
+    //     Authorization: "Bearer " + accessToken,
+    //     "My-Custom-Header": "Register step 2"
+    //   };
+    //   var request = {};
+    //   var session;
+    //   axios
+    //     .get("https://api.myjobdesk.com/api/user", {
+    //       data: request,
+    //       headers: headers
+    //     }) // use instance here
+    //     .then(response => {
+    //       session = response.data;
+    //       step = response.data.step;
+    //       console.log(session);
+    //       console.log(step);
+    //       if (step == 0) {
+    //         step = 1;
+    //         localStorage.setItem("showDiv", false);
+    //         console.log("I got here 2");
+    //       } else if (step == 1) {
+    //         step = 2;
+    //         localStorage.setItem("showDiv", true);
+    //       } else if (step == 5) {
+    //         step = 1;
+    //         localStorage.setItem("showDiv", false);
+    //       }
+    //       localStorage.setItem("step", step);
+    //       console.log("The current step is " + localStorage.getItem("step"));
+    //     })
+    //     .catch(error => {
+    //       session = error.message;
+    //     });
+    // } else {
+    //   localStorage.setItem("step", 1);
+    //   localStorage.setItem("showDiv", false);
+    // }
   },
   mounted() {
     // document.getElementById("scripts").innerHTML = "";
@@ -121,44 +120,28 @@ export default {
     Vue.loadScript("/js/isotope.pkgd.min.js");
     Vue.loadScript("/js/custom.js");
     Vue.loadScript("/js/better.js");
-    $(document).ready(function() {
-      $(window).scroll(function() {
+    $(document).ready(function () {
+      $(window).scroll(function () {
         if ($(this).scrollTop() >= 100) {
           $("#return-to-top").fadeIn(200);
         } else {
           $("#return-to-top").fadeOut(200);
         }
       });
-      $("#return-to-top").on("click", function() {
+      $("#return-to-top").on("click", function () {
         $("body,html").animate(
           {
-            scrollTop: 0
+            scrollTop: 0,
           },
           500
         );
       });
     });
   },
-  created() {
-    // this.$toastr.e("Hello world we coming home");
-  }
 };
 </script>
 
 <style lang="scss">
 // @import "./css/custom.css";
 // @import "./assets/css/bootstrap.min.css";
-// @import "./assets/css/fonts.css";
-// @import "./assets/css/flaticon.css";
-// @import "./assets/css/font-awesome.css";
-// @import "./assets/css/owl.carousel.css";
-// @import "./assets/css/owl.theme.default.css";
-// @import "./assets/css/dropify.min.css";
-// @import "./assets/css/jquery-ui.min.css";
-// @import "./assets/css/magnific-popup.css";
-// @import "./assets/css/nice-select.css";
-// @import "./assets/css/reset.css";
-// @import "./assets/css/style.css";
-// @import "./assets/css/responsive.css";
-// @import "./assets/assets/css/style.css";
 </style>

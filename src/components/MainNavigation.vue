@@ -24,7 +24,7 @@
                       x="0px"
                       y="0px"
                       viewBox="0 0 31.177 31.177"
-                      style="enable-background:new 0 0 31.177 31.177;"
+                      style="enable-background: new 0 0 31.177 31.177"
                       xml:space="preserve"
                       width="25px"
                       height="25px"
@@ -75,7 +75,7 @@
           </div>
           <!-- .cd-dropdown-wrapper -->
         </header>
-        <div class=" menu_btn_box header_btn jb_cover join_us">
+        <div class="menu_btn_box header_btn jb_cover join_us">
           <ul class="navbar-nav ml-auto">
             <li v-if="!loggedIn">
               <a href="/register">join us</a>
@@ -84,7 +84,7 @@
               <a href="/login">sign in</a>
             </li>
             <li v-if="loggedIn">
-              <a href="/logout">log out</a>
+              <a @click="logout">log out</a>
             </li>
           </ul>
         </div>

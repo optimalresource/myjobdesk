@@ -34,11 +34,6 @@ export default {
     //   return this.$store.getters.loggedIn;
     // }
   },
-  methods: {
-    // logout: function() {
-    //   this.$store.dispatch("logout");
-    // }
-  },
 };
 </script>
 

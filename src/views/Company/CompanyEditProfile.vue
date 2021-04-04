@@ -9,8 +9,8 @@ import EditProfile from "@/components/CompanyFolder/EditProfile.vue";
 export default {
   name: "CompanyEditProfile",
   components: {
-    EditProfile
-  }
+    EditProfile,
+  },
 };
 </script>
 

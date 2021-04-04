@@ -313,7 +313,7 @@
                         <button
                           @click.prevent="saveNewUsers"
                           type="submit"
-                          class="btn btn-primary"
+                          class="btn btn-primary col-12"
                         >
                           Create User
                         </button>
@@ -323,7 +323,7 @@
                 </div>
                 <div
                   v-if="showUsers"
-                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
+                  class="jb_listing_left_fullwidth mt-0 jb_cover margin"
                 >
                   <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
@@ -353,7 +353,7 @@
                             <div class="dropdown">
                               <div class="dropbtn">
                                 <button class="btn btn-primary">
-                                Edit <i class="fas fa-edit "></i>
+                                  Edit <i class="fas fa-edit "></i>
                                 </button>
                               </div>
                               <div class="dropdown-content">
@@ -370,304 +370,6 @@
                             </div>
                           </li>
                         </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  v-if="showUsers"
-                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
-                >
-                  <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
-                      <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
-                          <avatar
-                            class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="companys.email"
-                            :size="70"
-                            :rounded="false"
-                          >
-                          </avatar>
-                        </div>
-                        <h5>
-                          <a href="#"></a>
-                        </h5>
-                        <h4>Name:</h4>
-                        <p>Role:</p>
-                        <p>Privileges: <span>Post</span></p>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                      <div class="jb_job_post_right_btn_wrapper">
-                        <ul>
-                          <li>
-                            <div class="dropdown">
-                              <button class="dropbtn btn btn-primary ">
-                                Edit
-                              </button>
-                              <div class="dropdown-content">
-                                <a href="#">Change Role</a>
-                                <a href="#">User Activities</a>
-                                <a href="#">Edit Privileges</a>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                        <!-- <div class="modal fade" id="myModal1">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title">
-                                  More Description
-                                </h4>
-                                <button
-                                  type="button"
-                                  class="close"
-                                  data-dismiss="modal"
-                                >
-                                  &times;
-                                </button>
-                              </div>
-
-                              <div class="modal-body">
-                                <div
-                                  class="col-lg-12 col-md-12 col-sm-12 col-12 "
-                                >
-                                  <div class="row">
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                    >
-                                      <div class="col-sm-12">
-                                        <div class="jb_job_post_side_img ">
-                                          <img
-                                            src="images/lt1.png"
-                                            alt="post_img"
-                                          />
-                                        </div>
-                                        <h5>
-                                          <a href="#">{{}}</a>
-                                        </h5>
-                                        <h6></h6>
-                                      </div>
-                                      <br />
-                                      <br />
-                                      <hr />
-                                      <div class="col-sm-12 col-12">
-                                        <div>
-                                          <div>
-                                            <span><h6>Job type:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Location:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Educational Level:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <span
-                                            >Salary:
-                                            <h6>
-                                              <div></div></h6
-                                          ></span>
-                                          <br />
-                                          <div>
-                                            <span><h6>J.D:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Minimum qulification:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Age:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Experience:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Working hours:</h6></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3"
-                                    >
-                                      <div class="">
-                                        <a href="#" class="btn btn-info col-12"
-                                          >Apply</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  v-if="showUsers"
-                  class="jb_listing_left_fullwidth mt-0 jb_cover mb-5"
-                >
-                  <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
-                      <div class="col-sm-12">
-                        <div class="jb_job_post_side_img ">
-                          <avatar
-                            class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="companys.email"
-                            :size="70"
-                            :rounded="false"
-                          >
-                          </avatar>
-                        </div>
-                        <h5>
-                          <a href="#"></a>
-                        </h5>
-                        <h4>Name:</h4>
-                        <p>Role:</p>
-                        <p>Privileges: <span>Post</span></p>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                      <div class="jb_job_post_right_btn_wrapper">
-                        <ul>
-                          <li>
-                            <div class="dropdown">
-                              <button class="dropbtn btn btn-primary ">
-                                Edit
-                              </button>
-                              <div class="dropdown-content">
-                                <a href="#">Change Role</a>
-                                <a href="#">User Activities</a>
-                                <a href="#">Edit Privileges</a>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                        <div class="modal fade" id="myModal1">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title">
-                                  More Description
-                                </h4>
-                                <button
-                                  type="button"
-                                  class="close"
-                                  data-dismiss="modal"
-                                >
-                                  &times;
-                                </button>
-                              </div>
-
-                              <div class="modal-body">
-                                <div
-                                  class="col-lg-12 col-md-12 col-sm-12 col-12 "
-                                >
-                                  <div class="row">
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                    >
-                                      <div class="col-sm-12">
-                                        <div class="jb_job_post_side_img ">
-                                          <img
-                                            src="images/lt1.png"
-                                            alt="post_img"
-                                          />
-                                        </div>
-                                        <h5>
-                                          <a href="#">{{}}</a>
-                                        </h5>
-                                        <h6></h6>
-                                      </div>
-                                      <br />
-                                      <br />
-                                      <hr />
-                                      <div class="col-sm-12 col-12">
-                                        <div>
-                                          <div>
-                                            <span><h6>Job type:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Location:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Educational Level:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <span
-                                            >Salary:
-                                            <h6>
-                                              <div></div></h6
-                                          ></span>
-                                          <br />
-                                          <div>
-                                            <span><h6>J.D:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span
-                                              ><h6>
-                                                Minimum qulification:
-                                              </h6></span
-                                            >
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Age:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Experience:</h6></span>
-                                          </div>
-                                          <br />
-                                          <div>
-                                            <span><h6>Working hours:</h6></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div
-                                      class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3"
-                                    >
-                                      <div class="">
-                                        <a href="#" class="btn btn-info col-12"
-                                          >Apply</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -984,13 +686,13 @@ export default {
 
 @media (max-width: 575px) {
   .dropdown {
-   display: block;
-   margin-top: -75px;
+    display: block;
+    margin-top: -75px;
   }
 }
 @media (max-width: 400px) {
   .dropdown {
-   margin-top: 0;
+    margin-top: 0;
   }
 }
 .dropdown-content {
@@ -1092,5 +794,8 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   box-sizing: border-box;
   border-radius: 5px;
   border: 0.5px solid rgb(232, 232, 232);
+}
+.margin {
+  margin-bottom: 55px;
 }
 </style>

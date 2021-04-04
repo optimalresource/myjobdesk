@@ -10,7 +10,7 @@
       <div class="container">
         <ValidationProvider
           name="Company Name"
-          rules="required|alpha"
+          rules="required"
           v-slot="{ errors }"
         >
           <div class="form-group icon_form comments_form">
@@ -230,7 +230,7 @@ export default {
     // Navigation,
     // MainNavigation
   },
-  data: function () {
+  data: function() {
     return {
       showPassword: false,
       spin: false,
@@ -269,17 +269,6 @@ export default {
       showBackOnline: false,
       agreeSelected: "",
     };
-  },
-  beforeEnter(to, from, next) {
-    if (!this.$store.getters.loggedIn) {
-      console.log("entered block");
-      next();
-    } else {
-      console.log("entered this block instead");
-      next({
-        name: "Dashboard", // back to safety route //
-      });
-    }
   },
   methods: {
     addTag(newTag) {
@@ -360,31 +349,17 @@ export default {
       this.beforeResponse = true;
 
       this.$store
-        .dispatch("registerAccount", {
+        .dispatch("RegisterCompany", {
           details: this.companys,
         })
-        .then((response) => {
-          console.log(response);
-          if (response.status == "200") {
-            this.$toasted.success("Your registration is successful");
-            this.$router.push({ name: "EmployerDashboard" });
-          } else {
-            this.$toasted.error(response.data.message);
-            this.spin = false;
-            this.notSpin = true;
-            return false;
-          }
+        .then(() => {
+          this.$toasted.success("Your registration is successful");
+          this.$router.push({ name: "EmployerDashboard" });
         })
         .catch((error) => {
-          if (typeof error === "object" && error !== null) {
-            for (const property in error) {
-              this.$toasted.error(error[property]);
-            }
-          } else {
-            this.$toasted.error(error);
-          }
           this.spin = false;
           this.notSpin = true;
+          this.handleAxiosErrors(error);
         });
     },
   },

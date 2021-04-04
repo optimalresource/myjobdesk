@@ -84,7 +84,7 @@
               <a href="/login">sign in</a>
             </li>
             <li v-if="loggedIn">
-              <a href="/logout">log out</a>
+              <a @click="logout">log out</a>
             </li>
           </ul>
         </div>

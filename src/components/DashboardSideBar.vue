@@ -35,7 +35,7 @@
         </ul>
         <ul class="feedlist logout_link jb_cover">
           <li>
-            <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
+            <a @click="logout"><i class="fas fa-power-off"></i> log out </a>
           </li>
           <li>
             <a href="#" data-toggle="modal" data-target="#myModal"
@@ -98,7 +98,7 @@ export default {
   components: {
     Avatar,
   },
-  data: function () {
+  data: function() {
     return {
       inputs: {
         first_name: "",

@@ -4,7 +4,7 @@
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img" /></span
+          <span><img src="images/logo.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -1008,15 +1008,8 @@ export default {
     Footer,
     EditSubNav,
   },
-  data: function () {
+  data: function() {
     return {};
-  },
-  methods: {
-    async logout() {
-      this.$toasted.info("You're being been logged out");
-      await this.$store.dispatch("LogOut");
-      this.$router.push("/login");
-    },
   },
   created() {
     var accessToken = localStorage.getItem("token") || "";
@@ -1059,7 +1052,7 @@ export default {
       //   this.inputs = response.data;
       //   this.forms = response.data;
       //   this.updatedForms = response.data;
-      .then(function (data) {
+      .then(function(data) {
         console.log(data);
       });
   },

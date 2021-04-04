@@ -12,7 +12,7 @@ export default {
   name: "Logout",
   beforeCreate() {
     this.$store
-      .dispatch("logout")
+      .dispatch("LogOut")
       .then((response) => {
         console.log(response);
         this.$toasted.success("You've been logged out");

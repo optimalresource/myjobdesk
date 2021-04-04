@@ -53,7 +53,7 @@ Vue.use(VueToastr, {
 });
 import axios from "axios";
 
-store.dispatch("LogOut");
+// store.dispatch("LogOut");
 
 axios.defaults.withCredentials = false;
 axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
@@ -63,18 +63,14 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 axios.interceptors.response.use(undefined, function(error) {
     if (error) {
-        const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true;
-            store.dispatch("logout");
-            return router.push("/login");
-        }
+        // const originalRequest = error.config;
+        // if (error.response.status === 401 && !originalRequest._retry) {
+        //     originalRequest._retry = true;
+        //     store.dispatch("LogOut");
+        //     return router.push("/login");
+        // }
 
         return Promise.reject(error);
-        // if (error.response.status === 422 && !originalRequest._retry) {
-        //     originalRequest._retry = true;
-        //     store.dispatch("throwError", error);
-        // }
     }
 });
 
@@ -97,7 +93,9 @@ import { VueEditor } from "vue2-editor";
 import Multiselect from "vue-multiselect";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import handleAxiosErrors from "./mixins/handle-axios-errors";
+import logout from "./mixins/logout";
 Vue.mixin(handleAxiosErrors);
+Vue.mixin(logout);
 Vue.component("pagination", Pagination);
 
 export default {

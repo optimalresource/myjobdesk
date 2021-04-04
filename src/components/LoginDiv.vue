@@ -99,7 +99,7 @@ export default {
     };
   },
   computed: {
-    loggedIn: function () {
+    loggedIn: function() {
       return this.$store.getters.loggedIn;
     },
   },
@@ -144,7 +144,7 @@ export default {
       await this.$store
         .dispatch("LogIn", details)
         .then((response) => {
-          this.$toasted.success("You have logged in successful");
+          this.$toasted.success("You have logged in successfully");
           if (
             response.data.role == "super_admin" ||
             response.data.role == "admin" ||
@@ -165,9 +165,9 @@ export default {
   },
   mounted() {
     EventBus.$on("onSubmit", this.login);
-    console.log(this.$store.getters.StateUser);
-    console.log(this.$store.getters.StateToken);
-    console.log(this.$store.getters.StateRole);
+    // console.log(this.$store.getters.StateUser);
+    // console.log(this.$store.getters.StateToken);
+    // console.log(this.$store.getters.StateRole);
   },
   watch: {
     onLine(v) {

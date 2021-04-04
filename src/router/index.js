@@ -35,14 +35,14 @@ const routes = [{
         name: "Apllied",
         component: () =>
             import ("../views/Applied.vue"),
-        beforeEnter: (to, from, next) => {
-            var role = localStorage.getItem("role");
-            if (role != "user") {
-                if (role) next(roleNavigation(role));
-                else next("/login");
-            }
-            next();
-        },
+        // beforeEnter: (to, from, next) => {
+        //     var role = localStorage.getItem("role");
+        //     if (role != "user") {
+        //         if (role) next(roleNavigation(role));
+        //         else next("/login");
+        //     }
+        //     next();
+        // },
         meta: { isApplicant: true },
     },
     {
@@ -214,39 +214,33 @@ router.beforeEach((to, from, next) => {
                 store.getters.StateRole != "editor" &&
                 store.getters.StateRole != "reviewer"
             ) {
-                if (store.getters.StateRole)
-                    next(roleNavigation(store.getters.StateRole));
-                else {
-                    if (to.name != "Login") next("/login");
-                    else next();
-                }
+                next(roleNavigation(store.getters.StateRole));
+                return;
             }
             next();
+            return;
+        } else {
+            store.dispatch("LogOut");
+            next("/login");
+            return;
         }
-        if (to.name != "Login") next("/login");
-        else next();
     } else {
         next();
+        return;
     }
 });
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.isApplicant)) {
-        if (store.getters.isHaveRole) {
-            if (store.getters.StateRole != "user") {
-                if (store.getters.StateRole)
-                    next(roleNavigation(store.getters.StateRole));
-                else {
-                    if (to.name != "Login") next("/login");
-                    else next();
-                }
-            }
-            next();
+        if (store.getters.StateRole != "user") {
+            next(roleNavigation(store.getters.StateRole));
+            return;
         }
-        if (to.name != "Login") next("/login");
-        else next();
+        next();
+        return;
     } else {
         next();
+        return;
     }
 });
 
@@ -254,27 +248,28 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         if (store.getters.isAuthenticated) {
             next();
+            return;
+        } else {
+            store.dispatch("LogOut");
+            next("/login");
+            return;
         }
-        if (to.name != "Login") next("/login");
-        else next();
     } else {
         next();
+        return;
     }
 });
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.guest)) {
         if (store.getters.isAuthenticated) {
-            if (store.getters.isHaveRole)
-                next(roleNavigation(store.getters.StateRole));
-            else {
-                if (to.name != "Login") next("/login");
-                else next();
-            }
+            next(roleNavigation(store.getters.StateRole));
         }
         next();
+        return;
     } else {
         next();
+        return;
     }
 });
 

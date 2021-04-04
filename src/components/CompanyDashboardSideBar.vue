@@ -116,7 +116,7 @@
 <script>
 import Avatar from "vue-avatar";
 export default {
-  data: function () {
+  data: function() {
     return {
       companys: {
         name: "",
@@ -131,13 +131,6 @@ export default {
   },
   components: {
     Avatar,
-  },
-  methods: {
-    async logout() {
-      this.$toasted.info("You're being been logged out");
-      await this.$store.dispatch("LogOut");
-      this.$router.push("/login");
-    },
   },
 };
 </script>

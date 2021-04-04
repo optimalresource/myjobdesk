@@ -188,7 +188,7 @@
                   >
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>

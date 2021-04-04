@@ -9,7 +9,7 @@
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="index.html">
-          <span><img src="images/logo.png" alt="img" /></span
+          <span><img src="images/logo.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -240,7 +240,9 @@
                   <a href="#"><i class="fas fa-cog"></i>Setting</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-sign-in-alt"></i>logout</a>
+                  <a @click="logout"
+                    ><i class="fas fa-sign-in-alt"></i>logout</a
+                  >
                 </li>
               </ul>
             </div>
@@ -755,7 +757,7 @@
                 </ul>
                 <ul class="feedlist logout_link jb_cover">
                   <li>
-                    <a href="/logout"
+                    <a @click="logout"
                       ><i class="fas fa-power-off"></i> log out
                     </a>
                   </li>

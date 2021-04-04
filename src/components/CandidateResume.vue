@@ -2154,11 +2154,6 @@ export default {
     };
   },
   methods: {
-    async logout() {
-      this.$toasted.info("You're being been logged out");
-      await this.$store.dispatch("LogOut");
-      this.$router.push("/login");
-    },
     backstep() {
       this.step--;
     },

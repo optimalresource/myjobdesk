@@ -3,7 +3,7 @@
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img" /></span
+          <span><img src="../assets/images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -191,7 +191,7 @@
                   >
                 </li>
                 <li>
-                  <a href="/logout"
+                  <a @click="logout"
                     ><i class="fas fa-power-off"></i> log out
                   </a>
                 </li>
@@ -664,7 +664,7 @@ import axios from "axios";
 import Avatar from "vue-avatar";
 export default {
   name: "ResumeNavBar",
-  data: function () {
+  data: function() {
     return {
       inputs: {
         first_name: "",

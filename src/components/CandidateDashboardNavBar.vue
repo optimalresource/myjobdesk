@@ -7,7 +7,7 @@
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img" /></span
+          <span><img src="../assets/images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -664,12 +664,11 @@
 </template>
 
 <script>
-// import Logout from "@/components/Logout.vue";
 import axios from "axios";
 import Avatar from "vue-avatar";
 export default {
   name: "CandidateDashboardNavBar",
-  data: function () {
+  data: function() {
     return {
       data: "",
       inputs: {
@@ -704,13 +703,6 @@ export default {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
-  },
-  methods: {
-    async logout() {
-      this.$toasted.info("You're being been logged out");
-      await this.$store.dispatch("LogOut");
-      this.$router.push("/login");
-    },
   },
 };
 </script>

@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
-// import auth from "./modules/auth";
+import PersonalDetails from "./modules/personal-details";
+import CompanyDetails from "./modules/company-details";
 import createMutationsSharer from "vuex-shared-mutations";
 import axios from "axios";
 
@@ -9,7 +10,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        // auth,
+        PersonalDetails,
+        CompanyDetails,
     },
     state: {
         token: null,
@@ -21,7 +23,14 @@ export default new Vuex.Store({
     },
     plugins: [
         createMutationsSharer({
-            predicate: ["logout", "setUser", "setToken", "setRole"],
+            predicate: [
+                "logout",
+                "setUser",
+                "setToken",
+                "setRole",
+                "setPersonalDetails",
+                "setCompanyDetails",
+            ],
         }),
         createPersistedState(),
     ],
@@ -49,11 +58,10 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        registerAccount(context, credentials) {
-            console.log(credentials);
+        RegisterCompany({ commit }, credentials) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("https://api.myjobdesk.com/api/register", {
+                    .post("register", {
                         email: credentials.details.email,
                         password: credentials.details.password,
                         name: credentials.details.name,
@@ -68,11 +76,9 @@ export default new Vuex.Store({
                         const token = response.data.accessToken;
                         const user = response.data.user;
                         const role = response.data.role;
-                        localStorage.setItem("token", token);
-                        localStorage.setItem("user", JSON.stringify(user));
-                        localStorage.setItem("newUser", 1);
-                        localStorage.setItem("role", role);
-                        context.commit("accountRegistered", token, user, role);
+                        commit("setUser", user);
+                        commit("setToken", token);
+                        commit("setRole", role);
                         resolve(response);
                     })
                     .catch((error) => {
@@ -109,8 +115,23 @@ export default new Vuex.Store({
                     });
             });
         },
-        async LogOut({ commit }) {
-            commit("logout");
+        LogOut({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("logout")
+                    .then((response) => {
+                        commit("logout");
+                        resolve(response);
+                    })
+                    .catch((error) => {
+                        commit("logout");
+                        if (error.response) {
+                            reject(error.response.data);
+                        } else {
+                            reject(error);
+                        }
+                    });
+            });
         },
         throwError({ commit }, error) {
             commit("SetError", error);

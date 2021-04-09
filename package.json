@@ -20,6 +20,7 @@
     "froala-editor": "^3.2.6-1",
     "jquery": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
+    "jw-vue-pagination": "^1.0.3",
     "localforage": "^1.9.0",
     "mdbootstrap": "^4.19.1",
     "moment-timezone": "^0.5.33",

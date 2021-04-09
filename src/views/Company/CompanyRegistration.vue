@@ -292,59 +292,59 @@ export default {
       this.notSpin = false;
 
       if (this.companys.name == "") {
-        this.$toastr.e("Please Fill Company's Name");
+        this.$toasted.error("Please Fill Company's Name");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (!this.validateEmail(this.companys.email)) {
-        this.$toastr.e("Please enter a valid Email");
+        this.$toasted.error("Please enter a valid Email");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.email == "") {
-        this.$toastr.e("Please Fill Company's Email");
+        this.$toasted.error("Please Fill Company's Email");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.address == "") {
-        this.$toastr.e("Please Fill Company's Address");
+        this.$toasted.error("Please Fill Company's Address");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.password == "") {
-        this.$toastr.e("Please Fill Password");
+        this.$toasted.error("Please Fill Password");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.password_confirmation == "") {
-        this.$toastr.e("Please Fill Confirm Password");
+        this.$toasted.error("Please Fill Confirm Password");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.password !== this.companys.password_confirmation) {
-        this.$toastr.e("Password and Confirm Password does not Match");
+        this.$toasted.error("Password and Confirm Password does not Match");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.companys.category.length < 1) {
-        this.$toastr.e("please pick a category");
+        this.$toasted.error("please pick a category");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (!this.onLine) {
-        this.$toastr.e("Please check your internet connection");
-        this.spin = false;
-        this.notSpin = true;
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
 
       this.beforeResponse = true;
 

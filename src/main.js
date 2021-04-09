@@ -24,7 +24,8 @@ import "froala-editor/js/plugins/align.min.js";
 import "vue-select/dist/vue-select.css";
 new FroalaEditor("#edit");
 import vSelect from "vue-select";
-
+import JwPagination from "jw-vue-pagination";
+Vue.component("jw-pagination", JwPagination);
 Vue.component("v-select", vSelect);
 import VueApexCharts from "vue-apexcharts";
 Vue.use(VueApexCharts);
@@ -53,12 +54,13 @@ Vue.use(VueToastr, {
 });
 import axios from "axios";
 
-// store.dispatch("LogOut");
+// store.dispatch("ClearCompanyDetails");
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
-axios.defaults.headers.common["Authorization"] =
-  "Bearer " + store.getters.StateToken;
+axios.defaults.baseURL = "http://localhost:8000/api/";
+// axios.defaults.headers.common["Authorization"] =
+//     "Bearer " + store.getters.StateToken;
+
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 axios.interceptors.response.use(undefined, function(error) {

@@ -75,9 +75,9 @@ const routes = [
     meta: { isApplicant: true }
   },
   {
-    path: "/jobList",
-    name: "JobList",
-    component: () => import("../views/JobList.vue")
+    path: "/pricing",
+    name: "Pricing",
+    component: () => import("../views/Pricing.vue")
   },
   {
     path: "/companyApplications",
@@ -219,28 +219,19 @@ function roleNavigation(role) {
   else return "/";
 }
 
-function routeToRegistration() {
-  const step = localStorage.getItem("step");
-  if (step > 1 && step < 5) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// function routeToRegistration() {
+//     const step = localStorage.getItem("step");
+//     if (step > 1 && step < 5) {
+//         return true
+//     } else {
+//         return false;
+//     }
+// }
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.isCompany)) {
     if (localStorage.getItem("step") > 1 && !store.getters.isAuthenticated) {
       next("/login");
-      return;
-    }
-
-    if (
-      to.name != "Applicant" &&
-      routeToRegistration() &&
-      store.getters.isAuthenticated
-    ) {
-      next("/applicant");
       return;
     }
 
@@ -274,15 +265,6 @@ router.beforeEach((to, from, next) => {
       return;
     }
 
-    if (
-      to.name != "Applicant" &&
-      routeToRegistration() &&
-      store.getters.isAuthenticated
-    ) {
-      next("/applicant");
-      return;
-    }
-
     if (store.getters.StateRole != "user") {
       next(roleNavigation(store.getters.StateRole));
       return;
@@ -302,15 +284,6 @@ router.beforeEach((to, from, next) => {
       return;
     }
 
-    if (
-      to.name != "Applicant" &&
-      routeToRegistration() &&
-      store.getters.isAuthenticated
-    ) {
-      next("/applicant");
-      return;
-    }
-
     if (store.getters.isAuthenticated) {
       next();
       return;
@@ -320,23 +293,13 @@ router.beforeEach((to, from, next) => {
       return;
     }
   } else {
-    store.dispatch("LogOut");
-    next("/login");
+    next();
     return;
   }
 });
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.guest)) {
-    if (
-      to.name != "Applicant" &&
-      routeToRegistration() &&
-      store.getters.isAuthenticated
-    ) {
-      next("/applicant");
-      return;
-    }
-
     if (store.getters.isAuthenticated) {
       next(roleNavigation(store.getters.StateRole));
     }
@@ -347,5 +310,82 @@ router.beforeEach((to, from, next) => {
     return;
   }
 });
+
+// router.beforeEach((to, from, next) => {
+//     if (localStorage.getItem("token")) {
+//         var step = 0;
+//         var role = "";
+//         store
+//             .dispatch("validateToken")
+//             .then((response) => {
+//                 console.log(response);
+//                 role = response.data.role;
+//                 // localStorage.setItem("newTempRow", role);
+
+//                 if (to.name == "Register" || to.name == "Applicant") {
+//                     step = response.data.user.step;
+//                     if (step == 0) {
+//                         step = 1;
+//                         localStorage.setItem("step", step);
+//                         localStorage.setItem("showDiv", false);
+//                         console.log("I got here 2");
+//                     } else if (step == 1) {
+//                         step = 2;
+//                         localStorage.setItem("step", step);
+//                         localStorage.setItem("showDiv", true);
+//                     } else if (step == 5) {
+//                         step = 1;
+//                         localStorage.setItem("showDiv", false);
+//                         localStorage.setItem("step", step);
+//                         next(roleNavigation(role));
+//                     }
+//                 }
+
+//                 if (response.status != "200") {
+//                     if (authRoutes(to)) {
+//                         next("/login");
+//                     }
+//                     next();
+//                 }
+//             })
+//             .catch(() => {
+//                 // if (typeof error === "object" && error !== null) {
+//                 //     for (const property in error) {
+//                 //         this.$toasted.error(error[property]);
+//                 //     }
+//                 // } else {
+//                 //     this.$toasted.error(error);
+//                 // }
+//                 if (authRoutes(to)) {
+//                     next("/login");
+//                 }
+//                 next();
+//             });
+
+//         if (
+//             to.name == "Register" ||
+//             to.name == "Login" ||
+//             to.name == "CompanyRegistration" ||
+//             to.name == "Applicant"
+//         ) {
+//             next(roleNavigation(role));
+//         }
+
+//         // if (authRoutes(to)) {
+//         //     next(roleGuard(role, to));
+//         // }
+//         const tok = localStorage.getItem("role");
+//         // const val = roleNavigation(tok);
+//         localStorage.setItem("newmad", roleNavigation(tok));
+//         next();
+//     } else {
+//         localStorage.setItem("step", 1);
+//         localStorage.setItem("showDiv", false);
+//         if (authRoutes(to)) {
+//             next("/login");
+//         }
+//         next();
+//     }
+// });
 
 export default router;

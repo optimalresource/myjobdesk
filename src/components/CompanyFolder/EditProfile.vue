@@ -70,20 +70,16 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                       <div class="contect_form3">
-                        <input type="text" placeholder="Website" required />
-                      </div>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="contect_form3">
                         <input
-                          type="email"
-                          name="email"
-                          placeholder="email "
+                          type="text"
+                          placeholder="Company Reg Number"
                           required
                         />
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="contect_form3">
+                        <input type="text" placeholder="Website" required />
                       </div>
                     </div>
                     <br />
@@ -194,7 +190,7 @@
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="contect_form3">
-                            <label>google</label>
+                            <label>instagram</label>
                             <input
                               type="text"
                               placeholder="https://instagram.com/webstrot"
@@ -317,7 +313,9 @@
             <div class="row mt-2">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="header_btn search_btn jb_cover">
-                  <a class=" col-12" href="#">save changes</a>
+                  <a @click.prevent="updateEditPage" class=" col-12" href="#"
+                    >save changes</a
+                  >
                 </div>
               </div>
             </div>
@@ -364,8 +362,8 @@ export default {
         country: "",
         state: "",
         city: "",
-        address: "",
-      },
+        address: ""
+      }
     };
   },
   components: {
@@ -374,16 +372,19 @@ export default {
     // Avatar,
     CompanyDashboardSideBar,
     DashboardHeader,
-    ChatBox,
+    ChatBox
   },
   methods: {
-    saveProfile() {
+    updateEditPage() {
       //calling axios here to save profile
+      this.$store.dispatch("UpdateCompanyDetails").catch(error => {
+        this.handleAxiosErrors(error);
+      });
     },
     saveSocialMedia() {
       //saving social media handles
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -96,7 +96,7 @@ import Avatar from "vue-avatar";
 export default {
   name: "DashboardSideBar",
   components: {
-    Avatar,
+    Avatar
   },
   data: function() {
     return {
@@ -106,10 +106,10 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: "",
-      },
+        password_confirmation: ""
+      }
     };
-  },
+  }
 };
 </script>
 

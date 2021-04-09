@@ -484,7 +484,7 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     ChatBox,
-    DashboardHeader,
+    DashboardHeader
     // HereAddressLookup
   },
   data: function() {
@@ -505,8 +505,8 @@ export default {
       values: [
         [10, 5, 5, 5],
         [40, 10, 10, 10],
-        [30, 30, 30, 30],
-      ],
+        [30, 30, 30, 30]
+      ]
       // personal_details: {
       //   age: "",
       //   phone: "",
@@ -538,7 +538,7 @@ export default {
     onClickBar: function() {
       console.log(arguments);
       alert("onClickBar");
-    },
+    }
     //   onClickOutside: function() {
     //     console.log(arguments);
     //     alert("onClickOutside");
@@ -646,13 +646,13 @@ export default {
   },
   created() {
     // if (!this.$store.getters.isHaveCompanyDetails) {
-    this.$store.dispatch("FetchCompanyDetails").catch((error) => {
+    this.$store.dispatch("FetchCompanyDetails").catch(error => {
       this.handleAxiosErrors(error);
     });
     // }
   },
   computed: {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 

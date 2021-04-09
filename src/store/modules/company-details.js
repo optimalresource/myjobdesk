@@ -42,12 +42,15 @@ const actions = {
         return response;
     },
 
-    async FetchCompanyDetails({ commit }) {
+    FetchCompanyDetails({ commit }) {
         return new Promise((resolve, reject) => {
+            var token = localStorage.getItem("token");
+            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
             axios
                 .get("company_details")
                 .then((response) => {
                     const details = response.data;
+                    localStorage.setItem("company_details", details);
                     commit("setCompanyDetails", details);
                     resolve(response);
                 })
@@ -60,11 +63,20 @@ const actions = {
                 });
         });
     },
+
+    async ClearCompanyDetails({ commit }) {
+        localStorage.removeItem("company_details");
+        await commit("clearCompanyDetails");
+    },
 };
 
 const mutations = {
     setCompanyDetails(state, details) {
         state.company_details = details;
+    },
+
+    clearCompanyDetails(state) {
+        state.company_details = null;
     },
 };
 

@@ -38,20 +38,12 @@
                         <h4>{{  }}dfbdfbdfb</h4>
                       </div> -->
                       <div class="jp_job_post_right_cont">
-                        <h4>{{ name }}</h4>
+                        <h4>{{ company.name }}</h4>
 
                         <ul>
                           <li>
-                            <i class="fas fa-suitcase"></i>&nbsp;
-                            <span
-                              v-for="(item, index) in category"
-                              :key="index"
-                              >{{ item }}</span
-                            >
-                          </li>
-                          <li>
                             <i class="flaticon-location-pointer"></i>&nbsp;
-                            {{ address }}
+                            {{ company.address }}
                           </li>
                         </ul>
                       </div>
@@ -120,7 +112,7 @@
                   </div>
                   <div class="job_overview_header pdd jb_cover">
                     <p>
-                      {{ bio }}
+                      {{ company.bio }}
                     </p>
                   </div>
                 </div>
@@ -146,7 +138,13 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>categories:</li>
-                          <li>{{ category }}</li>
+                          <li
+                            v-for="(item, index) in company.category"
+                            :key="index"
+                          >
+                            {{ item }}
+                            <span>,</span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -157,7 +155,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Location:</li>
-                          <li>{{ address }}</li>
+                          <li>{{ company.address }}</li>
                         </ul>
                       </div>
                     </div>
@@ -168,7 +166,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>Hotline:</li>
-                          <li>{{ phone_number }}</li>
+                          <li>{{ company.contact_number }}</li>
                         </ul>
                       </div>
                     </div>
@@ -180,7 +178,7 @@
                         <ul>
                           <li>email:</li>
                           <li>
-                            <a href="#">{{ email }}</a>
+                            <a href="#">{{ company.email }}</a>
                           </li>
                         </ul>
                       </div>
@@ -205,7 +203,7 @@
                       <div class="jp_listing_list_icon_cont_wrapper">
                         <ul>
                           <li>website:</li>
-                          <li>{{ website }}</li>
+                          <li>{{ company.website }}</li>
                         </ul>
                       </div>
                     </div>
@@ -494,14 +492,7 @@ export default {
       //   twitter_username: "",
       //   linkedin_username: ""
       // },
-      name: this.$store.getters.StateCompanyDetails.name ?? "Not set",
-      email: this.$store.getters.StateCompanyDetails.email ?? "Not set",
-      category: this.$store.getters.StateCompanyDetails.category ?? "Not set",
-      phone_number:
-        this.$store.getters.StateCompanyDetails.phone_number ?? "Not set",
-      website: this.$store.getters.StateCompanyDetails.website ?? "Not set",
-      address: this.$store.getters.StateCompanyDetails.address ?? "Not set",
-      bio: this.$store.getters.StateCompanyDetails.bio ?? "Not set",
+      company: this.$store.getters.StateCompanyDetails ?? [],
       values: [
         [10, 5, 5, 5],
         [40, 10, 10, 10],
@@ -645,11 +636,14 @@ export default {
     //     });
   },
   created() {
-    // if (!this.$store.getters.isHaveCompanyDetails) {
-    this.$store.dispatch("FetchCompanyDetails").catch((error) => {
-      this.handleAxiosErrors(error);
-    });
-    // }
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then((response) => (this.company = response.data))
+        .catch((error) => {
+          this.handleAxiosErrors(error);
+        });
+    }
   },
   computed: {},
   mounted() {},

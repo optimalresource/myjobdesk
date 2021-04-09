@@ -152,9 +152,13 @@ export default {
             response.data.role == "reviewer"
           )
             this.$router.push({ name: "EmployerDashboard" });
-          else if (response.data.role == "user")
-            this.$router.push({ name: "Dashboard" });
-          else this.$router.push({ name: "Home" });
+          else if (response.data.role == "user") {
+            if (response.data.user.step < 5) {
+              this.$router.push({ name: "Applicant" });
+            } else {
+              this.$router.push({ name: "Dashboard" });
+            }
+          } else this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           this.spin = false;

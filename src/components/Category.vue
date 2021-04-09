@@ -7,7 +7,7 @@
             <div class="jb_heading_wraper">
               <h3>Browse Jobs By Category</h3>
 
-              <p>Your next level Product developemnt company assets</p>
+              <p>These are the top searched categories</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-12">
@@ -16,7 +16,82 @@
                 <div class="hover-block"></div>
 
                 <i class="flaticon-code"></i>
-                <h3>developer</h3>
+                <h3>Financial Services</h3>
+                <p>(1450 jobs)</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="jb_browse_category jb_cover">
+              <a href="job_listing_list_left_filter.html">
+                <div class="hover-block"></div>
+                <i class="flaticon-laptop"></i>
+                <h3>Real Estate</h3>
+                <p>(4525 jobs)</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="jb_browse_category jb_cover">
+              <a href="job_listing_list_left_filter.html">
+                <div class="hover-block"></div>
+                <i class="flaticon-bar-chart"></i>
+                <h3>oil & gas</h3>
+                <p>(214 jobs)</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="jb_browse_category jb_cover">
+              <a href="job_listing_list_left_filter.html">
+                <div class="hover-block"></div>
+                <i class="flaticon-doctor"></i>
+                <h3>I.C.T</h3>
+                <p>(4572 jobs)</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-12 pd5">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="jb_browse_category jb_cover">
+                  <a href="job_listing_list_left_filter.html">
+                    <div class="hover-block"></div>
+                    <i class="flaticon-city-hall"></i>
+                    <h3>services</h3>
+                    <p>(2414 jobs)</p>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="jb_browse_category jb_cover">
+                  <a href="job_listing_list_left_filter.html">
+                    <div class="hover-block"></div>
+                    <i class="flaticon-newspaper"></i>
+                    <h3>consumer goods</h3>
+                    <p>(2142 jobs)</p>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="jb_browse_category jb_cover">
+                  <a href="job_listing_list_left_filter.html">
+                    <div class="hover-block"></div>
+                    <i class="flaticon-lunch"></i>
+                    <h3>marketer</h3>
+                    <p>(2342 jobs)</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="jb_browse_category jb_cover">
+              <a href="job_listing_list_left_filter.html">
+                <div class="hover-block"></div>
+
+                <i class="flaticon-code"></i>
+                <h3>soft-ware developer</h3>
                 <p>(1450 jobs)</p>
               </a>
             </div>
@@ -86,7 +161,7 @@
             </div>
           </div>
           <div class="header_btn search_btn load_btn jb_cover">
-            <a href="#">load more</a>
+            <a href="#">view more categories</a>
           </div>
         </div>
       </div>

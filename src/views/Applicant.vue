@@ -151,7 +151,10 @@
             </ValidationObserver>
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
-                <button type="submit" @click="register">Next Step</button>
+                <button type="submit" @click="register" :disabled="spin">
+                  <span v-if="notSpin">Next Step</span
+                  ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
+                </button>
               </div>
             </div>
 
@@ -322,8 +325,10 @@
               @click="savePersonalDetails"
               class="submit-edu"
               type="submit"
+              :disabled="spin"
             >
-              Save Personal Details
+              <span v-if="notSpin">Save Personal Details</span
+              ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
             </button>
           </div>
         </div>
@@ -505,9 +510,9 @@
                     >
                       <span class="label label-primary">{{
                         attachment.name +
-                        " (" +
-                        Number((attachment.size / 1024 / 1024).toFixed(1)) +
-                        "MB)"
+                          " (" +
+                          Number((attachment.size / 1024 / 1024).toFixed(1)) +
+                          "MB)"
                       }}</span>
                       <span
                         class=""
@@ -523,8 +528,10 @@
               <button
                 class="submit-edu"
                 @click.prevent="submitEducationalDetails"
+                :disabled="spin"
               >
-                Save Info
+                <span v-if="notSpin">Save Info</span
+                ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
               </button>
             </div>
           </div>
@@ -980,7 +987,7 @@
 </template>
 <script>
 // import { EventBus } from "@/components/eventBus.js";
-import axios from "axios";
+// import axios from "axios";
 import NaijaStates from "naija-state-local-government";
 import "vue-input-search/dist/vue-search.css";
 // import VueSearch from "vue-input-search/dist/vue-search.common";
@@ -994,8 +1001,10 @@ export default {
   },
   name: "SignUpDiv",
   // props: ["EventBus"],
-  data: function () {
+  data: function() {
     return {
+      spin: false,
+      notSpin: true,
       uploadedFiles: [],
       isHidden: true,
       successResponse: false,
@@ -1053,6 +1062,7 @@ export default {
         email: "",
         password: "",
         password_confirmation: "",
+        user_type: "applicant",
       },
       skills: {
         skill: "",
@@ -1105,7 +1115,7 @@ export default {
       updatedCerts: [],
       confirmation: "",
       totalstep: 4,
-      step: localStorage.getItem("step"),
+      step: localStorage.getItem("step") ?? 1,
       showPassword: false,
       showConfirmPassword: false,
       valid: true,
@@ -1121,9 +1131,6 @@ export default {
       cvUpload: [],
     };
   },
-  beforeCreate() {
-    // this.fetchPersonalDetails();
-  },
   methods: {
     backstep() {
       this.step--;
@@ -1137,17 +1144,8 @@ export default {
       this.category.push(tag);
     },
     fetchPersonalDetails() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Personal Details",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/personal_details", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchPersonalDetails")
         .then((response) => {
           this.forms.marital_status = response.data.marital_status;
           this.forms.gender = response.data.gender;
@@ -1158,115 +1156,76 @@ export default {
           this.forms.dob = response.data.date_of_birth;
           this.forms.phone = response.data.phone;
           this.pDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch personal details " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     fetchEducationDetails() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Education Info",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/educational_details/all", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchEducationDetails")
         .then((response) => {
           this.updatedForms = response.data;
           this.eDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch education details " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     fetchCertificateDetails() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Certificates",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/certificates/all", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchCertificateDetails")
         .then((response) => {
           this.updatedCerts = response.data;
           this.pDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch certificates " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     fetchReferrees() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Referrees",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/referrees/all", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchReferreeDetails")
         .then((response) => {
           this.updatedRefs = response.data;
           this.pDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch referrees " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     fetchExperiences() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Experiences",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/experiences/all", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchExperienceDetails")
         .then((response) => {
           this.updatedexperiences = response.data;
           this.pDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch experiences " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     fetchSkills() {
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Skills",
-      };
-      var request = {};
-      axios
-        .get("https://api.myjobdesk.com/api/skills/all", {
-          data: request,
-          headers: headers,
-        })
+      this.$store
+        .dispatch("FetchSkillDetails")
         .then((response) => {
           this.updatedskills = response.data;
           this.pDResponse = response.status;
-          console.log(response);
         })
         .catch((error) => {
-          console.log("Failed to fetch skills " + error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     updateOnlineStatus(e) {
@@ -1312,81 +1271,34 @@ export default {
     start() {
       console.log("Starting File Management Component");
     },
-    registercompany() {
-      if (this.companys.company_name == "") {
-        this.$toasted.error("Please Fill Company's Name");
-        return false;
-      }
-      if (this.companys.company_email == "") {
-        this.$toasted.error("Please Fill Company's Email");
-        return false;
-      }
-      if (this.companys.company_address == "") {
-        this.$toasted.error("Please Fill Company's Address");
-        return false;
-      }
-      if (this.companys.company_password == "") {
-        this.$toasted.error("Please Fill Password");
-        return false;
-      }
-      if (this.companys.company_password_confirmation == "") {
-        this.$toasted.error("Please Fill Confirm Password");
-        return false;
-      }
-      if (
-        this.companys.company_password !==
-        this.inputs.company_password_confirmation
-      ) {
-        this.$toasted.error("Password and Confirm Password does not Match");
-        return false;
-      }
-      if (this.companys.company_sector == "") {
-        this.$toasted.error("Please Choose a sector");
-        return false;
-      }
-      if (this.companys.company_contact_number == "") {
-        this.$toasted.error("Please Fill Contact Number");
-        return false;
-      }
-      axios
-        .post("https://api.myjobdesk.com/api/register", this.companys)
-
-        .then((response) => {
-          console.log(this.inputs);
-          console.log(response);
-          const token = response.data.accessToken;
-          localStorage.setItem("token", token);
-        })
-        .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
-        });
-
-      var accessToken = localStorage.getItem("token") || "";
-      console.log(accessToken);
-    },
     savePersonalDetails() {
-      console.log("this is submiting a ");
       if (this.forms.dob == "") {
         this.$toasted.error("Please Fill Your Date of Birth");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting b ");
+
       if (this.forms.gender == "") {
         this.$toasted.error("Please Select Gender");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting c");
+
       if (this.forms.marital_status == "") {
         this.$toasted.error("Please Select Marital Status");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting d");
+
       if (this.forms.phone == "") {
         this.$toasted.error("Please Fill your Phone Number");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting e ");
       if (this.forms.address == "") {
         this.$toasted.error("Please Fill your Address");
         return false;
@@ -1394,16 +1306,22 @@ export default {
       console.log("this is submiting f ");
       if (this.forms.nationality == "") {
         this.$toasted.error("Please Select Nationality");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting g ");
+
       if (this.forms.selectedState == "") {
         this.$toasted.error("Please Select a State");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
-      console.log("this is submiting h ");
+
       if (this.forms.selectedLGA == "") {
         this.$toasted.error("Please Select a Local Government");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
@@ -1416,31 +1334,19 @@ export default {
       request.address = this.forms.address;
       request.date_of_birth = this.forms.dob;
       request.phone = this.forms.phone;
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Register step 2",
-      };
-      axios
-        .post("https://api.myjobdesk.com/api/personal_details", request, {
-          headers,
-        })
+
+      this.$store
+        .dispatch("SavePersonalDetails", request)
         .then((response) => {
-          console.log(response);
           this.pDResponse = response.status;
-          if (response.status == "200") {
-            this.$toasted.success("Persona Details Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Personal details Saved");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     registercandidate() {
@@ -1466,31 +1372,18 @@ export default {
           this.selectedFiles.append("filename[]", this.attachments[i]);
         }
       }
-      console.log(this.attachments);
 
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      // this.spin = false;
+      // this.notSpin = true;
+      //   return false;
+      // }
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Educational Detail",
-        "Content-Type": "multipart/form-data",
-      };
-      console.log(this.selectedFiles);
-      axios
-        .post(
-          "https://api.myjobdesk.com/api/educational_details",
-          this.selectedFiles,
-          {
-            headers,
-          }
-        )
+      this.$store
+        .dispatch("SaveEducationDetails", this.selectedFiles)
         .then((response) => {
-          console.log(response);
-          console.log(response.data.education.id);
+          this.eDResponse = response.status;
           this.updatedForms.push(response.data.education);
           this.id++;
           document.getElementsByClassName("edu-form")[0].style.display = "none";
@@ -1504,23 +1397,14 @@ export default {
           this.attachments = [];
           this.selectedFiles = new FormData();
           document.getElementById("educational_details_file").value = "";
-          this.eDResponse = response.status;
-
-          if (response.status == "200") {
-            this.$toasted.success(
-              "Thank you for submitting a new educational record"
-            );
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Education details Saved");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     showForm() {
@@ -1530,13 +1414,13 @@ export default {
       document.getElementsByClassName("certify")[0].style.display = "block";
       document.getElementsByClassName("cert")[0].style.display = "block";
     },
-    openNav: function () {
+    openNav: function() {
       document.getElementById("myNav").style.width = "100%";
     },
-    closeNav: function () {
+    closeNav: function() {
       document.getElementById("myNav").style.width = "0%";
     },
-    checkEducation: function () {
+    checkEducation: function() {
       if (this.forms.school_name == "") {
         this.$toasted.error("Please check and complete School name");
         return false;
@@ -1572,7 +1456,7 @@ export default {
 
       return true;
     },
-    nextStep: function () {
+    nextStep: function() {
       this.step++;
     },
     onSubmit() {
@@ -1586,44 +1470,23 @@ export default {
     changeLGA() {
       console.log(this.forms.selectedLGA);
     },
-    removeupdatedForms: function (id) {
+    removeupdatedForms: function(id) {
       var toDelete = this.updatedForms[id];
       const requestId = { id: toDelete.id };
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Deleting Educational Detail",
-        "Content-Type": "application/json",
-      };
-      console.log(headers);
-      console.log(requestId);
-
-      axios
-        .delete("https://api.myjobdesk.com/api/educational_details", {
-          data: requestId,
-          headers: headers,
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            this.updatedForms.splice(id, 1);
-            this.$toasted.success("Education detail deleted successfully");
-            console.log(response);
-            if (this.updatedForms.length < 1) {
-              document.getElementsByClassName("edu-form")[0].style.display =
-                "none";
-            }
-
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
+      this.$store
+        .dispatch("DeleteEducationDetail", requestId)
+        .then(() => {
+          this.updatedForms.splice(id, 1);
+          this.$toasted.success("Education detail deleted successfully");
+          if (this.updatedForms.length < 1) {
+            document.getElementsByClassName("edu-form")[0].style.display =
+              "none";
           }
         })
         .catch((error) => {
-          this.$toasted.error("An error occured, please try again later");
-          console.log("This error occured: " + error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     secondStep() {
@@ -1631,6 +1494,9 @@ export default {
       //    this.$toasted.error("please fill Personal Details");
       //   return false;
       // }
+      this.spin = true;
+      this.notSpin = false;
+
       if (this.eDResponse != 200) {
         this.$toasted.error("please add an Educational Detail");
         return false;
@@ -1638,214 +1504,197 @@ export default {
 
       var step = { step: 3 };
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 3 ",
-      };
-
-      axios
-        .post("https://api.myjobdesk.com/api/step", step, {
-          headers,
-        })
-        .then((response) => {
-          console.log(response);
+      this.$store
+        .dispatch("NextStep", step)
+        .then(() => {
+          this.$toasted.success("You have progressed to step 3 of 5");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
-
-      localStorage.setItem("step", 3);
 
       this.step++;
       return true;
     },
     thirdStep() {
+      this.spin = true;
+      this.notSpin = false;
       var step = { step: 4 };
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Going to step 4 ",
-      };
-
-      axios
-        .post("https://api.myjobdesk.com/api/step", step, {
-          headers,
-        })
-        .then((response) => {
-          console.log(response);
+      this.$store
+        .dispatch("NextStep", step)
+        .then(() => {
+          this.$toasted.success("You have progressed to step 4 of 5");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
-
-      localStorage.setItem("step", 4);
 
       this.step++;
       return true;
     },
 
-    goToDashBoard: function () {
+    goToDashBoard: function() {
       var request = { category: [] };
       if (this.category.length < 1) {
         this.$toasted.error("please pick a category");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
+
       for (let i = 0; i < this.category.length; i++) {
         request.category.push({ name: this.category[i].name });
       }
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Seeker Categories",
-        "Content-Type": "application/json",
-      };
 
-      console.log(request);
-      axios
-        .post("https://api.myjobdesk.com/api/pick_categories", request, {
-          headers,
-        })
+      this.$store
+        .dispatch("AddSeekerCategories", request)
         .then((response) => {
-          console.log(response);
           this.categoryResponse = response.status;
-          if (response.status == "200") {
-            this.$toasted.success("Category Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Category saved successfully");
+          this.$toasted.info("You're now being redirected to your dashboard");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
 
       var step = { step: 5 };
-      axios
-        .post("https://api.myjobdesk.com/api/step", step, {
-          headers,
-        })
-        .then((response) => {
-          console.log(response);
+
+      this.$store
+        .dispatch("NextStep", step)
+        .then(() => {
+          this.$router.push("/dashboard");
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
-
-      localStorage.setItem("step", 1);
-      this.$router.push("/dashboard");
     },
-    finalButton: function () {},
-    setFilename: function (event, row) {
+    finalButton: function() {},
+    setFilename: function(event, row) {
       var file = event.target.files[0];
       row.file = file;
     },
-    addExperience: function () {
+    addExperience: function() {
       document.getElementsByClassName("Experience")[0].style.display = "block";
       document.getElementsByClassName("experience")[0].style.display = "block";
     },
-    removeExperience: function () {
+    removeExperience: function() {
       document.getElementsByClassName("Experience")[0].style.display = "none";
       document.getElementsByClassName("experience")[0].style.display = "none";
     },
-    addReferrer: function () {
+    addReferrer: function() {
       document.getElementsByClassName("Referees")[0].style.display = "block";
       document.getElementsByClassName("referees")[0].style.display = "block";
     },
-    removeReferres: function () {
+    removeReferres: function() {
       document.getElementsByClassName("Referees")[0].style.display = "none";
       document.getElementsByClassName("referees")[0].style.display = "none";
     },
 
-    addskills: function () {
+    addskills: function() {
       document.getElementsByClassName("skills")[0].style.display = "block";
     },
-    removeskills: function () {
+    removeskills: function() {
       document.getElementsByClassName("skills")[0].style.display = "none";
     },
     validateEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))*$/;
       return re.test(email);
     },
-    register: function () {
+    register: function() {
       if (this.inputs.first_name == "") {
         this.$toasted.error("Please Fill First Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.last_name == "") {
         this.$toasted.error("Please Fill Last Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.middle_name == "") {
         this.$toasted.error("Please Fill Middle Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.password_confirmation == "") {
         this.$toasted.error("Please Fill Confirm Password");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.email == "") {
         this.$toasted.error("Please Fill Email");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (!this.validateEmail(this.inputs.email)) {
         this.$toasted.error(
           "Please enter at least 6 letters which includes at least number and letter"
         );
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.password == "") {
         this.$toasted.error("Please Fill Password");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.inputs.password !== this.inputs.password_confirmation) {
         this.$toasted.error("Password and Confirm Password does not Match");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
 
       this.beforeResponse = true;
 
-      axios
-        .post("https://api.myjobdesk.com/api/register", this.inputs)
-
+      this.$store
+        .dispatch("RegisterCandidate", this.inputs)
         .then((response) => {
-          console.log(this.inputs);
-          console.log(response);
-          const token = response.data.accessToken;
-          localStorage.setItem("token", token);
           this.successResponse = response.status;
+          this.$toasted.success(
+            "You have successfully started registering your information with MyJobDesk"
+          );
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
-
-      // if (this.successResponse == "200") {
-      //    this.$toasted.success(
-      //     "You have successfully started registering your information with MyJobDesk"
-      //   );
-      //   return true;
-      // } else {
-      //    this.$toasted.error(
-      //     "Oops, something went wrong, please try again later"
-      //   );
-      //   return false;
-      // }
-      var accessToken = localStorage.getItem("token") || "";
-      console.log(accessToken);
     },
     handleFiles() {
       var uploadedFiles = document.getElementById("certification_file");
@@ -1860,121 +1709,113 @@ export default {
       console.log(this.cvFiles[0]);
     },
     savecv() {
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
 
       if (this.cvPreview.length > 0) {
         this.selectedFiles.append("filename", this.cvPreview[0]);
       } else {
         this.$toasted.error("Please upload a cv before submitting");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting CV",
-        "Content-Type": "multipart/form-data",
-      };
-      console.log();
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
-      axios
-        .post("https://api.myjobdesk.com/api/cv", this.selectedFiles, {
-          headers,
-        })
-        .then((response) => {
-          console.log(response);
+      this.$store
+        .dispatch("AddCV", this.selectedFiles)
+        .then(() => {
           this.cvFiles = [];
           this.cvPreview = [];
           this.selectedFiles = new FormData();
           document.getElementById("cv").value = "";
-          if (response.status == "200") {
-            this.$toasted.success("CV saved successfully");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("CV saved successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
     },
     saveskills() {
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
 
       if (this.skills.skill == "") {
         this.$toasted.error("Please enter a skill");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Skill ",
-      };
-      axios
-        .post("https://api.myjobdesk.com/api/skills", this.skills, {
-          headers,
-        })
+      this.$store
+        .dispatch("AddSkill", this.skills)
         .then((response) => {
-          this.updatedskills.push(response.data);
+         this.updatedskills.push(response.data);
           this.skills.skill = "";
           document.getElementsByClassName("skills")[0].style.display = "none";
           document.getElementsByClassName("Skills_preview")[0].style.display =
             "block";
-          if (response.status == "200") {
-            this.$toasted.success("Skill Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Skill saved successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
-      this.showErrorToastr;
+
+        this.showErrorToastr;
     },
     savereferrers() {
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
       if (this.referrers.phone == "") {
         this.$toasted.error("Please Fill Your Referee's number");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.referrers.company_position == "") {
         this.$toasted.error(
           "Please Fill Your Referee's Position in He's/ Her Company"
         );
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.referrers.company_name == "") {
         this.$toasted.error("Please Fill Your Referee's Company's name ");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.referrers.email == "") {
         this.$toasted.error("Please Fill Your Referee's email");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.referrers.full_name == "") {
         this.$toasted.error("Please Fill Your Referee's Full Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       var reff = {};
@@ -1984,15 +1825,8 @@ export default {
       reff.company_position = this.referrers.company_position;
       reff.phone = this.referrers.phone;
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Referee ",
-      };
-      axios
-        .post("https://api.myjobdesk.com/api/referrees", reff, {
-          headers,
-        })
+      this.$store
+        .dispatch("AddReferree", reff)
         .then((response) => {
           this.updatedRefs.push(response.data);
           this.id++;
@@ -2006,46 +1840,60 @@ export default {
           document.getElementsByClassName("referees")[0].style.display = "none";
           document.getElementsByClassName("Referee_preview")[0].style.display =
             "block";
-          if (response.status == "200") {
-            this.$toasted.success("Referee Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Referree saved successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
     },
     saveExperience() {
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
       if (this.experiences.job_description == "") {
         this.$toasted.error("Please Fill Your Referee's number");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.experiences.job_title == "") {
         this.$toasted.error(
           "Please Fill Your Referee's Position in He's/ Her Company"
         );
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.experiences.company_name == "") {
         this.$toasted.error("Please Fill Your Referee's Company's name ");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.experiences.company_location == "") {
         this.$toasted.error("Please Fill Your Referee's email");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.experiences.date_from == "") {
         this.$toasted.error("Please Fill Your Referee's Full Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       if (this.experiences.date_to == "") {
         this.$toasted.error("Please Fill Your Referee's Full Name");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
       var exp = {};
@@ -2059,18 +1907,10 @@ export default {
         this.$toasted.error("Please check your internet connection");
         return false;
       }
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Experiences ",
-      };
-      axios
-        .post("https://api.myjobdesk.com/api/experiences", exp, {
-          headers,
-        })
+
+      this.$store
+        .dispatch("AddExperience", exp)
         .then((response) => {
-          console.log(response);
-          console.log(response.data);
           this.experiences.job_description = "";
           this.experiences.job_title = "";
           this.experiences.company_name = "";
@@ -2088,33 +1928,34 @@ export default {
           )[0].style.display = "block";
 
           this.expResponse = response.status;
-          if (response.status == "200") {
-            this.$toasted.success("Experience Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Referree saved successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+          return false;
         });
-      // this.showErrorToastr;
     },
     save_certificate() {
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
-      }
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   return false;
+      // }
+
       if (this.certifications.title == "") {
         this.$toasted.error("Please fill Certification Title");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
+
       if (this.certifications.description == "") {
         this.$toasted.error("Please fill Certification Description");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
@@ -2124,163 +1965,85 @@ export default {
         this.selectedFiles.append("filename", this.certPreview[0]);
       } else {
         this.$toasted.error("Please upload a file before submitting");
+        this.spin = false;
+        this.notSpin = true;
         return false;
       }
 
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Submitting Certifications",
-        "Content-Type": "multipart/form-data",
-      };
-
-      axios
-        .post(
-          "https://api.myjobdesk.com/api/certificates",
-          this.selectedFiles,
-          {
-            headers,
-          }
-        )
+      this.$store
+        .dispatch("SaveCertificate", this.selectedFiles)
         .then((response) => {
-          console.log(response);
           this.updatedCerts.push(response.data);
           document.getElementsByClassName("certify")[0].style.display = "none";
           document.getElementsByClassName("cert")[0].style.display = "none";
-          // document.getElementsByClassName(
-          //   "certification_preview"
-          // )[0].style.display = "block";
           this.certifications.title = "";
           this.certifications.description = "";
           this.certFiles = [];
           this.certPreview = [];
           this.selectedFiles = new FormData();
           document.getElementById("certification_file").value = "";
-
-          if (response.status == "200") {
-            this.$toasted.success("Certification Saved");
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+          this.$toasted.success("Certification Saved");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.errorMessage = error.message;
-          console.log(error.message);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     deleteCertification(id) {
       var toDelete = this.updatedCerts[id];
       const requestId = { id: toDelete.id };
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Deleting Certifications",
-        "Content-Type": "application/json",
-      };
-      console.log(headers);
-      console.log(requestId);
 
-      axios
-        .delete("https://api.myjobdesk.com/api/certificates", {
-          data: requestId,
-          headers: headers,
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            this.updatedCerts.splice(id, 1);
-            this.$toasted.success("Certification deleted successfully");
-            console.log(response);
-            // if (this.updatedCerts.length < 1) {
-            //   document.getElementsByClassName(
-            //     "certification_preview"
-            //   )[0].style.display = "none";
-            // }
-
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+      this.$store
+        .dispatch("DeleteCertificate", requestId)
+        .then(() => {
+          this.updatedCerts.splice(id, 1);
+          this.$toasted.success("Certification deleted successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.$toasted.error("An error occured, please try again later");
-          console.log("This error occured: " + error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     deleteReferree(id) {
       var toDelete = this.updatedRefs[id];
       const requestId = { id: toDelete.id };
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Deleting Referree",
-        "Content-Type": "application/json",
-      };
-      console.log(headers);
-      console.log(requestId);
 
-      axios
-        .delete("https://api.myjobdesk.com/api/referrees", {
-          data: requestId,
-          headers: headers,
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            this.updatedRefs.splice(id, 1);
-            this.$toasted.success("Referree deleted successfully");
-            console.log(response);
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+      this.$store
+        .dispatch("DeleteReferree", requestId)
+        .then(() => {
+          this.updatedRefs.splice(id, 1);
+          this.$toasted.success("Referree deleted successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.$toasted.error("An error occured, please try again later");
-          console.log("This error occured: " + error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
     deleteExperience(id) {
       var toDelete = this.updatedexperiences[id];
       const requestId = { id: toDelete.id };
-      var accessToken = localStorage.getItem("token") || "";
-      const headers = {
-        Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Deleting Experience",
-        "Content-Type": "application/json",
-      };
-      console.log(headers);
-      console.log(requestId);
 
-      axios
-        .delete("https://api.myjobdesk.com/api/experiences", {
-          data: requestId,
-          headers: headers,
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            this.updatedexperiences.splice(id, 1);
-            this.$toasted.success("Experience deleted successfully");
-            console.log(response);
-            return true;
-          } else {
-            this.$toasted.error(
-              "Oops, something went wrong, please try again later"
-            );
-            return false;
-          }
+      this.$store
+        .dispatch("DeleteExperience", requestId)
+        .then(() => {
+          this.updatedexperiences.splice(id, 1);
+          this.$toasted.success("Experience deleted successfully");
+          this.spin = false;
+          this.notSpin = true;
         })
         .catch((error) => {
-          this.$toasted.error("An error occured, please try again later");
-          console.log("This error occured: " + error);
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
         });
     },
   },
@@ -2296,7 +2059,7 @@ export default {
 
     beforeResponse() {
       if (this.beforeResponse) {
-        this.$toasted.warning("Your form is being submitted, please wait");
+        this.$toasted.info("Your form is being submitted, please wait");
       }
     },
 
@@ -2325,10 +2088,7 @@ export default {
     this.fetchReferrees();
     this.fetchExperiences();
     this.fetchSkills();
-    window.addEventListener("online", this.updateOnlineStatus);
-    window.addEventListener("offline", this.updateOnlineStatus);
 
-    console.log("This is good");
     // EventBus.$on("onSubmit", this.nextStep);
 
     // document.getElementById("blk").onchange = function() {
@@ -2338,7 +2098,7 @@ export default {
     // };
 
     // var nav = document.querySelector(".modalbutton");
-    var toggleState = function (elem, one, two) {
+    var toggleState = function(elem, one, two) {
       var element = document.querySelector(elem);
       element.setAttribute(
         "data-toggle",

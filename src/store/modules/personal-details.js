@@ -28,8 +28,16 @@ const actions = {
     },
     async FetchPersonalDetails({ commit }) {
         return new Promise((resolve, reject) => {
+            var accessToken = localStorage.getItem("token") || "";
+            const headers = {
+                Authorization: "Bearer " + accessToken,
+                "My-Custom-Header": "GetUserRecord",
+            };
+            var request = {};
             axios
-                .get("personal_details")
+                .get("personal_details", request, {
+                    headers,
+                })
                 .then((response) => {
                     const details = response.data;
                     commit("setPersonalDetails", details);

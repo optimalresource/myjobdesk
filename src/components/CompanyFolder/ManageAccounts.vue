@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
@@ -330,7 +330,7 @@
                         <div class="jb_job_post_side_img">
                           <avatar
                             class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="companys.email"
+                            :username="company.email"
                             :size="70"
                             :rounded="false"
                           >
@@ -470,7 +470,7 @@ export default {
         { name: "Rails", language: "Ruby" },
         { name: "Sinatra", language: "Ruby" },
         { name: "Laravel", language: "PHP" },
-        { name: "Phoenix", language: "Elixir" },
+        { name: "Phoenix", language: "Elixir" }
       ],
       successResponse: false,
       beforeResponse: false,
@@ -485,7 +485,7 @@ export default {
         password_confirmation: "",
         middle_name: "",
         role: "",
-        last_name: "",
+        last_name: ""
       },
       update: {
         manage_users: "",
@@ -493,17 +493,9 @@ export default {
         edit_profile: "",
         post_interview_questions: "",
         post_jobs: "",
-        view_all_user_activities: "",
+        view_all_user_activities: ""
       },
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        bio: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? ""
     };
   },
   name: "Pages",
@@ -514,13 +506,13 @@ export default {
     DashboardHeader,
     Avatar,
     // Multiselect,
-    ChatBox,
+    ChatBox
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.value.push(tag);
@@ -596,7 +588,7 @@ export default {
       axios
         .post("", this.users)
 
-        .then((response) => {
+        .then(response => {
           console.log(this.users);
           console.log(response);
           const token = response.data.accessToken;
@@ -611,7 +603,7 @@ export default {
             return false;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -625,7 +617,19 @@ export default {
     showAllUsers: function() {
       this.showUsers = true;
       this.showActivities = false;
-    },
+    }
+  },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
   },
   watch: {
     onLine(v) {
@@ -635,8 +639,8 @@ export default {
           this.showBackOnline = false;
         }, 1000);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
@@ -659,7 +663,7 @@ export default {
   margin-right: 10px;
 }
 .power_button {
-  float: right;
+  /* float: right; */
   display: inline-block;
   margin-bottom: 10px;
   margin-right: 10px;

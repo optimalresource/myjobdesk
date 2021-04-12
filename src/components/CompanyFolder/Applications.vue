@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <Pagination />
           <!-- <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
@@ -376,18 +376,7 @@ export default {
   data() {
     return {
       data: "",
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        job_description: "",
-        country: "",
-        state: "",
-        city: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? ""
     };
   },
   components: {
@@ -396,8 +385,20 @@ export default {
     Pagination,
     DashboardHeader,
     CompanyDashboardSideBar,
-    ChatBox,
+    ChatBox
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  }
 };
 </script>
 

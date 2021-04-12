@@ -26,7 +26,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <!-- <HereAddressLookup /> -->
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
@@ -482,7 +482,7 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     ChatBox,
-    DashboardHeader,
+    DashboardHeader
     // HereAddressLookup
   },
   data: function() {
@@ -492,12 +492,12 @@ export default {
       //   twitter_username: "",
       //   linkedin_username: ""
       // },
-      company: this.$store.getters.StateCompanyDetails ?? [],
+      company: this.$store.getters.StateCompanyDetails ?? "",
       values: [
         [10, 5, 5, 5],
         [40, 10, 10, 10],
-        [30, 30, 30, 30],
-      ],
+        [30, 30, 30, 30]
+      ]
       // personal_details: {
       //   age: "",
       //   phone: "",
@@ -529,7 +529,7 @@ export default {
     onClickBar: function() {
       console.log(arguments);
       alert("onClickBar");
-    },
+    }
     //   onClickOutside: function() {
     //     console.log(arguments);
     //     alert("onClickOutside");
@@ -635,18 +635,18 @@ export default {
     //       console.log("Failed to fetch referrees " + error.message);
     //     });
   },
-  created() {
+  mounted() {
     if (!this.$store.getters.isHaveCompanyDetails) {
       this.$store
         .dispatch("FetchCompanyDetails")
-        .then((response) => (this.company = response.data))
-        .catch((error) => {
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
           this.handleAxiosErrors(error);
         });
     }
-  },
-  computed: {},
-  mounted() {},
+  }
 };
 </script>
 

@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -272,17 +272,16 @@ import ChatBox from "@/components/ChatBox.vue";
 import DashboardHeader from "@/components/DashboardHeader.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 // import Avatar from "vue-avatar";
-import axios from "axios";
 export default {
   name: "EditProfile",
-  data: function () {
+  data: function() {
     return {
       config: {
         events: {
-          initialized: function () {
+          initialized: function() {
             console.log("initialized");
-          },
-        },
+          }
+        }
       },
       options: [
         {
@@ -291,32 +290,32 @@ export default {
             { name: "Data Entry", category: "Data Entry" },
             {
               name: "Microsoft Office",
-              category: "Microsoft Office",
+              category: "Microsoft Office"
             },
             {
               name: "Operating Office Equipment",
-              category: "Office Equipment",
+              category: "Office Equipment"
             },
             { name: "Welcoming Visitors", category: "Welcoming Visitors" },
             { name: "Salesforce", category: "Salesforce" },
             {
               name: "Calendar Management Skills",
-              category: "Calendar Management",
-            },
-          ],
+              category: "Calendar Management"
+            }
+          ]
         },
         {
           language: "IT Skills",
           libs: [
             {
               name: "Programming Languages",
-              category: "Programming Languages",
+              category: "Programming Languages"
             },
             { name: "Web Development", category: "Web Development" },
             { name: "Data Structures", category: "Data Structures" },
             {
               name: "Open Source Experience",
-              category: "Open Source Experience",
+              category: "Open Source Experience"
             },
             { name: "CodingJava Script", category: "CodingJava Script" },
             { name: "Security", category: "Security" },
@@ -325,64 +324,64 @@ export default {
             { name: "UX/UI", category: "UX/UI" },
             {
               name: "Front-End Development",
-              category: "Front-End Development",
+              category: "Front-End Development"
             },
             { name: "Back-End Development", category: "Back-End Development" },
             { name: "Cloud Management", category: "Cloud Management" },
-            { name: "Agile Development", category: "Agile Development" },
-          ],
+            { name: "Agile Development", category: "Agile Development" }
+          ]
         },
         {
           language: "Nursing and Healthcare Skills",
           libs: [
             {
               name: "General Nursing Skills",
-              category: "General Nursing Skills",
+              category: "General Nursing Skills"
             },
             { name: "Patient Assessment", category: "Patient Assessment" },
             { name: "Taking Vital Signs", category: "Taking Vital Signs" },
             { name: "Patient Care", category: "Patient Care" },
             {
               name: "Recording Patient Medical History",
-              category: "Recording Patient Medical History",
+              category: "Recording Patient Medical History"
             },
             {
               name: "Wound Dressing and Care",
-              category: "Wound Dressing and Care",
+              category: "Wound Dressing and Care"
             },
             {
               name: "Urgent and Emergency Care",
-              category: "Urgent and Emergency Care",
+              category: "Urgent and Emergency Care"
             },
             { name: "Record-Keeping", category: "Record-Keeping" },
             { name: "Patient Education", category: "Patient Education" },
             {
               name: "NIH Stroke Scale Patient Assessment",
-              category: "NIH Stroke Scale Patient Assessment",
+              category: "NIH Stroke Scale Patient Assessment"
             },
             { name: "Electronic Medical Record (EMR)", category: "EMR" },
             {
               name: "Medicine Administration",
-              category: "Medicine Administration",
+              category: "Medicine Administration"
             },
             {
               name: "Blood Pressure Monitoring",
-              category: "Blood Pressure Monitoring",
+              category: "Blood Pressure Monitoring"
             },
             { name: "Phlebotomy", category: "Phlebotomy" },
             {
               name: "Rehabilitation Therapy",
-              category: "Rehabilitation Therapy",
+              category: "Rehabilitation Therapy"
             },
             { name: "Hygiene Assistance", category: "Hygiene Assistance" },
             {
               name: "Use of X-Ray, MRI, CAT Scans",
-              category: "Use of X-Ray, MRI, CAT Scans",
+              category: "Use of X-Ray, MRI, CAT Scans"
             },
             { name: "Meditech", category: "Meditech" },
             { name: "Glucose Checks", category: "Glucose Checks" },
-            { name: "Electronic Heart Record (EHR)", category: "EHR" },
-          ],
+            { name: "Electronic Heart Record (EHR)", category: "EHR" }
+          ]
         },
         {
           language: "Sales, Retail, and Customer Service Skills ",
@@ -392,30 +391,30 @@ export default {
             { name: "Lead Prospecting ", category: "Lead Prospecting" },
             {
               name: "Customer Needs Analysis",
-              category: "Customer Needs Analysis",
+              category: "Customer Needs Analysis"
             },
             { name: "Referral Marketing", category: "Referral Marketing" },
             { name: "Contract Negotiation", category: "Contract Negotiation" },
             { name: "Self Motivation", category: "Self Motivation" },
             {
               name: "Increasing Customer Lifetime Value (CLV)",
-              category: "CLV",
+              category: "CLV"
             },
             {
               name: "Reducing Customer Acquisition Cost (CAC)",
-              category: "CAC",
+              category: "CAC"
             },
             {
               name: "CRM Software (Salesforce, Hubspot, Zoho, Freshsales)",
-              category: "CRM",
+              category: "CRM"
             },
             { name: "POS Skills", category: "POS Skills" },
             { name: "Cashier Skills", category: "Cashier Skills" },
             {
               name: "Good Communication Skills",
-              category: "Good Communication Skills",
-            },
-          ],
+              category: "Good Communication Skills"
+            }
+          ]
         },
         {
           language: "Engineering & Technical Skills",
@@ -430,23 +429,12 @@ export default {
             { name: "Workflow Development", category: "Workflow Development" },
             { name: "Computer Skills", category: "Computer Skills" },
             { name: "Budgeting Skills", category: "Budgeting" },
-            { name: "Technical Report Writing Skills", category: "TRWS" },
-          ],
-        },
+            { name: "Technical Report Writing Skills", category: "TRWS" }
+          ]
+        }
       ],
       value: [],
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        job_description: "",
-        country: "",
-        state: "",
-        city: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? "",
       model: [],
       posts: {
         category: "",
@@ -460,8 +448,8 @@ export default {
         specific_qualificaion: "",
         age: "",
         skills: "",
-        experience: "",
-      },
+        experience: ""
+      }
     };
   },
   components: {
@@ -472,13 +460,13 @@ export default {
     // VueEditor,
     // Avatar,
     Multiselect,
-    ChatBox,
+    ChatBox
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.value.push(tag);
@@ -517,37 +505,49 @@ export default {
         return false;
       }
       this.$router.push("/preview");
-    },
+    }
   },
   created() {
-    var accessToken = localStorage.getItem("token") || "";
-    const headers = {
-      Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2",
-    };
-    axios
-      .get("", {
-        headers,
-      })
-      .then((response) => {
-        console.log(response);
-        this.companys.name = response.data.name;
-        this.companys.email = response.data.email;
-        this.companys.category = response.data.category;
-        this.companys.email = response.data.email;
-        this.companys.phone_number = response.data.phone_number;
-        this.companys.website = response.data.website;
-        this.companys.job_description = response.data.job_description;
-        this.companys.country = response.data.country;
-        this.companys.state = response.data.state;
-        this.companys.address = response.data.address;
-        this.companys.city = response.data.city;
-      })
-      .catch((error) => {
-        this.errorMessage = error.message;
-        console.error("There was an error!", error);
-      });
+    // var accessToken = localStorage.getItem("token") || "";
+    // const headers = {
+    //   Authorization: "Bearer " + accessToken,
+    //   "My-Custom-Header": "Register step 2",
+    // };
+    // axios
+    //   .get("", {
+    //     headers,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //     this.companys.name = response.data.name;
+    //     this.companys.email = response.data.email;
+    //     this.companys.category = response.data.category;
+    //     this.companys.email = response.data.email;
+    //     this.companys.phone_number = response.data.phone_number;
+    //     this.companys.website = response.data.website;
+    //     this.companys.job_description = response.data.job_description;
+    //     this.companys.country = response.data.country;
+    //     this.companys.state = response.data.state;
+    //     this.companys.address = response.data.address;
+    //     this.companys.city = response.data.city;
+    //   })
+    //   .catch((error) => {
+    //     this.errorMessage = error.message;
+    //     console.error("There was an error!", error);
+    //   });
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

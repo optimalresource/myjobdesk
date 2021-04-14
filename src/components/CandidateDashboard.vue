@@ -1312,14 +1312,14 @@ export default {
     // CandidateDashboardRightSideBar,
     // CandidateDashboardNavBar,
     // CandidateDashboardSubNavBar,
-    ChatBox,
+    ChatBox
   },
   data: function() {
     return {
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: "",
+        linkedin_username: ""
       },
       first_name: this.$store.getters.StateUser.first_name ?? "Not set",
       last_name: this.$store.getters.StateUser.last_name ?? "Not set",
@@ -1336,14 +1336,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: "",
+        selectedState: ""
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: [],
+      updatedreferrees: []
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -1360,53 +1360,53 @@ export default {
   },
   created() {
     if (!this.$store.getters.isHavePersonalDetails) {
-      this.$store.dispatch("FetchPersonalDetails").catch((error) => {
+      this.$store.dispatch("FetchPersonalDetails").catch(error => {
         this.handleAxiosErrors(error);
       });
     }
 
     axios
       .get("https://api.myjobdesk.com/api/skills/all")
-      .then((response) => {
+      .then(response => {
         this.updatedskills = response.data;
         console.log(response);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Failed to fetch Skills" + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/educational_details/all")
-      .then((response) => {
+      .then(response => {
         this.updatedForms = response.data;
         // this.eDResponse = response.status;
         console.log(response);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Failed to fetch education details " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/certificates/all")
-      .then((response) => {
+      .then(response => {
         this.updatedCerts = response.data;
         console.log(response);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Failed to fetch certificates " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/experiences/all")
-      .then((response) => {
+      .then(response => {
         this.updatedexperiences = response.data;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Failed to fetch experiences " + error.message);
       });
     axios
       .get("https://api.myjobdesk.com/api/referrees/all")
-      .then((response) => {
+      .then(response => {
         this.updatedreferrees = response.data;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Failed to fetch referrees " + error.message);
       });
   },
@@ -1415,7 +1415,7 @@ export default {
     // console.log(this.$store.getters.StateUser);
     // console.log(this.$store.getters.StateToken);
     // console.log(this.$store.getters.StateRole);
-  },
+  }
 };
 </script>
 

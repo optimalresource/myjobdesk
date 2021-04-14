@@ -87,7 +87,7 @@
                 :rules="{
                   required: true,
                   regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
-                  confirmed: 'confirmation',
+                  confirmed: 'confirmation'
                 }"
                 v-slot="{ errors }"
                 name="Password"
@@ -139,7 +139,7 @@
                       <i
                         class="fa"
                         :class="[
-                          showConfirmPassword ? 'fa-eye' : 'fa-eye-slash',
+                          showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'
                         ]"
                         aria-hidden="true"
                       ></i>
@@ -997,7 +997,7 @@ import Multiselect from "vue-multiselect";
 export default {
   components: {
     // "vue-search": VueSearch,
-    Multiselect,
+    Multiselect
   },
   name: "SignUpDiv",
   // props: ["EventBus"],
@@ -1031,7 +1031,7 @@ export default {
         { name: "​​​Oil & Gas", code: "oi" },
         { name: "Services", code: "se" },
         { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" },
+        { name: "Utilities", code: "ut" }
       ],
       educational_details_file: {},
       attachments: [],
@@ -1053,7 +1053,7 @@ export default {
         company_password_confirmation: "",
         company_sector: "",
         company_address: "",
-        company_contact_number: "",
+        company_contact_number: ""
       },
       inputs: {
         first_name: "",
@@ -1062,10 +1062,10 @@ export default {
         email: "",
         password: "",
         password_confirmation: "",
-        user_type: "applicant",
+        user_type: "applicant"
       },
       skills: {
-        skill: "",
+        skill: ""
       },
       experiences: {
         job_description: "",
@@ -1073,7 +1073,7 @@ export default {
         company_name: "",
         company_location: "",
         date_from: "",
-        date_to: "",
+        date_to: ""
       },
       rows: [],
       id: 0,
@@ -1084,11 +1084,11 @@ export default {
         company_position: "",
         company_name: "",
         email: "",
-        full_name: "",
+        full_name: ""
       },
       certifications: {
         title: "",
-        description: "",
+        description: ""
       },
       forms: {
         dob: "",
@@ -1106,7 +1106,7 @@ export default {
         course_of_study: "",
         upload: [],
         selectedState: "",
-        selectedLGA: "",
+        selectedLGA: ""
       },
       updatedForms: [],
       updatedexperiences: [],
@@ -1128,7 +1128,7 @@ export default {
       certPreview: [],
       cvFiles: [],
       cvPreview: [],
-      cvUpload: [],
+      cvUpload: []
     };
   },
   methods: {
@@ -1138,7 +1138,7 @@ export default {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -1146,7 +1146,7 @@ export default {
     fetchPersonalDetails() {
       this.$store
         .dispatch("FetchPersonalDetails")
-        .then((response) => {
+        .then(response => {
           this.forms.marital_status = response.data.marital_status;
           this.forms.gender = response.data.gender;
           this.forms.selectedLGA = response.data.lga;
@@ -1157,7 +1157,7 @@ export default {
           this.forms.phone = response.data.phone;
           this.pDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1166,11 +1166,11 @@ export default {
     fetchEducationDetails() {
       this.$store
         .dispatch("FetchEducationDetails")
-        .then((response) => {
+        .then(response => {
           this.updatedForms = response.data;
           this.eDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1179,11 +1179,11 @@ export default {
     fetchCertificateDetails() {
       this.$store
         .dispatch("FetchCertificateDetails")
-        .then((response) => {
+        .then(response => {
           this.updatedCerts = response.data;
           this.pDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1192,11 +1192,11 @@ export default {
     fetchReferrees() {
       this.$store
         .dispatch("FetchReferreeDetails")
-        .then((response) => {
+        .then(response => {
           this.updatedRefs = response.data;
           this.pDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1205,11 +1205,11 @@ export default {
     fetchExperiences() {
       this.$store
         .dispatch("FetchExperienceDetails")
-        .then((response) => {
+        .then(response => {
           this.updatedexperiences = response.data;
           this.pDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1218,11 +1218,11 @@ export default {
     fetchSkills() {
       this.$store
         .dispatch("FetchSkillDetails")
-        .then((response) => {
+        .then(response => {
           this.updatedskills = response.data;
           this.pDResponse = response.status;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1234,7 +1234,7 @@ export default {
     },
     getAttachmentSize() {
       this.upload_size = 0;
-      this.attachments.map((item) => {
+      this.attachments.map(item => {
         this.upload_size += parseInt(item.size);
       });
 
@@ -1337,13 +1337,13 @@ export default {
 
       this.$store
         .dispatch("SavePersonalDetails", request)
-        .then((response) => {
+        .then(response => {
           this.pDResponse = response.status;
           this.$toasted.success("Personal details Saved");
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1382,7 +1382,7 @@ export default {
 
       this.$store
         .dispatch("SaveEducationDetails", this.selectedFiles)
-        .then((response) => {
+        .then(response => {
           this.eDResponse = response.status;
           this.updatedForms.push(response.data.education);
           this.id++;
@@ -1401,7 +1401,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1483,7 +1483,7 @@ export default {
               "none";
           }
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1511,7 +1511,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1533,7 +1533,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1559,14 +1559,14 @@ export default {
 
       this.$store
         .dispatch("AddSeekerCategories", request)
-        .then((response) => {
+        .then(response => {
           this.categoryResponse = response.status;
           this.$toasted.success("Category saved successfully");
           this.$toasted.info("You're now being redirected to your dashboard");
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1580,7 +1580,7 @@ export default {
         .then(() => {
           this.$router.push("/dashboard");
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1682,7 +1682,7 @@ export default {
 
       this.$store
         .dispatch("RegisterCandidate", this.inputs)
-        .then((response) => {
+        .then(response => {
           this.successResponse = response.status;
           this.$toasted.success(
             "You have successfully started registering your information with MyJobDesk"
@@ -1690,7 +1690,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1736,7 +1736,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1760,8 +1760,8 @@ export default {
 
       this.$store
         .dispatch("AddSkill", this.skills)
-        .then((response) => {
-         this.updatedskills.push(response.data);
+        .then(response => {
+          this.updatedskills.push(response.data);
           this.skills.skill = "";
           document.getElementsByClassName("skills")[0].style.display = "none";
           document.getElementsByClassName("Skills_preview")[0].style.display =
@@ -1770,14 +1770,14 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
           return false;
         });
 
-        this.showErrorToastr;
+      this.showErrorToastr;
     },
     savereferrers() {
       // if (!this.onLine) {
@@ -1827,7 +1827,7 @@ export default {
 
       this.$store
         .dispatch("AddReferree", reff)
-        .then((response) => {
+        .then(response => {
           this.updatedRefs.push(response.data);
           this.id++;
           this.referrers.full_name = "";
@@ -1844,7 +1844,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1910,7 +1910,7 @@ export default {
 
       this.$store
         .dispatch("AddExperience", exp)
-        .then((response) => {
+        .then(response => {
           this.experiences.job_description = "";
           this.experiences.job_title = "";
           this.experiences.company_name = "";
@@ -1932,7 +1932,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -1972,7 +1972,7 @@ export default {
 
       this.$store
         .dispatch("SaveCertificate", this.selectedFiles)
-        .then((response) => {
+        .then(response => {
           this.updatedCerts.push(response.data);
           document.getElementsByClassName("certify")[0].style.display = "none";
           document.getElementsByClassName("cert")[0].style.display = "none";
@@ -1986,7 +1986,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -2004,7 +2004,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -2022,7 +2022,7 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
@@ -2040,12 +2040,12 @@ export default {
           this.spin = false;
           this.notSpin = true;
         })
-        .catch((error) => {
+        .catch(error => {
           this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
-    },
+    }
   },
   watch: {
     onLine(v) {
@@ -2072,7 +2072,7 @@ export default {
         this.successResponse = false;
         this.beforeResponse = false;
       }
-    },
+    }
   },
   mounted() {
     // $(document).ready(function() {
@@ -2115,7 +2115,7 @@ export default {
   beforeDestroy() {
     window.removeEventListener("online", this.updateOnlineStatus);
     window.removeEventListener("offline", this.updateOnlineStatus);
-  },
+  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

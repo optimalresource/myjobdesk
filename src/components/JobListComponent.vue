@@ -41,18 +41,21 @@
             />
           </div>
           <div class="col-lg-3 col-md-6 col-sm-12 mt-2 ">
-            <multiselect
-              v-model="category"
-              tag-placeholder="Add this as new category"
-              placeholder="Search or add a category"
-              label="name"
-              track-by="code"
-              :options="options"
-              :multiple="true"
-              :taggable="true"
-              @tag="addTag"
-              tag-position="top"
-            ></multiselect>
+            <div>
+              <multiselect
+                v-model="category"
+                :options="options"
+                :multiple="true"
+                :close-on-select="false"
+                :clear-on-select="false"
+                :preserve-search="true"
+                placeholder="Pick some"
+                label="name"
+                track-by="language"
+                :preselect-first="false"
+              >
+              </multiselect>
+            </div>
           </div>
           <div
             class=" col-lg-2 col-md-12 col-sm-12 mt-2 header_btn search_btn jb_cover mb-2"
@@ -117,32 +120,33 @@ export default {
       searchJob: {
         job_title: "",
         location: "",
-        job_type: "",
+        job_type: ""
       },
       category: [],
+      value: [],
       options: [
-        { name: "​Construction/ Real Estate", code: "Re|Co" },
-        { name: "​​Consumer Goods", code: "go" },
-        { name: "Financial Services", code: "fi" },
-        { name: "​Healthcare", code: "he" },
-        { name: "​Information & Communications Technology", code: "it" },
-        { name: "​Natural Resources", code: "na" },
-        { name: "​​​Oil & Gas", code: "oi" },
-        { name: "Services", code: "se" },
-        { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" },
-      ],
+        { name: "​Construction/ Real Estate", language: "Re|Co" },
+        { name: "​​Consumer Goods", language: "go" },
+        { name: "Financial Services", language: "fi" },
+        { name: "​Healthcare", language: "he" },
+        { name: "​Information & Communications Technology", language: "it" },
+        { name: "​Natural Resources", language: "na" },
+        { name: "​​​Oil & Gas", language: "oi" },
+        { name: "Services", language: "se" },
+        { name: "Conglomerates", language: "se" },
+        { name: "Utilities", language: "ut" }
+      ]
     };
   },
   components: {
     Multiselect,
-    MainNavigation,
+    MainNavigation
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -177,26 +181,26 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Available Jobs",
+        "My-Custom-Header": "Fetch Available Jobs"
       };
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           data: request,
-          headers: headers,
+          headers: headers
         })
-        .then((response) => {
+        .then(response => {
           console.log(response);
           this.index + 1;
           this.availableJobs = response.data;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("Failed to fetch Available Jobs " + error.message);
         });
-    },
+    }
   },
   created: function() {
     this.search();
-  },
+  }
 };
 </script>
 

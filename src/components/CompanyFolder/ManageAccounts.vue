@@ -470,7 +470,7 @@ export default {
         { name: "Rails", language: "Ruby" },
         { name: "Sinatra", language: "Ruby" },
         { name: "Laravel", language: "PHP" },
-        { name: "Phoenix", language: "Elixir" },
+        { name: "Phoenix", language: "Elixir" }
       ],
       successResponse: false,
       beforeResponse: false,
@@ -485,7 +485,7 @@ export default {
         password_confirmation: "",
         middle_name: "",
         role: "",
-        last_name: "",
+        last_name: ""
       },
       update: {
         manage_users: "",
@@ -493,7 +493,7 @@ export default {
         edit_profile: "",
         post_interview_questions: "",
         post_jobs: "",
-        view_all_user_activities: "",
+        view_all_user_activities: ""
       },
       companys: {
         name: "",
@@ -502,8 +502,8 @@ export default {
         phone_number: "",
         website: "",
         bio: "",
-        address: "",
-      },
+        address: ""
+      }
     };
   },
   name: "Pages",
@@ -514,13 +514,13 @@ export default {
     DashboardHeader,
     Avatar,
     // Multiselect,
-    ChatBox,
+    ChatBox
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.value.push(tag);
@@ -596,7 +596,7 @@ export default {
       axios
         .post("", this.users)
 
-        .then((response) => {
+        .then(response => {
           console.log(this.users);
           console.log(response);
           const token = response.data.accessToken;
@@ -611,7 +611,7 @@ export default {
             return false;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           this.errorMessage = error.message;
           console.log(error);
         });
@@ -625,7 +625,7 @@ export default {
     showAllUsers: function() {
       this.showUsers = true;
       this.showActivities = false;
-    },
+    }
   },
   watch: {
     onLine(v) {
@@ -635,8 +635,8 @@ export default {
           this.showBackOnline = false;
         }, 1000);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

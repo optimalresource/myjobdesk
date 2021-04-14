@@ -41,39 +41,39 @@ import { Chat } from "vue-quick-chat";
 import Select2 from "v-select2-component";
 import Toasted from "vue-toasted";
 Vue.use(Toasted, {
-    duration: 5000,
-    position: "top-center",
+  duration: 5000,
+  position: "top-center"
 });
 Vue.use(VueToastr, {
-    defaultTimeout: 10000,
-    defaultProgressBar: false,
-    defaultProgressBarValue: 0,
-    defaultPosition: "toast-top-center",
-    defaultCloseOnHover: false,
-    defaultClassNames: ["animated", "zoomInDown"],
+  defaultTimeout: 10000,
+  defaultProgressBar: false,
+  defaultProgressBarValue: 0,
+  defaultPosition: "toast-top-center",
+  defaultCloseOnHover: false,
+  defaultClassNames: ["animated", "zoomInDown"]
 });
 import axios from "axios";
 
 // store.dispatch("ClearCompanyDetails");
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = "http://localhost:8000/api/";
+axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
 // axios.defaults.headers.common["Authorization"] =
 //     "Bearer " + store.getters.StateToken;
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 axios.interceptors.response.use(undefined, function(error) {
-    if (error) {
-        // const originalRequest = error.config;
-        // if (error.response.status === 401 && !originalRequest._retry) {
-        //     originalRequest._retry = true;
-        //     store.dispatch("LogOut");
-        //     return router.push("/login");
-        // }
+  if (error) {
+    // const originalRequest = error.config;
+    // if (error.response.status === 401 && !originalRequest._retry) {
+    //     originalRequest._retry = true;
+    //     store.dispatch("LogOut");
+    //     return router.push("/login");
+    // }
 
-        return Promise.reject(error);
-    }
+    return Promise.reject(error);
+  }
 });
 
 Vue.component("Select2", Select2);
@@ -89,7 +89,7 @@ Vue.component("dropd", Dropd);
 import VueMoment from "vue-moment";
 import moment from "moment-timezone";
 Vue.use(VueMoment, {
-    moment,
+  moment
 });
 import { VueEditor } from "vue2-editor";
 import Multiselect from "vue-multiselect";
@@ -101,13 +101,13 @@ Vue.mixin(logout);
 Vue.component("pagination", Pagination);
 
 export default {
-    components: {
-        VueUploadMultipleImage,
-        Multiselect,
-        Pagination,
-        VueEditor,
-        Chat,
-    },
+  components: {
+    VueUploadMultipleImage,
+    Multiselect,
+    Pagination,
+    VueEditor,
+    Chat
+  }
 };
 // import axios from "axios";
 // import VueAxios from "vue-axios";
@@ -121,10 +121,10 @@ Vue.config.productionTip = false;
 // Vue.loadScript("./assets/js/bootstrap.min.js");
 
 new Vue({
-    router,
-    store,
-    render: (h) => h(App),
-    mounted() {
-        // this.$toastr.e("Hello World");
-    },
+  router,
+  store,
+  render: h => h(App),
+  mounted() {
+    // this.$toastr.e("Hello World");
+  }
 }).$mount("#app");

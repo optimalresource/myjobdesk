@@ -25,43 +25,31 @@
       </div>
       <div class="emp_follow_link jb_cover">
         <ul class="feedlist">
-          <router-link tag="li" to="/employerDashboard">
-            <a href="/employerDashboard"
+          <router-link tag="li" to="/adminDashboard">
+            <a href="/adminDashboard"
               ><i class="fas fa-tachometer-alt"></i>dashboard
             </a>
           </router-link>
-          <router-link tag="li" to="/companyEditProfile">
-            <a href="/companyEditProfile">
+          <router-link tag="li" to="/adminEditProfile">
+            <a href="/adminEditProfile">
               <i class="fas fa-edit"></i>edit profile
             </a>
           </router-link>
-          <router-link tag="li" to="/employerManageJobs">
-            <a href="/employerManageJobs"
-              ><i class="fas fa-suitcase"></i>manage jobs</a
+          <router-link tag="li" to="/adminPost">
+            <a href="/adminPost"
+              ><i class="fas fa-user-plus"></i>post interview Questions</a
             >
           </router-link>
-          <router-link tag="li" to="/companyApplications">
-            <a href="/companyApplications"
-              ><i class="fas fa-mobile"></i>applications</a
-            >
+          <router-link tag="li" to="/adminManage">
+            <a href="/adminManage"><i class="fas fa-user"></i>Manage Users</a>
           </router-link>
-          <router-link tag="li" to="/companyPost">
-            <a href="/companyPost"
-              ><i class="fas fa-user-plus"></i>post new job</a
-            >
-          </router-link>
-          <router-link tag="li" to="/manageAccounts">
-            <a href="/manageAccounts"
-              ><i class="fas fa-user"></i>Manage Users</a
-            >
-          </router-link>
-          <router-link tag="li" to="/companyMessage">
-            <a href="/companyMessage"><i class="fas fa-envelope"></i>message</a>
+          <router-link tag="li" to="/adminMessages">
+            <a href="/adminMessages"><i class="fas fa-envelope"></i>messages</a>
           </router-link>
         </ul>
         <ul class="feedlist logout_link jb_cover">
-          <router-link tag="li" @click="logout">
-            <a @click="logout"><i class="fas fa-power-off"></i> log out </a>
+          <router-link tag="li" to="/logout">
+            <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
           </router-link>
         </ul>
       </div>

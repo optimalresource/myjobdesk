@@ -90,7 +90,7 @@ export default {
       searchJob: {
         job_title: "",
         location: "",
-        job_type: "",
+        job_type: ""
       },
       category: [],
       options: [
@@ -103,18 +103,18 @@ export default {
         { name: "​​​Oil & Gas", code: "oi" },
         { name: "Services", code: "se" },
         { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" },
-      ],
+        { name: "Utilities", code: "ut" }
+      ]
     };
   },
   components: {
-    Multiselect,
+    Multiselect
   },
   methods: {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
       this.options.push(tag);
       this.category.push(tag);
@@ -143,28 +143,28 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Available Jobs",
+        "My-Custom-Header": "Fetch Available Jobs"
       };
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           data: request,
-          headers: headers,
+          headers: headers
         })
-        .then((response) => {
+        .then(response => {
           console.log(response);
           this.index + 1;
           this.jobResponse = response.status;
           this.availableJobs = response.data;
           this.$router.push("/jobList");
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("Failed to fetch Available Jobs " + error.message);
         });
     },
     created: function() {
       this.search();
-    },
-  },
+    }
+  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

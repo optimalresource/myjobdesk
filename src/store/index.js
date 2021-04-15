@@ -34,7 +34,7 @@ export default new Vuex.Store({
         "setToken",
         "setRole",
         "setPersonalDetails",
-        "setCompanyDetails",
+        "CompanyDetails/setCompanyDetails",
         "setStep"
       ]
     }),

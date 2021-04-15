@@ -96,8 +96,11 @@ import Multiselect from "vue-multiselect";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import handleAxiosErrors from "./mixins/handle-axios-errors";
 import logout from "./mixins/logout";
+// import company from "./mixins/company";
 Vue.mixin(handleAxiosErrors);
 Vue.mixin(logout);
+// Vue.mixin(company);
+
 Vue.component("pagination", Pagination);
 
 export default {

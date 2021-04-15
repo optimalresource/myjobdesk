@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <!-- <Chat /> -->
             <div class="dashboard-message-wrapper">
@@ -243,29 +243,17 @@ import ChatBox from "@/components/ChatBox.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 export default {
   name: "EditProfile",
-  data: function () {
+  data: function() {
     return {
       config: {
         events: {
-          initialized: function () {
+          initialized: function() {
             console.log("initialized");
-          },
-        },
+          }
+        }
       },
       model: {},
-      companys: {
-        name: "",
-        email: "",
-        time_sent: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        job_description: "",
-        country: "",
-        state: "",
-        city: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? "",
       posts: {
         category: "",
         job_title: "",
@@ -278,8 +266,8 @@ export default {
         specific_qualificaion: "",
         age: "",
         skills: "",
-        experience: "",
-      },
+        experience: ""
+      }
     };
   },
   methods: {
@@ -288,7 +276,7 @@ export default {
     },
     mySelectEvent({ id, text }) {
       console.log({ id, text });
-    },
+    }
   },
   components: {
     Looking,
@@ -297,8 +285,20 @@ export default {
     // Select2,
     // Avatar,
     ChatBox,
-    CompanyDashboardSideBar,
+    CompanyDashboardSideBar
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  }
 };
 </script>
 <style scoped>

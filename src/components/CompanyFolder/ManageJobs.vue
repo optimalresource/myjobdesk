@@ -29,7 +29,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <pagination></pagination>
           <VuePagination />
           <!-- <div class="col-lg-9 col-md-12 col-sm-12 col-12">
@@ -294,21 +294,10 @@ import DashboardHeader from "@/components/DashboardHeader.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
 export default {
   name: "ManageJobs",
-  data: function () {
+  data: function() {
     return {
       page: 1,
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        job_description: "",
-        country: "",
-        state: "",
-        city: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? ""
     };
   },
   components: {
@@ -319,8 +308,20 @@ export default {
     VuePagination,
     ChatBox,
     DashboardHeader,
-    CompanyDashboardSideBar,
+    CompanyDashboardSideBar
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  }
 };
 </script>
 

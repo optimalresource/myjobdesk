@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
@@ -330,7 +330,7 @@
                         <div class="jb_job_post_side_img">
                           <avatar
                             class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="companys.email"
+                            :username="company.email"
                             :size="70"
                             :rounded="false"
                           >
@@ -495,15 +495,7 @@ export default {
         post_jobs: "",
         view_all_user_activities: ""
       },
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        bio: "",
-        address: ""
-      }
+      company: this.$store.getters.StateCompanyDetails ?? ""
     };
   },
   name: "Pages",
@@ -627,6 +619,18 @@ export default {
       this.showActivities = false;
     }
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  },
   watch: {
     onLine(v) {
       if (v) {
@@ -659,7 +663,7 @@ export default {
   margin-right: 10px;
 }
 .power_button {
-  float: right;
+  /* float: right; */
   display: inline-block;
   margin-bottom: 10px;
   margin-right: 10px;

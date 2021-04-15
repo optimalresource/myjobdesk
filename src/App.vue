@@ -26,9 +26,9 @@ FroalaEditor.RegisterCommand("alert", {
   focus: false,
   undo: false,
   refreshAfterCallback: false,
-  callback: function () {
+  callback: function() {
     alert("Hello!");
-  },
+  }
 });
 
 FroalaEditor.DefineIcon("clear", { NAME: "remove", SVG_KEY: "remove" });
@@ -37,10 +37,10 @@ FroalaEditor.RegisterCommand("clear", {
   focus: false,
   undo: true,
   refreshAfterCallback: true,
-  callback: function () {
+  callback: function() {
     this.html.set("");
     this.events.focus();
-  },
+  }
 });
 
 FroalaEditor.DefineIcon("insert", { NAME: "plus", SVG_KEY: "add" });
@@ -49,16 +49,16 @@ FroalaEditor.RegisterCommand("insert", {
   focus: true,
   undo: true,
   refreshAfterCallback: true,
-  callback: function () {
+  callback: function() {
     this.html.insert("My New HTML");
-  },
+  }
 });
 
 Vue.use(LoadScript);
 export default {
   components: {
     VueToastr,
-    Avatar,
+    Avatar
   },
   beforeCreate() {
     // if (localStorage.getItem("token")) {
@@ -120,24 +120,24 @@ export default {
     Vue.loadScript("/js/isotope.pkgd.min.js");
     Vue.loadScript("/js/custom.js");
     Vue.loadScript("/js/better.js");
-    $(document).ready(function () {
-      $(window).scroll(function () {
+    $(document).ready(function() {
+      $(window).scroll(function() {
         if ($(this).scrollTop() >= 100) {
           $("#return-to-top").fadeIn(200);
         } else {
           $("#return-to-top").fadeOut(200);
         }
       });
-      $("#return-to-top").on("click", function () {
+      $("#return-to-top").on("click", function() {
         $("body,html").animate(
           {
-            scrollTop: 0,
+            scrollTop: 0
           },
           500
         );
       });
     });
-  },
+  }
 };
 </script>
 

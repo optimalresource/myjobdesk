@@ -28,7 +28,7 @@
     <div class="employe_dashboard_wrapper jb_cover">
       <div class="container">
         <div class="row">
-          <CompanyDashboardSideBar />
+          <CompanyDashboardSideBar :comp="company" />
           <div class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -354,18 +354,7 @@ export default {
   name: "EditProfile",
   data: function() {
     return {
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        job_description: "",
-        country: "",
-        state: "",
-        city: "",
-        address: "",
-      },
+      company: this.$store.getters.StateCompanyDetails ?? ""
     };
   },
   components: {
@@ -374,7 +363,7 @@ export default {
     // Avatar,
     CompanyDashboardSideBar,
     DashboardHeader,
-    ChatBox,
+    ChatBox
   },
   methods: {
     saveProfile() {
@@ -382,8 +371,20 @@ export default {
     },
     saveSocialMedia() {
       //saving social media handles
-    },
+    }
   },
+  mounted() {
+    if (!this.$store.getters.isHaveCompanyDetails) {
+      this.$store
+        .dispatch("FetchCompanyDetails")
+        .then(response => {
+          this.company = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
+  }
 };
 </script>
 

@@ -141,11 +141,6 @@ const routes = [
     component: () => import("../views/NotFound.vue")
   },
   {
-    path: "/jobFilter",
-    name: "JobFilter",
-    component: () => import("../views/JobFilter.vue")
-  },
-  {
     path: "/employerDashboard",
     name: "EmployerDashboard",
     component: () => import("../views/Company/EmployerDashboard.vue"),

@@ -23,6 +23,7 @@ const actions = {
       user_type: credentials.details.user_type
     };
     let response = await axios.post("company_details", request);
+    localStorage.setItem("company_details", response.data);
     await commit("setCompanyDetails", response.data);
     return response;
   },

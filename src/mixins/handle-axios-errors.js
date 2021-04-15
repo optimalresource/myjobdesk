@@ -17,6 +17,6 @@ export default {
       } else {
         this.$toasted.error(error);
       }
-    },
-  },
+    }
+  }
 };

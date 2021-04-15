@@ -5,15 +5,15 @@
         <div class="avatar_center">
           <avatar
             class="img-responsive xs-col-12 sm-col-12 mb-2"
-            :username="companys.email"
+            :username="company.name"
             :size="190"
             :rounded="true"
             :backgroundColor="'#c14c93'"
           >
           </avatar>
         </div>
-        <h4>{{ companys.name }}</h4>
-        <p>{{ companys.email }}</p>
+        <h4>{{ company.name }}</h4>
+        <p>{{ company.email }}</p>
         <div class="skills jb_cover">
           <div class="skill-item jb_cover">
             <h6>profile<span>70%</span></h6>
@@ -116,18 +116,14 @@
 <script>
 import Avatar from "vue-avatar";
 export default {
-  data: function() {
-    return {
-      companys: {
-        name: "",
-        email: "",
-        category: "",
-        phone_number: "",
-        website: "",
-        bio: "",
-        address: ""
-      }
-    };
+  props: {
+    comp: Object
+  },
+  computed: {
+    company() {
+      if (this.comp.length > 0) return this.comp;
+      else return this.$store.getters.StateCompanyDetails;
+    }
   },
   components: {
     Avatar

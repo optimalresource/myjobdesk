@@ -90,7 +90,10 @@
                               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="apply_job jb_cover">
                                   <h1>apply for this job :</h1>
-                                  <div class="search_alert_box jb_cover">
+                                  <div
+                                    v-if="loggedIn"
+                                    class="search_alert_box jb_cover"
+                                  >
                                     <div class="apply_job_form">
                                       <input
                                         type="text"
@@ -124,6 +127,12 @@
                                         microsoft word or pdf file only (5mb)
                                       </p>
                                     </div>
+                                  </div>
+                                  <div
+                                    v-if="loggedIn"
+                                    class="header_btn search_btn applt_pop_btn jb_cover"
+                                  >
+                                    <a href="/register">Register</a>
                                   </div>
                                   <div
                                     class="header_btn search_btn applt_pop_btn jb_cover"
@@ -659,7 +668,7 @@ export default {
   name: "LatestJob",
   data: function() {
     return {
-      latestJobs: [],
+      latestJobs: []
     };
   },
   methods: {
@@ -672,27 +681,32 @@ export default {
       var accessToken = localStorage.getItem("token") || "";
       const headers = {
         Authorization: "Bearer " + accessToken,
-        "My-Custom-Header": "Fetch Available Jobs",
+        "My-Custom-Header": "Fetch Available Jobs"
       };
       axios
         .get("https://jsonplaceholder.typicode.com/photos?_limit=10", {
           data: request,
-          headers: headers,
+          headers: headers
         })
-        .then((response) => {
+        .then(response => {
           console.log(response);
           this.index + 1;
           this.jobResponse = response.status;
           this.latestJobs = response.data;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log("Failed to fetch Available Jobs " + error.message);
         });
-    },
+    }
   },
   created: function() {
     this.populate();
   },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    }
+  }
 };
 </script>
 

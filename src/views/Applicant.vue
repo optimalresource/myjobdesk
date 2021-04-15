@@ -395,12 +395,16 @@
                 v-slot="{ errors }"
               >
                 <div class="form-group icon_form comments_form">
-                  <input
-                    type="text"
-                    placeholder="Degree*... e.g. BSc, BA, HNd, SSCE..."
-                    class="form-control { 'form-group--error': $v.degree.$error }"
+                  <multiselect
                     v-model="forms.degree"
-                  />
+                    :options="discipline"
+                    :taggable="true"
+                    @tag="addingTag"
+                    :custom-label="nameWithLang"
+                    placeholder="Degree*... e.g. BSc, BA, HNd, SSCE..."
+                    label="name"
+                    track-by="name"
+                  ></multiselect>
                 </div>
                 <span>{{ errors[0] }}</span>
               </ValidationProvider>
@@ -411,12 +415,16 @@
                 v-slot="{ errors }"
               >
                 <div class="form-group icon_form comments_form">
-                  <input
-                    type="text"
-                    placeholder="Field of study *... e.g. Agricultural Science"
-                    class="form-control"
+                  <multiselect
                     v-model="forms.course_of_study"
-                  />
+                    :options="schools"
+                    :taggable="true"
+                    @tag="addingTag"
+                    :custom-label="nameWithLang"
+                    placeholder="Select Field of Study"
+                    label="name"
+                    track-by="name"
+                  ></multiselect>
                 </div>
                 <div id="blk">{{ errors[0] }}</div>
               </ValidationProvider>
@@ -1003,6 +1011,8 @@ export default {
   // props: ["EventBus"],
   data: function() {
     return {
+      schools: [],
+      discipline: [],
       spin: false,
       notSpin: true,
       uploadedFiles: [],
@@ -1132,6 +1142,17 @@ export default {
     };
   },
   methods: {
+    nameWithLang({ name, language }) {
+      return `${name} — [${language}]`;
+    },
+    addingTag(newTag) {
+      const tag = {
+        name: newTag,
+        language: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+      };
+      this.optionss.push(tag);
+      this.forms.course_of_study.push(tag);
+    },
     backstep() {
       this.step--;
     },

@@ -185,43 +185,43 @@ const routes = [
     path: "/applicant",
     name: "Applicant",
     component: () => import("../views/Applicant.vue"),
-    beforeEnter: (to, from, next) => {
-      var step = localStorage.getItem("step")
-        ? localStorage.getItem("step")
-        : 0;
-      var token = localStorage.getItem("token")
-        ? localStorage.getItem("token")
-        : "";
-      if (token != "") {
-        store.dispatch("ValidateToken").catch(() => {
-          store.dispatch("LogOut");
-          next("/login");
-        });
-        step = localStorage.getItem("step");
-      }
+    // beforeEnter: (to, from, next) => {
+    //   var step = localStorage.getItem("step")
+    //     ? localStorage.getItem("step")
+    //     : 0;
+    //   var token = localStorage.getItem("token")
+    //     ? localStorage.getItem("token")
+    //     : "";
+    //   if (token != "") {
+    //     store.dispatch("ValidateToken").catch(() => {
+    //       store.dispatch("LogOut");
+    //       next("/login");
+    //     });
+    //     step = localStorage.getItem("step");
+    //   }
 
-      if (token == "") {
-        next("/login");
-      }
+    //   if (token == "") {
+    //     next("/login");
+    //   }
 
-      if (step == 0) {
-        step = 1;
-        if (token != "") {
-          localStorage.setItem("step", step);
-          localStorage.setItem("showDiv", false);
-        }
-      } else if (step == 1) {
-        step = 2;
-        localStorage.setItem("step", step);
-        localStorage.setItem("showDiv", true);
-      } else if (step == 5) {
-        step = 1;
-        localStorage.setItem("showDiv", false);
-        localStorage.setItem("step", step);
-        next("/dashboard");
-      }
-      next();
-    }
+    //   if (step == 0) {
+    //     step = 1;
+    //     if (token != "") {
+    //       localStorage.setItem("step", step);
+    //       localStorage.setItem("showDiv", false);
+    //     }
+    //   } else if (step == 1) {
+    //     step = 2;
+    //     localStorage.setItem("step", step);
+    //     localStorage.setItem("showDiv", true);
+    //   } else if (step == 5) {
+    //     step = 1;
+    //     localStorage.setItem("showDiv", false);
+    //     localStorage.setItem("step", step);
+    //     next("/dashboard");
+    //   }
+    //   next();
+    // }
   },
   {
     path: "/forgot",

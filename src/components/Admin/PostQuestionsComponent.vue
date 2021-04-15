@@ -68,14 +68,32 @@
                 <div class="job_listing_left_fullwidth jb_cover">
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h5 class="pb-3 text-center">Step 2</h5>
+                      <ul class="ks-cboxtags">
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="checkboxOne"
+                            class="form-control interview_questions"
+                            v-model="interview.difficult"
+                          /><label for="checkboxOne">Difficult</label>
+                        </li>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="checkboxTwo"
+                            class="form-control interview_questions"
+                            v-model="interview.easy"
+                          /><label for="checkboxTwo">Easy</label>
+                        </li>
+                      </ul>
                       <div class="contect_form3">
+                        <h6 class="text-center mt-4 mb-2">Questions</h6>
                         <textarea
                           placeholder="Type Question"
-                          class="form-control"
+                          class="form-control interview_questions"
                           required
                           v-model="interview.questions"
-                          id="interview_questions"
+                          name="question"
                         ></textarea>
                         <br />
                         <h6 class="text-center mb-2">Options</h6>
@@ -83,31 +101,31 @@
                           placeholder="option a"
                           v-model="interview.first"
                           type="text"
-                          id="interview_questions"
+                          class="interview_questions"
                         />
                         <input
                           placeholder="option b"
                           v-model="interview.second"
                           type="text"
-                          id="interview_questions"
+                          class="interview_questions"
                         />
                         <input
                           placeholder="option c"
                           v-model="interview.third"
                           type="text"
-                          id="interview_questions"
+                          class="interview_questions"
                         />
                         <input
                           placeholder="option d"
                           v-model="interview.forth"
                           type="text"
-                          id="interview_questions"
+                          class="interview_questions"
                         />
                         <input
                           placeholder="Answer to the question"
                           v-model="interview.answer"
                           type="text"
-                          id="interview_questions"
+                          class="interview_questions"
                         />
                         <button
                           class="btn bttn col-12"
@@ -135,12 +153,20 @@
                           class="container"
                         >
                           <p>Question {{ index++ }}</p>
-                          <p class="text-info">{{ allQuestion.questions }}</p>
+                          <p class="text-dark div">
+                            {{ allQuestion.questions }}
+                          </p>
+                          <br />
                           <p>(a) {{ allQuestion.first }}</p>
                           <p>(b) {{ allQuestion.second }}</p>
                           <p>(c) {{ allQuestion.third }}</p>
                           <p>(d) {{ allQuestion.forth }}</p>
                           <p>(ans) {{ allQuestion.answer }}</p>
+                          <p class="text-danger">
+                            Easy: {{ allQuestion.difficult }}
+                          </p>
+                          <p class="mb-3">Difficult: {{ allQuestion.easy }}</p>
+                          <hr />
                         </div>
                       </div>
                     </div>
@@ -186,9 +212,11 @@ export default {
         third: "",
         forth: "",
         number: "",
+        difficult: "",
+        easy: "",
         answer: ""
       },
-      index: 0,
+      index: 1,
       allQuestions: []
     };
   },
@@ -216,28 +244,90 @@ export default {
         this.$toasted.error("Please set an option two");
         return false;
       }
-      if (this.interview.third == "") {
-        this.$toasted.error("Please set an option three");
-        return false;
-      }
-      if (this.interview.forth == "") {
-        this.$toasted.error("Please set an option four");
-        return false;
-      }
       if (this.interview.answer == "") {
         this.$toasted.error("Please set an answer");
         return false;
       }
       this.allQuestions.push(this.interview);
-      // document.getElementById("interview_questions").value = "";
+      // document.getElementsByClassName("interview_questions").value = "";
     }
   }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
+.div {
+  word-wrap: break-word;
+}
 .bttn {
   color: white;
   background: #990066;
+}
+ul.ks-cboxtags {
+  list-style: none;
+  padding: 0px;
+  text-align: center;
+}
+ul.ks-cboxtags li {
+  display: inline;
+}
+ul.ks-cboxtags li label {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(139, 139, 139, 0.3);
+  color: #adadad;
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 3px 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+}
+
+ul.ks-cboxtags li label {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 12px;
+  padding: 2px 6px 2px 2px;
+  content: "\f067";
+  transition: transform 0.3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+  content: "\f00c";
+  transform: rotate(-360deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+  border: 2px solid #e9a1ff;
+  background-color: #990066;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
 }
 </style>

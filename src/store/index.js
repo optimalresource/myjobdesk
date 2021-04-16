@@ -462,8 +462,8 @@ export default new Vuex.Store({
           .then(response => {
             const user = response.data.user;
             const role = response.data.role;
-            context.commit("refreshUser", user);
-            context.commit("refreshRole", role);
+            context.commit("setUser", user);
+            context.commit("setRole", role);
             resolve(response);
           })
           .catch(error => {
@@ -552,6 +552,7 @@ export default new Vuex.Store({
     StateRole: state => state.role,
     StateUser: state => state.user,
     StateToken: state => state.token,
-    StateError: state => state.error
+    StateError: state => state.error,
+    StateStep: state => state.step
   }
 });

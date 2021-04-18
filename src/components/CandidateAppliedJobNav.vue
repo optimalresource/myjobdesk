@@ -3,7 +3,7 @@
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
       <h2>
         <a href="/">
-          <span><img src="../assets/images/logo13.png" alt="img" /></span
+          <span><img src="../assets/images/logo13.png" alt="img"/></span
         ></a>
       </h2>
       <a href="#0" class="cd-close">Close</a>
@@ -667,15 +667,15 @@ import Avatar from "vue-avatar";
 export default {
   name: "CandidateAppliedJobNav",
   components: {
-    Avatar,
+    Avatar
   },
-  data: function () {
+  data: function() {
     return {
       data: "",
       socialProfile: {
         facebook_username: "",
         twitter_username: "",
-        linkedin_username: "",
+        linkedin_username: ""
       },
       inputs: {
         first_name: "",
@@ -683,7 +683,7 @@ export default {
         middle_name: "",
         email: "",
         password: "",
-        password_confirmation: "",
+        password_confirmation: ""
       },
       personal_details: {
         age: "",
@@ -694,14 +694,14 @@ export default {
         address: "",
         dob: "",
         selectedLGA: "",
-        selectedState: "",
+        selectedState: ""
       },
       updatedCerts: [],
       updatedskills: [],
       updatedForms: [],
       experiences: [],
       updatedexperiences: [],
-      updatedreferrees: [],
+      updatedreferrees: []
       // updatedForms: {
       //   school: "",
       //   degree: "",
@@ -711,7 +711,7 @@ export default {
       //   to: ""
       // },
     };
-  },
+  }
 };
 </script>
 

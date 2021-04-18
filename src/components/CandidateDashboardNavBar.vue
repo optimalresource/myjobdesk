@@ -675,35 +675,35 @@ export default {
         first_name: "",
         last_name: "",
         middle_name: "",
-        email: "",
-      },
+        email: ""
+      }
     };
   },
   components: {
-    Avatar,
+    Avatar
   },
   created() {
     var accessToken = localStorage.getItem("token") || "";
     const headers = {
       Authorization: "Bearer " + accessToken,
-      "My-Custom-Header": "Register step 2",
+      "My-Custom-Header": "Register step 2"
     };
     axios
       .get("https://api.myjobdesk.com/api/user", {
-        headers,
+        headers
       })
-      .then((response) => {
+      .then(response => {
         console.log(response);
         this.inputs.first_name = response.data.first_name;
         this.inputs.last_name = response.data.last_name;
         this.inputs.middle_name = response.data.middle_name;
         this.inputs.email = response.data.email;
       })
-      .catch((error) => {
+      .catch(error => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
-  },
+  }
 };
 </script>
 <style scoped>

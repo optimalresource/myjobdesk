@@ -5,7 +5,6 @@
         <transition name="fade">
           <div v-if="step == 1">
             <h5 class="text-center mt-4 mb-4">Applicant Registration</h5>
-            <!-- <h5 class="text-center mb-5 mt-5">Register</h5> -->
 
             <ValidationProvider
               name="Firstname"
@@ -152,34 +151,11 @@
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
                 <button type="submit" @click="register" :disabled="spin">
-                  <span v-if="notSpin">Next Step</span
+                  <span v-if="notSpin">Next Step 1</span
                   ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
                 </button>
               </div>
             </div>
-
-            <!-- <div>
-                    <ul class="bill">
-                      <li>
-                        <a class="fbook" href="#">
-                          <i class="fab fa-facebook-f"></i>
-                          <span class="space"></span> Register with Facebook</a
-                        >
-                      </li>
-                      <li>
-                        <a class="linkedin" href="#">
-                          <i class="fab fa-linkedin-in"></i
-                          ><span class="space"></span> Register with Linkedin</a
-                        >
-                      </li>
-                      <li>
-                        <a class="google" href="#"
-                          ><i class="fab fa-google"></i
-                          ><span class="space"></span> Register with Google</a
-                        >
-                      </li>
-                    </ul>
-                  </div> -->
           </div>
         </transition>
       </div>
@@ -191,6 +167,19 @@
             <h2 class="text-center">Personal Details</h2>
             <h6 class="text-center personal_headers">Lets Get To Know You</h6>
           </div>
+
+          <!-- <date-of-birth-component
+            v-model="forms.dob"
+            :v="$v.forms.dob"
+          ></date-of-birth-component>
+
+          <br />
+
+          <gender-component
+            v-model="forms.gender"
+            :v="$v.forms.gender"
+          ></gender-component> -->
+
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
               <label for="date">Date of Birth:</label>
@@ -205,14 +194,16 @@
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
+
           <br />
+
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
               <label for="gender">gender</label>
               <select
                 v-model="forms.gender"
                 name="gender"
-                class="custom-select form-control"
+                class="form-control drop-select"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -221,6 +212,7 @@
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
+
           <br />
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
@@ -228,9 +220,9 @@
               <select
                 v-model="forms.marital_status"
                 name="marital_status"
-                class="custom-select form-control"
+                class="form-control drop-select"
               >
-                <option value="Single">Single</option>
+                <option value="Single" selected>Single</option>
                 <option value="Married">Married</option>
               </select>
               <div id="">{{ errors[0] }}</div>
@@ -243,8 +235,10 @@
             v-slot="{ errors }"
           >
             <div class="form-group icon_form comments_form">
+              <label for="phone">Phone Number</label>
               <input
                 type="text"
+                name="phone"
                 placeholder="Phone Number*.... )0701"
                 class="form-control"
                 v-model="forms.phone"
@@ -259,6 +253,7 @@
             v-slot="{ errors }"
           >
             <div class="form-group icon_form comments_form">
+              <label for="address">Address</label>
               <input
                 type="text"
                 placeholder="Your address*..."
@@ -272,7 +267,10 @@
           <ValidationProvider>
             <div class="form-group icon_form comments_form">
               <label>Select Country:</label>
-              <select class="form-control" v-model="forms.nationality">
+              <select
+                class="form-control drop-select"
+                v-model="forms.nationality"
+              >
                 <option value="Nigeria">Nigeria</option>
               </select>
               <div id="">{{ errors[0] }}</div>
@@ -287,7 +285,7 @@
             <div class="form-group icon_form comments_form">
               <label>Select State:</label>
               <select
-                class="form-control"
+                class="form-control drop-select"
                 v-model="forms.selectedState"
                 @change="changeState"
               >
@@ -308,7 +306,7 @@
             <div class="form-group icon_form comments_form">
               <label>Select Local Government:</label>
               <select
-                class="form-control"
+                class="form-control drop-select"
                 v-model="forms.selectedLGA"
                 @change="changeLGA"
               >
@@ -633,7 +631,7 @@
           <div class="jb_newslwtteter_button">
             <div class="header_btn search_btn news_btn jb_cover">
               <button @click.prevent="secondStep" type="submit">
-                Next Step
+                Next Step 2
               </button>
             </div>
           </div>
@@ -1001,11 +999,17 @@ import "vue-input-search/dist/vue-search.css";
 // import VueSearch from "vue-input-search/dist/vue-search.common";
 import Multiselect from "vue-multiselect";
 // import $ from "jquery";
+// import { required, email } from "vuelidate/lib/validators";
+// import { isNameJoe, notGmail, isEmailAvailable } from "@/validators";
+// import DateOfBirthComponent from "../components/form/DateOfBirthComponent.vue";
+// import GenderComponent from "../components/form/GenderComponent.vue";
 
 export default {
   components: {
     // "vue-search": VueSearch,
     Multiselect
+    // DateOfBirthComponent,
+    // GenderComponent
   },
   name: "SignUpDiv",
   // props: ["EventBus"],
@@ -1125,7 +1129,9 @@ export default {
       updatedCerts: [],
       confirmation: "",
       totalstep: 4,
-      step: localStorage.getItem("step") ?? 1,
+      step: localStorage.getItem("step")
+        ? parseInt(localStorage.getItem("step"))
+        : 1,
       showPassword: false,
       showConfirmPassword: false,
       valid: true,
@@ -1293,6 +1299,9 @@ export default {
       console.log("Starting File Management Component");
     },
     savePersonalDetails() {
+      // this.$v.forms.$touch();
+      // if (this.$v.forms.$pending || this.$v.forms.$error) return;
+
       if (this.forms.dob == "") {
         this.$toasted.error("Please Fill Your Date of Birth");
         this.spin = false;
@@ -2068,6 +2077,14 @@ export default {
         });
     }
   },
+  // validations: {
+  //   forms: {
+  //     name: { required, isJoe: isNameJoe },
+  //     email: { required, email, notGmail, isEmailAvailable },
+  //     dob: { required },
+  //     gender: { required }
+  //   }
+  // },
   watch: {
     onLine(v) {
       if (v) {
@@ -2096,13 +2113,6 @@ export default {
     }
   },
   mounted() {
-    // $(document).ready(function() {
-    // $("#exampleModalCenter").modal("show");
-    // });
-    // $(window).on('load', function() {
-    // $("#exampleModalCenter").modal("show");
-    // });
-
     this.fetchPersonalDetails();
     this.fetchEducationDetails();
     this.fetchCertificateDetails();
@@ -2110,15 +2120,6 @@ export default {
     this.fetchExperiences();
     this.fetchSkills();
 
-    // EventBus.$on("onSubmit", this.nextStep);
-
-    // document.getElementById("blk").onchange = function() {
-    //   if (document.getElementById("blk").innerHTML != "") {
-    //     document.getElementById("blk").classList.add("margina");
-    //   }
-    // };
-
-    // var nav = document.querySelector(".modalbutton");
     var toggleState = function(elem, one, two) {
       var element = document.querySelector(elem);
       element.setAttribute(
@@ -2128,11 +2129,6 @@ export default {
     };
     toggleState(".modalbutton", "closed", "open");
   },
-  created() {
-    // $(document).ready(function() {
-    //   $("#exampleModalCenter").modal("show");
-    // });
-  },
   beforeDestroy() {
     window.removeEventListener("online", this.updateOnlineStatus);
     window.removeEventListener("offline", this.updateOnlineStatus);
@@ -2141,454 +2137,5 @@ export default {
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
-/* .back_button {
-  position: relative;
-  top: -60px;
-  left: 10px; 
-  background: white;
-  border: 1px #990066 solid;
-  color: #990066;
-  padding: 10px;
-}
-.back_button:hover {
-  background: #990066;
-  color: white;
-} */
-.Applicant {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-.applicant_div {
-  padding-right: 150px;
-  padding-left: 150px;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-.personal_headers {
-  color: #990066;
-}
-.Experience {
-  display: none;
-}
-.experience {
-  display: none;
-}
-.skills {
-  display: none;
-}
-.referees {
-  display: none;
-}
-.Referees {
-  display: none;
-}
-.certify {
-  display: none;
-}
-.cert {
-  cursor: pointer !important;
-  display: none;
-}
-.remove_certification {
-  display: none;
-}
-.custom-file-label {
-  width: 100% !important;
-}
-.certification_div {
-  border-left: 5px solid #990066;
-  background-color: rgb(251, 251, 251);
-  padding: 10px;
-}
-
-.personal_details_div {
-  border-left: 5px solid #990066;
-  background-color: rgb(251, 251, 251);
-  padding: 10px;
-}
-.add_educational_details_div {
-  border-left: 5px solid #990066;
-  background-color: rgb(251, 251, 251);
-  padding: 25px;
-}
-.changing {
-  background: white;
-  color: #990066;
-  border: 2px solid #990066;
-}
-.changing:hover {
-  background: #990066;
-  color: white;
-}
-.info {
-  color: white;
-  font-size: smaller;
-  margin-left: -25px;
-}
-.negative-margin-left {
-  margin-left: -25px;
-}
-.float {
-  float: right;
-}
-.r2l {
-  margin-right: 5%;
-  margin-left: 5%;
-}
-.add {
-  padding: 5px 20px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background: green;
-  color: white;
-}
-.edu-form {
-  display: none;
-}
-.fbook {
-  background: #3b5998;
-  padding: 8px 80px;
-  color: white;
-  box-sizing: border-box;
-}
-
-.fbook:hover {
-  background: white;
-  border: #3b5998 1px solid;
-  color: #3b5998;
-  margin-bottom: 2px;
-}
-.linkedin {
-  background: #0e76a8;
-  border: 1px white solid;
-  color: white;
-  box-sizing: border-box;
-  padding: 8px 80px;
-}
-.linkedin:hover {
-  background: white;
-  border: 1px #0e76a8 solid;
-  color: #0e76a8;
-}
-.google {
-  background: #ea4335;
-  color: white;
-  box-sizing: border-box;
-  padding: 8px 80px;
-}
-.google:hover {
-  background: white;
-  border: 1px #ea4335 solid;
-  color: #ea4335;
-}
-ul .google,
-.linkedin,
-.fbook {
-  display: block;
-  width: 400px;
-  text-align: center;
-  margin: 2px auto;
-}
-.bill {
-  padding: 20px;
-}
-.preview {
-  display: block;
-  width: 50%;
-  color: #d3adc6;
-  background: red;
-}
-.background {
-  /* padding: 0 20%; */
-  padding-bottom: 20px;
-  border-radius: none;
-  color: white;
-  /* margin: 0 auto; */
-  width: 100%;
-  box-sizing: border-box;
-}
-.no-border {
-  border: 1px solid white;
-}
-h5 {
-  color: #990066;
-}
-.card-body {
-  border: none;
-}
-.submit-edu {
-  padding: 10px;
-  outline: none;
-  border: none;
-  background: #990066;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  width: 100%;
-  font-weight: 700;
-}
-.submit-edu:hover {
-  opacity: 0.9;
-}
-.employee-form {
-  border: 1px solid #ffd5f1;
-  padding: 40px;
-  background: rgb(255, 255, 255);
-  border-radius: 5px;
-  width: 100%;
-  color: black;
-}
-.employee-form p {
-  color: red;
-}
-/* .employee-form h6 {
-  display: block;
-} */
-span {
-  cursor: pointer;
-}
-
-#blk {
-  display: block;
-}
-
-.margina {
-  margin-top: -20px !important;
-  margin-bottom: 20px !important;
-}
-.bttn {
-  color: white;
-  background: linear-gradient(to right, #990066, #af0066, #c90075);
-}
-.bttn:hover {
-  opacity: 0.9;
-}
-.pad {
-  padding: 50px 30%;
-}
-.edu-prev {
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border: hsl(320, 94%, 81%) 1px solid;
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border-top: 7px solid hsl(320, 94%, 81%);
-}
-.edu-prev h6 {
-  padding: 5px;
-  cursor: default;
-  color: #990066;
-}
-.Skills_preview {
-  border: hsl(320, 94%, 81%) 1px solid;
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border-top: 7px solid hsl(320, 94%, 81%);
-  display: none;
-}
-.Skills_preview h6 {
-  padding: 5px;
-  cursor: default;
-  color: #990066;
-}
-.Referee_preview {
-  border: hsl(320, 94%, 81%) 1px solid;
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border-top: 7px solid hsl(320, 94%, 81%);
-  display: none;
-}
-.Referee_preview h6 {
-  padding: 5px;
-  cursor: default;
-  color: #990066;
-}
-.Experience_preview {
-  border: hsl(320, 94%, 81%) 1px solid;
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border-top: 7px solid hsl(320, 94%, 81%);
-  display: none;
-}
-.Experience_preview h6 {
-  padding: 5px;
-  cursor: default;
-  color: #990066;
-}
-.certification_preview {
-  border: hsl(320, 94%, 81%) 1px solid;
-  padding: 0 5px 30px 30px;
-  cursor: default;
-  border-top: 7px solid hsl(320, 94%, 81%);
-  margin-bottom: 10px;
-  /* display: none; */
-}
-.certification_preview h6 {
-  padding: 5px;
-  cursor: default;
-  color: #990066;
-}
-.move-right {
-  margin-left: 20px;
-}
-@media (max-width: 500px) {
-  .pad {
-    width: 100%;
-    /* padding: 20px; */
-    margin-right: -10px;
-    box-sizing: border-box;
-  }
-  .certification_div {
-    width: 100%;
-    /* padding: 20px; */
-    /* margin-right: -10px; */
-    padding: 7px;
-    box-sizing: border-box;
-  }
-  .employee-form {
-    border: none;
-    padding: 0px;
-    background: none;
-  }
-}
-@media (max-width: 1006px) {
-  .pad {
-    width: 100%;
-    padding: 20px;
-  }
-}
-@media (max-width: 989px) {
-  .background {
-    padding: 0;
-    padding-bottom: 20px;
-    border-radius: none;
-    color: white;
-    width: 100%;
-  }
-  .center button {
-    display: block;
-    margin: 20px;
-  }
-}
-@media (max-width: 766px) {
-  .center button {
-    display: block;
-  }
-}
-@media (max-width: 904px) {
-  .applicant_div {
-    padding-right: 50px;
-    padding-left: 50px;
-  }
-}
-@media (max-width: 581px) {
-  .second_div button {
-    display: block;
-  }
-}
-.fileContainer {
-  overflow: hidden;
-  position: relative;
-}
-@media (max-width: 500px) {
-  .applicant_div {
-    padding: 0%;
-    box-sizing: border-box;
-    margin-top: 20px;
-  }
-  .margin_top {
-    margin-top: -30px;
-  }
-}
-.fileContainer {
-  overflow: hidden;
-  position: relative;
-}
-
-.fileContainer [type="file"] {
-  cursor: inherit;
-  display: block;
-  font-size: 999px;
-  filter: alpha(opacity=0);
-  min-height: 40px;
-  min-width: 100%;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  top: 0;
-}
-
-.fileContainer {
-  background: #e3e3e3;
-  float: left;
-  padding: 0.5em;
-}
-
-.fileContainer [type="file"] {
-  cursor: pointer;
-}
-.btn-outline {
-  background: blue;
-  color: white;
-}
-.center {
-  margin-left: 28%;
-}
-.emoji {
-  font-weight: 700;
-}
-.link_button {
-  color: white;
-}
-.link_button:hover {
-  color: #990066;
-}
-.cv_button {
-  background: #990066;
-  color: white;
-}
-
-.blue-theme {
-  display: none;
-}
-.none-theme {
-  display: block;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.7s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-@media only screen and (max-width: 481px) {
-  .Applicant {
-    padding: 7px;
-  }
-  .applicant_div {
-    border: none;
-    padding-right: 0px;
-    padding-left: 0px;
-  }
-  .personal_details_div {
-    border: none;
-  }
-  .add_educational_details_div {
-    padding: 5px;
-    border: none;
-  }
-  .employee-form {
-    border: none;
-    padding: 0px;
-    width: 100%;
-    color: black;
-  }
-  .certification_div {
-    border-left: none;
-    padding: 0px;
-  }
-}
+@import "../assets/css/applicant.css";
 </style>

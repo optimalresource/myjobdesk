@@ -462,6 +462,11 @@ export default new Vuex.Store({
           .then(response => {
             const user = response.data.user;
             const role = response.data.role;
+            // if (role == "user") {
+            //   var step = parseInt(response.data.user.step);
+            //   localStorage.setItem("step", step);
+            //   context.commit("setStep", step);
+            // }
             context.commit("setUser", user);
             context.commit("setRole", role);
             resolve(response);
@@ -488,7 +493,7 @@ export default new Vuex.Store({
             const user = response.data.user;
             const role = response.data.role;
             if (role == "user") {
-              const step = response.data.user.step;
+              var step = parseInt(response.data.user.step);
               if (step < 5) {
                 localStorage.setItem("step", step + 1);
                 commit("setStep", step + 1);
@@ -540,6 +545,12 @@ export default new Vuex.Store({
           });
       });
     },
+
+    RefreshStep(context, step) {
+      localStorage.setItem("step", step);
+      context.commit("setStep", step);
+    },
+
     throwError({ commit }, error) {
       commit("SetError", error);
     }

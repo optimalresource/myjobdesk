@@ -9,8 +9,8 @@ import ManageJobs from "@/components/CompanyFolder/ManageJobs.vue";
 export default {
   name: "CompanyManageJobs",
   components: {
-    ManageJobs,
-  },
+    ManageJobs
+  }
 };
 </script>
 

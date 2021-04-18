@@ -93,12 +93,18 @@
                           <h5 class="text-color text-center mt-3 mb-3">
                             write something about the job
                           </h5>
-                          <textarea
+                          <froala
+                            id="edit"
+                            :tag="'textarea'"
+                            :config="config"
+                            v-model="posts.job_description"
+                          ></froala>
+                          <!-- <textarea
                             placeholder="Job Description"
                             class="form-control"
                             rows="3"
                             v-model="posts.job_description"
-                          ></textarea>
+                          ></textarea> -->
                         </div>
                       </div>
                       <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">

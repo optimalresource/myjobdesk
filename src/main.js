@@ -39,6 +39,24 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import VueFroala from "vue-froala-wysiwyg";
 import { Chat } from "vue-quick-chat";
 import Select2 from "v-select2-component";
+
+// import VuelidateErrorExtractor from "vuelidate-error-extractor";
+// import FormGroup from "@/components/FormGroup.vue";
+// import Vuelidate from "vuelidate";
+// Vue.use(Vuelidate);
+// Vue.use(VuelidateErrorExtractor, {
+//   i18n: false,
+//   // Define common validation messages.
+//   messages: {
+//     required: "{attribute} is required!",
+//     isJoe: "{attribute} must be Joe",
+//     notGmail: "{attribute} must not be gmail",
+//     email: "{attribute} is not a valid Email address.",
+//     isEmailAvailable:
+//       "{attribute} is not available. Must be at least 10 characters long."
+//   }
+// });
+
 import Toasted from "vue-toasted";
 Vue.use(Toasted, {
   duration: 5000,
@@ -54,12 +72,8 @@ Vue.use(VueToastr, {
 });
 import axios from "axios";
 
-// store.dispatch("ClearCompanyDetails");
-
 axios.defaults.withCredentials = false;
 axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
-// axios.defaults.headers.common["Authorization"] =
-//     "Bearer " + store.getters.StateToken;
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -76,6 +90,8 @@ axios.interceptors.response.use(undefined, function(error) {
   }
 });
 
+// Vue.component("form-group", FormGroup);
+// Vue.component("form-group", templates.singleErrorExtractor.foundation6);
 Vue.component("Select2", Select2);
 Vue.use(VueFroala);
 
@@ -96,10 +112,9 @@ import Multiselect from "vue-multiselect";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import handleAxiosErrors from "./mixins/handle-axios-errors";
 import logout from "./mixins/logout";
-// import company from "./mixins/company";
+
 Vue.mixin(handleAxiosErrors);
 Vue.mixin(logout);
-// Vue.mixin(company);
 
 Vue.component("pagination", Pagination);
 
@@ -112,16 +127,8 @@ export default {
     Chat
   }
 };
-// import axios from "axios";
-// import VueAxios from "vue-axios";
-// Vue.use(VueAxios, axios);
-// import Vuelidate from "vuelidate";
-// Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;
-// Vue.use(LoadScript);
-// // import "./assets/js/jquery-3.3.1.min.js";
-// Vue.loadScript("./assets/js/bootstrap.min.js");
 
 new Vue({
   router,

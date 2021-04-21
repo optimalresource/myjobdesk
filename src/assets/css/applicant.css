@@ -466,8 +466,18 @@
     clip-path: polygon(0% 0%, 0 0%, 50% 100%);
   } */
 
+  .drop-select, .drop-select > * {
+    width: 100% !important;
+    border-radius: 0;
+  }
+
+  .drop-multiselect > * {
+    border-radius: 0;
+  }
+
   .drop-select {
-    margin-bottom: 40px !important;
+    margin-bottom: 20px !important;
+    z-index: 9999;
   }
 
   body, html {

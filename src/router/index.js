@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 import Home from "../views/Home.vue";
+import LoadScript from "vue-plugin-load-script";
+Vue.use(LoadScript);
 
 Vue.use(VueRouter);
 
@@ -181,7 +183,6 @@ const routes = [
     name: "Applicant",
     component: () => import("../views/Applicant.vue"),
     beforeEnter: (to, from, next) => {
-      //   if (to.name == "Applicant") {
       var role = store.getters.StateRole;
 
       var step = 0;
@@ -268,6 +269,9 @@ function routeToRegistration() {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.isCompany)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     // if (localStorage.getItem("step") > 1 && !store.getters.isAuthenticated) {
     //   next("/login");
     //   return;
@@ -307,6 +311,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.isApplicant)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       store.getters.StateRole == "user" &&
       localStorage.getItem("step") > 1 &&
@@ -340,6 +347,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       store.getters.StateRole == "user" &&
       localStorage.getItem("step") > 1 &&
@@ -375,6 +385,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.guest)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       to.name != "Applicant" &&
       routeToRegistration() &&

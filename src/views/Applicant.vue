@@ -1,5 +1,5 @@
 <template>
-  <div class="Applicant mt-5 margin_top">
+  <div class="Applicant mt-5 margin_top notNice" id="Applicant">
     <div class="applicant_div mb-4">
       <div class="step">
         <transition name="fade">
@@ -204,6 +204,7 @@
                 v-model="forms.gender"
                 name="gender"
                 class="form-control drop-select"
+                id="drop-select"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -221,6 +222,7 @@
                 v-model="forms.marital_status"
                 name="marital_status"
                 class="form-control drop-select"
+                id="drop-select"
               >
                 <option value="Single" selected>Single</option>
                 <option value="Married">Married</option>
@@ -267,12 +269,17 @@
           <ValidationProvider>
             <div class="form-group icon_form comments_form">
               <label>Select Country:</label>
-              <select
-                class="form-control drop-select"
+              <multiselect
                 v-model="forms.nationality"
-              >
-                <option value="Nigeria">Nigeria</option>
-              </select>
+                :options="countries"
+                :taggable="false"
+                placeholder="Choose a country"
+                label="name"
+                track-by="code"
+                class="drop-multiselect"
+                @input="toggleStates"
+                :allow-empty="false"
+              ></multiselect>
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
@@ -284,16 +291,45 @@
           >
             <div class="form-group icon_form comments_form">
               <label>Select State:</label>
-              <select
-                class="form-control drop-select"
+              <multiselect
                 v-model="forms.selectedState"
-                @change="changeState"
-              >
-                <option value="0">Select State</option>
-                <option v-for="state in states" :key="state" :value="state">
-                  {{ state }}
-                </option>
-              </select>
+                :options="states"
+                :taggable="true"
+                @tag="addingState"
+                placeholder="Choose a state"
+                label="name"
+                track-by="code"
+                tag-placeholder="Add this as new state"
+                tag-position="top"
+                class="drop-multiselect"
+                :allow-empty="false"
+                @input="changeState"
+              ></multiselect>
+              <div id="">{{ errors[0] }}</div>
+            </div>
+          </ValidationProvider>
+          <br />
+          <ValidationProvider
+            name="City"
+            rules="required"
+            v-slot="{ errors }"
+            v-if="forms.nationality.name != 'Nigeria'"
+          >
+            <div class="form-group icon_form comments_form">
+              <label>Select City:</label>
+              <multiselect
+                v-model="forms.selectedCity"
+                :options="cities"
+                :taggable="true"
+                @tag="addingCity"
+                placeholder="Choose a city"
+                label="name"
+                track-by="code"
+                tag-placeholder="Add this as new city"
+                tag-position="top"
+                class="drop-multiselect"
+                :allow-empty="false"
+              ></multiselect>
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
@@ -302,19 +338,23 @@
             name="Local Government"
             rules="required"
             v-slot="{ errors }"
+            v-if="forms.nationality.name == 'Nigeria'"
           >
             <div class="form-group icon_form comments_form">
               <label>Select Local Government:</label>
-              <select
-                class="form-control drop-select"
+              <multiselect
                 v-model="forms.selectedLGA"
-                @change="changeLGA"
-              >
-                <option value="0">Select Local Government</option>
-                <option v-for="lg in lga.lgas" :key="lg" :value="lg">
-                  {{ lg }}
-                </option>
-              </select>
+                :options="lgas"
+                :taggable="true"
+                @tag="addingLGA"
+                placeholder="Select Local Government"
+                label="name"
+                track-by="code"
+                tag-placeholder="Add this as new lga"
+                tag-position="top"
+                class="drop-multiselect"
+                :allow-empty="false"
+              ></multiselect>
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
@@ -395,13 +435,16 @@
                 <div class="form-group icon_form comments_form">
                   <multiselect
                     v-model="forms.degree"
-                    :options="discipline"
+                    :options="degreeOptions"
                     :taggable="true"
-                    @tag="addingTag"
-                    :custom-label="nameWithLang"
+                    @tag="addingDegreeTag"
                     placeholder="Degree*... e.g. BSc, BA, HNd, SSCE..."
                     label="name"
-                    track-by="name"
+                    track-by="code"
+                    tag-placeholder="Add this as new degree"
+                    tag-position="top"
+                    class="drop-multiselect"
+                    :allow-empty="false"
                   ></multiselect>
                 </div>
                 <span>{{ errors[0] }}</span>
@@ -415,13 +458,16 @@
                 <div class="form-group icon_form comments_form">
                   <multiselect
                     v-model="forms.course_of_study"
-                    :options="schools"
+                    :options="disciplineOptions"
                     :taggable="true"
-                    @tag="addingTag"
-                    :custom-label="nameWithLang"
-                    placeholder="Select Field of Study"
+                    @tag="addingDisciplineTag"
+                    placeholder="Choose Discipline"
                     label="name"
-                    track-by="name"
+                    track-by="code"
+                    tag-placeholder="Add this as new discipline"
+                    tag-position="top"
+                    class="drop-multiselect"
+                    :allow-empty="false"
                   ></multiselect>
                 </div>
                 <div id="blk">{{ errors[0] }}</div>
@@ -994,7 +1040,7 @@
 <script>
 // import { EventBus } from "@/components/eventBus.js";
 // import axios from "axios";
-import NaijaStates from "naija-state-local-government";
+// import NaijaStates from "naija-state-local-government";
 import "vue-input-search/dist/vue-search.css";
 // import VueSearch from "vue-input-search/dist/vue-search.common";
 import Multiselect from "vue-multiselect";
@@ -1047,6 +1093,30 @@ export default {
         { name: "Conglomerates", code: "se" },
         { name: "Utilities", code: "ut" }
       ],
+      disciplineOptions: [
+        { name: "​Construction/ Real Estate", code: "Re|Co" },
+        { name: "​​Consumer Goods", code: "go" },
+        { name: "Financial Services", code: "fi" },
+        { name: "​Healthcare", code: "he" },
+        { name: "​Information & Communications Technology", code: "it" },
+        { name: "​Natural Resources", code: "na" },
+        { name: "​​​Oil & Gas", code: "oi" },
+        { name: "Services", code: "se" },
+        { name: "Conglomerates", code: "se" },
+        { name: "Utilities", code: "ut" }
+      ],
+      degreeOptions: [
+        { name: "​Construction/ Real Estate", code: "Re|Co" },
+        { name: "​​Consumer Goods", code: "go" },
+        { name: "Financial Services", code: "fi" },
+        { name: "​Healthcare", code: "he" },
+        { name: "​Information & Communications Technology", code: "it" },
+        { name: "​Natural Resources", code: "na" },
+        { name: "​​​Oil & Gas", code: "oi" },
+        { name: "Services", code: "se" },
+        { name: "Conglomerates", code: "se" },
+        { name: "Utilities", code: "ut" }
+      ],
       educational_details_file: {},
       attachments: [],
       data: new FormData(),
@@ -1054,10 +1124,11 @@ export default {
       percentCompleted: 0,
       users: [],
       country: 0,
-      countries: [],
+      countries: this.$store.getters.StateCountries ?? [],
       state: 0,
-      states: NaijaStates.states(),
-      lga: "",
+      states: [],
+      cities: [],
+      lgas: [],
       showSecondDiv: false,
       showDiv: localStorage.getItem("showDiv"),
       companys: {
@@ -1120,7 +1191,8 @@ export default {
         course_of_study: "",
         upload: [],
         selectedState: "",
-        selectedLGA: ""
+        selectedLGA: "",
+        selectedCity: ""
       },
       updatedForms: [],
       updatedexperiences: [],
@@ -1148,16 +1220,128 @@ export default {
     };
   },
   methods: {
+    toggleStates() {
+      this.forms.selectedState = "";
+      this.forms.selectedLGA = "";
+      this.forms.selectedCity = "";
+      this.cities = [];
+      this.lgas = [];
+      this.$store
+        .dispatch("FetchStates", this.forms.nationality)
+        .then(response => {
+          this.states = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
+    changeState() {
+      this.forms.selectedLGA = "";
+      this.forms.selectedCity = "";
+      let fetchURL = "";
+      if (this.forms.nationality == "Nigeria") {
+        fetchURL = "FetchLGAs";
+      } else {
+        fetchURL = "FetchCities";
+      }
+      this.$store
+        .dispatch(fetchURL, this.forms.selectedState)
+        .then(response => {
+          this.cities = response.data;
+          this.lgas = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
     nameWithLang({ name, language }) {
       return `${name} — [${language}]`;
     },
-    addingTag(newTag) {
+    addingDisciplineTag(newTag) {
       const tag = {
         name: newTag,
-        language: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
-      this.optionss.push(tag);
-      this.forms.course_of_study.push(tag);
+      this.disciplineOptions.push(tag);
+      this.forms.course_of_study = tag;
+    },
+    addingLGA(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        state_id: this.forms.selectedState.id,
+        user_defined: 1
+      };
+      this.lgas.push(tag);
+      this.forms.selectedLGA = tag;
+
+      this.$store
+        .dispatch("AddLGA", tag)
+        .then(() => {
+          this.$toasted.success(
+            "You successfully added new local government to " +
+              this.forms.selectedState.name
+          );
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
+    addingState(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        country_id: this.forms.nationality.id,
+        user_defined: 1
+      };
+      this.states.push(tag);
+      this.forms.selectedState = tag;
+
+      console.log(tag);
+
+      this.$store
+        .dispatch("AddState", tag)
+        .then(() => {
+          this.$toasted.success(
+            "You successfully added new state to " + this.forms.nationality.name
+          );
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
+    addingCity(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        state_id: this.forms.selectedState.id,
+        user_defined: 1
+      };
+      this.cities.push(tag);
+      this.forms.selectedCity = tag;
+
+      console.log(tag);
+
+      this.$store
+        .dispatch("AddCity", tag)
+        .then(() => {
+          this.$toasted.success(
+            "You successfully added new city to " +
+              this.forms.selectedState.name
+          );
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
+    addingDegreeTag(newTag) {
+      this.forms.degree = [];
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+      };
+      this.degreeOptions.push(tag);
+      this.forms.degree.push(tag);
     },
     backstep() {
       this.step--;
@@ -1492,13 +1676,6 @@ export default {
     onSubmit() {
       console.log("Onsubmit is working fine");
       console.log(this.inputs);
-    },
-    changeState() {
-      this.lga = NaijaStates.lgas(this.forms.selectedState);
-      console.log(this.forms.selectedState);
-    },
-    changeLGA() {
-      console.log(this.forms.selectedLGA);
     },
     removeupdatedForms: function(id) {
       var toDelete = this.updatedForms[id];
@@ -2113,6 +2290,17 @@ export default {
     }
   },
   mounted() {
+    // this.$store.dispatch("ClearCountries");
+    if (!this.$store.getters.isHaveCountries) {
+      this.$store
+        .dispatch("FetchCountries")
+        .then(response => {
+          this.countries = response.data;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    }
     this.fetchPersonalDetails();
     this.fetchEducationDetails();
     this.fetchCertificateDetails();

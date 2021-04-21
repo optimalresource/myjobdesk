@@ -115,7 +115,6 @@ export default {
     Vue.loadScript("/js/jquery.magnific-popup.js");
     Vue.loadScript("/js/dropify.min.js");
     Vue.loadScript("/js/jquery.inview.min.js");
-    Vue.loadScript("/js/jquery.nice-select.min.js");
     Vue.loadScript("/js/imagesloaded.pkgd.min.js");
     Vue.loadScript("/js/isotope.pkgd.min.js");
     Vue.loadScript("/js/custom.js");
@@ -142,6 +141,6 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "./css/custom.css";
-// @import "./assets/css/bootstrap.min.css";
+/* @import "./css/custom.css";
+ @import "./assets/css/bootstrap.min.css";*/
 </style>

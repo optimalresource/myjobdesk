@@ -73,7 +73,8 @@ Vue.use(VueToastr, {
 import axios from "axios";
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
+// axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 

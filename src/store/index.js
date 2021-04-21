@@ -3,6 +3,9 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import PersonalDetails from "./modules/personal-details";
 import CompanyDetails from "./modules/company-details";
+import Countries from "./modules/countries";
+import States from "./modules/states";
+import Cities from "./modules/cities";
 import createMutationsSharer from "vuex-shared-mutations";
 import axios from "axios";
 const token = localStorage.getItem("token");
@@ -15,7 +18,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     PersonalDetails,
-    CompanyDetails
+    CompanyDetails,
+    Countries,
+    States,
+    Cities
   },
   state: {
     token: null,

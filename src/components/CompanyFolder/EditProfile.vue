@@ -37,6 +37,31 @@
                 </div>
               </div>
             </div>
+            <div class="row ">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="job_listing_left_fullwidth jb_cover ">
+                  <div class="change_prodile_pics_div">
+                    <a class="btn" @click="toggleShow">set avatar</a>
+                    <my-upload
+                      field="img"
+                      @crop-success="cropSuccess"
+                      @crop-upload-success="cropUploadSuccess"
+                      @crop-upload-fail="cropUploadFail"
+                      v-model="show"
+                      lang-type="en"
+                      :width="300"
+                      :height="300"
+                      url="/upload"
+                      :params="params"
+                      :headers="headers"
+                      img-format="png"
+                    ></my-upload>
+                    <img :src="imgDataUrl" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_listing_left_fullwidth jb_cover">
@@ -350,11 +375,26 @@ import Footer from "@/components/Footer.vue";
 import DashboardHeader from "@/components/DashboardHeader.vue";
 import ChatBox from "@/components/ChatBox.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
+import myUpload from "vue-image-crop-upload";
+
+// import VueFileAgentComponent from "@/components/VueFileAgentComponent.vue";
+// import VueFileAgentComponent from '@/components/VueFileAgentComponent.vue';
 export default {
   name: "EditProfile",
   data: function() {
     return {
-      company: this.$store.getters.StateCompanyDetails ?? ""
+      company: this.$store.getters.StateCompanyDetails ?? "",
+      changeProfilePicIsClicked: true,
+      showProfileEdit: false,
+      show: null,
+      params: {
+        token: "123456798",
+        name: "avatar"
+      },
+      headers: {
+        smail: "*_~"
+      },
+      imgDataUrl: "" // the datebase64 url of created image
     };
   },
   components: {
@@ -363,14 +403,33 @@ export default {
     // Avatar,
     CompanyDashboardSideBar,
     DashboardHeader,
+    myUpload,
     ChatBox
+    // VueFileAgentComponent
+    // VueFileAgentComponent
   },
   methods: {
+    showVueFileAgentComponent: function() {
+      this.changeProfilePicIsClicked = false;
+      this.showProfileEdit = true;
+    },
     saveProfile() {
       //calling axios here to save profile
     },
     saveSocialMedia() {
       //saving social media handles
+    },
+    cropSuccess() {
+      
+    },
+    cropUploadSuccess() {
+
+    },
+    cropUploadFail() {
+
+    },
+    toggleShow() {
+
     }
   },
   mounted() {

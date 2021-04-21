@@ -53,9 +53,13 @@ Vue.use(VueToastr, {
   defaultClassNames: ["animated", "zoomInDown"]
 });
 import axios from "axios";
+import VueFileAgent from "vue-file-agent";
+import VueFileAgentStyles from "vue-file-agent/dist/vue-file-agent.css";
 
+Vue.use(VueFileAgent, VueFileAgentStyles);
 // store.dispatch("ClearCompanyDetails");
-
+	import myUpload from 'vue-image-crop-upload';
+  Vue.use(myUpload);
 axios.defaults.withCredentials = false;
 axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
 // axios.defaults.headers.common["Authorization"] =

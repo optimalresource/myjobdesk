@@ -6,11 +6,14 @@
 
 <script>
 import Post from "@/components/CompanyFolder/Post.vue";
+import Vue from "vue";
+import LoadScript from "vue-plugin-load-script";
+Vue.use(LoadScript);
 export default {
   name: "CompanyApplications",
   components: {
-    Post,
-  },
+    Post
+  }
 };
 </script>
 

@@ -1,0 +1,485 @@
+.Applicant {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  .applicant_div {
+    padding-right: 150px;
+    padding-left: 150px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .personal_headers {
+    color: #990066;
+  }
+  .Experience {
+    display: none;
+  }
+  .experience {
+    display: none;
+  }
+  .skills {
+    display: none;
+  }
+  .referees {
+    display: none;
+  }
+  .Referees {
+    display: none;
+  }
+  .certify {
+    display: none;
+  }
+  .cert {
+    cursor: pointer !important;
+    display: none;
+  }
+  .remove_certification {
+    display: none;
+  }
+  .custom-file-label {
+    width: 100% !important;
+  }
+  .certification_div {
+    border-left: 5px solid #990066;
+    background-color: rgb(251, 251, 251);
+    padding: 10px;
+  }
+  
+  .personal_details_div {
+    border-left: 5px solid #990066;
+    background-color: rgb(251, 251, 251);
+    padding: 10px;
+  }
+  .add_educational_details_div {
+    border-left: 5px solid #990066;
+    background-color: rgb(251, 251, 251);
+    padding: 25px;
+  }
+  .changing {
+    background: white;
+    color: #990066;
+    border: 2px solid #990066;
+  }
+  .changing:hover {
+    background: #990066;
+    color: white;
+  }
+  .info {
+    color: white;
+    font-size: smaller;
+    margin-left: -25px;
+  }
+  .negative-margin-left {
+    margin-left: -25px;
+  }
+  .float {
+    float: right;
+  }
+  .r2l {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .add {
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: green;
+    color: white;
+  }
+  .edu-form {
+    display: none;
+  }
+  .fbook {
+    background: #3b5998;
+    padding: 8px 80px;
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  .fbook:hover {
+    background: white;
+    border: #3b5998 1px solid;
+    color: #3b5998;
+    margin-bottom: 2px;
+  }
+  .linkedin {
+    background: #0e76a8;
+    border: 1px white solid;
+    color: white;
+    box-sizing: border-box;
+    padding: 8px 80px;
+  }
+  .linkedin:hover {
+    background: white;
+    border: 1px #0e76a8 solid;
+    color: #0e76a8;
+  }
+  .google {
+    background: #ea4335;
+    color: white;
+    box-sizing: border-box;
+    padding: 8px 80px;
+  }
+  .google:hover {
+    background: white;
+    border: 1px #ea4335 solid;
+    color: #ea4335;
+  }
+  ul .google,
+  .linkedin,
+  .fbook {
+    display: block;
+    width: 400px;
+    text-align: center;
+    margin: 2px auto;
+  }
+  .bill {
+    padding: 20px;
+  }
+  .preview {
+    display: block;
+    width: 50%;
+    color: #d3adc6;
+    background: red;
+  }
+  .background {
+    /* padding: 0 20%; */
+    padding-bottom: 20px;
+    border-radius: none;
+    color: white;
+    /* margin: 0 auto; */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .no-border {
+    border: 1px solid white;
+  }
+  h5 {
+    color: #990066;
+  }
+  .card-body {
+    border: none;
+  }
+  .submit-edu {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background: #990066;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+  }
+  .submit-edu:hover {
+    opacity: 0.9;
+  }
+  .employee-form {
+    border: 1px solid #ffd5f1;
+    padding: 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+  }
+  .employee-form p {
+    color: red;
+  }
+  /* .employee-form h6 {
+    display: block;
+  } */
+  span {
+    cursor: pointer;
+  }
+  
+  #blk {
+    display: block;
+  }
+  
+  .margina {
+    margin-top: -20px !important;
+    margin-bottom: 20px !important;
+  }
+  .bttn {
+    color: white;
+    background: linear-gradient(to right, #990066, #af0066, #c90075);
+  }
+  .bttn:hover {
+    opacity: 0.9;
+  }
+  .pad {
+    padding: 50px 30%;
+  }
+  .edu-prev {
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border: hsl(320, 94%, 81%) 1px solid;
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border-top: 7px solid hsl(320, 94%, 81%);
+  }
+  .edu-prev h6 {
+    padding: 5px;
+    cursor: default;
+    color: #990066;
+  }
+  .Skills_preview {
+    border: hsl(320, 94%, 81%) 1px solid;
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border-top: 7px solid hsl(320, 94%, 81%);
+    display: none;
+  }
+  .Skills_preview h6 {
+    padding: 5px;
+    cursor: default;
+    color: #990066;
+  }
+  .Referee_preview {
+    border: hsl(320, 94%, 81%) 1px solid;
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border-top: 7px solid hsl(320, 94%, 81%);
+    display: none;
+  }
+  .Referee_preview h6 {
+    padding: 5px;
+    cursor: default;
+    color: #990066;
+  }
+  .Experience_preview {
+    border: hsl(320, 94%, 81%) 1px solid;
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border-top: 7px solid hsl(320, 94%, 81%);
+    display: none;
+  }
+  .Experience_preview h6 {
+    padding: 5px;
+    cursor: default;
+    color: #990066;
+  }
+  .certification_preview {
+    border: hsl(320, 94%, 81%) 1px solid;
+    padding: 0 5px 30px 30px;
+    cursor: default;
+    border-top: 7px solid hsl(320, 94%, 81%);
+    margin-bottom: 10px;
+    /* display: none; */
+  }
+  .certification_preview h6 {
+    padding: 5px;
+    cursor: default;
+    color: #990066;
+  }
+  .move-right {
+    margin-left: 20px;
+  }
+  @media (max-width: 500px) {
+    .pad {
+      width: 100%;
+      /* padding: 20px; */
+      margin-right: -10px;
+      box-sizing: border-box;
+    }
+    .certification_div {
+      width: 100%;
+      /* padding: 20px; */
+      /* margin-right: -10px; */
+      padding: 7px;
+      box-sizing: border-box;
+    }
+    .employee-form {
+      border: none;
+      padding: 0px;
+      background: none;
+    }
+  }
+  @media (max-width: 1006px) {
+    .pad {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+  @media (max-width: 989px) {
+    .background {
+      padding: 0;
+      padding-bottom: 20px;
+      border-radius: none;
+      color: white;
+      width: 100%;
+    }
+    .center button {
+      display: block;
+      margin: 20px;
+    }
+  }
+  @media (max-width: 766px) {
+    .center button {
+      display: block;
+    }
+  }
+  @media (max-width: 904px) {
+    .applicant_div {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+  }
+  @media (max-width: 581px) {
+    .second_div button {
+      display: block;
+    }
+  }
+  .fileContainer {
+    overflow: hidden;
+    position: relative;
+  }
+  @media (max-width: 500px) {
+    .applicant_div {
+      padding: 0%;
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+    .margin_top {
+      margin-top: -30px;
+    }
+  }
+  .fileContainer {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .fileContainer [type="file"] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 40px;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+  }
+  
+  .fileContainer {
+    background: #e3e3e3;
+    float: left;
+    padding: 0.5em;
+  }
+  
+  .fileContainer [type="file"] {
+    cursor: pointer;
+  }
+  .btn-outline {
+    background: blue;
+    color: white;
+  }
+  .center {
+    margin-left: 28%;
+  }
+  .emoji {
+    font-weight: 700;
+  }
+  .link_button {
+    color: white;
+  }
+  .link_button:hover {
+    color: #990066;
+  }
+  .cv_button {
+    background: #990066;
+    color: white;
+  }
+  
+  .blue-theme {
+    display: none;
+  }
+  .none-theme {
+    display: block;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.7s;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  @media only screen and (max-width: 481px) {
+    .Applicant {
+      padding: 7px;
+    }
+    .applicant_div {
+      border: none;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    .personal_details_div {
+      border: none;
+    }
+    .add_educational_details_div {
+      padding: 5px;
+      border: none;
+    }
+    .employee-form {
+      border: none;
+      padding: 0px;
+      width: 100%;
+      color: black;
+    }
+    .certification_div {
+      border-left: none;
+      padding: 0px;
+    }
+  }
+
+  .form-select, .form-group, .form-control, .form-control > * {
+    /* display: block !important; */
+    width: 100% !important;
+    border-radius: 0;
+  }
+
+  /* .form-control, option {
+    width: 100% !important;
+  } */
+
+  /* .form-select {
+    appearance: none;
+    display: inline-block !important;
+    background-color: #fff;
+    border: 1px solid #990066;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    border-radius: 0;
+  } */
+
+  /* .selectDrop::after, .form-control::after {
+    content: "";
+    clip-path: polygon(0% 0%, 0 0%, 50% 100%);
+  } */
+
+  .drop-select, .drop-select > * {
+    width: 100% !important;
+    border-radius: 0;
+  }
+
+  .drop-multiselect > * {
+    border-radius: 0;
+  }
+
+  .drop-select {
+    margin-bottom: 20px !important;
+    z-index: 9999;
+  }
+
+  body, html {
+    overflow-x: visible;
+  }

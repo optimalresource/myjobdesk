@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 import Home from "../views/Home.vue";
+import LoadScript from "vue-plugin-load-script";
+Vue.use(LoadScript);
 
 Vue.use(VueRouter);
 
@@ -186,23 +188,37 @@ const routes = [
     name: "Applicant",
     component: () => import("../views/Applicant.vue"),
     beforeEnter: (to, from, next) => {
-      //   if (to.name == "Applicant") {
       var role = store.getters.StateRole;
 
-      var step = localStorage.getItem("step")
-        ? localStorage.getItem("step")
-        : store.getters.StateStep;
+      var step = 0;
       var token = localStorage.getItem("token")
         ? localStorage.getItem("token")
         : store.getters.StateToken;
 
-      if (token != "") {
+      if (token) {
         if (role == "user") {
-          store.dispatch("ValidateToken").catch(() => {
-            store.dispatch("LogOut");
-            next("/login");
-          });
-          step = localStorage.getItem("step");
+          store
+            .dispatch("ValidateToken")
+            .then(response => {
+              step = response.data.user.step;
+              console.log(step);
+              if (step >= 0 && step < 5) {
+                store.dispatch("RefreshStep", parseInt(step) + 1);
+                localStorage.setItem("step", parseInt(step) + 1);
+                localStorage.setItem("showDiv", true);
+                next();
+              } else if (step == 5) {
+                step = 1;
+                store.dispatch("RefreshStep", step);
+                localStorage.setItem("showDiv", false);
+                localStorage.setItem("step", step);
+                next("/dashboard");
+              }
+            })
+            .catch(() => {
+              store.dispatch("LogOut");
+              next("/login");
+            });
         }
 
         if (role != "user") {
@@ -211,29 +227,14 @@ const routes = [
       }
 
       if (token == "") {
+        store.dispatch("RefreshStep", 1);
+        localStorage.setItem("step", 1);
+        localStorage.setItem("showDiv", true);
         next();
       }
 
-      if (step == 0) {
-        step = 1;
-        if (token != "") {
-          localStorage.setItem("step", step);
-          localStorage.setItem("showDiv", false);
-        }
-      } else if (step == 1) {
-        step = 2;
-        localStorage.setItem("step", step);
-        localStorage.setItem("showDiv", true);
-      } else if (step == 5) {
-        step = 1;
-        localStorage.setItem("showDiv", false);
-        localStorage.setItem("step", step);
-        next("/dashboard");
-      }
+      console.log(step);
       next();
-      //   } else {
-      //     next();
-      //   }
     }
   },
   {
@@ -273,6 +274,9 @@ function routeToRegistration() {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.isCompany)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     // if (localStorage.getItem("step") > 1 && !store.getters.isAuthenticated) {
     //   next("/login");
     //   return;
@@ -312,6 +316,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.isApplicant)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       store.getters.StateRole == "user" &&
       localStorage.getItem("step") > 1 &&
@@ -345,6 +352,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       store.getters.StateRole == "user" &&
       localStorage.getItem("step") > 1 &&
@@ -380,6 +390,9 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.guest)) {
+    if (to.name != "Applicant") {
+      Vue.loadScript("/js/jquery.nice-select.min.js");
+    }
     if (
       to.name != "Applicant" &&
       routeToRegistration() &&

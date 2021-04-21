@@ -3,6 +3,9 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import PersonalDetails from "./modules/personal-details";
 import CompanyDetails from "./modules/company-details";
+import Countries from "./modules/countries";
+import States from "./modules/states";
+import Cities from "./modules/cities";
 import createMutationsSharer from "vuex-shared-mutations";
 import axios from "axios";
 const token = localStorage.getItem("token");
@@ -15,7 +18,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     PersonalDetails,
-    CompanyDetails
+    CompanyDetails,
+    Countries,
+    States,
+    Cities
   },
   state: {
     token: null,
@@ -462,8 +468,13 @@ export default new Vuex.Store({
           .then(response => {
             const user = response.data.user;
             const role = response.data.role;
-            context.commit("refreshUser", user);
-            context.commit("refreshRole", role);
+            // if (role == "user") {
+            //   var step = parseInt(response.data.user.step);
+            //   localStorage.setItem("step", step);
+            //   context.commit("setStep", step);
+            // }
+            context.commit("setUser", user);
+            context.commit("setRole", role);
             resolve(response);
           })
           .catch(error => {
@@ -488,7 +499,7 @@ export default new Vuex.Store({
             const user = response.data.user;
             const role = response.data.role;
             if (role == "user") {
-              const step = response.data.user.step;
+              var step = parseInt(response.data.user.step);
               if (step < 5) {
                 localStorage.setItem("step", step + 1);
                 commit("setStep", step + 1);
@@ -540,6 +551,12 @@ export default new Vuex.Store({
           });
       });
     },
+
+    RefreshStep(context, step) {
+      localStorage.setItem("step", step);
+      context.commit("setStep", step);
+    },
+
     throwError({ commit }, error) {
       commit("SetError", error);
     }
@@ -552,6 +569,7 @@ export default new Vuex.Store({
     StateRole: state => state.role,
     StateUser: state => state.user,
     StateToken: state => state.token,
-    StateError: state => state.error
+    StateError: state => state.error,
+    StateStep: state => state.step
   }
 });

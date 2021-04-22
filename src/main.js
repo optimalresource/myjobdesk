@@ -70,14 +70,17 @@ Vue.use(VueToastr, {
   defaultCloseOnHover: false,
   defaultClassNames: ["animated", "zoomInDown"]
 });
+import VueCropper from "vue-cropperjs";
+import "cropperjs/dist/cropper.css";
+Vue.component(VueCropper);
 import axios from "axios";
 // import VueFileAgent from "vue-file-agent";
 // import VueFileAgentStyles from "vue-file-agent/dist/vue-file-agent.css";
 
 // Vue.use(VueFileAgent, VueFileAgentStyles);
 // store.dispatch("ClearCompanyDetails");
-	// import myUpload from 'vue-image-crop-upload';
-  // Vue.use(myUpload);
+// import myUpload from 'vue-image-crop-upload';
+// Vue.use(myUpload);
 axios.defaults.withCredentials = false;
 // axios.defaults.baseURL = "https://api.myjobdesk.com/api/";
 axios.defaults.baseURL = "http://127.0.0.1:8000/api/";

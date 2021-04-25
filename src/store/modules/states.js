@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-  states: []
+  states: [],
+  refreshedStates: 0
 };
 
 const getters = {
@@ -15,7 +16,7 @@ const getters = {
 const actions = {
   async AddState({ commit }, credentials) {
     let response = await axios.post("country/state", credentials);
-    await commit("setStates", response.data.states);
+    await commit("refreshStates");
     return response;
   },
 
@@ -29,6 +30,25 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .post("country/states", { country: credentials.id })
+        .then(response => {
+          const details = response.data;
+          commit("setStates", details);
+          resolve(response);
+        })
+        .catch(error => {
+          if (error.response) {
+            reject(error.response.data);
+          } else {
+            reject(error);
+          }
+        });
+    });
+  },
+
+  FetchGivenStates({ commit }, credentials) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post("country/given_states", { state_id: credentials.id })
         .then(response => {
           const details = response.data;
           commit("setStates", details);
@@ -60,6 +80,10 @@ const mutations = {
 
   clearStates(state) {
     state.states = [];
+  },
+
+  refreshStates(state) {
+    state.refreshedStates = 1;
   }
 };
 

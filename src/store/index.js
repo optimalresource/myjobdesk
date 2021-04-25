@@ -6,6 +6,12 @@ import CompanyDetails from "./modules/company-details";
 import Countries from "./modules/countries";
 import States from "./modules/states";
 import Cities from "./modules/cities";
+import LGAs from "./modules/lgas";
+import Disciplines from "./modules/disciplines";
+import Degrees from "./modules/degrees";
+import Skills from "./modules/skills";
+import CV from "./modules/cv";
+import JobCategories from "./modules/job-categories";
 import createMutationsSharer from "vuex-shared-mutations";
 import axios from "axios";
 const token = localStorage.getItem("token");
@@ -21,7 +27,13 @@ export default new Vuex.Store({
     CompanyDetails,
     Countries,
     States,
-    Cities
+    Cities,
+    LGAs,
+    Disciplines,
+    Degrees,
+    Skills,
+    CV,
+    JobCategories
   },
   state: {
     token: null,
@@ -30,7 +42,9 @@ export default new Vuex.Store({
     updated: false,
     role: null,
     error: null,
-    step: 1
+    step: 1,
+    current_job: 0,
+    steppers: []
   },
   plugins: [
     createMutationsSharer({
@@ -53,10 +67,15 @@ export default new Vuex.Store({
 
     setStep(state, step) {
       state.step = step;
+      state.steppers.push(step);
     },
 
     SetError(state, error) {
       state.error = error;
+    },
+
+    SetCurrentJob(state, current_job) {
+      state.current_job = current_job;
     },
 
     setToken(state, token) {
@@ -127,42 +146,6 @@ export default new Vuex.Store({
       });
     },
 
-    AddCV({ commit }, credentials) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post("cv", credentials)
-          .then(response => {
-            commit("SetError", null);
-            resolve(response);
-          })
-          .catch(error => {
-            if (error.response) {
-              reject(error.response.data);
-            } else {
-              reject(error);
-            }
-          });
-      });
-    },
-
-    AddSkill({ commit }, credentials) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post("skills", credentials)
-          .then(response => {
-            commit("SetError", null);
-            resolve(response);
-          })
-          .catch(error => {
-            if (error.response) {
-              reject(error.response.data);
-            } else {
-              reject(error);
-            }
-          });
-      });
-    },
-
     AddReferree({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         axios
@@ -186,7 +169,9 @@ export default new Vuex.Store({
         axios
           .post("experiences", credentials)
           .then(response => {
-            commit("SetError", null);
+            console.log(response);
+            var current_job = response.data.current_job;
+            commit("SetCurrentJob", current_job);
             resolve(response);
           })
           .catch(error => {
@@ -202,7 +187,11 @@ export default new Vuex.Store({
     DeleteCertificate({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         axios
-          .delete("certificates", credentials)
+          .delete("certificates", {
+            data: {
+              id: credentials.id
+            }
+          })
           .then(response => {
             commit("SetError", null);
             resolve(response);
@@ -220,7 +209,11 @@ export default new Vuex.Store({
     DeleteReferree({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         axios
-          .delete("referrees", credentials)
+          .delete("referrees", {
+            data: {
+              id: credentials.id
+            }
+          })
           .then(response => {
             commit("SetError", null);
             resolve(response);
@@ -238,9 +231,13 @@ export default new Vuex.Store({
     DeleteExperience({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         axios
-          .delete("experiences", credentials)
+          .delete("experiences", {
+            data: {
+              id: credentials.id
+            }
+          })
           .then(response => {
-            commit("SetError", null);
+            commit("SetCurrentJob", response.data.current_status);
             resolve(response);
           })
           .catch(error => {
@@ -442,23 +439,6 @@ export default new Vuex.Store({
       });
     },
 
-    FetchSkillDetails() {
-      return new Promise((resolve, reject) => {
-        axios
-          .get("skills/all")
-          .then(response => {
-            resolve(response);
-          })
-          .catch(error => {
-            if (error.response) {
-              reject(error.response.data);
-            } else {
-              reject(error);
-            }
-          });
-      });
-    },
-
     ValidateToken(context) {
       return new Promise((resolve, reject) => {
         var token = localStorage.getItem("token");
@@ -500,9 +480,12 @@ export default new Vuex.Store({
             const role = response.data.role;
             if (role == "user") {
               var step = parseInt(response.data.user.step);
-              if (step < 5) {
+              if (step < 4) {
                 localStorage.setItem("step", step + 1);
                 commit("setStep", step + 1);
+              } else if (step == 4) {
+                localStorage.setItem("step", step);
+                commit("setStep", step);
               } else {
                 localStorage.setItem("step", 1);
                 commit("setStep", step);
@@ -570,6 +553,8 @@ export default new Vuex.Store({
     StateUser: state => state.user,
     StateToken: state => state.token,
     StateError: state => state.error,
-    StateStep: state => state.step
+    StateStep: state => state.step,
+    StateSteppers: state => state.steppers,
+    StateCurrentJob: state => state.current_job
   }
 });

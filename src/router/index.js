@@ -197,11 +197,15 @@ const routes = [
             .then(response => {
               step = response.data.user.step;
               console.log(step);
-              if (step >= 0 && step < 5) {
+              if (step >= 0 && step < 4) {
                 store.dispatch("RefreshStep", parseInt(step) + 1);
                 localStorage.setItem("step", parseInt(step) + 1);
                 localStorage.setItem("showDiv", true);
                 next();
+              } else if (step == 4) {
+                store.dispatch("RefreshStep", parseInt(step));
+                localStorage.setItem("step", parseInt(step));
+                localStorage.setItem("showDiv", true);
               } else if (step == 5) {
                 step = 1;
                 store.dispatch("RefreshStep", step);

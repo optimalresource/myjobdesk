@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-  cities: []
+  cities: [],
+  refreshedCities: 0
 };
 
 const getters = {
@@ -15,7 +16,7 @@ const getters = {
 const actions = {
   async AddCity({ commit }, credentials) {
     let response = await axios.post("state/city", credentials);
-    await commit("setCities", response.data.cities);
+    await commit("refreshCities");
     return response;
   },
 
@@ -61,6 +62,10 @@ const mutations = {
 
   clearCities(state) {
     state.cities = [];
+  },
+
+  refreshCities(state) {
+    state.refreshedCities = 1;
   }
 };
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-  LGAs: []
+  LGAs: [],
+  refreshedLGAs: 0
 };
 
 const getters = {
@@ -15,7 +16,7 @@ const getters = {
 const actions = {
   async AddLGA({ commit }, credentials) {
     let response = await axios.post("state/lga", credentials);
-    await commit("setLGAs", response.data.lgas);
+    await commit("refreshLGAs");
     return response;
   },
 
@@ -60,6 +61,10 @@ const mutations = {
 
   clearLGA(state) {
     state.LGAs = [];
+  },
+
+  refreshLGAs(state) {
+    state.refreshedLGAs = 1;
   }
 };
 

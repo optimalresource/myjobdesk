@@ -151,7 +151,7 @@
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
                 <button type="submit" @click="register" :disabled="spin">
-                  <span v-if="notSpin">Next Step 1</span
+                  <span v-if="notSpin">Next Step 2 of 4</span
                   ><i v-if="spin" class="fa fa-spinner fa-spin"></i>
                 </button>
               </div>
@@ -165,7 +165,7 @@
         <div class="personal_details_div">
           <div class="mb-3">
             <h2 class="text-center">Personal Details</h2>
-            <h6 class="text-center personal_headers">Lets Get To Know You</h6>
+            <h6 class="text-center personal_headers">Let's Get To Know You</h6>
           </div>
 
           <!-- <date-of-birth-component
@@ -200,16 +200,13 @@
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
               <label for="gender">gender</label>
-              <select
+              <multiselect
                 v-model="forms.gender"
-                name="gender"
-                class="form-control drop-select"
-                id="drop-select"
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
-              </select>
+                :options="gender"
+                placeholder="Single or ...."
+                class="drop-multiselect"
+                :allow-empty="false"
+              ></multiselect>
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
@@ -218,15 +215,13 @@
           <ValidationProvider rules="required" v-slot="{ errors }">
             <div class="form-group icon_form comments_form">
               <label for="marital_status">Marital Status</label>
-              <select
+              <multiselect
                 v-model="forms.marital_status"
-                name="marital_status"
-                class="form-control drop-select"
-                id="drop-select"
-              >
-                <option value="Single" selected>Single</option>
-                <option value="Married">Married</option>
-              </select>
+                :options="marital_status"
+                placeholder="Single or ...."
+                class="drop-multiselect"
+                :allow-empty="false"
+              ></multiselect>
               <div id="">{{ errors[0] }}</div>
             </div>
           </ValidationProvider>
@@ -284,10 +279,26 @@
             </div>
           </ValidationProvider>
           <br />
+          <div class="form-check" v-if="emptyState">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="no_state"
+              name="no_state"
+              @change="changeNeedState"
+            />
+            <label class="form-check-label" for="no_state">
+              Want to add a new state to {{ forms.nationality.name }}?
+            </label>
+            <br />
+            <br />
+          </div>
           <ValidationProvider
             name="State of Origin"
             rules="required"
             v-slot="{ errors }"
+            v-if="needState"
           >
             <div class="form-group icon_form comments_form">
               <label>Select State:</label>
@@ -313,7 +324,7 @@
             name="City"
             rules="required"
             v-slot="{ errors }"
-            v-if="forms.nationality.name != 'Nigeria'"
+            v-if="forms.nationality.name != 'Nigeria' && needState"
           >
             <div class="form-group icon_form comments_form">
               <label>Select City:</label>
@@ -338,7 +349,7 @@
             name="Local Government"
             rules="required"
             v-slot="{ errors }"
-            v-if="forms.nationality.name == 'Nigeria'"
+            v-if="forms.nationality.name == 'Nigeria' && needState"
           >
             <div class="form-group icon_form comments_form">
               <label>Select Local Government:</label>
@@ -394,7 +405,7 @@
               <h6 class="">
                 {{ updatedForm.school_name }}
               </h6>
-              {{ updatedForm.degree }}, {{ updatedForm.course_of_study }},
+              {{ updatedForm.degree }}, {{ updatedForm.discipline }},
               {{ updatedForm.grade }}, {{ updatedForm.start_date }} to
               {{ updatedForm.end_date }}
             </div>
@@ -457,7 +468,7 @@
               >
                 <div class="form-group icon_form comments_form">
                   <multiselect
-                    v-model="forms.course_of_study"
+                    v-model="forms.discipline"
                     :options="disciplineOptions"
                     :taggable="true"
                     @tag="addingDisciplineTag"
@@ -636,7 +647,7 @@
                 v-model="certifications.description"
                 class="form-control"
                 type="text"
-                placeholder="Discription..."
+                placeholder="Description..."
               >
               </textarea>
             </div>
@@ -677,7 +688,7 @@
           <div class="jb_newslwtteter_button">
             <div class="header_btn search_btn news_btn jb_cover">
               <button @click.prevent="secondStep" type="submit">
-                Next Step 2
+                Next Step 3 of 4
               </button>
             </div>
           </div>
@@ -719,9 +730,8 @@
                     <h6>
                       {{ updatedRef.full_name }}
                     </h6>
-                    {{ updatedRef.email }},{{ updatedRef.company_name }},{{
-                      updatedRef.company_position
-                    }},{{ updatedRef.phone }}
+                    {{ updatedRef.email }}, {{ updatedRef.company_name }},
+                    {{ updatedRef.company_position }}, {{ updatedRef.phone }}
                   </div>
                 </div>
               </div>
@@ -823,12 +833,16 @@
                   <h6>
                     {{ updatedexperience.job_description }}
                   </h6>
-                  {{ updatedexperience.job_title }},{{
-                    updatedexperience.company_name
-                  }},
-                  {{ updatedexperience.date_from }}
-                  {{ updatedexperience.company_location }}
-                  {{ updatedexperience.date_to }}
+                  {{ updatedexperience.job_title }},
+                  {{ updatedexperience.company_name }},
+                  {{ updatedexperience.company_location }},
+                  {{ updatedexperience.date_from }} -
+                  <span v-if="updatedexperience.current_job != 1">
+                    {{ updatedexperience.date_to }}
+                  </span>
+                  <span v-if="updatedexperience.current_job == 1">
+                    Current Job
+                  </span>
                 </div>
               </div>
             </div>
@@ -845,13 +859,13 @@
               />
             </div>
             <div class="form-group icon_form comments_form">
-              <input
+              <textarea
                 type="text"
                 class="form-control require"
                 required
-                placeholder="Job Discription..."
+                placeholder="Job Description..."
                 v-model="experiences.job_description"
-              />
+              ></textarea>
             </div>
             <div class="form-group icon_form comments_form">
               <input
@@ -871,26 +885,57 @@
                 v-model="experiences.company_location"
               />
             </div>
-            <div class="form-group icon_form comments_form">
+            <!--<div class="form-group icon_form comments_form">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="">Years Worked</span>
                 </div>
-                <input
-                  placeholder="Start Date... e.g 1994"
-                  v-model="experiences.date_from"
-                  type="tel"
-                  class="form-control"
-                  required
-                />
-                <input
-                  type="tel"
-                  class="form-control require"
-                  required
-                  placeholder="End Date....e.g 2001"
-                  v-model="experiences.date_to"
-                />
               </div>
+            </div>-->
+
+            <div class="form-check" v-if="showCurrentJob">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="is_current_job"
+                name="is_current_job"
+                @change="currentJob"
+              />
+              <label class="form-check-label" for="is_current_job">
+                Is current job?
+              </label>
+              <br />
+              <br />
+            </div>
+
+            <div class="form-group icon_form comments_form">
+              <label for="exp_date_from">Start Date</label>
+              <input
+                type="month"
+                placeholder="Start Date... e.g 1994"
+                v-model="experiences.date_from"
+                class="form-control"
+                name="exp_date_from"
+                id="exp_date_from"
+                required
+              />
+            </div>
+
+            <div
+              class="form-group icon_form comments_form"
+              v-if="!is_current_job"
+            >
+              <label for="exp_date_from">End Date</label>
+              <input
+                type="month"
+                class="form-control require"
+                required
+                placeholder="End Date....e.g 2001"
+                v-model="experiences.date_to"
+                name="exp_date_from"
+                id="exp_date_from"
+              />
             </div>
 
             <button @click="saveExperience" class="submit-edu p-2">
@@ -910,28 +955,47 @@
             <p class="text-danger">Optional</p>
 
             <div
-              class="p-3 certification_preview"
+              class="p-3 skill_preview col-md-4"
               v-for="(updatedskill, skill) in updatedskills"
               :key="skill"
             >
               <div class="mb-3">
                 <span
-                  @click="deleteExperience(skill)"
+                  @click="deleteSkill(skill)"
                   class="float-right text-danger"
                   ><i class="far fa-times-circle"></i
                 ></span>
                 <div>
                   <div>
                     <h6>
-                      {{ updatedskill.skill }}
+                      {{ updatedskill.skill.name }}
                     </h6>
                   </div>
                 </div>
               </div>
             </div>
+            <br />
+            <div class="select_dropdown">
+              <multiselect
+                v-model="forms.skills"
+                tag-placeholder="Add this as new skill"
+                placeholder="Search or add a new skill"
+                label="name"
+                track-by="code"
+                :options="skillOptions"
+                :multiple="true"
+                :taggable="true"
+                @tag="addingSkillTag"
+                tag-position="top"
+              ></multiselect>
+              <br />
+              <button @click.prevent="saveskills" class="submit-edu mt-2 p-2">
+                Save Skills
+              </button>
+            </div>
           </div>
           <div class="p-1">
-            <div class="skills">
+            <!--<div class="skills">
               <span class="text-danger float-right" style="cursor: pointer">
                 <i
                   @click.prevent="removeskills"
@@ -955,7 +1019,7 @@
               class="btn btn-primary ml-2 mb-2"
             >
               Add Skills
-            </button>
+            </button>-->
           </div>
         </div>
         <br />
@@ -985,6 +1049,19 @@
               </button>
             </div>
           </div>
+          <div
+            class="show_uploaded_cv col-md-12 text-center text-success"
+            v-if="uploaded_cv"
+          >
+            Cv has been uploaded, to change CV, use the upload button..
+          </div>
+          <div
+            class="show_uploaded_cv col-md-12 text-center text-warning"
+            v-if="!uploaded_cv"
+          >
+            Please upload your CV to boost your chances of securing your
+            dreamjob...
+          </div>
         </div>
         <div>
           <div
@@ -992,6 +1069,9 @@
           >
             <div class="jb_newslwtteter_button">
               <div class="header_btn search_btn news_btn jb_cover">
+                <button @click="toStep2" type="button" class="mb2">
+                  Back to Step 2
+                </button>
                 <button @click.prevent="thirdStep" type="submit">
                   Final Step
                 </button>
@@ -1004,12 +1084,12 @@
     <transition name="fade">
       <div v-if="step == 4">
         <!-- <span class="back_button"><i @click="backstep" class="fas fa-arrow-left"></i></span> -->
-        <h3 class="text-center p-4">Pick A Category</h3>
+        <h3 class="text-center p-4">Pick a job category of interest</h3>
         <div class="select_dropdown">
           <multiselect
             v-model="category"
-            tag-placeholder="Add this as new tag"
-            placeholder="Search or add a tag"
+            tag-placeholder="Add this as new job category"
+            placeholder="Search or add a job category"
             label="name"
             track-by="code"
             :options="options"
@@ -1019,10 +1099,14 @@
             tag-position="top"
           ></multiselect>
         </div>
-        <div class="mt-5 ml-5 d-flex justify-content-center">
+        <div class="mt-5 d-flex justify-content-center">
           <div class="jb_newslwtteter_button">
             <div class="header_btn search_btn news_btn jb_cover">
-              <button @click="goToDashBoard" type="button">Lets Go</button>
+              <button @click="toStep3" type="button" class="mb2">
+                Back to Step 3
+              </button>
+              <br />
+              <button @click="goToDashBoard" type="button">Let's Go</button>
             </div>
           </div>
         </div>
@@ -1078,45 +1162,13 @@ export default {
       // showexperience_div: false,
       // showreferrers: false,
       // showskill: false,
-      category: [],
+      category: this.$store.getters.StateSeekerJobCategories ?? [],
       onLine: navigator.onLine,
       showBackOnline: false,
-      options: [
-        { name: "​Construction/ Real Estate", code: "Re|Co" },
-        { name: "​​Consumer Goods", code: "go" },
-        { name: "Financial Services", code: "fi" },
-        { name: "​Healthcare", code: "he" },
-        { name: "​Information & Communications Technology", code: "it" },
-        { name: "​Natural Resources", code: "na" },
-        { name: "​​​Oil & Gas", code: "oi" },
-        { name: "Services", code: "se" },
-        { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" }
-      ],
-      disciplineOptions: [
-        { name: "​Construction/ Real Estate", code: "Re|Co" },
-        { name: "​​Consumer Goods", code: "go" },
-        { name: "Financial Services", code: "fi" },
-        { name: "​Healthcare", code: "he" },
-        { name: "​Information & Communications Technology", code: "it" },
-        { name: "​Natural Resources", code: "na" },
-        { name: "​​​Oil & Gas", code: "oi" },
-        { name: "Services", code: "se" },
-        { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" }
-      ],
-      degreeOptions: [
-        { name: "​Construction/ Real Estate", code: "Re|Co" },
-        { name: "​​Consumer Goods", code: "go" },
-        { name: "Financial Services", code: "fi" },
-        { name: "​Healthcare", code: "he" },
-        { name: "​Information & Communications Technology", code: "it" },
-        { name: "​Natural Resources", code: "na" },
-        { name: "​​​Oil & Gas", code: "oi" },
-        { name: "Services", code: "se" },
-        { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" }
-      ],
+      options: this.$store.getters.StateJobCategories ?? [],
+      disciplineOptions: this.$store.getters.StateDisciplines ?? [],
+      skillOptions: this.$store.getters.StateSkills ?? [],
+      degreeOptions: this.$store.getters.StateDegrees ?? [],
       educational_details_file: {},
       attachments: [],
       data: new FormData(),
@@ -1128,6 +1180,10 @@ export default {
       state: 0,
       states: [],
       cities: [],
+      gender: ["Male", "Female", "Others"],
+      marital_status: ["Single", "Married", "Divorced", "Complicated"],
+      emptyState: false,
+      needState: true,
       lgas: [],
       showSecondDiv: false,
       showDiv: localStorage.getItem("showDiv"),
@@ -1149,9 +1205,6 @@ export default {
         password_confirmation: "",
         user_type: "applicant"
       },
-      skills: {
-        skill: ""
-      },
       experiences: {
         job_description: "",
         job_title: "",
@@ -1160,6 +1213,10 @@ export default {
         date_from: "",
         date_to: ""
       },
+      is_current_job: false,
+      showCurrentJob: true,
+      uploaded_cv: this.$store.getters.StateUploadedCV ?? false,
+      seeker_cv: this.$store.getters.StateCV ?? false,
       rows: [],
       id: 0,
       personal_details: {},
@@ -1188,11 +1245,12 @@ export default {
         id: "",
         gender: "",
         marital_status: "",
-        course_of_study: "",
+        discipline: "",
         upload: [],
         selectedState: "",
         selectedLGA: "",
-        selectedCity: ""
+        selectedCity: "",
+        skills: this.$store.getters.StateSeekerSkills ?? []
       },
       updatedForms: [],
       updatedexperiences: [],
@@ -1208,7 +1266,6 @@ export default {
       showConfirmPassword: false,
       valid: true,
       success: false,
-      // errors: {},
       message: null,
       files: [],
       selectedFiles: new FormData(),
@@ -1230,6 +1287,13 @@ export default {
         .dispatch("FetchStates", this.forms.nationality)
         .then(response => {
           this.states = response.data;
+          if (this.states.length < 1) {
+            this.emptyState = true;
+            this.needState = false;
+          } else {
+            this.emptyState = false;
+            this.needState = true;
+          }
         })
         .catch(error => {
           this.handleAxiosErrors(error);
@@ -1239,16 +1303,18 @@ export default {
       this.forms.selectedLGA = "";
       this.forms.selectedCity = "";
       let fetchURL = "";
-      if (this.forms.nationality == "Nigeria") {
+      if (this.forms.nationality.name == "Nigeria") {
         fetchURL = "FetchLGAs";
       } else {
         fetchURL = "FetchCities";
       }
+
       this.$store
         .dispatch(fetchURL, this.forms.selectedState)
         .then(response => {
           this.cities = response.data;
           this.lgas = response.data;
+          console.log(response);
         })
         .catch(error => {
           this.handleAxiosErrors(error);
@@ -1260,10 +1326,24 @@ export default {
     addingDisciplineTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        user_defined: 1
       };
       this.disciplineOptions.push(tag);
-      this.forms.course_of_study = tag;
+
+      this.$store
+        .dispatch("AddDiscipline", tag)
+        .then(response => {
+          this.forms.discipline = response.data.discipline;
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added discipline now");
+          } else {
+            this.$toasted.success("You successfully added new discipline");
+          }
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
     },
     addingLGA(newTag) {
       const tag = {
@@ -1273,15 +1353,19 @@ export default {
         user_defined: 1
       };
       this.lgas.push(tag);
-      this.forms.selectedLGA = tag;
 
       this.$store
         .dispatch("AddLGA", tag)
-        .then(() => {
-          this.$toasted.success(
-            "You successfully added new local government to " +
-              this.forms.selectedState.name
-          );
+        .then(response => {
+          this.forms.selectedLGA = response.data.lga;
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added local government now");
+          } else {
+            this.$toasted.success(
+              "You successfully added new local government to " +
+                this.forms.selectedState.name
+            );
+          }
         })
         .catch(error => {
           this.handleAxiosErrors(error);
@@ -1295,16 +1379,19 @@ export default {
         user_defined: 1
       };
       this.states.push(tag);
-      this.forms.selectedState = tag;
-
-      console.log(tag);
 
       this.$store
         .dispatch("AddState", tag)
-        .then(() => {
-          this.$toasted.success(
-            "You successfully added new state to " + this.forms.nationality.name
-          );
+        .then(response => {
+          this.forms.selectedState = response.data.state;
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added state now");
+          } else {
+            this.$toasted.success(
+              "You successfully added new state to " +
+                this.forms.nationality.name
+            );
+          }
         })
         .catch(error => {
           this.handleAxiosErrors(error);
@@ -1318,30 +1405,72 @@ export default {
         user_defined: 1
       };
       this.cities.push(tag);
-      this.forms.selectedCity = tag;
-
-      console.log(tag);
 
       this.$store
         .dispatch("AddCity", tag)
-        .then(() => {
-          this.$toasted.success(
-            "You successfully added new city to " +
-              this.forms.selectedState.name
-          );
+        .then(response => {
+          this.forms.selectedCity = response.data.city;
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added city now");
+          } else {
+            this.$toasted.success(
+              "You successfully added new city to " +
+                this.forms.selectedState.name
+            );
+          }
         })
         .catch(error => {
           this.handleAxiosErrors(error);
         });
     },
+    changeNeedState() {
+      this.needState = !this.needState;
+    },
     addingDegreeTag(newTag) {
       this.forms.degree = [];
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        user_defined: 1
       };
       this.degreeOptions.push(tag);
-      this.forms.degree.push(tag);
+
+      this.$store
+        .dispatch("AddDegree", tag)
+        .then(response => {
+          this.forms.degree = response.data.degree;
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added degree now");
+          } else {
+            this.$toasted.success("You successfully added new degree");
+          }
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
+    },
+    addingSkillTag(newTag) {
+      this.forms.degree = [];
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        user_defined: 1
+      };
+      this.skillOptions.push(tag);
+
+      this.$store
+        .dispatch("AddSkill", tag)
+        .then(response => {
+          this.forms.skills.push(response.data.skill);
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added skill now");
+          } else {
+            this.$toasted.success("You successfully added new skill");
+          }
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
     },
     backstep() {
       this.step--;
@@ -1349,10 +1478,25 @@ export default {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        user_defined: 1
       };
       this.options.push(tag);
-      this.category.push(tag);
+      this.skillOptions.push(tag);
+
+      this.$store
+        .dispatch("AddJobCategory", tag)
+        .then(response => {
+          this.category.push(response.data.job_category);
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added category now");
+          } else {
+            this.$toasted.success("You successfully added new category");
+          }
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
     },
     fetchPersonalDetails() {
       this.$store
@@ -1361,15 +1505,29 @@ export default {
           this.forms.marital_status = response.data.marital_status;
           this.forms.gender = response.data.gender;
           this.forms.selectedLGA = response.data.lga;
+          this.forms.selectedCity = response.data.city;
           this.forms.selectedState = response.data.state_of_origin;
+
+          if (this.forms.selectedState) {
+            this.states = response.data.given_states;
+          }
+
+          if (this.forms.selectedLGA) {
+            this.lgas = response.data.given_lgas;
+          }
+
+          if (this.forms.selectedCity) {
+            this.cities = response.data.given_cities;
+          }
+
           this.forms.nationality = response.data.nationality;
           this.forms.address = response.data.address;
           this.forms.dob = response.data.date_of_birth;
           this.forms.phone = response.data.phone;
           this.pDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1381,8 +1539,8 @@ export default {
           this.updatedForms = response.data;
           this.eDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1394,8 +1552,22 @@ export default {
           this.updatedCerts = response.data;
           this.pDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+        });
+    },
+    fetchJobCategories() {
+      this.$store
+        .dispatch("FetchJobCategories")
+        .then(response => {
+          console.log(response.data);
+          console.log("Here I am");
+          this.options = response.data;
+        })
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1407,8 +1579,8 @@ export default {
           this.updatedRefs = response.data;
           this.pDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1420,8 +1592,8 @@ export default {
           this.updatedexperiences = response.data;
           this.pDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1433,8 +1605,21 @@ export default {
           this.updatedskills = response.data;
           this.pDResponse = response.status;
         })
-        .catch(error => {
-          this.handleAxiosErrors(error);
+        .catch(() => {
+          // this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+        });
+    },
+    fetchCV() {
+      this.$store
+        .dispatch("FetchCV")
+        .then(response => {
+          this.seeker_cv = response.data;
+          this.uploaded_cv = true;
+        })
+        .catch(() => {
+          // this.handleAxiosErrors(error);
           this.spin = false;
           this.notSpin = true;
         });
@@ -1468,7 +1653,6 @@ export default {
     uploadFieldChange() {
       var fileInput = document.getElementById("educational_details_file");
       this.files = fileInput.files;
-      // console.log("file length " + this.files.length);
       if (!this.files.length) return;
       for (let i = 0; i < this.files.length; i++) {
         // this.selectedFiles.append("filename[]", this.files[i]);
@@ -1485,6 +1669,12 @@ export default {
     savePersonalDetails() {
       // this.$v.forms.$touch();
       // if (this.$v.forms.$pending || this.$v.forms.$error) return;
+      if (!this.greaterOrEqualTo18Years(this.forms.dob)) {
+        this.$toasted.error("You must be 18 years to proceed");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
 
       if (this.forms.dob == "") {
         this.$toasted.error("Please Fill Your Date of Birth");
@@ -1517,7 +1707,7 @@ export default {
         this.$toasted.error("Please Fill your Address");
         return false;
       }
-      console.log("this is submiting f ");
+      console.log(this.forms.nationality);
       if (this.forms.nationality == "") {
         this.$toasted.error("Please Select Nationality");
         this.spin = false;
@@ -1525,18 +1715,31 @@ export default {
         return false;
       }
 
-      if (this.forms.selectedState == "") {
-        this.$toasted.error("Please Select a State");
-        this.spin = false;
-        this.notSpin = true;
-        return false;
-      }
+      if (this.needState) {
+        if (this.forms.selectedState == "") {
+          this.$toasted.error("Please Select a State");
+          this.spin = false;
+          this.notSpin = true;
+          return false;
+        }
 
-      if (this.forms.selectedLGA == "") {
-        this.$toasted.error("Please Select a Local Government");
-        this.spin = false;
-        this.notSpin = true;
-        return false;
+        if (this.forms.selectedLGA == "") {
+          if (this.forms.selectedCity == "") {
+            this.$toasted.error("Please choose a local government");
+            this.spin = false;
+            this.notSpin = true;
+            return false;
+          }
+        }
+
+        if (this.forms.selectedCity == "") {
+          if (this.forms.selectedLGA == "") {
+            this.$toasted.error("Please choose a city");
+            this.spin = false;
+            this.notSpin = true;
+            return false;
+          }
+        }
       }
 
       var request = {};
@@ -1545,6 +1748,7 @@ export default {
       request.state_of_origin = this.forms.selectedState;
       request.lga = this.forms.selectedLGA;
       request.nationality = this.forms.nationality;
+      request.city = this.forms.selectedCity;
       request.address = this.forms.address;
       request.date_of_birth = this.forms.dob;
       request.phone = this.forms.phone;
@@ -1574,25 +1778,49 @@ export default {
       document.getElementsByClassName("cert")[0].style.display = "none";
     },
     submitEducationalDetails() {
+      if (!this.notGreaterThanCurrentDate(this.forms.start_date)) {
+        this.$toasted.error("Start date cannot be in the future");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
+      if (!this.notGreaterThanCurrentDate(this.forms.end_date)) {
+        this.$toasted.error("End date cannot be in the future");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
+      if (!this.isEndDateGreater(this.forms.start_date, this.forms.end_date)) {
+        this.$toasted.error("Start date cannot be greater than end date");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
       if (!this.checkEducation()) return false;
       this.selectedFiles.append("school_name", this.forms.school_name);
       this.selectedFiles.append("end_date", this.forms.end_date);
       this.selectedFiles.append("start_date", this.forms.start_date);
-      this.selectedFiles.append("course_of_study", this.forms.course_of_study);
+      this.selectedFiles.append(
+        "discipline",
+        JSON.stringify(this.forms.discipline)
+      );
       this.selectedFiles.append("grade", this.forms.grade);
-      this.selectedFiles.append("degree", this.forms.degree);
+      this.selectedFiles.append("degree", JSON.stringify(this.forms.degree));
       if (this.attachments.length > 0) {
         for (let i = 0; i < this.attachments.length; i++) {
           this.selectedFiles.append("filename[]", this.attachments[i]);
         }
       }
 
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      // this.spin = false;
-      // this.notSpin = true;
-      //   return false;
-      // }
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
 
       this.$store
         .dispatch("SaveEducationDetails", this.selectedFiles)
@@ -1603,7 +1831,7 @@ export default {
           document.getElementsByClassName("edu-form")[0].style.display = "none";
           this.forms.school_name = "";
           this.forms.degree = "";
-          this.forms.course_of_study = "";
+          this.forms.discipline = "";
           this.forms.grade = "";
           this.forms.start_date = "";
           this.forms.end_date = "";
@@ -1611,7 +1839,7 @@ export default {
           this.attachments = [];
           this.selectedFiles = new FormData();
           document.getElementById("educational_details_file").value = "";
-          this.$toasted.success("Education details Saved");
+          this.$toasted.success("Education details saved");
           this.spin = false;
           this.notSpin = true;
         })
@@ -1639,7 +1867,7 @@ export default {
         this.$toasted.error("Please check and complete School name");
         return false;
       }
-      if (this.forms.course_of_study == "") {
+      if (this.forms.discipline == "") {
         this.$toasted.error("Please check and complete Course of Study");
         return false;
       }
@@ -1696,11 +1924,18 @@ export default {
           this.notSpin = true;
         });
     },
+    toStep2() {
+      this.step = 2;
+    },
+    toStep3() {
+      this.step = 3;
+    },
     secondStep() {
-      // if (this.pDResponse != 200) {
-      //    this.$toasted.error("please fill Personal Details");
-      //   return false;
-      // }
+      if (this.pDResponse != 200) {
+        this.$toasted.error("please fill Personal Details");
+        return false;
+      }
+
       this.spin = true;
       this.notSpin = false;
 
@@ -1711,19 +1946,21 @@ export default {
 
       var step = { step: 3 };
 
-      this.$store
-        .dispatch("NextStep", step)
-        .then(() => {
-          this.$toasted.success("You have progressed to step 3 of 5");
-          this.spin = false;
-          this.notSpin = true;
-        })
-        .catch(error => {
-          this.handleAxiosErrors(error);
-          this.spin = false;
-          this.notSpin = true;
-          return false;
-        });
+      if (!this.inArray(this.$store.getters.StateSteppers, step.step)) {
+        this.$store
+          .dispatch("NextStep", step)
+          .then(() => {
+            this.$toasted.success("You have progressed to step 3 of 4");
+            this.spin = false;
+            this.notSpin = true;
+          })
+          .catch(error => {
+            this.handleAxiosErrors(error);
+            this.spin = false;
+            this.notSpin = true;
+            return false;
+          });
+      }
 
       this.step++;
       return true;
@@ -1733,26 +1970,28 @@ export default {
       this.notSpin = false;
       var step = { step: 4 };
 
-      this.$store
-        .dispatch("NextStep", step)
-        .then(() => {
-          this.$toasted.success("You have progressed to step 4 of 5");
-          this.spin = false;
-          this.notSpin = true;
-        })
-        .catch(error => {
-          this.handleAxiosErrors(error);
-          this.spin = false;
-          this.notSpin = true;
-          return false;
-        });
+      if (!this.inArray(this.$store.getters.StateSteppers, step.step)) {
+        this.$store
+          .dispatch("NextStep", step)
+          .then(() => {
+            this.$toasted.success("You have progressed to step 4 of 4");
+            this.spin = false;
+            this.notSpin = true;
+          })
+          .catch(error => {
+            this.handleAxiosErrors(error);
+            this.spin = false;
+            this.notSpin = true;
+            return false;
+          });
+      }
 
       this.step++;
       return true;
     },
 
     goToDashBoard: function() {
-      var request = { category: [] };
+      // var request = { category: [] };
       if (this.category.length < 1) {
         this.$toasted.error("please pick a category");
         this.spin = false;
@@ -1760,16 +1999,20 @@ export default {
         return false;
       }
 
-      for (let i = 0; i < this.category.length; i++) {
-        request.category.push({ name: this.category[i].name });
-      }
+      // for (let i = 0; i < this.category.length; i++) {
+      //   request.category.push({ name: this.category[i].name });
+      // }
 
       this.$store
-        .dispatch("AddSeekerCategories", request)
+        .dispatch("AddSeekerJobCategories", {
+          seeker_job_categories: this.category
+        })
         .then(response => {
           this.categoryResponse = response.status;
-          this.$toasted.success("Category saved successfully");
+          this.category = response.data.job_categories;
+          this.$toasted.success("Job categories saved successfully");
           this.$toasted.info("You're now being redirected to your dashboard");
+          console.log(this.$store.getters.StateSteppers);
           this.spin = false;
           this.notSpin = true;
         })
@@ -1782,6 +2025,7 @@ export default {
 
       var step = { step: 5 };
 
+      // if (!this.inArray(this.$store.getters.StateSteppers, step.step)) {
       this.$store
         .dispatch("NextStep", step)
         .then(() => {
@@ -1793,6 +2037,7 @@ export default {
           this.notSpin = true;
           return false;
         });
+      // }
     },
     finalButton: function() {},
     setFilename: function(event, row) {
@@ -1858,9 +2103,7 @@ export default {
         return false;
       }
       if (!this.validateEmail(this.inputs.email)) {
-        this.$toasted.error(
-          "Please enter at least 6 letters which includes at least number and letter"
-        );
+        this.$toasted.error("Please enter a valid email");
         this.spin = false;
         this.notSpin = true;
         return false;
@@ -1878,12 +2121,12 @@ export default {
         return false;
       }
 
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      //   this.spin = false;
-      //   this.notSpin = true;
-      //   return false;
-      // }
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
 
       this.beforeResponse = true;
 
@@ -1913,15 +2156,15 @@ export default {
       var cvUpload = document.getElementById("cv");
       this.cvFiles = cvUpload.files;
       this.cvPreview.push(this.cvFiles[0]);
-      console.log(this.cvFiles[0]);
+      // console.log(this.cvFiles[0]);
     },
     savecv() {
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      //   this.spin = false;
-      //   this.notSpin = true;
-      //   return false;
-      // }
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
 
       if (this.cvPreview.length > 0) {
         this.selectedFiles.append("filename", this.cvPreview[0]);
@@ -1934,9 +2177,12 @@ export default {
 
       this.$store
         .dispatch("AddCV", this.selectedFiles)
-        .then(() => {
+        .then(response => {
           this.cvFiles = [];
+          console.log(response.data);
           this.cvPreview = [];
+          this.uploaded_cv = true;
+          this.seeker_cv = response.data;
           this.selectedFiles = new FormData();
           document.getElementById("cv").value = "";
           this.$toasted.success("CV saved successfully");
@@ -1951,14 +2197,14 @@ export default {
         });
     },
     saveskills() {
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      //   this.spin = false;
-      //   this.notSpin = true;
-      //   return false;
-      // }
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
 
-      if (this.skills.skill == "") {
+      if (this.forms.skills.length < 1) {
         this.$toasted.error("Please enter a skill");
         this.spin = false;
         this.notSpin = true;
@@ -1966,14 +2212,11 @@ export default {
       }
 
       this.$store
-        .dispatch("AddSkill", this.skills)
+        .dispatch("AddSeekerSkill", { skills: this.forms.skills })
         .then(response => {
-          this.updatedskills.push(response.data);
-          this.skills.skill = "";
-          document.getElementsByClassName("skills")[0].style.display = "none";
-          document.getElementsByClassName("Skills_preview")[0].style.display =
-            "block";
-          this.$toasted.success("Skill saved successfully");
+          this.updatedskills = response.data.seeker_skills;
+          this.forms.skills = response.data.skills;
+          this.$toasted.success("Skills saved successfully");
           this.spin = false;
           this.notSpin = true;
         })
@@ -1987,12 +2230,12 @@ export default {
       this.showErrorToastr;
     },
     savereferrers() {
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      //   this.spin = false;
-      //   this.notSpin = true;
-      //   return false;
-      // }
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
       if (this.referrers.phone == "") {
         this.$toasted.error("Please Fill Your Referee's number");
         this.spin = false;
@@ -2015,6 +2258,12 @@ export default {
       }
       if (this.referrers.email == "") {
         this.$toasted.error("Please Fill Your Referee's email");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+      if (!this.validateEmail(this.referrers.email)) {
+        this.$toasted.error("Please enter a valid email");
         this.spin = false;
         this.notSpin = true;
         return false;
@@ -2043,10 +2292,7 @@ export default {
           this.referrers.company_position = "";
           this.referrers.phone = "";
           this.refResponse = response.status;
-          document.getElementsByClassName("Referees")[0].style.display = "none";
           document.getElementsByClassName("referees")[0].style.display = "none";
-          document.getElementsByClassName("Referee_preview")[0].style.display =
-            "block";
           this.$toasted.success("Referree saved successfully");
           this.spin = false;
           this.notSpin = true;
@@ -2058,62 +2304,102 @@ export default {
           return false;
         });
     },
+    currentJob() {
+      this.is_current_job = !this.is_current_job;
+    },
     saveExperience() {
-      // if (!this.onLine) {
-      //   this.$toasted.error("Please check your internet connection");
-      //   this.spin = false;
-      //   this.notSpin = true;
-      //   return false;
-      // }
-      if (this.experiences.job_description == "") {
-        this.$toasted.error("Please Fill Your Referee's number");
+      if (!this.onLine) {
+        this.$toasted.error("Please check your internet connection");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
+
       if (this.experiences.job_title == "") {
-        this.$toasted.error(
-          "Please Fill Your Referee's Position in He's/ Her Company"
-        );
+        this.$toasted.error("Please enter your job title");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
+
+      if (this.experiences.job_description == "") {
+        this.$toasted.error("Please fill your job description");
+        this.spin = false;
+        this.notSpin = true;
+        return false;
+      }
+
       if (this.experiences.company_name == "") {
-        this.$toasted.error("Please Fill Your Referee's Company's name ");
+        this.$toasted.error("Please fill the company's name ");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
+
       if (this.experiences.company_location == "") {
-        this.$toasted.error("Please Fill Your Referee's email");
+        this.$toasted.error("Please enter company's location");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
       if (this.experiences.date_from == "") {
-        this.$toasted.error("Please Fill Your Referee's Full Name");
+        this.$toasted.error("Please enter a start date");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.experiences.date_to == "") {
-        this.$toasted.error("Please Fill Your Referee's Full Name");
+
+      if (!this.notGreaterThanCurrentDate(this.experiences.date_from)) {
+        this.$toasted.error("Start date cannot be in the future");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
+
+      if (!this.is_current_job) {
+        if (this.experiences.date_to == "") {
+          this.$toasted.error("Please enter the end date");
+          this.spin = false;
+          this.notSpin = true;
+          return false;
+        }
+
+        if (!this.notGreaterThanCurrentDate(this.experiences.date_to)) {
+          this.$toasted.error("End date cannot be in the future");
+          this.spin = false;
+          this.notSpin = true;
+          return false;
+        }
+
+        if (
+          !this.isEndDateGreater(
+            this.experiences.date_from,
+            this.experiences.date_to
+          )
+        ) {
+          this.$toasted.error("Start date cannot be greater than end date");
+          this.spin = false;
+          this.notSpin = true;
+          return false;
+        }
+      }
+
       var exp = {};
       exp.job_description = this.experiences.job_description;
       exp.job_title = this.experiences.job_title;
       exp.company_name = this.experiences.company_name;
       exp.company_location = this.experiences.company_location;
       exp.date_from = this.experiences.date_from;
-      exp.date_to = this.experiences.date_to;
-      if (!this.onLine) {
-        this.$toasted.error("Please check your internet connection");
-        return false;
+      if (!this.is_current_job) {
+        exp.date_to = this.experiences.date_to;
+      } else {
+        exp.current_job = 1;
       }
+
+      // if (!this.onLine) {
+      //   this.$toasted.error("Please check your internet connection");
+      //   return false;
+      // }
 
       this.$store
         .dispatch("AddExperience", exp)
@@ -2128,14 +2414,8 @@ export default {
           this.id++;
           document.getElementsByClassName("Experience")[0].style.display =
             "none";
-          document.getElementsByClassName("experience")[0].style.display =
-            "none";
-          document.getElementsByClassName(
-            "Experience_preview"
-          )[0].style.display = "block";
-
           this.expResponse = response.status;
-          this.$toasted.success("Referree saved successfully");
+          this.$toasted.success("Experience saved successfully");
           this.spin = false;
           this.notSpin = true;
         })
@@ -2238,12 +2518,35 @@ export default {
     deleteExperience(id) {
       var toDelete = this.updatedexperiences[id];
       const requestId = { id: toDelete.id };
+      console.log(toDelete);
+      console.log(requestId);
 
       this.$store
         .dispatch("DeleteExperience", requestId)
         .then(() => {
           this.updatedexperiences.splice(id, 1);
           this.$toasted.success("Experience deleted successfully");
+          this.spin = false;
+          this.notSpin = true;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+        });
+    },
+    deleteSkill(id) {
+      var toDelete = this.updatedskills[id];
+      const requestId = { id: toDelete.id };
+      console.log(toDelete);
+      console.log(requestId);
+
+      this.$store
+        .dispatch("DeleteSkill", requestId)
+        .then(response => {
+          this.updatedskills.splice(id, 1);
+          this.forms.skills = response.data;
+          this.$toasted.success("Skill deleted successfully");
           this.spin = false;
           this.notSpin = true;
         })
@@ -2287,9 +2590,23 @@ export default {
         this.successResponse = false;
         this.beforeResponse = false;
       }
+    },
+
+    "$store.state.current_job": function(newValue) {
+      if (newValue > 0) {
+        this.showCurrentJob = false;
+        this.is_current_job = false;
+      }
     }
   },
   mounted() {
+    console.log(this.forms.skills);
+    console.log(this.updatedForms.skills);
+    console.log(this.$store.getters.StateCurrentJob + " am here");
+    if (this.$store.getters.StateCurrentJob > 0) {
+      this.showCurrentJob = false;
+      this.is_current_job = false;
+    }
     // this.$store.dispatch("ClearCountries");
     if (!this.$store.getters.isHaveCountries) {
       this.$store
@@ -2301,12 +2618,45 @@ export default {
           this.handleAxiosErrors(error);
         });
     }
+
+    this.$store
+      .dispatch("FetchDisciplines")
+      .then(response => {
+        console.log(response);
+        this.disciplineOptions = response.data;
+      })
+      .catch(error => {
+        this.handleAxiosErrors(error);
+      });
+
+    this.$store
+      .dispatch("FetchDegrees")
+      .then(response => {
+        console.log(response);
+        this.degreeOptions = response.data;
+      })
+      .catch(error => {
+        this.handleAxiosErrors(error);
+      });
+
+    this.$store
+      .dispatch("FetchSkills")
+      .then(response => {
+        console.log(response);
+        this.skillOptions = response.data;
+      })
+      .catch(error => {
+        this.handleAxiosErrors(error);
+      });
+
     this.fetchPersonalDetails();
     this.fetchEducationDetails();
     this.fetchCertificateDetails();
     this.fetchReferrees();
     this.fetchExperiences();
     this.fetchSkills();
+    this.fetchCV();
+    this.fetchJobCategories();
 
     var toggleState = function(elem, one, two) {
       var element = document.querySelector(elem);

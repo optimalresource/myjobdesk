@@ -91,6 +91,8 @@ axios.interceptors.response.use(undefined, function(error) {
   }
 });
 
+console.log(localStorage.getItem("step"));
+
 // Vue.component("form-group", FormGroup);
 // Vue.component("form-group", templates.singleErrorExtractor.foundation6);
 Vue.component("Select2", Select2);
@@ -112,9 +114,17 @@ import { VueEditor } from "vue2-editor";
 import Multiselect from "vue-multiselect";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 import handleAxiosErrors from "./mixins/handle-axios-errors";
+import greaterOrEqualTo18Years from "./mixins/is-not-less-than-18";
+import notGreaterThanCurrentDate from "./mixins/not-greater-than-current-date";
+import isEndDateGreater from "./mixins/compare-two-dates";
+import inArray from "./mixins/in_array";
 import logout from "./mixins/logout";
 
 Vue.mixin(handleAxiosErrors);
+Vue.mixin(greaterOrEqualTo18Years);
+Vue.mixin(notGreaterThanCurrentDate);
+Vue.mixin(isEndDateGreater);
+Vue.mixin(inArray);
 Vue.mixin(logout);
 
 Vue.component("pagination", Pagination);

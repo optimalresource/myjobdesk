@@ -60,8 +60,8 @@
           </router-link>
         </ul>
         <ul class="feedlist logout_link jb_cover">
-          <router-link tag="li" @click="logout">
-            <a @click="logout"><i class="fas fa-power-off"></i> log out </a>
+          <router-link tag="li" to="/logout">
+            <a href="/logout"><i class="fas fa-power-off"></i> log out </a>
           </router-link>
         </ul>
       </div>

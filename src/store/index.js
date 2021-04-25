@@ -316,6 +316,23 @@ export default new Vuex.Store({
           });
       });
     },
+    UpdateUserPrivileges({ commit }, credentials) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("", credentials)
+          .then(response => {
+            commit("SetError", null);
+            resolve(response);
+          })
+          .catch(error => {
+            if (error.response) {
+              reject(error.response.data);
+            } else {
+              reject(error);
+            }
+          });
+      });
+    },
 
     FetchEducationDetails() {
       return new Promise((resolve, reject) => {

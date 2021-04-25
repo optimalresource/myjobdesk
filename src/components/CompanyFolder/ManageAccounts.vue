@@ -32,6 +32,13 @@
           <div v-if="changeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                <a
+                  href="#"
+                  @click.prevent="back"
+                  class="text-danger float-right"
+                >
+                  <i class="far fa-times-circle"></i>
+                </a>
                 <h4 class="text-center mb-3">Update Role</h4>
                 <input
                   v-model="users.role"
@@ -49,12 +56,6 @@
                 <button class="btn power_a mt-2 col-12">
                   update
                 </button>
-                <button
-                  @click.prevent="back"
-                  class="btn power_a float-right mt-3"
-                >
-                  <i class="fas fa-long-arrow-alt-left float-right"></i>
-                </button>
               </div>
             </div>
           </div>
@@ -64,39 +65,46 @@
           >
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 privileges ">
+                <a
+                  href="#"
+                  @click.prevent="backest"
+                  class="text-danger float-right p-3"
+                >
+                  <i class="far fa-times-circle"></i>
+                </a>
                 <h5 class="p-3 text-center">Edit Privileges</h5>
                 <ul class="ks-cboxtags">
                   <li>
                     <input
                       type="checkbox"
                       id="checkboxOne"
-                      v-model="update.manage_users"
+                      v-model="updatePrivileges.manage_users"
                     /><label for="checkboxOne">Can Manage Users</label>
                   </li>
                   <li>
                     <input
                       type="checkbox"
                       id="checkboxTwo"
-                      v-model="update.send_messages"
+                      v-model="updatePrivileges.send_messages"
                     /><label for="checkboxTwo">Can Send Messages</label>
                   </li>
                   <li>
                     <input
                       type="checkbox"
                       id="checkboxThree"
-                      v-model="update.view_all_user_activities"
+                      v-model="updatePrivileges.view_all_user_activities"
                     /><label for="checkboxThree">Can view all activities</label>
                   </li>
                   <li>
                     <input
                       type="checkbox"
                       id="checkboxFour"
-                      v-model="update.post_jobs"
+                      v-model="updatePrivileges.post_jobs"
                     /><label for="checkboxFour">Can Post Jobs</label>
                   </li>
                   <li>
                     <input
-                      v-model="update.post_interview_questions"
+                      v-model="updatePrivileges.post_interview_questions"
                       type="checkbox"
                       id="checkboxFive"
                     /><label for="checkboxFive"
@@ -105,22 +113,20 @@
                   </li>
                   <li>
                     <input
-                      v-model="update.edit_profile"
+                      v-model="updatePrivileges.edit_profile"
                       type="checkbox"
                       id="checkboxSix"
                     /><label for="checkboxSix">Can Edit Profile</label>
                   </li>
+                  <li>
+                    <button
+                      @click.prevent="editUserPrivileges"
+                      class="btn power_a mt-2 mb-4 col-12"
+                    >
+                      update
+                    </button>
+                  </li>
                 </ul>
-                <button class="btn power_a mt-2 col-12">
-                  update
-                </button>
-
-                <button
-                  @click.prevent="backest"
-                  class="btn power_a float-right mt-3 mb-4"
-                >
-                  <i class="fas fa-long-arrow-alt-left float-right"></i>
-                </button>
               </div>
             </div>
           </div>
@@ -131,6 +137,13 @@
                   class="job_filter_category_sidebar company_wrapper jb_cover"
                 >
                   <div class="job_filter_sidebar_heading jb_cover">
+                    <a
+                      href="#"
+                      @click.prevent="backer"
+                      class="text-white float-right"
+                    >
+                      <i class="far fa-times-circle"></i>
+                    </a>
                     <h1>
                       User activities
                     </h1>
@@ -154,223 +167,192 @@
                     <hr />
                   </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                  <button
-                    @click.prevent="backer"
-                    class="btn power_a float-right mt-3"
-                  >
-                    <i class="fas fa-long-arrow-alt-left float-right"></i>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
           <div v-if="notChangeRole" class="col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                <div class="power_button">
-                  <a
-                    @click.prevent="showAllUsers"
-                    v-show="showActivities"
-                    href="#"
-                    class="btn power_a"
-                    >view users</a
-                  >
+                <div class="power_button float-right">
                   <a
                     @click.prevent="showAllActivities"
-                    v-show="showUsers"
+                    v-if="showUsers"
                     href="#"
                     class="btn power_a"
                     >view all users activities</a
                   >
                   <a
-                    data-toggle="modal"
-                    data-target="#exampleModalScrollable"
+                    v-if="showUsers"
+                    @click.prevent="creatNewUser"
                     class="btn power_a"
                     href="#"
                     >create new user</a
                   >
                 </div>
-                <div
-                  class="modal fade"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalScrollable"
-                  aria-hidden="true"
-                  id="exampleModalScrollable"
-                >
-                  <div
-                    class="modal-dialog  modal-lg modal-dialog-scrollable"
-                    role="document"
-                  >
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Create New User</h5>
-                        <button
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true" class="text-danger"
-                            ><i class="far fa-times-circle"></i
-                          ></span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="delete_jb_form">
-                          <input
-                            type="text"
-                            v-model="users.first_name"
-                            placeholder="First Name"
-                            required
-                          />
-                        </div>
-                        <div class="delete_jb_form">
-                          <input
-                            type="text"
-                            v-model="users.middle_name"
-                            placeholder="Middle Name"
-                            required
-                          />
-                        </div>
-                        <div class="delete_jb_form">
-                          <input
-                            type="text"
-                            v-model="users.last_name"
-                            placeholder="Last Name"
-                            required
-                          />
-                        </div>
-                        <div class="delete_jb_form">
-                          <input
-                            type="email"
-                            v-model="users.email"
-                            placeholder="Email "
-                            required
-                          />
-                        </div>
-                        <div class="delete_jb_form">
-                          <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Password *letters and numbers are compulsory"
-                            v-model="users.password"
-                            required
-                          />
-                        </div>
-                        <div class="delete_jb_form">
-                          <input
-                            type="password"
-                            id="confirm-password"
-                            required
-                            placeholder="Confirm Password *"
-                            v-model="users.password_confirmation"
-                          />
-                        </div>
-                        <input
-                          class="form-control"
-                          list="datalistOptions"
-                          v-model="users.role"
-                          id="exampleDataList"
-                          placeholder="Assign Role"
-                        />
-                        <datalist id="datalistOptions">
-                          <option value="editor"></option>
-                          <option value="admin"></option>
-                          <option value="reviewer"></option>
-                        </datalist>
-                        <br />
-                        <!-- <div>
-                            <multiselect
-                              v-model="value"
-                              :options="options"
-                              :multiple="true"
-                              :close-on-select="false"
-                              :clear-on-select="false"
-                              :preserve-search="true"
-                              placeholder="Pick some"
-                              label="name"
-                              track-by="name"
-                              :preselect-first="true"
+                <div v-if="showUsers">
+                  <h5 class="text-center mt-5 mb-2">All Users</h5>
+
+                  <div class="jb_listing_left_fullwidth mt-0 jb_cover margin">
+                    <div class="row">
+                      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
+                        <div class="col-sm-12">
+                          <div class="jb_job_post_side_img">
+                            <avatar
+                              class="img-responsive xs-col-12 sm-col-12 mb-2"
+                              :size="70"
+                              :rounded="false"
                             >
-                              <template
-                                slot="selection"
-                                slot-scope="{ values, search, isOpen }"
-                                ><span
-                                  class="multiselect__single"
-                                  v-if="values.length &amp;&amp; !isOpen"
-                                  >{{ values.length }} options selected</span
-                                ></template
-                              >
-                            </multiselect>
-                          </div> -->
+                            </avatar>
+                          </div>
+                          <h5>
+                            <a href="#"></a>
+                          </h5>
+                          <h4>Name: {{}}</h4>
+                          <p>Role: {{}}</p>
+                          <p>
+                            Privileges: {{}}
+                          </p>
+                        </div>
                       </div>
-                      <div class="modal-footer">
-                        <button
-                          @click.prevent="saveNewUsers"
-                          type="submit"
-                          class="btn btn-primary col-12"
-                        >
-                          Create User
-                        </button>
+                      <div class="col-lg-3 col-md-3 col-sm-3 float-right">
+                        <div class="jb_job_post_right_btn_wrapper">
+                          <ul>
+                            <li>
+                              <div class="dropdown">
+                                <div class="dropbtn">
+                                  <button class="btn power_a">
+                                    Edit <i class="fas fa-edit "></i>
+                                  </button>
+                                </div>
+                                <div class="dropdown-content">
+                                  <a @click.prevent="updateRole" href="#"
+                                    >Change Role</a
+                                  >
+                                  <a @click.prevent="viewactivities" href="#"
+                                    >User Activities</a
+                                  >
+                                  <a @click.prevent="viewPrivileges" href="#"
+                                    >Edit Privileges</a
+                                  >
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div
-                  v-if="showUsers"
-                  class="jb_listing_left_fullwidth mt-0 jb_cover margin"
-                >
-                  <div class="row">
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
-                      <div class="col-sm-12">
-                        <div class="jb_job_post_side_img">
-                          <avatar
-                            class="img-responsive xs-col-12 sm-col-12 mb-2"
-                            :username="company.email"
-                            :size="70"
-                            :rounded="false"
-                          >
-                          </avatar>
-                        </div>
-                        <h5>
-                          <a href="#"></a>
-                        </h5>
-                        <h4>Name:</h4>
-                        <p>Role:</p>
-                        <p>Privileges: <span>Post</span></p>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 float-right">
-                      <div class="jb_job_post_right_btn_wrapper">
-                        <ul>
-                          <li>
-                            <div class="dropdown">
-                              <div class="dropbtn">
-                                <button class="btn btn-primary">
-                                  Edit <i class="fas fa-edit "></i>
-                                </button>
-                              </div>
-                              <div class="dropdown-content">
-                                <a @click.prevent="updateRole" href="#"
-                                  >Change Role</a
-                                >
-                                <a @click.prevent="viewactivities" href="#"
-                                  >User Activities</a
-                                >
-                                <a @click.prevent="viewPrivileges" href="#"
-                                  >Edit Privileges</a
-                                >
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                <div v-if="showCreateNewUserDiv" class="create_user_div">
+                  <div>
+                    <a
+                      @click.prevent="removeshowCreateNewUserDiv"
+                      href="#"
+                      class="text-danger float-right"
+                    >
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                    <h5 class="modal-title">Create New User</h5>
                   </div>
+                  <div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="text"
+                        v-model="users.first_name"
+                        placeholder="First Name"
+                        required
+                      />
+                    </div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="text"
+                        v-model="users.middle_name"
+                        placeholder="Middle Name"
+                        required
+                      />
+                    </div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="text"
+                        v-model="users.last_name"
+                        placeholder="Last Name"
+                        required
+                      />
+                    </div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="email"
+                        v-model="users.email"
+                        placeholder="Email "
+                        required
+                      />
+                    </div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password *letters and numbers are compulsory"
+                        v-model="users.password"
+                        required
+                      />
+                    </div>
+                    <div class="delete_jb_form">
+                      <input
+                        type="password"
+                        id="confirm-password"
+                        required
+                        placeholder="Confirm Password *"
+                        v-model="users.password_confirmation"
+                      />
+                    </div>
+                    <input
+                      class="form-control"
+                      list="datalistOptions"
+                      v-model="users.role"
+                      id="exampleDataList"
+                      placeholder="Assign Role"
+                    />
+                    <datalist id="datalistOptions">
+                      <option value="editor"></option>
+                      <option value="admin"></option>
+                      <option value="reviewer"></option>
+                    </datalist>
+                    <br />
+                    <!-- <div>
+                      <multiselect
+                        v-model="value"
+                        :options="options"
+                        :multiple="true"
+                        :close-on-select="false"
+                        :clear-on-select="false"
+                        :preserve-search="true"
+                        placeholder="Pick some"
+                        label="name"
+                        track-by="name"
+                        :preselect-first="true"
+                      >
+                        <template
+                          slot="selection"
+                          slot-scope="{ values, search, isOpen }"
+                          ><span
+                            class="multiselect__single"
+                            v-if="values.length &amp;&amp; !isOpen"
+                            >{{ values.length }} options selected</span
+                          ></template
+                        >
+                      </multiselect>
+                    </div> -->
+                  </div>
+                  <hr />
+                  <button
+                    @click.prevent="saveNewUsers"
+                    type="submit"
+                    class="btn power_a col-12"
+                  >
+                    Create User
+                  </button>
                 </div>
                 <div
                   v-if="showActivities"
@@ -380,40 +362,32 @@
                     class="job_filter_category_sidebar company_wrapper jb_cover"
                   >
                     <div class="job_filter_sidebar_heading jb_cover">
+                      <a
+                        @click.prevent="showAllUsers"
+                        v-if="showActivities"
+                        href="#"
+                        class="text-white float-right"
+                        ><i class="fas fa-times-circle"></i
+                      ></a>
                       <h1>All Users activities</h1>
                     </div>
                     <div class="job_overview_header pdd jb_cover">
-                      <ul class="mb-2">
+                      <ul
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        class="mb-2"
+                      >
                         <h5>
-                          sfkhaesriuheisub@dfbs;fnde.com
+                          {{ activity.email }}
                         </h5>
+                        <li>Action Type: {{ activity.action_type }}</li>
+                        <li>Browser: {{ activity.browser }}</li>
+                        <li>Ip Address: {{ activity.ip_address }}</li>
                         <li>
-                          Action Type: sdveadedartedrtbbbbbbrved
+                          <small>Time: {{ activity.time }}</small>
                         </li>
-                        <li>
-                          Browser: Chrome
-                        </li>
-                        <li>
-                          Ip Address: 136782345
-                        </li>
-                        <li><small>Time: 2:00 gmt</small></li>
                       </ul>
                       <hr />
-                      <div class="mb-2">
-                        <h5>
-                          sfkhaesriuheisub@dfbs;fnde.com
-                        </h5>
-                        <p>
-                          Action Type: sdveadedartedrtbbbbbbrved
-                        </p>
-                        <p>
-                          Browser: Chrome
-                        </p>
-                        <p>
-                          Ip Address: 136782345
-                        </p>
-                        <p><small>Time: 2:00 gmt</small></p>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -463,21 +437,14 @@ export default {
       notChangeRole: true,
       changeRole: false,
       userActivity: false,
-      value: [{ name: "Javascript", code: "js" }],
-      options: [
-        { name: "Vue.js", language: "JavaScript" },
-        { name: "Adonis", language: "JavaScript" },
-        { name: "Rails", language: "Ruby" },
-        { name: "Sinatra", language: "Ruby" },
-        { name: "Laravel", language: "PHP" },
-        { name: "Phoenix", language: "Elixir" }
-      ],
       successResponse: false,
       beforeResponse: false,
       showUsers: true,
       showActivities: false,
       onLine: navigator.onLine,
       showBackOnline: false,
+      showCreateNewUserDiv: false,
+      activities: [],
       users: {
         first_name: "",
         email: "",
@@ -487,13 +454,14 @@ export default {
         role: "",
         last_name: ""
       },
-      update: {
-        manage_users: "",
-        send_messages: "",
-        edit_profile: "",
-        post_interview_questions: "",
-        post_jobs: "",
-        view_all_user_activities: ""
+      newUsers: [],
+      updatePrivileges: {
+        manage_users: null,
+        send_messages: null,
+        edit_profile: null,
+        post_interview_questions: null,
+        post_jobs: null,
+        view_all_user_activities: null
       },
       company: this.$store.getters.StateCompanyDetails ?? ""
     };
@@ -509,6 +477,67 @@ export default {
     ChatBox
   },
   methods: {
+    editUserPrivileges: function() {
+      var request = {};
+      request.manage_users = this.updatePrivileges.manage_users;
+      request.send_messages = this.updatePrivileges.send_messages;
+      request.edit_profile = this.updatePrivileges.edit_profile;
+      request.post_interview_questions = this.updatePrivileges.post_interview_questions;
+      request.post_jobs = this.updatePrivileges.post_jobs;
+      request.view_all_user_activities = this.updatePrivileges.view_all_user_activities;
+      this.$store
+        .dispatch("UpdateUserPrivileges", request)
+        .then(response => {
+          this.pDResponse = response.status;
+          this.$toasted.success("Personal details Saved");
+          this.spin = false;
+          this.notSpin = true;
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+          this.spin = false;
+          this.notSpin = true;
+        });
+     
+    },
+    getAllUserActivities: function() {
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Fetch Available Jobs"
+      };
+      axios
+        .get("", {
+          headers: headers
+        })
+        .then(response => {
+          console.log(response);
+          this.activities = response.data;
+        });
+    },
+    getAllUsers: function() {
+      var accessToken = localStorage.getItem("token") || "";
+      const headers = {
+        Authorization: "Bearer " + accessToken,
+        "My-Custom-Header": "Fetch Available Jobs"
+      };
+      axios
+        .get("", {
+          headers: headers
+        })
+        .then(response => {
+          console.log(response);
+          this.newUsers = response.data;
+        });
+    },
+    removeshowCreateNewUserDiv: function() {
+      this.showCreateNewUserDiv = false;
+      this.showUsers = true;
+    },
+    creatNewUser: function() {
+      this.showCreateNewUserDiv = true;
+      this.showUsers = false;
+    },
     addTag(newTag) {
       const tag = {
         name: newTag,
@@ -618,6 +647,10 @@ export default {
       this.showUsers = true;
       this.showActivities = false;
     }
+  },
+  created: function() {
+    this.getAllUserActivities();
+    this.getAllUsers();
   },
   mounted() {
     if (!this.$store.getters.isHaveCompanyDetails) {
@@ -797,5 +830,9 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 }
 .margin {
   margin-bottom: 55px;
+}
+.create_user_div {
+  border: 1px solid rgb(230, 230, 230);
+  padding: 20px;
 }
 </style>

@@ -37,6 +37,17 @@
                 </div>
               </div>
             </div>
+            <div class="row ">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="job_listing_left_fullwidth jb_cover ">
+                  <div class="change_prodile_pics_div">
+                    <a href="#" class="btn"
+                      >Change Profile Picture <i class="fas fa-cog fa-spin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="job_listing_left_fullwidth jb_cover">
@@ -126,7 +137,7 @@
                       <input
                         class="form-control"
                         list="datalistOptions"
-                        id="exampleDataList"
+                        id="exampleDataList1"
                         placeholder="State..."
                         required
                       />
@@ -142,7 +153,7 @@
                       <input
                         class="form-control"
                         list="datalistOptions"
-                        id="exampleDataList"
+                        id="exampleDataList2"
                         placeholder="City..."
                         required
                       />
@@ -158,7 +169,7 @@
                       <input
                         class="form-control"
                         list="datalistOptions"
-                        id="exampleDataList"
+                        id="exampleDataList3"
                         placeholder="Local Government..."
                         required
                       />
@@ -174,7 +185,7 @@
                       <input
                         class="form-control"
                         list="datalistOptions"
-                        id="exampleDataList"
+                        id="exampleDataList4"
                         placeholder="Company size"
                         required
                       />
@@ -344,35 +355,31 @@
 </template>
 
 <script>
-// import Avatar from "vue-avatar";
 import Looking from "@/components/Looking.vue";
 import Footer from "@/components/Footer.vue";
 import DashboardHeader from "@/components/DashboardHeader.vue";
 import ChatBox from "@/components/ChatBox.vue";
 import CompanyDashboardSideBar from "@/components/CompanyDashboardSideBar.vue";
+
 export default {
   name: "EditProfile",
   data: function() {
     return {
-      company: this.$store.getters.StateCompanyDetails ?? ""
+      company: this.$store.getters.StateCompanyDetails ?? "",
+      image_name: null,
+      selectedFile: true,
+      imgSrc: null
     };
   },
   components: {
     Looking,
     Footer,
-    // Avatar,
     CompanyDashboardSideBar,
     DashboardHeader,
     ChatBox
   },
-  methods: {
-    saveProfile() {
-      //calling axios here to save profile
-    },
-    saveSocialMedia() {
-      //saving social media handles
-    }
-  },
+  computed: {},
+  methods: {},
   mounted() {
     if (!this.$store.getters.isHaveCompanyDetails) {
       this.$store
@@ -415,5 +422,43 @@ export default {
     margin-left: 27%;
     box-sizing: border-box;
   }
+}
+.change_prodile_pics_div {
+  padding: 20px;
+  text-align: center;
+}
+.change_prodile_pics_div a {
+  color: white;
+  background: #000000;
+}
+.change_prodile_pics_div a:hover {
+  color: white;
+}
+.user {
+  width: 140px;
+  height: 140px;
+  border-radius: 100%;
+  border: 3px solid #2e7d32;
+  position: relative;
+}
+.profile-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background: #e2e2e2;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  color: #0000ff;
+  font-size: 14px;
+  cursor: pointer;
 }
 </style>

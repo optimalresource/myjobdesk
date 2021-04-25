@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-12 col-sm-12">
             <div class="jb_heading_wraper left_jb_jeading">
-              <h3>Grow next level business</h3>
+              <h3 class="text-center">Get to the next level of your Career</h3>
 
               <p>#1 MOST trusted digital marketplace company</p>
             </div>
@@ -17,8 +17,8 @@
                 accountant.
                 <br />
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusd tempor incididunt ut labore et dolore magna aliqua.
+                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusd tempor incididunt ut labore et dolore magna aliqua. -->
               </p>
               <div class="header_btn search_btn jb_cover">
                 <a href="#">discover more</a>
@@ -27,7 +27,11 @@
           </div>
           <div class="col-lg-6 col-md-12 col-12 col-sm-12">
             <div class="grow_next_img jb_cover">
-              <img src="images/gnxt.jpg" class="img-responsive" alt="img" />
+              <img
+                src="https://image.freepik.com/free-vector/big-business-leap-businessman-jumping-cliff-gorge_126608-1221.jpg"
+                class="img-responsive"
+                alt="img"
+              />
             </div>
           </div>
         </div>
@@ -38,7 +42,7 @@
 
 <script>
 export default {
-  name: "Grow",
+  name: "Grow"
 };
 </script>
 

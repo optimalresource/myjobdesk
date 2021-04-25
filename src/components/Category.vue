@@ -167,7 +167,7 @@
             </div>
           </div> -->
           <div class="float-right">
-            <a class="btn bttn" href="/jobFilter">view more categories</a>
+            <a class="btn bttn" href="/moreCategories">view more categories</a>
           </div>
         </div>
       </div>

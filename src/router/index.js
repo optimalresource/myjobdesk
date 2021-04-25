@@ -65,6 +65,11 @@ const routes = [
     meta: { isApplicant: true }
   },
   {
+    path: "/moreCategories",
+    name: "MoreCategories",
+    component: () => import("../views/MoreCategories.vue")
+  },
+  {
     path: "/favorite",
     name: "Favorite",
     component: () => import("../views/Favorite.vue"),

@@ -105,7 +105,6 @@ export default new Vuex.Store({
             contact_number: credentials.details.contact_number,
             website: credentials.details.website,
             address: credentials.details.address,
-            category: credentials.details.category,
             user_type: credentials.details.user_type
           })
           .then(response => {

@@ -19,7 +19,7 @@
               class="form-control require"
               placeholder="Company's Name*"
               required
-              v-model="companys.name"
+              v-model="company.name"
             />
             <i class="fas fa-user"></i>
             <span>{{ errors[0] }}</span>
@@ -40,7 +40,7 @@
               autocomplete="email"
               autofocus
               placeholder="Email Address*"
-              v-model="companys.email"
+              v-model="company.email"
             />
             <i class="fas fa-envelope"></i>
             <span>{{ errors[0] }}</span>
@@ -56,7 +56,7 @@
               class="form-control"
               placeholder="Company's Reg Number*"
               required
-              v-model="companys.reg_number"
+              v-model="company.reg_number"
             />
             <i class="fas fa-registered"></i>
             <span>{{ errors[0] }}</span>
@@ -72,7 +72,7 @@
               class="form-control"
               placeholder="Contact Number*"
               required
-              v-model="companys.contact_number"
+              v-model="company.contact_number"
             />
             <i class="fas fa-phone-volume"></i>
             <span>{{ errors[0] }}</span>
@@ -85,7 +85,7 @@
               class="form-control"
               placeholder="Contact website*"
               required
-              v-model="companys.website"
+              v-model="company.website"
             />
             <i class="fas fa-globe"></i>
             <span>{{ errors[0] }}</span>
@@ -103,7 +103,7 @@
               required
               autofocus
               placeholder="Company's Address*"
-              v-model="companys.address"
+              v-model="company.address"
             >
             </textarea>
             <i class="fas fa-map-marker-alt"></i>
@@ -116,7 +116,7 @@
             :rules="{
               required: true,
               regex: /^(?=.*\d)(?=.*[a-zA-Z]).{6,100}$/,
-              confirmed: 'confirmation',
+              confirmed: 'confirmation'
             }"
             v-slot="{ errors }"
             name="Password"
@@ -127,7 +127,7 @@
                 id="Company Password"
                 class="form-control"
                 placeholder="Password * ex. letters and numbers are compulsory"
-                v-model="companys.password"
+                v-model="company.password"
               />
               <div class="input-group-append">
                 <span
@@ -157,7 +157,7 @@
                 required
                 class="form-control short"
                 placeholder="Confirm Password *"
-                v-model="companys.password_confirmation"
+                v-model="company.password_confirmation"
               />
               <div class="input-group-append">
                 <span
@@ -176,9 +176,9 @@
             <div id="blk">{{ errors[0] }}</div>
           </ValidationProvider>
         </ValidationObserver>
-        <div class="select_dropdown">
+        <!--<div class="select_dropdown">
           <multiselect
-            v-model="companys.category"
+            v-model="company.category"
             tag-placeholder="Add this as new Category"
             placeholder="Add a Sector"
             label="name"
@@ -189,7 +189,7 @@
             @tag="addTag"
             tag-position="auto"
           ></multiselect>
-        </div>
+        </div>-->
         <br />
         <div class="jb_newslwtteter_button">
           <div class="header_btn search_btn news_btn jb_cover">
@@ -216,7 +216,7 @@
 
 <script>
 // import ChatBox from "@/components/ChatBox.vue";
-import Multiselect from "vue-multiselect";
+// import Multiselect from "vue-multiselect";
 // import axios from "axios";
 // import Timer from "@/components/Timer.vue";
 // import MainNavigation from "@/components/MainNavigation.vue";
@@ -225,7 +225,7 @@ export default {
   name: "SignUpDiv",
   components: {
     // ChatBox,
-    Multiselect,
+    // Multiselect
     // Timer
     // Navigation,
     // MainNavigation
@@ -237,19 +237,8 @@ export default {
       notSpin: true,
       showConfirmPassword: false,
       regResponse: 0,
-      options: [
-        { name: "​Construction/ Real Estate", code: "Re|Co" },
-        { name: "​​Consumer Goods", code: "go" },
-        { name: "Financial Services", code: "fi" },
-        { name: "​Healthcare", code: "he" },
-        { name: "​Information & Communications Technology", code: "it" },
-        { name: "​Natural Resources", code: "na" },
-        { name: "​​​Oil & Gas", code: "oi" },
-        { name: "Services", code: "se" },
-        { name: "Conglomerates", code: "se" },
-        { name: "Utilities", code: "ut" },
-      ],
-      companys: {
+      options: this.$store.getters.StateJobCategories ?? [],
+      company: {
         name: "",
         email: "",
         password: "",
@@ -260,14 +249,14 @@ export default {
         contact_number: "",
         category: "",
         website: "",
-        user_type: "company",
+        user_type: "company"
       },
       isHidden: true,
       successResponse: false,
       beforeResponse: false,
       onLine: navigator.onLine,
       showBackOnline: false,
-      agreeSelected: "",
+      agreeSelected: ""
     };
   },
   methods: {
@@ -275,9 +264,23 @@ export default {
       const tag = {
         name: newTag,
         code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        user_defined: 1
       };
       this.options.push(tag);
-      this.category.push(tag);
+
+      this.$store
+        .dispatch("AddJobCategory", tag)
+        .then(response => {
+          this.company.category.push(response.data.job_category);
+          if (response.data.existed == 1) {
+            this.$toasted.success("You can use the added category now");
+          } else {
+            this.$toasted.success("You successfully added new category");
+          }
+        })
+        .catch(error => {
+          this.handleAxiosErrors(error);
+        });
     },
     updateOnlineStatus(e) {
       const { type } = e;
@@ -291,54 +294,54 @@ export default {
       this.spin = true;
       this.notSpin = false;
 
-      if (this.companys.name == "") {
+      if (this.company.name == "") {
         this.$toasted.error("Please Fill Company's Name");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (!this.validateEmail(this.companys.email)) {
+      if (!this.validateEmail(this.company.email)) {
         this.$toasted.error("Please enter a valid Email");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.email == "") {
+      if (this.company.email == "") {
         this.$toasted.error("Please Fill Company's Email");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.address == "") {
+      if (this.company.address == "") {
         this.$toasted.error("Please Fill Company's Address");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.password == "") {
+      if (this.company.password == "") {
         this.$toasted.error("Please Fill Password");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.password_confirmation == "") {
+      if (this.company.password_confirmation == "") {
         this.$toasted.error("Please Fill Confirm Password");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.password !== this.companys.password_confirmation) {
+      if (this.company.password !== this.company.password_confirmation) {
         this.$toasted.error("Password and Confirm Password does not Match");
         this.spin = false;
         this.notSpin = true;
         return false;
       }
-      if (this.companys.category.length < 1) {
-        this.$toasted.error("please pick a category");
-        this.spin = false;
-        this.notSpin = true;
-        return false;
-      }
+      // if (this.company.category.length < 1) {
+      //   this.$toasted.error("please pick a category");
+      //   this.spin = false;
+      //   this.notSpin = true;
+      //   return false;
+      // }
       // if (!this.onLine) {
       //   this.$toasted.error("Please check your internet connection");
       //   this.spin = false;
@@ -350,18 +353,18 @@ export default {
 
       this.$store
         .dispatch("RegisterCompany", {
-          details: this.companys,
+          details: this.company
         })
         .then(() => {
           this.$toasted.success("Your registration is successful");
           this.$router.push({ name: "EmployerDashboard" });
         })
-        .catch((error) => {
+        .catch(error => {
           this.spin = false;
           this.notSpin = true;
           this.handleAxiosErrors(error);
         });
-    },
+    }
   },
   mounted() {
     // window.addEventListener("online", this.updateOnlineStatus);
@@ -390,8 +393,8 @@ export default {
         this.successResponse = false;
         this.beforeResponse = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
